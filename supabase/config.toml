@@ -1,0 +1,31 @@
+project_id = "hzgkqjprhctrhwnuqtmy"
+
+[functions.send-client-signup-email]
+verify_jwt = false
+
+[functions.convert-mockup-to-code]
+verify_jwt = false
+
+[functions.run-website-audit]
+verify_jwt = false
+
+[functions.deploy-demo]
+verify_jwt = false
+
+[functions.create-gmail-draft]
+verify_jwt = false
+
+[functions.fetch-agent-result]
+verify_jwt = false
+
+[functions.send-campaign-batch]
+verify_jwt = false
+
+[functions.stop-campaign-batch]
+verify_jwt = false
+
+[functions.auto-start-daily-campaign]
+verify_jwt = false
+
+[functions.resume-stale-batches]
+verify_jwt = false

@@ -1,0 +1,1 @@
+ALTER TABLE public.website_requests ADD COLUMN generated_code text;

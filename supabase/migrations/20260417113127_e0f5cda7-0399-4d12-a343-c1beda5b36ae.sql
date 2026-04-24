@@ -1,0 +1,1 @@
+INSERT INTO public.potential_clients (name, email, source_query, contacted) VALUES ('Angelo Magni', 'angelo@angelomagni.it', 'test, EN', false);

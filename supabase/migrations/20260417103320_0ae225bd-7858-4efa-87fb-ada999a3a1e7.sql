@@ -1,0 +1,1 @@
+UPDATE potential_clients SET contacted = false WHERE contacted = true AND id NOT IN (SELECT DISTINCT prospect_id FROM campaign_email_log WHERE status='sent' AND prospect_id IS NOT NULL);
