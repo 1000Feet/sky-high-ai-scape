@@ -135,7 +135,7 @@ Output ONLY the raw JavaScript code for the React component. No markdown fences,
     });
   } catch (error) {
     console.error('Error in convert-mockup-to-code:', error);
-    return new Response(JSON.stringify({ error: error.message || 'Internal server error' }), {
+    return new Response(JSON.stringify({ error: (error as Error)?.message || 'Internal server error' }), {
       status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   }
