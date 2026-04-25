@@ -579,9 +579,9 @@ const PotentialClientsReservaMesa: React.FC = () => {
                           </Button>
                         </div>
                       ) : (
-                        <div className="flex items-center gap-1 group">
-                          <span className="text-xs">{client.email || <span className="text-muted-foreground italic">no email</span>}</span>
-                          <Button size="sm" variant="ghost" className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100" onClick={() => startEditEmail(client)}>
+                        <div className="flex items-center gap-1 group min-w-0">
+                          <span className="text-xs truncate">{client.email || <span className="text-muted-foreground italic">no email</span>}</span>
+                          <Button size="sm" variant="ghost" className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100 shrink-0" onClick={() => startEditEmail(client)}>
                             <Pencil className="h-3 w-3" />
                           </Button>
                         </div>
