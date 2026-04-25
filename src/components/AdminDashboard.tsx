@@ -73,12 +73,14 @@ const AdminDashboard: React.FC = () => {
 
   const fetchData = async () => {
     try {
-      const [signupsRes, websiteRes, potentialCountRes] = await Promise.all([
+      const [signupsRes, websiteRes, potentialCountRes, reservaCountRes] = await Promise.all([
         supabase.from('client_signups').select('*').order('created_at', { ascending: false }),
         (supabase.from('website_requests') as any).select('*').order('created_at', { ascending: false }),
         supabase.from('potential_clients').select('*', { count: 'exact', head: true }),
+        (supabase.from('potential_clients_reserva_mesa') as any).select('*', { count: 'exact', head: true }),
       ]);
       setPotentialClientsCount(potentialCountRes.count || 0);
+      setReservaMesaCount(reservaCountRes.count || 0);
 
       if (signupsRes.error) throw signupsRes.error;
       setSignups(signupsRes.data || []);
