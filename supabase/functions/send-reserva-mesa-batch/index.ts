@@ -34,12 +34,11 @@ function buildHtmlES(businessName: string, _domain: string): string {
 <p>Hola ${nombre},</p>
 <p>Soy Angelo, fundador de <strong>ReservaMesa</strong>. Es un sistema gratuito para restaurantes en Costa Rica.</p>
 <p>Ayuda con tres cosas:</p>
-<p><strong>1. Reservas</strong> — sus clientes reservan desde un widget en su web o redes y reciben confirmación y recordatorios automáticos por WhatsApp.</p>
+<p><strong>1. Reservas</strong> — sus clientes reservan desde un link en su web o redes y reciben confirmación y recordatorios automáticos por WhatsApp.</p>
 <p><strong>2. Mesas</strong> — dashboard simple para ver qué mesas están ocupadas, libres o por llegar.</p>
 <p><strong>3. Comandas digitales</strong> — el staff anota los consumos directamente en cada mesa, y la dashboard suma automáticamente. Reemplaza el cuaderno de papel.</p>
 <p>Ustedes reciben cada nueva reserva en su WhatsApp personal, sin necesidad de revisar pantallas.</p>
-<p>El plan Free no tiene costo ni tarjeta de crédito. Los planes pagados empiezan en <strong>$29/mes</strong>.</p>
-<p>¿Les muestro cómo funciona en una llamada de 15 minutos?</p>
+<p>¿Les muestro cómo funciona en una llamada de 5 minutos?</p>
 <p>Pura vida,<br>
 Angelo Magni<br>
 ReservaMesa<br>
