@@ -11,6 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Loader2, Users, TrendingUp, Clock, Mail, Phone, Globe, MessageSquare, Palette, Image, Code, Copy, Check, Trash2, Rocket, ExternalLink, Download, Pencil, Save, X } from 'lucide-react';
 import { format } from 'date-fns';
 import PotentialClients from './PotentialClients';
+import PotentialClientsReservaMesa from './PotentialClientsReservaMesa';
 import AuditsTab from './AuditsTab';
 
 interface ClientSignup {
