@@ -498,7 +498,7 @@ const PotentialClientsReservaMesa: React.FC = () => {
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <Table>
+            <Table className="table-fixed w-full">
               <TableHeader>
                 <TableRow>
                   <TableHead className="w-[30px]">#</TableHead>
@@ -515,12 +515,12 @@ const PotentialClientsReservaMesa: React.FC = () => {
                     </div>
                   </TableHead>
                   <TableHead className="w-[50px]">✓</TableHead>
-                  <TableHead>Negocio</TableHead>
-                  <TableHead>Contacto</TableHead>
-                  <TableHead className="w-[120px]">Email</TableHead>
-                  <TableHead>Ubicación</TableHead>
-                  <TableHead>Rating</TableHead>
-                  <TableHead>Categoría</TableHead>
+                  <TableHead className="w-[22%]">Negocio</TableHead>
+                  <TableHead className="w-[12%]">Contacto</TableHead>
+                  <TableHead className="w-[20%]">Email</TableHead>
+                  <TableHead className="w-[15%]">Ubicación</TableHead>
+                  <TableHead className="w-[10%]">Rating</TableHead>
+                  <TableHead className="w-[15%]">Categoría</TableHead>
                   <TableHead className="w-[50px]"></TableHead>
                 </TableRow>
               </TableHeader>
