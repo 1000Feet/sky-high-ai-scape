@@ -68,6 +68,7 @@ const AdminDashboard: React.FC = () => {
   const [editingNotesFor, setEditingNotesFor] = useState<string | null>(null);
   const [editNotesValue, setEditNotesValue] = useState('');
   const [potentialClientsCount, setPotentialClientsCount] = useState<number>(0);
+  const [reservaMesaCount, setReservaMesaCount] = useState<number>(0);
   const { toast } = useToast();
 
   const fetchData = async () => {
