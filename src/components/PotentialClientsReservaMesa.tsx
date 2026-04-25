@@ -549,11 +549,11 @@ const PotentialClientsReservaMesa: React.FC = () => {
                     <TableCell>
                       <Checkbox checked={client.contacted} onCheckedChange={() => toggleContacted(client.id, client.contacted)} />
                     </TableCell>
-                    <TableCell>
-                      <div className="font-medium text-sm">{client.name}</div>
+                    <TableCell className="overflow-hidden">
+                      <div className="font-medium text-sm truncate">{client.name}</div>
                       {client.website && (
-                        <a href={client.website.startsWith('http') ? client.website : `https://${client.website}`} target="_blank" rel="noreferrer" className="text-xs text-primary hover:underline flex items-center gap-1">
-                          <Globe className="h-3 w-3" />{client.website}
+                        <a href={client.website.startsWith('http') ? client.website : `https://${client.website}`} target="_blank" rel="noreferrer" className="text-xs text-primary hover:underline flex items-center gap-1 truncate">
+                          <Globe className="h-3 w-3 shrink-0" /><span className="truncate">{client.website}</span>
                         </a>
                       )}
                     </TableCell>
