@@ -23,35 +23,32 @@ const SENDER_EMAIL = 'info@reservamesa.cr'
 const SENDER_NAME = 'Reserva Mesa'
 const SENDER_FROM = `${SENDER_NAME} <${SENDER_EMAIL}>`
 
-// ── signature ────────────────────────────────────────────────────────────────
-const SIGNATURE_HTML = `
-<table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,sans-serif;font-size:12px;color:#333333;margin-top:20px;">
-  <tr>
-    <td style="border-left:3px solid #3daaf2;padding-left:14px;vertical-align:top;">
-      <div style="font-weight:bold;font-size:14px;color:#222222;">Reserva Mesa</div>
-      <div style="font-size:12px;color:#555555;margin-bottom:8px;">Soluciones digitales para restaurantes</div>
-      <div style="font-size:12px;"><a href="mailto:info@reservamesa.cr" style="color:#3daaf2;text-decoration:none;">info@reservamesa.cr</a></div>
-    </td>
-  </tr>
-</table>
-`
-
-// ── PLACEHOLDER TEMPLATE — replace with the user's final Spanish copy ────────
-function buildSubject(businessName: string): string {
-  return `Una demo gratuita del nuevo sitio web para ${businessName}`
+// ── TEMPLATE: ReservaMesa (Costa Rica) ───────────────────────────────────────
+function buildSubject(_businessName: string): string {
+  return `Sistema gratuito para reservas y comandas — ReservaMesa`
 }
 
-function buildHtmlES(businessName: string, domain: string): string {
+function buildHtmlES(businessName: string, _domain: string): string {
+  const nombre = businessName || 'amigo'
   return `<div style="font-family:Arial,sans-serif;font-size:14px;color:#333333;line-height:1.6;">
-<p>Buenas,</p>
-<p>Le eché un vistazo a <strong>${domain}</strong> y creo que hay bastante margen de mejora — desde el diseño y la velocidad hasta la conversión de visitantes.</p>
-<p>Le voy a preparar una <strong>demo gratuita de un sitio nuevo, sin compromiso</strong>. Si le interesa, basta con responder con un <strong>"OK"</strong>.</p>
-<p>Saludos cordiales,</p>
-${SIGNATURE_HTML}
+<p>Hola ${nombre},</p>
+<p>Soy Angelo, fundador de <strong>ReservaMesa</strong>. Es un sistema gratuito para restaurantes en Costa Rica.</p>
+<p>Ayuda con tres cosas:</p>
+<p><strong>1. Reservas</strong> — sus clientes reservan desde un widget en su web o redes y reciben confirmación y recordatorios automáticos por WhatsApp.</p>
+<p><strong>2. Mesas</strong> — dashboard simple para ver qué mesas están ocupadas, libres o por llegar.</p>
+<p><strong>3. Comandas digitales</strong> — el staff anota los consumos directamente en cada mesa, y la dashboard suma automáticamente. Reemplaza el cuaderno de papel.</p>
+<p>Ustedes reciben cada nueva reserva en su WhatsApp personal, sin necesidad de revisar pantallas.</p>
+<p>El plan Free no tiene costo ni tarjeta de crédito. Los planes pagados empiezan en <strong>$29/mes</strong>.</p>
+<p>¿Les muestro cómo funciona en una llamada de 15 minutos?</p>
+<p>Pura vida,<br>
+Angelo Magni<br>
+ReservaMesa<br>
+<a href="https://reservamesa.cr" style="color:#3daaf2;text-decoration:none;">https://reservamesa.cr</a><br>
+WhatsApp directo: <a href="https://wa.me/50687524442" style="color:#3daaf2;text-decoration:none;">https://wa.me/50687524442</a></p>
 <p style="font-size:11px;color:#999999;margin-top:20px;">—<br>Si prefiere no recibir más correos, basta con responder "remover" y no le volveré a escribir.</p>
 </div>`
 }
-const SUBJECT_SAFETY_RX = /(demo gratuita|sitio web)/i
+const SUBJECT_SAFETY_RX = /(ReservaMesa|reservas)/i
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
