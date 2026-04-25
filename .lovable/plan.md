@@ -1,32 +1,31 @@
+# Re-inviare le prime 5 email di ReservaMesa
 
+## Le 5 email da rispedire
 
-## Piano: eliminare lo sleep retry e gestire fallimenti soft
+| Email | Prospect ID |
+|---|---|
+| Cfitzg6505@aol.Com | 868de7e9 |
+| nbarboza@pops.co.cr | d58041d0 |
+| info@readypizzacr.com | 2483617e |
+| press@subway.com | 4a007b57 |
+| servicioalcliente@kfccostarica.com | 8667310f |
 
-### Fix 1: rimuovere `await sleep(60_000)` tra retry
-Nel file `supabase/functions/send-campaign-batch/index.ts`, nella sezione "Send with 1 retry":
-- Eliminare `if (attempt === 1) await sleep(RETRY_DELAY_MS)` 
-- Mantenere il retry immediato (max 2 tentativi back-to-back, senza pausa)
-- Rationale: 60s di sleep blocca la edge function fino al timeout CPU. Se il primo invio fallisce per un motivo transitorio SMTP, ritentare subito o mai — non bloccare l'intero batch.
+## Il problema
 
-### Fix 2: classificare errori "permanenti" e saltare il prospect
-Errori SMTP tipo `451 Temporary lookup failure`, `550 user unknown`, `553 invalid recipient` indicano che **quell'indirizzo specifico** non riceverà mai (o non ora). Attualmente il codice li tratta come fallimento generico, incrementa `consecutive_failures`, e dopo 5 fa scattare il circuit breaker — ma in pratica fa molto peggio: blocca tutto perché il retry-sleep timeouta.
+Il sender ha 3 protezioni che impediscono di reinviare:
+1. `contacted=true` su quei lead
+2. Filtro anti-duplicati che salta qualunque email già con `status='sent'` nel log
+3. Nessuno strumento di scrittura SQL diretto disponibile
 
-Cambio la logica:
-- Se il messaggio di errore matcha pattern noti (`/^4\d\d/`, `/^5\d\d/`, `lookup failure`, `user unknown`, `does not exist`, `invalid recipient`), trattalo come **skip permanente**: marca log come `failed`, incrementa `failed_count`, **avanza il cursor**, ma **NON** incrementare `consecutive_failures` (così il circuit breaker non scatta per problemi del singolo destinatario).
-- Solo errori di connessione SMTP (es. timeout, ECONNRESET) contano come "consecutive failure" reale.
+## Soluzione
 
-### Fix 3: sblocco immediato del batch attuale
-Una volta deployata la nuova versione, chiamo manualmente `send-campaign-batch` con `batch_id=83e13f1e-...` per farlo riprendere dal cursor 318. Senza lo sleep killer, processerà l'indirizzo problematico → lo skipperà → andrà avanti col 319 e oltre.
+Creo una nuova edge function one-shot **`requeue-reserva-mesa-prospects`** che, dato un array di `prospect_ids`:
 
-### File toccati
-- `supabase/functions/send-campaign-batch/index.ts` — solo il blocco retry (~15 righe)
+1. Cancella le entry `status='sent'` di quei recipient nel log (così il filtro anti-dup non li salta)
+2. Rimette `contacted=false` su quei lead
+3. Crea un nuovo batch `running` con quei 5 ID
+4. Invoca `send-reserva-mesa-batch` per partire subito
 
-### Cosa NON cambio
-- Watchdog (funziona, fa il suo lavoro)
-- Schema DB
-- Logica rate-limit / quote
-- UI
+Poi la chiamo passando i 5 prospect_id sopra. Le 5 email verranno inviate in coda al batch attuale (che sta già girando con cadenza ~95s). Tempo totale stimato per i 5: ~8 minuti dopo l'invocazione.
 
-### Risultato atteso
-Entro pochi minuti il batch ricomincia a inviare. Il prospect rotto viene saltato in <2s invece di bloccare 60s+ e crashare. Ogni futuro indirizzo invalido viene gestito allo stesso modo.
-
+La funzione resta nel progetto e può essere riusata in futuro per re-inviare email a qualsiasi lead specifico.
