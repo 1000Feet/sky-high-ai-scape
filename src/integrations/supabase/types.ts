@@ -64,6 +64,48 @@ export type Database = {
           },
         ]
       }
+      campaign_email_log_reserva_mesa: {
+        Row: {
+          attempt_count: number
+          batch_id: string | null
+          created_at: string
+          error_message: string | null
+          id: string
+          language: string | null
+          prospect_id: string | null
+          recipient_email: string
+          sent_at: string | null
+          status: string
+          subject: string | null
+        }
+        Insert: {
+          attempt_count?: number
+          batch_id?: string | null
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          language?: string | null
+          prospect_id?: string | null
+          recipient_email: string
+          sent_at?: string | null
+          status: string
+          subject?: string | null
+        }
+        Update: {
+          attempt_count?: number
+          batch_id?: string | null
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          language?: string | null
+          prospect_id?: string | null
+          recipient_email?: string
+          sent_at?: string | null
+          status?: string
+          subject?: string | null
+        }
+        Relationships: []
+      }
       client_signups: {
         Row: {
           business_type: string | null
@@ -160,7 +202,121 @@ export type Database = {
         }
         Relationships: []
       }
+      email_batches_reserva_mesa: {
+        Row: {
+          completed_at: string | null
+          consecutive_failures: number
+          cursor: number
+          failed_count: number
+          id: string
+          last_error: string | null
+          last_heartbeat_at: string | null
+          paused_reason: string | null
+          paused_until: string | null
+          prospect_ids: Json
+          sent_count: number
+          skipped_count: number
+          started_at: string
+          status: string
+          stop_requested: boolean
+          total: number
+        }
+        Insert: {
+          completed_at?: string | null
+          consecutive_failures?: number
+          cursor?: number
+          failed_count?: number
+          id?: string
+          last_error?: string | null
+          last_heartbeat_at?: string | null
+          paused_reason?: string | null
+          paused_until?: string | null
+          prospect_ids?: Json
+          sent_count?: number
+          skipped_count?: number
+          started_at?: string
+          status?: string
+          stop_requested?: boolean
+          total?: number
+        }
+        Update: {
+          completed_at?: string | null
+          consecutive_failures?: number
+          cursor?: number
+          failed_count?: number
+          id?: string
+          last_error?: string | null
+          last_heartbeat_at?: string | null
+          paused_reason?: string | null
+          paused_until?: string | null
+          prospect_ids?: Json
+          sent_count?: number
+          skipped_count?: number
+          started_at?: string
+          status?: string
+          stop_requested?: boolean
+          total?: number
+        }
+        Relationships: []
+      }
       potential_clients: {
+        Row: {
+          address: string | null
+          category: string | null
+          city: string | null
+          contacted: boolean
+          created_at: string
+          email: string | null
+          google_id: string | null
+          id: string
+          name: string
+          notes: string | null
+          phone: string | null
+          rating: number | null
+          reviews_count: number | null
+          source_query: string | null
+          state: string | null
+          website: string | null
+        }
+        Insert: {
+          address?: string | null
+          category?: string | null
+          city?: string | null
+          contacted?: boolean
+          created_at?: string
+          email?: string | null
+          google_id?: string | null
+          id?: string
+          name: string
+          notes?: string | null
+          phone?: string | null
+          rating?: number | null
+          reviews_count?: number | null
+          source_query?: string | null
+          state?: string | null
+          website?: string | null
+        }
+        Update: {
+          address?: string | null
+          category?: string | null
+          city?: string | null
+          contacted?: boolean
+          created_at?: string
+          email?: string | null
+          google_id?: string | null
+          id?: string
+          name?: string
+          notes?: string | null
+          phone?: string | null
+          rating?: number | null
+          reviews_count?: number | null
+          source_query?: string | null
+          state?: string | null
+          website?: string | null
+        }
+        Relationships: []
+      }
+      potential_clients_reserva_mesa: {
         Row: {
           address: string | null
           category: string | null
