@@ -259,6 +259,54 @@ export type Database = {
         }
         Relationships: []
       }
+      email_send_queue: {
+        Row: {
+          attempts: number
+          batch_id: string
+          campaign_type: string
+          claimed_by: string | null
+          claimed_until: string | null
+          created_at: string
+          id: string
+          last_error: string | null
+          max_attempts: number
+          next_attempt_at: string
+          prospect_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          attempts?: number
+          batch_id: string
+          campaign_type: string
+          claimed_by?: string | null
+          claimed_until?: string | null
+          created_at?: string
+          id?: string
+          last_error?: string | null
+          max_attempts?: number
+          next_attempt_at?: string
+          prospect_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          attempts?: number
+          batch_id?: string
+          campaign_type?: string
+          claimed_by?: string | null
+          claimed_until?: string | null
+          created_at?: string
+          id?: string
+          last_error?: string | null
+          max_attempts?: number
+          next_attempt_at?: string
+          prospect_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       potential_clients: {
         Row: {
           address: string | null
@@ -512,7 +560,38 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      claim_email_for_send: {
+        Args: {
+          p_lease_seconds: number
+          p_queue_id: string
+          p_worker_id: string
+        }
+        Returns: {
+          attempts: number
+          batch_id: string
+          campaign_type: string
+          claimed_by: string | null
+          claimed_until: string | null
+          created_at: string
+          id: string
+          last_error: string | null
+          max_attempts: number
+          next_attempt_at: string
+          prospect_id: string
+          status: string
+          updated_at: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "email_send_queue"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      increment_batch_counter: {
+        Args: { p_batch_id: string; p_kind: string; p_table: string }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
