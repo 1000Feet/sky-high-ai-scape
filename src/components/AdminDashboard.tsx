@@ -11,6 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Loader2, Users, TrendingUp, Clock, Mail, Phone, Globe, MessageSquare, Palette, Image, Code, Copy, Check, Trash2, Rocket, ExternalLink, Download, Pencil, Save, X } from 'lucide-react';
 import { format } from 'date-fns';
 import PotentialClients from './PotentialClients';
+import PotentialClientsReservaMesa from './PotentialClientsReservaMesa';
 import AuditsTab from './AuditsTab';
 
 interface ClientSignup {
@@ -67,16 +68,19 @@ const AdminDashboard: React.FC = () => {
   const [editingNotesFor, setEditingNotesFor] = useState<string | null>(null);
   const [editNotesValue, setEditNotesValue] = useState('');
   const [potentialClientsCount, setPotentialClientsCount] = useState<number>(0);
+  const [reservaMesaCount, setReservaMesaCount] = useState<number>(0);
   const { toast } = useToast();
 
   const fetchData = async () => {
     try {
-      const [signupsRes, websiteRes, potentialCountRes] = await Promise.all([
+      const [signupsRes, websiteRes, potentialCountRes, reservaCountRes] = await Promise.all([
         supabase.from('client_signups').select('*').order('created_at', { ascending: false }),
         (supabase.from('website_requests') as any).select('*').order('created_at', { ascending: false }),
         supabase.from('potential_clients').select('*', { count: 'exact', head: true }),
+        (supabase.from('potential_clients_reserva_mesa') as any).select('*', { count: 'exact', head: true }),
       ]);
       setPotentialClientsCount(potentialCountRes.count || 0);
+      setReservaMesaCount(reservaCountRes.count || 0);
 
       if (signupsRes.error) throw signupsRes.error;
       setSignups(signupsRes.data || []);
@@ -374,6 +378,7 @@ const AdminDashboard: React.FC = () => {
           <TabsTrigger value="websites">Website Requests ({websiteRequests.length})</TabsTrigger>
           <TabsTrigger value="signups">Client Signups ({signups.length})</TabsTrigger>
           <TabsTrigger value="potential">Potential Clients ({potentialClientsCount})</TabsTrigger>
+          <TabsTrigger value="reserva-mesa">🇨🇷 Reserva Mesa ({reservaMesaCount})</TabsTrigger>
           <TabsTrigger value="audits">🔍 Audits</TabsTrigger>
         </TabsList>
 
@@ -676,6 +681,9 @@ const AdminDashboard: React.FC = () => {
         </TabsContent>
         <TabsContent value="potential">
           <PotentialClients />
+        </TabsContent>
+        <TabsContent value="reserva-mesa">
+          <PotentialClientsReservaMesa />
         </TabsContent>
         <TabsContent value="audits">
           <AuditsTab />
