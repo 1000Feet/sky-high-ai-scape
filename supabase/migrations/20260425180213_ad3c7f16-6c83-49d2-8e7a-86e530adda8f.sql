@@ -1,0 +1,4 @@
+DROP INDEX IF EXISTS public.potential_clients_reserva_mesa_google_id_key;
+
+ALTER TABLE public.potential_clients_reserva_mesa
+ADD CONSTRAINT potential_clients_reserva_mesa_google_id_unique UNIQUE (google_id);
