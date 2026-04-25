@@ -498,7 +498,7 @@ const PotentialClientsReservaMesa: React.FC = () => {
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <Table>
+            <Table className="table-fixed w-full">
               <TableHeader>
                 <TableRow>
                   <TableHead className="w-[30px]">#</TableHead>
@@ -515,12 +515,12 @@ const PotentialClientsReservaMesa: React.FC = () => {
                     </div>
                   </TableHead>
                   <TableHead className="w-[50px]">✓</TableHead>
-                  <TableHead>Negocio</TableHead>
-                  <TableHead>Contacto</TableHead>
-                  <TableHead className="w-[120px]">Email</TableHead>
-                  <TableHead>Ubicación</TableHead>
-                  <TableHead>Rating</TableHead>
-                  <TableHead>Categoría</TableHead>
+                  <TableHead className="w-[22%]">Negocio</TableHead>
+                  <TableHead className="w-[12%]">Contacto</TableHead>
+                  <TableHead className="w-[20%]">Email</TableHead>
+                  <TableHead className="w-[15%]">Ubicación</TableHead>
+                  <TableHead className="w-[10%]">Rating</TableHead>
+                  <TableHead className="w-[15%]">Categoría</TableHead>
                   <TableHead className="w-[50px]"></TableHead>
                 </TableRow>
               </TableHeader>
@@ -549,11 +549,11 @@ const PotentialClientsReservaMesa: React.FC = () => {
                     <TableCell>
                       <Checkbox checked={client.contacted} onCheckedChange={() => toggleContacted(client.id, client.contacted)} />
                     </TableCell>
-                    <TableCell>
-                      <div className="font-medium text-sm">{client.name}</div>
+                    <TableCell className="overflow-hidden">
+                      <div className="font-medium text-sm truncate">{client.name}</div>
                       {client.website && (
-                        <a href={client.website.startsWith('http') ? client.website : `https://${client.website}`} target="_blank" rel="noreferrer" className="text-xs text-primary hover:underline flex items-center gap-1">
-                          <Globe className="h-3 w-3" />{client.website}
+                        <a href={client.website.startsWith('http') ? client.website : `https://${client.website}`} target="_blank" rel="noreferrer" className="text-xs text-primary hover:underline flex items-center gap-1 truncate">
+                          <Globe className="h-3 w-3 shrink-0" /><span className="truncate">{client.website}</span>
                         </a>
                       )}
                     </TableCell>
@@ -579,9 +579,9 @@ const PotentialClientsReservaMesa: React.FC = () => {
                           </Button>
                         </div>
                       ) : (
-                        <div className="flex items-center gap-1 group">
-                          <span className="text-xs">{client.email || <span className="text-muted-foreground italic">no email</span>}</span>
-                          <Button size="sm" variant="ghost" className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100" onClick={() => startEditEmail(client)}>
+                        <div className="flex items-center gap-1 group min-w-0">
+                          <span className="text-xs truncate">{client.email || <span className="text-muted-foreground italic">no email</span>}</span>
+                          <Button size="sm" variant="ghost" className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100 shrink-0" onClick={() => startEditEmail(client)}>
                             <Pencil className="h-3 w-3" />
                           </Button>
                         </div>
