@@ -1,5 +1,5 @@
-// Watchdog: finds batches that are stuck (running with stale heartbeat)
-// or paused (paused_until in the past), and re-invokes send-campaign-batch.
+// Watchdog: finds campaign batches that are stuck (running with stale heartbeat)
+// or paused (paused_until in the past), and re-invokes the right sender.
 // Scheduled via pg_cron every 5 minutes.
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
@@ -10,6 +10,11 @@ const corsHeaders = {
 }
 
 const STALE_HEARTBEAT_MINUTES = 3
+
+const campaigns = [
+  { table: 'email_batches', sender: 'send-campaign-batch', label: 'default' },
+  { table: 'email_batches_reserva_mesa', sender: 'send-reserva-mesa-batch', label: 'reserva_mesa' },
+] as const
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
@@ -23,61 +28,78 @@ Deno.serve(async (req) => {
     Date.now() - STALE_HEARTBEAT_MINUTES * 60 * 1000,
   ).toISOString()
 
-  // 1) Stale 'running' batches (heartbeat too old → process likely died)
-  const { data: staleRunning } = await supabase
-    .from('email_batches')
-    .select('id, last_heartbeat_at')
-    .eq('status', 'running')
-    .lt('last_heartbeat_at', staleCutoffIso)
-
-  // 2) Paused batches whose paused_until has passed
-  const { data: readyPaused } = await supabase
-    .from('email_batches')
-    .select('id, paused_until')
-    .eq('status', 'paused')
-    .or(`paused_until.is.null,paused_until.lt.${nowIso}`)
-
-  const toResume: { id: string; reason: string }[] = []
-  for (const b of staleRunning ?? []) {
-    toResume.push({ id: b.id, reason: `stale running (heartbeat ${b.last_heartbeat_at})` })
-  }
-  for (const b of readyPaused ?? []) {
-    toResume.push({ id: b.id, reason: `paused expired (until ${b.paused_until})` })
-  }
-
-  console.log(`Watchdog found ${toResume.length} batches to resume`)
-
   const results: any[] = []
-  for (const b of toResume) {
-    // Flip paused → running (and refresh heartbeat) before re-invoking
-    await supabase.from('email_batches').update({
-      status: 'running',
-      paused_reason: null,
-      paused_until: null,
-      last_heartbeat_at: new Date().toISOString(),
-    }).eq('id', b.id)
+  let resumed = 0
 
-    try {
-      const res = await fetch(`${supabaseUrl}/functions/v1/send-campaign-batch`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${serviceKey}`,
-        },
-        body: JSON.stringify({ batch_id: b.id }),
-      })
-      const text = await res.text()
-      results.push({ id: b.id, reason: b.reason, status: res.status, body: text.slice(0, 200) })
-      console.log(`Resumed ${b.id} (${b.reason}) → HTTP ${res.status}`)
-    } catch (e) {
-      const errMsg = (e as Error).message
-      results.push({ id: b.id, reason: b.reason, error: errMsg })
-      console.error(`Failed to resume ${b.id}: ${errMsg}`)
+  for (const campaign of campaigns) {
+    // 1) Stale 'running' batches (heartbeat too old → process likely died)
+    const { data: staleRunning, error: staleError } = await supabase
+      .from(campaign.table)
+      .select('id, last_heartbeat_at')
+      .eq('status', 'running')
+      .lt('last_heartbeat_at', staleCutoffIso)
+
+    if (staleError) {
+      console.error(`Watchdog stale query failed for ${campaign.label}: ${staleError.message}`)
+      results.push({ campaign: campaign.label, error: staleError.message })
+      continue
+    }
+
+    // 2) Paused batches whose paused_until has passed
+    const { data: readyPaused, error: pausedError } = await supabase
+      .from(campaign.table)
+      .select('id, paused_until')
+      .eq('status', 'paused')
+      .or(`paused_until.is.null,paused_until.lt.${nowIso}`)
+
+    if (pausedError) {
+      console.error(`Watchdog paused query failed for ${campaign.label}: ${pausedError.message}`)
+      results.push({ campaign: campaign.label, error: pausedError.message })
+      continue
+    }
+
+    const toResume: { id: string; reason: string }[] = []
+    for (const b of staleRunning ?? []) {
+      toResume.push({ id: b.id, reason: `stale running (heartbeat ${b.last_heartbeat_at})` })
+    }
+    for (const b of readyPaused ?? []) {
+      toResume.push({ id: b.id, reason: `paused expired (until ${b.paused_until})` })
+    }
+
+    console.log(`Watchdog found ${toResume.length} ${campaign.label} batches to resume`)
+    resumed += toResume.length
+
+    for (const b of toResume) {
+      // Flip paused → running (and refresh heartbeat) before re-invoking
+      await supabase.from(campaign.table).update({
+        status: 'running',
+        paused_reason: null,
+        paused_until: null,
+        last_heartbeat_at: new Date().toISOString(),
+      }).eq('id', b.id)
+
+      try {
+        const res = await fetch(`${supabaseUrl}/functions/v1/${campaign.sender}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${serviceKey}`,
+          },
+          body: JSON.stringify({ batch_id: b.id }),
+        })
+        const text = await res.text()
+        results.push({ campaign: campaign.label, id: b.id, reason: b.reason, status: res.status, body: text.slice(0, 200) })
+        console.log(`Resumed ${campaign.label} ${b.id} (${b.reason}) → HTTP ${res.status}`)
+      } catch (e) {
+        const errMsg = (e as Error).message
+        results.push({ campaign: campaign.label, id: b.id, reason: b.reason, error: errMsg })
+        console.error(`Failed to resume ${campaign.label} ${b.id}: ${errMsg}`)
+      }
     }
   }
 
   return new Response(
-    JSON.stringify({ resumed: toResume.length, results }),
+    JSON.stringify({ resumed, results }),
     { headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
   )
 })
