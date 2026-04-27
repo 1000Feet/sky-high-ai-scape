@@ -67,7 +67,7 @@ function buildHtmlES(businessName: string): string {
   const nombre = businessName || 'amigo'
   return `<div style="font-family:Arial,sans-serif;font-size:14px;color:#333333;line-height:1.6;">
 <p>Hola ${nombre},</p>
-<p>Soy Angelo, fundador de <strong>ReservaMesa</strong>. Es un sistema gratuito para restaurantes en Costa Rica.</p>
+<p>Soy Angelo, fundador de <strong><a href="https://reservamesa.cr" style="color:#3daaf2;text-decoration:none;">ReservaMesa</a></strong>. Es un sistema gratuito para restaurantes en Costa Rica.</p>
 <p>Ayuda con tres cosas:</p>
 <p><strong>1. Reservas</strong> — sus clientes reservan desde un link en su web o redes y reciben confirmación y recordatorios automáticos por WhatsApp.</p>
 <p><strong>2. Mesas</strong> — dashboard simple para ver qué mesas están ocupadas, libres o por llegar.</p>
