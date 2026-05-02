@@ -10,6 +10,7 @@ import ClientSignup from "./pages/ClientSignup";
 import SignupSuccess from "./pages/SignupSuccess";
 import Admin from "./pages/Admin";
 import OutboxPrivacyPolicy from "./pages/OutboxPrivacyPolicy";
+import Ventures from "./pages/Ventures";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/signup/success" element={<SignupSuccess />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/outboxprivacypolicy" element={<OutboxPrivacyPolicy />} />
+          <Route path="/ventures" element={<Ventures />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

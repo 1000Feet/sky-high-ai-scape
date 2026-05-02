@@ -46,6 +46,12 @@ const Navigation = () => {
                   {item}
                 </button>
               ))}
+              <Link
+                to="/ventures"
+                className="text-gray-300 hover:text-blue-400 px-3 py-2 text-sm font-medium transition-all duration-200 hover:scale-105"
+              >
+                Ventures
+              </Link>
             </div>
             <Button asChild size="sm">
               <Link 
@@ -80,6 +86,13 @@ const Navigation = () => {
                 {item}
               </button>
             ))}
+            <Link
+              to="/ventures"
+              className="text-gray-300 hover:text-blue-400 block px-3 py-2 text-base font-medium"
+              onClick={() => setIsOpen(false)}
+            >
+              Ventures
+            </Link>
             <div className="px-3 py-2">
               <Button asChild size="sm" className="w-full">
                 <Link 
