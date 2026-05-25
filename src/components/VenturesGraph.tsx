@@ -237,10 +237,9 @@ const VenturesGraph: React.FC = () => {
           <button
             key={v.id}
             onClick={() => setActive({ venture: v, cardCx, cardCy })}
-            className={`absolute z-20 ${card} rounded-2xl border border-blue-500/20 backdrop-blur-sm flex items-center justify-center cursor-pointer
-              transition-all duration-300 hover:scale-110 hover:border-blue-400/60 hover:shadow-[0_0_24px_rgba(59,130,246,0.4)]
-              ${v.darkBg ? 'bg-slate-800/80' : 'bg-white/10'}
-              ${active?.venture.id === v.id ? 'border-blue-400/80 shadow-[0_0_24px_rgba(59,130,246,0.5)] scale-110' : ''}`}
+            className={`absolute z-20 ${card} rounded-2xl border border-blue-500/30 bg-white flex items-center justify-center cursor-pointer shadow-lg
+              transition-all duration-300 hover:scale-110 hover:border-blue-400 hover:shadow-[0_0_24px_rgba(59,130,246,0.5)]
+              ${active?.venture.id === v.id ? 'border-blue-400 shadow-[0_0_24px_rgba(59,130,246,0.6)] scale-110' : ''}`}
             style={{
               left: cardCx - cardW / 2,
               top: cardCy - cardH / 2,
@@ -248,9 +247,10 @@ const VenturesGraph: React.FC = () => {
             aria-label={v.name}
           >
             <img
-              src={v.logo}
+              src={encodeURI(v.logo)}
               alt={v.name}
               className={`object-contain ${img}`}
+              onError={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = '0.3'; }}
             />
           </button>
         );
@@ -273,9 +273,10 @@ const VenturesGraph: React.FC = () => {
               <X size={18} />
             </button>
 
-            <div className={`w-14 h-14 rounded-xl mb-3 flex items-center justify-center ${v.darkBg ? 'bg-slate-800' : 'bg-white/10'}`}>
-              <img src={v.logo} alt={v.name} className="w-10 h-10 object-contain" />
+            <div className="w-14 h-14 rounded-xl mb-3 flex items-center justify-center bg-white">
+              <img src={encodeURI(v.logo)} alt={v.name} className="w-10 h-10 object-contain" />
             </div>
+
 
             <h3 className="text-white font-bold text-base mb-1">{v.name}</h3>
             <p className="text-gray-400 text-sm mb-4 leading-relaxed">{v.description}</p>
