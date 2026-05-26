@@ -11,6 +11,7 @@ import SignupSuccess from "./pages/SignupSuccess";
 import Admin from "./pages/Admin";
 import OutboxPrivacyPolicy from "./pages/OutboxPrivacyPolicy";
 import Ventures from "./pages/Ventures";
+import NuoviMondi from "./pages/NuoviMondi";
 
 const queryClient = new QueryClient();
 
