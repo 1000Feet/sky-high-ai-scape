@@ -217,7 +217,7 @@ const VenturesGraph: React.FC = () => {
       >
         <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-600/30 to-cyan-600/20 border border-blue-400/40 backdrop-blur-sm flex items-center justify-center shadow-[0_0_40px_rgba(59,130,246,0.3)]">
           <img
-            src="/ventures/1000 Feet Logo.png"
+            src="/ventures/1000-Feet-Logo.png"
             alt="1000 Feet"
             className="w-20 h-20 object-contain"
           />
