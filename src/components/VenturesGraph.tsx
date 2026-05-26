@@ -111,6 +111,14 @@ const ventures: Venture[] = [
     url: 'https://1000bots.com',
     size: 'md',
   },
+  {
+    id: 'nuovimondi',
+    name: 'Nuovi Mondi',
+    logo: '/ventures/Nuovi-Mondi-Logo.png',
+    description: 'A new kind of coliving spaces.',
+    url: '/nuovimondi',
+    size: 'md',
+  },
 ];
 
 const sizeMap = {
