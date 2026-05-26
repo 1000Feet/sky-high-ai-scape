@@ -11,6 +11,7 @@ import SignupSuccess from "./pages/SignupSuccess";
 import Admin from "./pages/Admin";
 import OutboxPrivacyPolicy from "./pages/OutboxPrivacyPolicy";
 import Ventures from "./pages/Ventures";
+import NuoviMondi from "./pages/NuoviMondi";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/admin" element={<Admin />} />
           <Route path="/outboxprivacypolicy" element={<OutboxPrivacyPolicy />} />
           <Route path="/ventures" element={<Ventures />} />
+          <Route path="/nuovimondi" element={<NuoviMondi />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
