@@ -17,7 +17,7 @@ const ventures: Venture[] = [
   {
     id: 'whatsapp-translator',
     name: 'WhatsApp Translator',
-    logo: '/ventures/Whatsapp Translator Logo.png',
+    logo: '/ventures/Whatsapp-Translator-Logo.png',
     description: 'Real-time translation built directly into WhatsApp — break language barriers in any conversation.',
     url: '',
     size: 'md',
@@ -25,7 +25,7 @@ const ventures: Venture[] = [
   {
     id: 'time4love',
     name: 'Time 4 Love',
-    logo: '/ventures/Time 4 Love Logo.png',
+    logo: '/ventures/Time-4-Love-Logo.png',
     description: 'Volunteer recruitment and HR management platform for charity organizations and non-profits.',
     url: 'https://time4love.org',
     size: 'md',
@@ -33,7 +33,7 @@ const ventures: Venture[] = [
   {
     id: 'nameswiki',
     name: 'NamesWiki',
-    logo: '/ventures/nameswiki logo.png',
+    logo: '/ventures/nameswiki-logo.png',
     description: 'The world\'s largest searchable database of names — meanings, origins, and cultural history.',
     url: 'https://nameswiki.com',
     size: 'md',
@@ -41,7 +41,7 @@ const ventures: Venture[] = [
   {
     id: 'conciergedesk',
     name: 'ConciergeDesk',
-    logo: '/ventures/ConciergeDesk Logo.png',
+    logo: '/ventures/ConciergeDesk-Logo.png',
     description: 'AI-powered concierge service for hotels and hospitality businesses.',
     url: '',
     size: 'md',
@@ -74,7 +74,7 @@ const ventures: Venture[] = [
   {
     id: 'gyrotours',
     name: 'GyroTours',
-    logo: '/ventures/GyroTours Logo.png',
+    logo: '/ventures/GyroTours-Logo.png',
     description: 'Gyrocopter tours in Costa Rica — an unforgettable aerial adventure over stunning landscapes.',
     url: 'https://gyrotours.cr',
     size: 'md',
@@ -90,7 +90,7 @@ const ventures: Venture[] = [
   {
     id: 'wonderlogo',
     name: 'Wonderlogo',
-    logo: '/ventures/Wonderlogo Logo.jpg',
+    logo: '/ventures/Wonderlogo-Logo.jpg',
     description: 'Generate stunning, professional logos in seconds with AI — for businesses of any size.',
     url: 'https://wonderlogo.art',
     size: 'sm',
@@ -98,7 +98,7 @@ const ventures: Venture[] = [
   {
     id: 'flashlogo',
     name: 'Flashlogo',
-    logo: '/ventures/Flashlogo Logo.jpg',
+    logo: '/ventures/Flashlogo-Logo.jpg',
     description: 'Instant AI logo creation tailored for freelancers, creators, and personal brands.',
     url: 'https://flashlogo.com',
     size: 'sm',
@@ -217,7 +217,7 @@ const VenturesGraph: React.FC = () => {
       >
         <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-600/30 to-cyan-600/20 border border-blue-400/40 backdrop-blur-sm flex items-center justify-center shadow-[0_0_40px_rgba(59,130,246,0.3)]">
           <img
-            src="/ventures/1000 Feet Logo.png"
+            src="/ventures/1000-Feet-Logo.png"
             alt="1000 Feet"
             className="w-20 h-20 object-contain"
           />
