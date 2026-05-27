@@ -20,7 +20,7 @@
  * 2. Importare e renderizzare nel page component:
  *      import NuoviMondiInvestorPack from "@/components/NuoviMondiInvestorPack";
  *      // ...
- *      <NuoviMondiInvestorPack lang={lang} />   {/* dove lang è "it" | "en" gestita dal toggle */}
+ *      <NuoviMondiInvestorPack lang={lang} />   // dove lang è "it" | "en" gestita dal toggle
  *
  * 3. Rinominare il titolo del §1 del Market Analysis esistente:
  *      IT: "1. Executive Summary"  →  "1. Setup & Tesi"
