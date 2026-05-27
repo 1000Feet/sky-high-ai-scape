@@ -20,7 +20,7 @@
  * 2. Importare e renderizzare nel page component:
  *      import NuoviMondiInvestorPack from "@/components/NuoviMondiInvestorPack";
  *      // ...
- *      <NuoviMondiInvestorPack lang={lang} />   // dove lang è "it" | "en" gestita dal toggle
+ *      <NuoviMondiInvestorPack lang={lang} />   {/* dove lang è "it" | "en" gestita dal toggle */}
  *
  * 3. Rinominare il titolo del §1 del Market Analysis esistente:
  *      IT: "1. Executive Summary"  →  "1. Setup & Tesi"
@@ -104,18 +104,18 @@ const CONTENT = {
     lighthouses: {
       eyebrow: "LE TRE LIGHTHOUSE",
       title: "Tre città — geografie scoperte da Habitas/Ennismore",
-      lead: "Tamarindo lighthouse + Málaga scale proof + Lisbona/Cascais asse atlantico. Tutte e tre con digital nomad visa attiva.",
+      lead: "Tamarindo lighthouse + Málaga scale proof + Lisbona/Cascais asse atlantico. Tutte e tre con digital nomad visa attiva. Acquisizione full ownership di boutique properties esistenti.",
       cities: [
         {
           num: "01",
           role: "LIGHTHOUSE",
           name: "Tamarindo",
           country: "Costa Rica",
-          capex: "$6-8M",
+          capex: "$7-12M",
           points: [
             "DNV $3K/mese, esente income tax",
             "HUB esistente di Angelo (15Love, Casa Idea, Autogyro)",
-            "White space — bassa saturazione",
+            "Target: boutique 30-40 keys ($3-5M acquisto + remodel)",
             "Rischio Habitas Santa Teresa, ma costa diversa",
           ],
         },
@@ -124,11 +124,11 @@ const CONTENT = {
           role: "SCALE PROOF",
           name: "Málaga",
           country: "Spagna",
-          capex: "$9-12M",
+          capex: "$10-16M",
           points: [
             "Spain DNV €2.160/mese · valida 5 anni",
             "#1 expat city al mondo 2023",
-            "Silicon Valley Costa del Sol · 320 giorni di sole",
+            "Target: finca/boutique 40-50 keys ($5-8M acquisto)",
             "Mid-luxury costiero ancora scoperto",
           ],
         },
@@ -137,11 +137,11 @@ const CONTENT = {
           role: "ASSE ATLANTICO",
           name: "Lisbona / Cascais",
           country: "Portogallo",
-          capex: "$10-14M",
+          capex: "$11-18M",
           points: [
             "Portugal DNV €3.480/mese, rinnovabile",
             "Cascais capitale digital nomad atlantica",
-            "Comunità expat matura · volo diretto da LIS",
+            "Target: edificio storico 40-50 keys ($6-10M acquisto)",
             "Zero Habitas/Ennismore costiero in PT",
           ],
         },
@@ -152,15 +152,15 @@ const CONTENT = {
       eyebrow: "UNIT ECONOMICS",
       title: "Modello per location",
       lead: "Stime direzionali basate su benchmark STR/HVS upper-upscale + lifestyle resort. Da affinare nel modello finanziario di dettaglio.",
-      capexTitle: "Capex per location (40-60 keys)",
+      capexTitle: "Capex per location (30-50 keys)",
       capexRows: [
-        ["Land / JV equity contribution", "$1,5-3,0M"],
-        ["Renovation o build ($100-150K/key tier premium)", "$4,0-7,0M"],
+        ["Acquisizione proprietà (full ownership)", "$3,0-7,0M"],
+        ["Renovation + repositioning ($80-130K/key)", "$3,5-6,0M"],
         ["FF&E ($25-40K/key)", "$1,2-2,4M"],
         ["Pre-opening + working capital", "$1,0-1,5M"],
-        ["Contingency (~10%)", "$0,8-1,4M"],
+        ["Contingency (~10%)", "$0,9-1,7M"],
       ],
-      capexTotal: ["Totale capex per location", "$8,5-15,3M"],
+      capexTotal: ["Totale capex per location", "$9,6-18,6M"],
       revenueTitle: "Ricavi steady-state per location (anno 3+)",
       revenueRows: [
         ["Rooms (50 keys · 78% occ · $240 ADR blended)", "$3,42M"],
@@ -173,38 +173,38 @@ const CONTENT = {
       opsTitle: "Operating economics & returns",
       opsRows: [
         ["EBITDA margin steady-state Y3", "25-30%"],
-        ["EBITDA Y3 per location", "$1,2-1,5M"],
-        ["Payback semplice (capex / EBITDA)", "7-9 anni"],
-        ["IRR per LP equity (con branded residences exit)", "18-22%"],
-        ["MOIC al year 7-10", "2,5-3,0x"],
+        ["EBITDA Y3 per location", "$1,3-1,7M"],
+        ["Payback semplice (unlevered)", "7-10 anni"],
+        ["IRR per LP equity (con leverage + residences)", "20-25%"],
+        ["MOIC al year 7-10", "2,5-3,5x"],
       ],
       programTitle: "Total program (10 location · 7 anni)",
       programRows: [
-        ["Capex totale", "$80-120M (50% JV / 30% LP equity / 20% residences pre-sales)"],
-        ["Equity LP cumulativo", "$25-35M"],
-        ["EBITDA steady-state Y7", "$12-16M ricorrenti"],
-        ["Valuation target Y7-10", "$120-180M (8-10x EBITDA + residences book)"],
+        ["Capex totale", "$100-150M (35% LP equity / 50% mortgage debt / 15% residences pre-sales)"],
+        ["Equity LP cumulativo", "$35-50M (con refi cycling)"],
+        ["EBITDA steady-state Y7", "$14-18M ricorrenti"],
+        ["Valuation target Y7-10", "$140-200M (8-10x EBITDA + residences + RE value)"],
       ],
     },
 
     capital: {
       eyebrow: "CAPITAL ASK",
-      title: "Round attuale: $5M soft-circle / pre-seed",
-      lead: "Vehicle: SPV Nuovi Mondi Holdings (Delaware C-Corp o BVI HoldCo). Use of funds breakdown mesi 0-18:",
+      title: "Round attuale: $10M seed",
+      lead: "Vehicle: SPV Nuovi Mondi Holdings (Delaware C-Corp o BVI HoldCo). Round dimensionato per finanziare acquisizione integrale Tamarindo, team e DD Málaga. Use of funds mesi 0-18:",
       useOfFunds: [
-        ["Tamarindo — JV equity + closing", "$2,2M"],
-        ["Tamarindo — design + pre-construction", "$0,4M"],
-        ["Working capital + team (4-5 hires chiave)", "$1,0M"],
-        ["Málaga — site scouting + JV pre-deal", "$0,3M"],
-        ["Investor relations + Series A prep", "$0,3M"],
-        ["Marketing + community pre-launch (100 founders)", "$0,3M"],
-        ["Legal + structuring SPV/JV", "$0,2M"],
-        ["Contingency (6% buffer)", "$0,3M"],
+        ["Tamarindo — acquisizione proprietà", "$4,5M"],
+        ["Tamarindo — design + permits + pre-construction", "$0,7M"],
+        ["Working capital + team (4-5 hires chiave)", "$1,6M"],
+        ["Málaga — DD + LOI + earnest money", "$0,6M"],
+        ["Investor relations + Series A prep", "$0,4M"],
+        ["Marketing + community pre-launch (100 founders)", "$0,4M"],
+        ["Legal + structuring SPV/acquisition vehicles", "$0,6M"],
+        ["Bridge debt reserve + contingency", "$1,2M"],
       ],
-      total: "$5,0M",
+      total: "$10,0M",
       followOn:
-        "Round successivo (mesi 18-24) $8-12M post apertura Tamarindo. Series A (year 3, post decision gate) $25-35M per Lisbona/Cascais + location 4-5.",
-      returns: "IRR gross 18-22% · MOIC 2,5-3,0x al year 7-10 · fee structure 2/20 PE-standard con hurdle 8%.",
+        "Round successivo (mesi 18-24) $12-18M: acquisizione Málaga + refinancing Tamarindo (mortgage 60-65% LTV rilascia ~$3M equity). Series A (year 3, post decision gate) $25-40M per Lisbona/Cascais + location 4-5.",
+      returns: "IRR gross 20-25% · MOIC 2,5-3,5x al year 7-10 · fee structure 2/20 PE-standard con hurdle 8%.",
     },
 
     successFactors: {
@@ -213,16 +213,16 @@ const CONTENT = {
       lead: "Se manca una di queste, il modello salta.",
       factors: [
         {
-          title: "Capital structure asset-heavy con JV locali",
-          body: "Niente master lease su edifici altrui (l'errore Selina). JV equity 30-50% con landowner/developer locali — riduce capex, allinea incentivi, scarica rischio.",
+          title: "Acquisizione asset-heavy, no JV né leaseback",
+          body: "Compriamo proprietà boutique esistenti (30-50 keys) full ownership da seller motivati. Refinancing 60-65% LTV post-stabilization libera equity per il prossimo deal. Niente master lease (errore Selina), niente JV 50/50 con proprietari.",
         },
         {
           title: "Pricing premium difendibile",
           body: "Membership $2-5K/anno minimo. Stay rate premium $200-400/notte. Posizionamento esplicito \"Soho House per costiero\" — non \"Selina meglio\".",
         },
         {
-          title: "Asset partner locali in ogni città",
-          body: "Un developer o property owner locale come JV partner per location. Riduce frizione regolatoria, accelera time-to-market, dà credibilità locale.",
+          title: "Pipeline acquisitiva strutturata",
+          body: "Broker specializzati (Mercury Hospitality CR/LatAm, Christie & Co + Colliers EMEA) + network locale Tamarindo. Screening: 30-50 keys coastal, ownership distressed/burned-out/aging. Closing 90-120 giorni.",
         },
         {
           title: "Community come prodotto, non come marketing",
@@ -242,13 +242,13 @@ const CONTENT = {
       title: "Primi 24 mesi — sequenza disciplinata",
       lead: "Sette fasi operative, ognuna con milestone chiari. Tamarindo apertura mese 21-22, Series A closing mese 22-24.",
       phases: [
-        ["Mesi 0-6", "Fundraising round $5M soft-circle (6-8 LP target)"],
-        ["Mesi 3-9", "Tamarindo property acquisition + JV term sheet"],
-        ["Mesi 6-18", "Tamarindo design + remodeling + construction"],
+        ["Mesi 0-5", "Fundraising round $10M seed (6-10 LP target)"],
+        ["Mesi 2-7", "Tamarindo: sourcing + LOI + DD + closing acquisizione"],
+        ["Mesi 4-17", "Tamarindo design + remodeling + construction"],
         ["Mesi 9-21", "Hiring sequence: COO → Community Director → CFO → GM → ops team"],
-        ["Mesi 12-18", "Málaga site scouting parallelo + JV pre-deal"],
+        ["Mesi 10-18", "Málaga site scouting + DD + LOI con broker (Christie & Co)"],
         ["Mesi 16-21", "Soft launch + Founding Members Program (100 founders target)"],
-        ["Mesi 18-24", "Series A fundraising $8-12M post-apertura Tamarindo"],
+        ["Mesi 16-22", "Refinancing Tamarindo (60-65% LTV) + Series A $12-18M"],
       ],
       timelineCaption: "Roadmap operativa dei primi 24 mesi — sette fasi con milestone chiari.",
     },
@@ -257,7 +257,7 @@ const CONTENT = {
       title: "Per gli investitori che vogliono procedere",
       bullets: [
         "Modello finanziario di dettaglio (P&L per location anno 1-7, sensitivity, IRR scenarios) — entro 30 giorni dalla richiesta",
-        "Site visit Tamarindo con candidate properties + meeting JV partner — entro 60 giorni",
+        "Site visit Tamarindo con properties shortlisted per acquisizione + walkthrough con broker Mercury Hospitality — entro 60 giorni",
         "Data room completa post-NDA",
         "Term sheet pronto per negoziazione",
       ],
@@ -321,18 +321,18 @@ const CONTENT = {
     lighthouses: {
       eyebrow: "THE THREE LIGHTHOUSES",
       title: "Three cities — geographies uncovered by Habitas/Ennismore",
-      lead: "Tamarindo lighthouse + Málaga scale proof + Lisbon/Cascais Atlantic axis. All three with an active digital nomad visa.",
+      lead: "Tamarindo lighthouse + Málaga scale proof + Lisbon/Cascais Atlantic axis. All three with an active digital nomad visa. Full-ownership acquisition of existing boutique properties.",
       cities: [
         {
           num: "01",
           role: "LIGHTHOUSE",
           name: "Tamarindo",
           country: "Costa Rica",
-          capex: "$6-8M",
+          capex: "$7-12M",
           points: [
             "DNV $3K/month, income-tax exempt",
             "Existing HUB of Angelo (15Love, Casa Idea, Autogyro)",
-            "White space — low saturation",
+            "Target: 30-40 key boutique ($3-5M acquisition + remodel)",
             "Habitas Santa Teresa risk, but different coast",
           ],
         },
@@ -341,11 +341,11 @@ const CONTENT = {
           role: "SCALE PROOF",
           name: "Málaga",
           country: "Spain",
-          capex: "$9-12M",
+          capex: "$10-16M",
           points: [
             "Spain DNV €2,160/month · 5-year validity",
             "#1 expat city worldwide 2023",
-            "Silicon Valley Costa del Sol · 320 sunny days",
+            "Target: finca/boutique 40-50 keys ($5-8M acquisition)",
             "Mid-luxury coastal still uncovered",
           ],
         },
@@ -354,11 +354,11 @@ const CONTENT = {
           role: "ATLANTIC AXIS",
           name: "Lisbon / Cascais",
           country: "Portugal",
-          capex: "$10-14M",
+          capex: "$11-18M",
           points: [
             "Portugal DNV €3,480/month, renewable",
             "Cascais — Atlantic digital nomad capital",
-            "Mature expat community · direct flights from LIS",
+            "Target: historical building 40-50 keys ($6-10M acq.)",
             "Zero Habitas/Ennismore coastal in PT",
           ],
         },
@@ -369,15 +369,15 @@ const CONTENT = {
       eyebrow: "UNIT ECONOMICS",
       title: "Per-location model",
       lead: "Directional estimates based on STR/HVS benchmarks for the upper-upscale + lifestyle resort segment. To be refined in the detailed financial model.",
-      capexTitle: "Capex per location (40-60 keys)",
+      capexTitle: "Capex per location (30-50 keys)",
       capexRows: [
-        ["Land / JV equity contribution", "$1.5-3.0M"],
-        ["Renovation or build ($100-150K/key premium tier)", "$4.0-7.0M"],
+        ["Property acquisition (full ownership)", "$3.0-7.0M"],
+        ["Renovation + repositioning ($80-130K/key)", "$3.5-6.0M"],
         ["FF&E ($25-40K/key)", "$1.2-2.4M"],
         ["Pre-opening + working capital", "$1.0-1.5M"],
-        ["Contingency (~10%)", "$0.8-1.4M"],
+        ["Contingency (~10%)", "$0.9-1.7M"],
       ],
-      capexTotal: ["Total capex per location", "$8.5-15.3M"],
+      capexTotal: ["Total capex per location", "$9.6-18.6M"],
       revenueTitle: "Steady-state revenue per location (year 3+)",
       revenueRows: [
         ["Rooms (50 keys · 78% occ · $240 blended ADR)", "$3.42M"],
@@ -390,38 +390,38 @@ const CONTENT = {
       opsTitle: "Operating economics & returns",
       opsRows: [
         ["EBITDA margin, steady-state Y3", "25-30%"],
-        ["EBITDA Y3 per location", "$1.2-1.5M"],
-        ["Simple payback (capex / EBITDA)", "7-9 years"],
-        ["LP equity IRR (with branded residences exit)", "18-22%"],
-        ["MOIC by year 7-10", "2.5-3.0x"],
+        ["EBITDA Y3 per location", "$1.3-1.7M"],
+        ["Simple payback (unlevered)", "7-10 years"],
+        ["LP equity IRR (with leverage + residences)", "20-25%"],
+        ["MOIC by year 7-10", "2.5-3.5x"],
       ],
       programTitle: "Total program (10 locations · 7 years)",
       programRows: [
-        ["Total capex", "$80-120M (50% JV / 30% LP equity / 20% residences pre-sales)"],
-        ["Cumulative LP equity", "$25-35M"],
-        ["Steady-state EBITDA Y7", "$12-16M recurring"],
-        ["Target valuation Y7-10", "$120-180M (8-10x EBITDA + residences book)"],
+        ["Total capex", "$100-150M (35% LP equity / 50% mortgage debt / 15% residences pre-sales)"],
+        ["Cumulative LP equity", "$35-50M (with refi cycling)"],
+        ["Steady-state EBITDA Y7", "$14-18M recurring"],
+        ["Target valuation Y7-10", "$140-200M (8-10x EBITDA + residences + RE value)"],
       ],
     },
 
     capital: {
       eyebrow: "CAPITAL ASK",
-      title: "Current round: $5M soft-circle / pre-seed",
-      lead: "Vehicle: Nuovi Mondi Holdings SPV (Delaware C-Corp or BVI HoldCo). Use of funds breakdown, months 0-18:",
+      title: "Current round: $10M seed",
+      lead: "Vehicle: Nuovi Mondi Holdings SPV (Delaware C-Corp or BVI HoldCo). Round sized to fully fund Tamarindo acquisition, team and Málaga DD. Use of funds, months 0-18:",
       useOfFunds: [
-        ["Tamarindo — JV equity + closing", "$2.2M"],
-        ["Tamarindo — design + pre-construction", "$0.4M"],
-        ["Working capital + team (4-5 key hires)", "$1.0M"],
-        ["Málaga — site scouting + JV pre-deal", "$0.3M"],
-        ["Investor relations + Series A prep", "$0.3M"],
-        ["Marketing + community pre-launch (100 founders)", "$0.3M"],
-        ["Legal + structuring SPV/JV", "$0.2M"],
-        ["Contingency (6% buffer)", "$0.3M"],
+        ["Tamarindo — property acquisition", "$4.5M"],
+        ["Tamarindo — design + permits + pre-construction", "$0.7M"],
+        ["Working capital + team (4-5 key hires)", "$1.6M"],
+        ["Málaga — DD + LOI + earnest money", "$0.6M"],
+        ["Investor relations + Series A prep", "$0.4M"],
+        ["Marketing + community pre-launch (100 founders)", "$0.4M"],
+        ["Legal + structuring SPV/acquisition vehicles", "$0.6M"],
+        ["Bridge debt reserve + contingency", "$1.2M"],
       ],
-      total: "$5.0M",
+      total: "$10.0M",
       followOn:
-        "Follow-on round (months 18-24) $8-12M after Tamarindo opening. Series A (year 3, post decision gate) $25-35M for Lisbon/Cascais + locations 4-5.",
-      returns: "Gross IRR 18-22% · MOIC 2.5-3.0x by year 7-10 · 2/20 PE-standard fee structure with 8% hurdle.",
+        "Follow-on round (months 18-24) $12-18M: Málaga acquisition + Tamarindo refinancing (60-65% LTV mortgage releases ~$3M equity). Series A (year 3, post decision gate) $25-40M for Lisbon/Cascais + locations 4-5.",
+      returns: "Gross IRR 20-25% · MOIC 2.5-3.5x by year 7-10 · 2/20 PE-standard fee structure with 8% hurdle.",
     },
 
     successFactors: {
@@ -430,16 +430,16 @@ const CONTENT = {
       lead: "If any one is missing, the model breaks.",
       factors: [
         {
-          title: "Asset-heavy capital structure with local JVs",
-          body: "No master leases on other people's buildings (the Selina error). 30-50% JV equity with local landowners/developers — reduces capex, aligns incentives, sheds risk.",
+          title: "Asset-heavy acquisition, no JV nor leaseback",
+          body: "We buy existing boutique properties (30-50 keys) full ownership from motivated sellers. 60-65% LTV refinancing post-stabilization releases equity for the next deal. No master leases (Selina error), no 50/50 JVs with owners (slow conversion, alignment friction).",
         },
         {
           title: "Defensible premium pricing",
           body: "Minimum $2-5K/year membership. Premium $200-400/night stay rate. Explicit positioning as \"Soho House for coastal\" — not \"Selina, better\".",
         },
         {
-          title: "Local asset partners in every city",
-          body: "A local developer or property owner as JV partner per location. Reduces regulatory friction, accelerates time-to-market, gives local credibility.",
+          title: "Structured acquisition pipeline",
+          body: "Specialized brokers (Mercury Hospitality CR/LatAm, Christie & Co + Colliers EMEA) + Tamarindo local network. Screening: 30-50 keys coastal, distressed/burned-out/aging ownership. Closing 90-120 days.",
         },
         {
           title: "Community as product, not as marketing",
@@ -459,13 +459,13 @@ const CONTENT = {
       title: "First 24 months — disciplined sequence",
       lead: "Seven operational phases, each with clear milestones. Tamarindo opening month 21-22, Series A closing month 22-24.",
       phases: [
-        ["Months 0-6", "Fundraising round $5M soft-circle (6-8 target LPs)"],
-        ["Months 3-9", "Tamarindo property acquisition + JV term sheet"],
-        ["Months 6-18", "Tamarindo design + remodeling + construction"],
+        ["Months 0-5", "Fundraising round $10M seed (6-10 target LPs)"],
+        ["Months 2-7", "Tamarindo: sourcing + LOI + DD + acquisition closing"],
+        ["Months 4-17", "Tamarindo design + remodeling + construction"],
         ["Months 9-21", "Hiring sequence: COO → Community Director → CFO → GM → ops team"],
-        ["Months 12-18", "Málaga parallel site scouting + JV pre-deal"],
+        ["Months 10-18", "Málaga site scouting + DD + LOI with broker (Christie & Co)"],
         ["Months 16-21", "Soft launch + Founding Members Program (100 founders target)"],
-        ["Months 18-24", "Series A fundraising $8-12M post Tamarindo opening"],
+        ["Months 16-22", "Tamarindo refinancing (60-65% LTV) + Series A $12-18M"],
       ],
       timelineCaption: "First 24-month roadmap — seven phases with clear milestones.",
     },
@@ -474,7 +474,7 @@ const CONTENT = {
       title: "For investors who want to proceed",
       bullets: [
         "Detailed financial model (per-location P&L year 1-7, sensitivity, IRR scenarios) — within 30 days of request",
-        "Tamarindo site visit with candidate properties + JV partner meetings — within 60 days",
+        "Tamarindo site visit with shortlisted acquisition candidates + walkthrough with Mercury Hospitality broker — within 60 days",
         "Full data room post-NDA",
         "Term sheet ready for negotiation",
       ],
@@ -573,7 +573,7 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
 
         {/* ============ HERO IMAGE (cover #10) ============ */}
         <Figure
-          src="/images/nuovi-mondi/01.png"
+          src="/images/nuovi-mondi/10.png"
           alt="Nuovi Mondi — coastal community dinner under stars"
         />
 
@@ -621,12 +621,12 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
             <Figure
-              src="/images/nuovi-mondi/02.png"
+              src="/images/nuovi-mondi/09.png"
               alt="Nuovi Mondi exterior at sunset"
               caption={c.product.exteriorCaption}
             />
             <Figure
-              src="/images/nuovi-mondi/03.png"
+              src="/images/nuovi-mondi/08.png"
               alt="Nuovi Mondi interior — Slow Pottery Tuesday"
               caption={c.product.interiorCaption}
             />
@@ -660,7 +660,7 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
           </div>
 
           <Figure
-            src="/images/nuovi-mondi/08.png"
+            src="/images/nuovi-mondi/05.png"
             alt="Market growth curves — coliving and digital nomad tourism 2020-2034"
           />
 
@@ -688,7 +688,7 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
                 className="flex flex-col rounded-2xl overflow-hidden bg-slate-900/60 border border-white/5 hover:border-amber-400/30 transition-colors"
               >
                 <img
-                  src={`/images/nuovi-mondi/0${i === 0 ? 4 : i === 1 ? 5 : 6}.png`}
+                  src={`/images/nuovi-mondi/0${i === 0 ? 7 : i === 1 ? 2 : 1}.png`}
                   alt={`${city.name} concept`}
                   loading="lazy"
                   className="w-full h-56 object-cover"
@@ -816,7 +816,7 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
           <p className="text-base text-slate-300 max-w-3xl mb-10">{c.capital.lead}</p>
 
           <Figure
-            src="/images/nuovi-mondi/10.png"
+            src="/images/nuovi-mondi/03.png"
             alt="Capital ask — $5M soft-circle round use of funds breakdown"
           />
 
@@ -880,7 +880,7 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
           </div>
 
           <Figure
-            src="/images/nuovi-mondi/07.png"
+            src="/images/nuovi-mondi/06.png"
             alt="Community programming — group meditation at sunset"
             caption={c.successFactors.communityCaption}
           />
@@ -899,7 +899,7 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
           </p>
 
           <Figure
-            src="/images/nuovi-mondi/09.png"
+            src="/images/nuovi-mondi/04.png"
             alt="First 24 months roadmap — seven phases"
             caption={c.roadmap.timelineCaption}
           />
