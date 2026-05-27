@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from '@/hooks/use-toast';
 import heroVilla from '@/assets/nuovi-mondi/hero-villa.png';
 import selinaCollapse from '@/assets/nuovi-mondi/selina-collapse.png';
 import colivingFailures from '@/assets/nuovi-mondi/coliving-failures.png';
@@ -837,9 +839,189 @@ const NuoviMondi = () => {
               {t.sources.map((s, i) => <li key={i}>{s}</li>)}
             </ul>
           </article>
+
+          <InvestorInterestForm lang={lang} />
         </div>
       </section>
     </div>
+  );
+};
+
+const formCopy = {
+  en: {
+    eyebrow: 'INVESTOR RELATIONS',
+    title: 'Express your interest',
+    sub: 'If the thesis resonates, leave your details and we will reach out to share the full deck and discuss next steps.',
+    name: 'Full name',
+    email: 'Email',
+    phone: 'Phone (optional)',
+    company: 'Company / Fund (optional)',
+    capital: 'Capital you would consider investing',
+    capitalPh: 'Select a range',
+    message: 'Message (optional)',
+    messagePh: 'Anything you want us to know…',
+    submit: 'Send interest',
+    sending: 'Sending…',
+    successTitle: 'Thank you',
+    successDesc: 'We received your interest and will be in touch shortly.',
+    errorTitle: 'Something went wrong',
+    errorDesc: 'Please try again in a moment.',
+    ranges: [
+      'Under €25k',
+      '€25k – €100k',
+      '€100k – €250k',
+      '€250k – €500k',
+      '€500k – €1M',
+      '€1M – €5M',
+      'Over €5M',
+      'Prefer to discuss',
+    ],
+  },
+  it: {
+    eyebrow: 'INVESTOR RELATIONS',
+    title: 'Manifesta il tuo interesse',
+    sub: 'Se la tesi ti convince, lasciaci i tuoi dati: ti contatteremo per condividere il deck completo e discutere i prossimi passi.',
+    name: 'Nome e cognome',
+    email: 'Email',
+    phone: 'Telefono (opzionale)',
+    company: 'Azienda / Fondo (opzionale)',
+    capital: 'Capitale che valuteresti di investire',
+    capitalPh: 'Seleziona un range',
+    message: 'Messaggio (opzionale)',
+    messagePh: 'Qualcosa che vuoi farci sapere…',
+    submit: 'Invia interesse',
+    sending: 'Invio…',
+    successTitle: 'Grazie',
+    successDesc: 'Abbiamo ricevuto il tuo interesse, ti contatteremo a breve.',
+    errorTitle: 'Qualcosa è andato storto',
+    errorDesc: 'Riprova tra un momento.',
+    ranges: [
+      'Sotto €25k',
+      '€25k – €100k',
+      '€100k – €250k',
+      '€250k – €500k',
+      '€500k – €1M',
+      '€1M – €5M',
+      'Oltre €5M',
+      'Preferisco discuterne',
+    ],
+  },
+} as const;
+
+const InvestorInterestForm: React.FC<{ lang: Lang }> = ({ lang }) => {
+  const c = formCopy[lang];
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    capital_range: '',
+    message: '',
+  });
+  const [loading, setLoading] = useState(false);
+  const [done, setDone] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name.trim() || !form.email.trim()) return;
+    setLoading(true);
+    const { error } = await supabase.from('investor_interests').insert({
+      name: form.name.trim().slice(0, 200),
+      email: form.email.trim().slice(0, 200),
+      phone: form.phone.trim().slice(0, 50) || null,
+      company: form.company.trim().slice(0, 200) || null,
+      capital_range: form.capital_range || null,
+      message: form.message.trim().slice(0, 2000) || null,
+      language: lang,
+    });
+    setLoading(false);
+    if (error) {
+      toast({ title: c.errorTitle, description: c.errorDesc, variant: 'destructive' });
+      return;
+    }
+    setDone(true);
+    toast({ title: c.successTitle, description: c.successDesc });
+  };
+
+  const inputCls =
+    'w-full bg-white/5 border border-white/15 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-white/40 transition-colors';
+
+  return (
+    <article id="invest" className="border-t border-white/10 pt-12 mt-8 scroll-mt-24">
+      <div className="max-w-2xl mx-auto">
+        <p className="text-xs tracking-[0.2em] text-white/50 mb-3">{c.eyebrow}</p>
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{c.title}</h2>
+        <p className="text-gray-300 mb-8 leading-relaxed">{c.sub}</p>
+
+        {done ? (
+          <div className="rounded-2xl border border-emerald-400/30 bg-emerald-400/5 p-8 text-center">
+            <h3 className="text-2xl font-bold text-white mb-2">{c.successTitle}</h3>
+            <p className="text-gray-300">{c.successDesc}</p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm text-white/70 mb-2">{c.name} *</label>
+                <input required name="name" value={form.name} onChange={handleChange} className={inputCls} maxLength={200} />
+              </div>
+              <div>
+                <label className="block text-sm text-white/70 mb-2">{c.email} *</label>
+                <input required type="email" name="email" value={form.email} onChange={handleChange} className={inputCls} maxLength={200} />
+              </div>
+              <div>
+                <label className="block text-sm text-white/70 mb-2">{c.phone}</label>
+                <input name="phone" value={form.phone} onChange={handleChange} className={inputCls} maxLength={50} />
+              </div>
+              <div>
+                <label className="block text-sm text-white/70 mb-2">{c.company}</label>
+                <input name="company" value={form.company} onChange={handleChange} className={inputCls} maxLength={200} />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm text-white/70 mb-2">{c.capital}</label>
+              <select
+                name="capital_range"
+                value={form.capital_range}
+                onChange={handleChange}
+                className={inputCls + ' appearance-none cursor-pointer'}
+              >
+                <option value="" className="bg-neutral-900">{c.capitalPh}</option>
+                {c.ranges.map((r) => (
+                  <option key={r} value={r} className="bg-neutral-900">{r}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm text-white/70 mb-2">{c.message}</label>
+              <textarea
+                name="message"
+                value={form.message}
+                onChange={handleChange}
+                placeholder={c.messagePh}
+                rows={4}
+                maxLength={2000}
+                className={inputCls + ' resize-none'}
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full md:w-auto px-8 py-3 rounded-lg bg-white text-black font-semibold hover:bg-white/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {loading ? c.sending : c.submit}
+            </button>
+          </form>
+        )}
+      </div>
+    </article>
   );
 };
 
