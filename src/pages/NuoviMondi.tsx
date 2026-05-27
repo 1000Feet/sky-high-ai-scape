@@ -8,7 +8,7 @@ import selinaCollapse from '@/assets/nuovi-mondi/selina-collapse.png';
 import colivingFailures from '@/assets/nuovi-mondi/coliving-failures.png';
 import competitorMap from '@/assets/nuovi-mondi/competitor-map.png';
 import marketGrowth from '@/assets/nuovi-mondi/market-growth.png';
-import targetCities from '@/assets/nuovi-mondi/target-cities.png';
+
 import selinaVsNuoviMondi from '@/assets/nuovi-mondi/selina-vs-nuovi-mondi.png';
 import fiveNonNegotiables from '@/assets/nuovi-mondi/five-non-negotiables.png';
 import nuoviMondiVsHabitas from '@/assets/nuovi-mondi/nuovi-mondi-vs-habitas.png';
@@ -629,18 +629,6 @@ const sectionVisuals: Record<string, SectionVisualEntry> = {
     caption: {
       en: 'Demand is compounding across both coliving and digital nomad travel.',
       it: 'La domanda accelera sia nel coliving sia nel digital nomad travel.',
-    },
-  },
-  '6': {
-    src: targetCities,
-    position: 'afterTable',
-    alt: {
-      en: 'Illustrated comparison of Tamarindo, Málaga, and Bali as candidate locations.',
-      it: 'Confronto illustrato tra Tamarindo, Malaga e Bali come location candidate.',
-    },
-    caption: {
-      en: 'The first three cities span proof of model, European scale validation, and Southeast Asia benchmarking.',
-      it: 'Le prime tre città coprono prova del modello, validazione europea della scala e benchmark nel Sud-est asiatico.',
     },
   },
   '7': {
