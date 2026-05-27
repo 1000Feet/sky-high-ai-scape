@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from '@/hooks/use-toast';
 import heroVilla from '@/assets/nuovi-mondi/hero-villa.png';
 import selinaCollapse from '@/assets/nuovi-mondi/selina-collapse.png';
 import colivingFailures from '@/assets/nuovi-mondi/coliving-failures.png';
