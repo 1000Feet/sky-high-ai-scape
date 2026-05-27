@@ -28,7 +28,7 @@ const content = {
     sections: [
       {
         n: '1',
-        h: 'Executive Summary',
+        h: 'Setup & Thesis',
         thesis:
           'Thesis in one sentence: the market today wants what Selina promised in 2018 — but with premium hospitality economics, and community as the product, not as marketing.',
         body: [
@@ -294,7 +294,7 @@ const content = {
     sections: [
       {
         n: '1',
-        h: 'Executive Summary',
+        h: 'Setup & Tesi',
         thesis:
           'Tesi in una frase: il mercato vuole oggi quello che Selina prometteva nel 2018, ma con economics da hospitality premium e community come prodotto — non come marketing.',
         body: [
