@@ -626,7 +626,7 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
               caption={c.product.exteriorCaption}
             />
             <Figure
-              src="/images/nuovi-mondi/10.png"
+              src="/images/nuovi-mondi/03.png"
               alt="Nuovi Mondi interior — Slow Pottery Tuesday"
               caption={c.product.interiorCaption}
             />
