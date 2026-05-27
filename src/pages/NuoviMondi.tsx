@@ -756,8 +756,27 @@ const NuoviMondi = () => {
         </div>
       </section>
 
+      {/* Investor Pack */}
+      <NuoviMondiInvestorPack lang={lang} />
+
+      {/* Divider into deep-dive Market Analysis */}
+      <section className="px-4 pt-16 pb-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-8" />
+          <div className="text-xs tracking-[0.3em] text-blue-300 mb-3">
+            {lang === 'it' ? 'DEEP-DIVE' : 'DEEP-DIVE'}
+          </div>
+          <h2 className="text-2xl md:text-3xl font-bold text-white">
+            {lang === 'it'
+              ? 'Analisi di Mercato e Fattibilità — deep-dive completo'
+              : 'Market Analysis & Feasibility — full deep-dive'}
+          </h2>
+        </div>
+      </section>
+
       {/* Sections */}
       <section className="pb-20 px-4">
+
         <div className="max-w-4xl mx-auto space-y-16">
           {t.sections.map((s: any) => {
             const visual = sectionVisuals[s.n];
