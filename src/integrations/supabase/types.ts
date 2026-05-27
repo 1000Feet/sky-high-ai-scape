@@ -307,6 +307,42 @@ export type Database = {
         }
         Relationships: []
       }
+      investor_interests: {
+        Row: {
+          capital_range: string | null
+          company: string | null
+          created_at: string
+          email: string
+          id: string
+          language: string | null
+          message: string | null
+          name: string
+          phone: string | null
+        }
+        Insert: {
+          capital_range?: string | null
+          company?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          language?: string | null
+          message?: string | null
+          name: string
+          phone?: string | null
+        }
+        Update: {
+          capital_range?: string | null
+          company?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          language?: string | null
+          message?: string | null
+          name?: string
+          phone?: string | null
+        }
+        Relationships: []
+      }
       potential_clients: {
         Row: {
           address: string | null
