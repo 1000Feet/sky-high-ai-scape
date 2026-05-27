@@ -46,6 +46,50 @@ const Index = () => {
       <Services />
       <About />
       <Portfolio />
+
+      {/* Brands / Products Section for Meta verification */}
+      <section id="brands" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-800 via-blue-900 to-slate-900">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Our Products</h2>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+              Products and brands built by <strong className="text-white">1000 Feet, Inc.</strong>
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300">
+              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center mb-6">
+                <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-3">ReservaMesa</h3>
+              <p className="text-gray-300 mb-4">
+                Restaurant booking and table management platform for Costa Rica. 
+                Seamless reservations, intelligent seating, and real-time availability.
+              </p>
+              <a href="https://reservamesa.cr" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium transition-colors">
+                Visit reservamesa.cr
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300">
+              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center mb-6">
+                <Rocket className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-3">AI Ascend</h3>
+              <p className="text-gray-300 mb-4">
+                AI-powered web development, design, and digital innovation services. 
+                Transforming ideas into cutting-edge digital realities.
+              </p>
+              <span className="inline-flex items-center text-blue-400 font-medium">
+                By 1000 Feet, Inc.
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Contact />
     </div>
   );
