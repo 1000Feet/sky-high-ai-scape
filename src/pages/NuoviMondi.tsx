@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
+import NuoviMondiInvestorPack from '../components/NuoviMondiInvestorPack';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
 import heroVilla from '@/assets/nuovi-mondi/hero-villa.png';
@@ -28,7 +29,7 @@ const content = {
     sections: [
       {
         n: '1',
-        h: 'Executive Summary',
+        h: 'Setup & Thesis',
         thesis:
           'Thesis in one sentence: the market today wants what Selina promised in 2018 — but with premium hospitality economics, and community as the product, not as marketing.',
         body: [
@@ -294,7 +295,7 @@ const content = {
     sections: [
       {
         n: '1',
-        h: 'Executive Summary',
+        h: 'Setup & Tesi',
         thesis:
           'Tesi in una frase: il mercato vuole oggi quello che Selina prometteva nel 2018, ma con economics da hospitality premium e community come prodotto — non come marketing.',
         body: [
@@ -756,8 +757,27 @@ const NuoviMondi = () => {
         </div>
       </section>
 
+      {/* Investor Pack */}
+      <NuoviMondiInvestorPack lang={lang} />
+
+      {/* Divider into deep-dive Market Analysis */}
+      <section className="px-4 pt-16 pb-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-8" />
+          <div className="text-xs tracking-[0.3em] text-blue-300 mb-3">
+            {lang === 'it' ? 'DEEP-DIVE' : 'DEEP-DIVE'}
+          </div>
+          <h2 className="text-2xl md:text-3xl font-bold text-white">
+            {lang === 'it'
+              ? 'Analisi di Mercato e Fattibilità — deep-dive completo'
+              : 'Market Analysis & Feasibility — full deep-dive'}
+          </h2>
+        </div>
+      </section>
+
       {/* Sections */}
       <section className="pb-20 px-4">
+
         <div className="max-w-4xl mx-auto space-y-16">
           {t.sections.map((s: any) => {
             const visual = sectionVisuals[s.n];
