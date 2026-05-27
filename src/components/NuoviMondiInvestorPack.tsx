@@ -573,7 +573,7 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
 
         {/* ============ HERO IMAGE (cover #10) ============ */}
         <Figure
-          src="/images/nuovi-mondi/10.png"
+          src="/images/nuovi-mondi/01.png"
           alt="Nuovi Mondi — coastal community dinner under stars"
         />
 
@@ -621,12 +621,12 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
             <Figure
-              src="/images/nuovi-mondi/09.png"
+              src="/images/nuovi-mondi/02.png"
               alt="Nuovi Mondi exterior at sunset"
               caption={c.product.exteriorCaption}
             />
             <Figure
-              src="/images/nuovi-mondi/08.png"
+              src="/images/nuovi-mondi/10.png"
               alt="Nuovi Mondi interior — Slow Pottery Tuesday"
               caption={c.product.interiorCaption}
             />
@@ -660,7 +660,7 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
           </div>
 
           <Figure
-            src="/images/nuovi-mondi/05.png"
+            src="/images/nuovi-mondi/08.png"
             alt="Market growth curves — coliving and digital nomad tourism 2020-2034"
           />
 
@@ -688,7 +688,7 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
                 className="flex flex-col rounded-2xl overflow-hidden bg-slate-900/60 border border-white/5 hover:border-amber-400/30 transition-colors"
               >
                 <img
-                  src={`/images/nuovi-mondi/0${i === 0 ? 7 : i === 1 ? 2 : 1}.png`}
+                  src={`/images/nuovi-mondi/0${i === 0 ? 4 : i === 1 ? 5 : 6}.png`}
                   alt={`${city.name} concept`}
                   loading="lazy"
                   className="w-full h-56 object-cover"
@@ -816,7 +816,7 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
           <p className="text-base text-slate-300 max-w-3xl mb-10">{c.capital.lead}</p>
 
           <Figure
-            src="/images/nuovi-mondi/03.png"
+            src="/images/nuovi-mondi/10.png"
             alt="Capital ask — $5M soft-circle round use of funds breakdown"
           />
 
@@ -880,7 +880,7 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
           </div>
 
           <Figure
-            src="/images/nuovi-mondi/06.png"
+            src="/images/nuovi-mondi/07.png"
             alt="Community programming — group meditation at sunset"
             caption={c.successFactors.communityCaption}
           />
@@ -899,7 +899,7 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
           </p>
 
           <Figure
-            src="/images/nuovi-mondi/04.png"
+            src="/images/nuovi-mondi/09.png"
             alt="First 24 months roadmap — seven phases"
             caption={c.roadmap.timelineCaption}
           />
