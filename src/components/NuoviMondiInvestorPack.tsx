@@ -863,13 +863,37 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
           </p>
 
           <div className="space-y-4 mb-12">
-            {c.successFactors.factors.map((f, i) => (
+            {/* Factor 1 with comparison visual */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <article className="flex gap-5 sm:gap-6 p-5 sm:p-6 bg-slate-900/40 border border-white/5 rounded-lg hover:border-amber-400/20 transition-colors">
+                <div className="flex-shrink-0 text-3xl sm:text-4xl font-serif font-bold text-amber-400 leading-none">
+                  01
+                </div>
+                <div>
+                  <h4 className="text-white font-semibold text-lg mb-2">{c.successFactors.factors[0].title}</h4>
+                  <p className="text-sm sm:text-base text-slate-300">{c.successFactors.factors[0].body}</p>
+                </div>
+              </article>
+              <div className="rounded-lg overflow-hidden border border-white/5 bg-slate-900/40">
+                <img
+                  src="/images/nuovi-mondi/11.png"
+                  alt="Asset-light vs Asset-heavy acquisition"
+                  className="w-full h-48 lg:h-full object-cover"
+                />
+                <p className="text-xs text-slate-400 p-3 text-center border-t border-white/5">
+                  Asset-light leaseback (Selina) vs Asset-heavy acquisition (Nuovi Mondi)
+                </p>
+              </div>
+            </div>
+
+            {/* Factors 2-5 */}
+            {c.successFactors.factors.slice(1).map((f, i) => (
               <article
-                key={i}
+                key={i + 1}
                 className="flex gap-5 sm:gap-6 p-5 sm:p-6 bg-slate-900/40 border border-white/5 rounded-lg hover:border-amber-400/20 transition-colors"
               >
                 <div className="flex-shrink-0 text-3xl sm:text-4xl font-serif font-bold text-amber-400 leading-none">
-                  {String(i + 1).padStart(2, "0")}
+                  {String(i + 2).padStart(2, "0")}
                 </div>
                 <div>
                   <h4 className="text-white font-semibold text-lg mb-2">{f.title}</h4>
