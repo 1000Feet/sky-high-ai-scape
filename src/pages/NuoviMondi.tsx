@@ -722,16 +722,29 @@ const NuoviMondi = () => {
           <img
             src="/ventures/Nuovi-Mondi-Logo.png"
             alt="Nuovi Mondi"
-            className="mx-auto h-28 bg-white rounded-2xl p-5 mb-8"
+            className="mx-auto h-56 md:h-72 bg-white rounded-3xl p-8 mb-10"
           />
           <div className="text-xs tracking-[0.3em] text-blue-300 mb-3">{t.eyebrow}</div>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">{t.title}</h1>
           <p className="text-lg md:text-xl text-gray-300 mb-6">{t.subtitle}</p>
+
+          <div className="my-10 rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black">
+            <video
+              key={lang}
+              src={lang === 'it' ? '/nuovi-mondi/Nuovi_Mondi_Investor_Deck_ITA.mp4' : '/nuovi-mondi/Nuovi_Mondi_Investor_Deck_EN.mp4'}
+              controls
+              playsInline
+              preload="metadata"
+              className="w-full h-auto block"
+            />
+          </div>
+
           <p className="italic text-gray-400 max-w-3xl mx-auto leading-relaxed">{t.intro}</p>
           <div className="mt-8 text-sm text-gray-500">
             <p>{t.meta}</p>
             <p className="mt-2">{t.byline}</p>
           </div>
+
 
           <SectionVisual
             src={heroVisual.src}
