@@ -837,6 +837,8 @@ const NuoviMondi = () => {
               {t.sources.map((s, i) => <li key={i}>{s}</li>)}
             </ul>
           </article>
+
+          <InvestorInterestForm lang={lang} />
         </div>
       </section>
     </div>
