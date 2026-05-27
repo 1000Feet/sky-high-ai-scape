@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
+import NuoviMondiInvestorPack from '../components/NuoviMondiInvestorPack';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
 import heroVilla from '@/assets/nuovi-mondi/hero-villa.png';
