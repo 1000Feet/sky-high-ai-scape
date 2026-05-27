@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
+import heroVilla from '@/assets/nuovi-mondi/hero-villa.png';
+import selinaCollapse from '@/assets/nuovi-mondi/selina-collapse.png';
+import colivingFailures from '@/assets/nuovi-mondi/coliving-failures.png';
+import competitorMap from '@/assets/nuovi-mondi/competitor-map.png';
+import marketGrowth from '@/assets/nuovi-mondi/market-growth.png';
+import targetCities from '@/assets/nuovi-mondi/target-cities.png';
+import selinaVsNuoviMondi from '@/assets/nuovi-mondi/selina-vs-nuovi-mondi.png';
+import fiveNonNegotiables from '@/assets/nuovi-mondi/five-non-negotiables.png';
+import nuoviMondiVsHabitas from '@/assets/nuovi-mondi/nuovi-mondi-vs-habitas.png';
+import roadmapTimeline from '@/assets/nuovi-mondi/roadmap-timeline.png';
 
 type Lang = 'en' | 'it';
 
@@ -547,6 +557,146 @@ const DataTable = ({ headers, rows }: { headers: readonly string[]; rows: readon
   </div>
 );
 
+
+type VisualPosition = 'afterBody' | 'afterTable' | 'afterList' | 'afterList2' | 'afterBodyAfter' | 'afterOl';
+
+type SectionVisualEntry = {
+  src: string;
+  position: VisualPosition;
+  alt: Record<Lang, string>;
+  caption: Record<Lang, string>;
+};
+
+const heroVisual = {
+  src: heroVilla,
+  alt: {
+    en: 'Nuovi Mondi coastal villa concept at sunset.',
+    it: 'Concept di villa costiera Nuovi Mondi al tramonto.',
+  },
+  caption: {
+    en: 'Early visual direction for the first Nuovi Mondi coastal residence.',
+    it: 'Prima direzione visiva per la prima residenza costiera Nuovi Mondi.',
+  },
+};
+
+const sectionVisuals: Record<string, SectionVisualEntry> = {
+  '2': {
+    src: selinaCollapse,
+    position: 'afterBody',
+    alt: {
+      en: 'Chart showing Selina rise, SPAC peak, and collapse.',
+      it: 'Grafico che mostra crescita, picco SPAC e collasso di Selina.',
+    },
+    caption: {
+      en: 'Selina scaled fast, peaked at the SPAC, then collapsed under debt and weak fundamentals.',
+      it: 'Selina è cresciuta rapidamente, ha toccato il picco con lo SPAC e poi è collassata sotto il peso di debito e fondamentali fragili.',
+    },
+  },
+  '3': {
+    src: colivingFailures,
+    position: 'afterBody',
+    alt: {
+      en: 'Visual summary of major coliving brands that failed within 24 months.',
+      it: 'Sintesi visiva dei principali brand coliving falliti entro 24 mesi.',
+    },
+    caption: {
+      en: 'The failure pattern is sector-wide, not an isolated Selina anomaly.',
+      it: 'Il pattern di fallimento è trasversale al settore, non un’anomalia isolata di Selina.',
+    },
+  },
+  '4': {
+    src: competitorMap,
+    position: 'afterBodyAfter',
+    alt: {
+      en: 'Competitive map placing Nuovi Mondi between nomadic and luxury segments.',
+      it: 'Mappa competitiva che colloca Nuovi Mondi tra segmenti nomadici e luxury.',
+    },
+    caption: {
+      en: 'Nuovi Mondi occupies the open white space between nomadic coliving and branded luxury residences.',
+      it: 'Nuovi Mondi occupa il white space tra il coliving nomadico e le branded residences di lusso.',
+    },
+  },
+  '5': {
+    src: marketGrowth,
+    position: 'afterList2',
+    alt: {
+      en: 'Market growth chart for coliving and digital nomad tourism.',
+      it: 'Grafico di crescita del mercato coliving e del turismo digital nomad.',
+    },
+    caption: {
+      en: 'Demand is compounding across both coliving and digital nomad travel.',
+      it: 'La domanda accelera sia nel coliving sia nel digital nomad travel.',
+    },
+  },
+  '6': {
+    src: targetCities,
+    position: 'afterTable',
+    alt: {
+      en: 'Illustrated comparison of Tamarindo, Málaga, and Bali as candidate locations.',
+      it: 'Confronto illustrato tra Tamarindo, Malaga e Bali come location candidate.',
+    },
+    caption: {
+      en: 'The first three cities span proof of model, European scale validation, and Southeast Asia benchmarking.',
+      it: 'Le prime tre città coprono prova del modello, validazione europea della scala e benchmark nel Sud-est asiatico.',
+    },
+  },
+  '7': {
+    src: selinaVsNuoviMondi,
+    position: 'afterList',
+    alt: {
+      en: 'Comparison between Selina asset-light model and Nuovi Mondi asset-heavy joint venture model.',
+      it: 'Confronto tra il modello asset-light di Selina e il modello asset-heavy in joint venture di Nuovi Mondi.',
+    },
+    caption: {
+      en: 'The capital structure is the core strategic divergence from Selina.',
+      it: 'La struttura del capitale è la divergenza strategica fondamentale rispetto a Selina.',
+    },
+  },
+  '8': {
+    src: fiveNonNegotiables,
+    position: 'afterOl',
+    alt: {
+      en: 'Five non-negotiable execution principles for Nuovi Mondi.',
+      it: 'Cinque principi esecutivi non negoziabili per Nuovi Mondi.',
+    },
+    caption: {
+      en: 'These five rules turn the concept into a disciplined operating model.',
+      it: 'Queste cinque regole trasformano il concept in un modello operativo disciplinato.',
+    },
+  },
+  '9': {
+    src: roadmapTimeline,
+    position: 'afterOl',
+    alt: {
+      en: 'Three-year roadmap from Tamarindo lighthouse to expansion decision gate.',
+      it: 'Roadmap triennale dalla lighthouse di Tamarindo al decision gate per l’espansione.',
+    },
+    caption: {
+      en: 'The roll-out should prove travelability before wider expansion.',
+      it: 'Il roll-out deve dimostrare la trasferibilità del modello prima di espandersi.',
+    },
+  },
+  'A': {
+    src: nuoviMondiVsHabitas,
+    position: 'afterList',
+    alt: {
+      en: 'Comparison between Nuovi Mondi and Our Habitas / Ennismore positioning.',
+      it: 'Confronto tra il posizionamento di Nuovi Mondi e quello di Our Habitas / Ennismore.',
+    },
+    caption: {
+      en: 'Same broad direction, but clearly different segment, scale, and stay logic.',
+      it: 'Stessa direzione generale, ma segmento, scala e logica di soggiorno chiaramente diversi.',
+    },
+  },
+};
+
+const SectionVisual = ({ src, alt, caption }: { src: string; alt: string; caption: string }) => (
+  <figure className="my-8 overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-3 backdrop-blur-sm">
+    <img src={src} alt={alt} className="w-full rounded-xl object-cover" loading="lazy" />
+    <figcaption className="px-2 pt-3 text-sm leading-relaxed text-gray-400">{caption}</figcaption>
+  </figure>
+);
+
 const NuoviMondi = () => {
   const [lang, setLang] = useState<Lang>('en');
   const t = content[lang];
@@ -582,66 +732,90 @@ const NuoviMondi = () => {
             <p>{t.meta}</p>
             <p className="mt-2">{t.byline}</p>
           </div>
+
+          <SectionVisual
+            src={heroVisual.src}
+            alt={heroVisual.alt[lang]}
+            caption={heroVisual.caption[lang]}
+          />
         </div>
       </section>
 
       {/* Sections */}
       <section className="pb-20 px-4">
         <div className="max-w-4xl mx-auto space-y-16">
-          {t.sections.map((s: any) => (
-            <article key={s.n} className="text-gray-300">
-              <div className="flex items-baseline gap-4 mb-6">
-                <span className="text-3xl font-bold text-blue-400">{s.n}.</span>
-                <h2 className="text-2xl md:text-3xl font-bold text-white">{s.h}</h2>
-              </div>
+          {t.sections.map((s: any) => {
+            const visual = sectionVisuals[s.n];
+            const renderVisual = (position: VisualPosition) =>
+              visual && visual.position === position ? (
+                <SectionVisual
+                  src={visual.src}
+                  alt={visual.alt[lang]}
+                  caption={visual.caption[lang]}
+                />
+              ) : null;
 
-              {s.thesis && (
-                <p className="italic text-blue-200 border-l-2 border-blue-400 pl-4 mb-6">{s.thesis}</p>
-              )}
+            return (
+              <article key={s.n} className="text-gray-300">
+                <div className="flex items-baseline gap-4 mb-6">
+                  <span className="text-3xl font-bold text-blue-400">{s.n}.</span>
+                  <h2 className="text-2xl md:text-3xl font-bold text-white">{s.h}</h2>
+                </div>
 
-              {s.body?.map((p: string, i: number) => (
-                <p key={i} className="mb-4 leading-relaxed">{p}</p>
-              ))}
+                {s.thesis && (
+                  <p className="italic text-blue-200 border-l-2 border-blue-400 pl-4 mb-6">{s.thesis}</p>
+                )}
 
-              {s.subhead && <h3 className="text-xl font-semibold text-white mt-8 mb-3">{s.subhead}</h3>}
-              {s.table && <DataTable headers={s.table.headers} rows={s.table.rows} />}
-              {s.para1 && <p className="mb-4 leading-relaxed">{s.para1}</p>}
+                {s.body?.map((p: string, i: number) => (
+                  <p key={i} className="mb-4 leading-relaxed">{p}</p>
+                ))}
+                {renderVisual('afterBody')}
 
-              {s.subhead2 && <h3 className="text-xl font-semibold text-white mt-8 mb-3">{s.subhead2}</h3>}
-              {s.list && (
-                <ul className="list-disc pl-6 space-y-2 mb-4">
-                  {s.list.map((it: string, i: number) => <li key={i}>{it}</li>)}
-                </ul>
-              )}
-              {s.ol && (
-                <ol className="list-decimal pl-6 space-y-2 mb-4">
-                  {s.ol.map((it: string, i: number) => <li key={i}>{it}</li>)}
-                </ol>
-              )}
+                {s.subhead && <h3 className="text-xl font-semibold text-white mt-8 mb-3">{s.subhead}</h3>}
+                {s.table && <DataTable headers={s.table.headers} rows={s.table.rows} />}
+                {renderVisual('afterTable')}
+                {s.para1 && <p className="mb-4 leading-relaxed">{s.para1}</p>}
 
-              {s.subhead3 && <h3 className="text-xl font-semibold text-white mt-8 mb-3">{s.subhead3}</h3>}
-              {s.para3 && <p className="mb-4 leading-relaxed">{s.para3}</p>}
-              {s.list2 && (
-                <ul className="list-disc pl-6 space-y-2 mb-4">
-                  {s.list2.map((it: string, i: number) => <li key={i}>{it}</li>)}
-                </ul>
-              )}
+                {s.subhead2 && <h3 className="text-xl font-semibold text-white mt-8 mb-3">{s.subhead2}</h3>}
+                {s.list && (
+                  <ul className="list-disc pl-6 space-y-2 mb-4">
+                    {s.list.map((it: string, i: number) => <li key={i}>{it}</li>)}
+                  </ul>
+                )}
+                {renderVisual('afterList')}
+                {s.ol && (
+                  <ol className="list-decimal pl-6 space-y-2 mb-4">
+                    {s.ol.map((it: string, i: number) => <li key={i}>{it}</li>)}
+                  </ol>
+                )}
+                {renderVisual('afterOl')}
 
-              {s.subhead4 && <h3 className="text-xl font-semibold text-white mt-8 mb-3">{s.subhead4}</h3>}
-              {s.para4 && <p className="mb-4 leading-relaxed">{s.para4}</p>}
-              {s.list3 && (
-                <ul className="list-disc pl-6 space-y-2 mb-4">
-                  {s.list3.map((it: string, i: number) => <li key={i}>{it}</li>)}
-                </ul>
-              )}
+                {s.subhead3 && <h3 className="text-xl font-semibold text-white mt-8 mb-3">{s.subhead3}</h3>}
+                {s.para3 && <p className="mb-4 leading-relaxed">{s.para3}</p>}
+                {s.list2 && (
+                  <ul className="list-disc pl-6 space-y-2 mb-4">
+                    {s.list2.map((it: string, i: number) => <li key={i}>{it}</li>)}
+                  </ul>
+                )}
+                {renderVisual('afterList2')}
 
-              {s.bodyAfter?.map((p: string, i: number) => (
-                <p key={i} className="mb-4 leading-relaxed">{p}</p>
-              ))}
+                {s.subhead4 && <h3 className="text-xl font-semibold text-white mt-8 mb-3">{s.subhead4}</h3>}
+                {s.para4 && <p className="mb-4 leading-relaxed">{s.para4}</p>}
+                {s.list3 && (
+                  <ul className="list-disc pl-6 space-y-2 mb-4">
+                    {s.list3.map((it: string, i: number) => <li key={i}>{it}</li>)}
+                  </ul>
+                )}
 
-              {s.callout && <Callout title={s.callout.title} text={s.callout.text} />}
-            </article>
-          ))}
+                {s.bodyAfter?.map((p: string, i: number) => (
+                  <p key={i} className="mb-4 leading-relaxed">{p}</p>
+                ))}
+                {renderVisual('afterBodyAfter')}
+
+                {s.callout && <Callout title={s.callout.title} text={s.callout.text} />}
+              </article>
+            );
+          })}
 
           {/* Sources */}
           <article className="text-gray-400 border-t border-white/10 pt-10">
