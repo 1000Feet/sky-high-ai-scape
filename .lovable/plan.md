@@ -1,31 +1,57 @@
-# Re-inviare le prime 5 email di ReservaMesa
 
-## Le 5 email da rispedire
+## Scope
 
-| Email | Prospect ID |
-|---|---|
-| Cfitzg6505@aol.Com | 868de7e9 |
-| nbarboza@pops.co.cr | d58041d0 |
-| info@readypizzacr.com | 2483617e |
-| press@subway.com | 4a007b57 |
-| servicioalcliente@kfccostarica.com | 8667310f |
+Solo `index.html` di QUESTO progetto (1000feetabove.com). Il sito reservamesa.cr è un progetto Lovable separato e va modificato lì (fuori scope di questa sessione).
 
-## Il problema
+## Stato attuale verificato
 
-Il sender ha 3 protezioni che impediscono di reinviare:
-1. `contacted=true` su quei lead
-2. Filtro anti-duplicati che salta qualunque email già con `status='sent'` nel log
-3. Nessuno strumento di scrittura SQL diretto disponibile
+`index.html` già contiene title "1000 Feet, Inc. …", meta author/publisher/copyright = "1000 Feet, Inc.", JSON-LD Organization con brand ReservaMesa + subOrganization, e un blocco `<noscript>` nel body con menzione ReservaMesa e contatto. Se il tuo View Source mostra ancora "AI Ascend" come title, è cache CDN/browser o una pubblicazione non aggiornata — non lo stato del repo.
 
-## Soluzione
+## Modifiche da applicare a `index.html`
 
-Creo una nuova edge function one-shot **`requeue-reserva-mesa-prospects`** che, dato un array di `prospect_ids`:
+### 1. Nel `<head>` — rafforzare i meta brand
 
-1. Cancella le entry `status='sent'` di quei recipient nel log (così il filtro anti-dup non li salta)
-2. Rimette `contacted=false` su quei lead
-3. Crea un nuovo batch `running` con quei 5 ID
-4. Invoca `send-reserva-mesa-batch` per partire subito
+- Aggiungere `<meta name="owner" content="1000 Feet, Inc." />`
+- Riscrivere `<meta name="copyright">` con frase esplicita: `"ReservaMesa is a brand owned and operated by 1000 Feet, Inc."`
+- Aggiungere `<meta name="bundle-version" content="v2026-05-27b" />`
 
-Poi la chiamo passando i 5 prospect_id sopra. Le 5 email verranno inviate in coda al batch attuale (che sta già girando con cadenza ~95s). Tempo totale stimato per i 5: ~8 minuti dopo l'invocazione.
+### 2. Nel `<head>` — aggiungere un secondo blocco JSON-LD `SoftwareApplication` per ReservaMesa
 
-La funzione resta nel progetto e può essere riusata in futuro per re-inviare email a qualsiasi lead specifico.
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ReservaMesa",
+  "alternateName": "ReservaMesa CR",
+  "publisher": { "@type": "Organization", "name": "1000 Feet, Inc.", "url": "https://1000feetabove.com" },
+  "url": "https://reservamesa.cr",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web"
+}
+```
+
+Il JSON-LD Organization esistente resta invariato.
+
+### 3. Nel `<body>` — espandere il `<noscript>` esistente
+
+Aggiungere all'attuale blocco:
+- Riga esplicita: **"ReservaMesa is a brand owned and operated by 1000 Feet, Inc."**
+- Versione spagnola: **"ReservaMesa es una marca propiedad y operada por 1000 Feet, Inc."**
+- **"1000 Feet, Inc. is a Delaware corporation, Tax ID 83-4304389"**
+- Link parent company + contatto (già presenti, da consolidare)
+
+Manteniamo il `<noscript>` valido (no script tags dentro, solo HTML statico).
+
+## Cosa NON fa questo piano
+
+- Nessuna modifica a componenti React (i crawler non eseguono JS — inutile).
+- Nessuna modifica al progetto reservamesa.cr (progetto separato).
+- Nessuna modifica a routing, edge functions, DB.
+
+## Deploy
+
+Dopo il merge in build mode, ti ricordo di cliccare **Publish** (non solo preview) così il dominio custom `1000feetabove.com` serve il nuovo `index.html`. Poi fai un hard refresh / View Source con `?v=test` per bypassare la cache CDN e verificare `bundle-version="v2026-05-27b"`.
+
+## Domanda
+
+Confermi di voler procedere **solo su 1000feetabove.com**? Per reservamesa.cr devi aprire l'altro progetto Lovable e darmi accesso o eseguire lì le modifiche speculari.
