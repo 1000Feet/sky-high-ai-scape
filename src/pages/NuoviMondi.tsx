@@ -696,16 +696,34 @@ const NuoviMondi = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
       <Navigation />
 
-      {/* Language switcher */}
+      {/* Language toggle */}
       <div className="fixed top-20 right-4 z-40">
-        <button
-          onClick={() => setLang(lang === 'en' ? 'it' : 'en')}
-          className="px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-semibold hover:bg-white/20 transition"
-          aria-label="Switch language"
+        <div
+          role="group"
+          aria-label="Language"
+          className="flex items-center p-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20"
         >
-          {t.switchLabel}
-        </button>
+          <button
+            onClick={() => setLang('en')}
+            aria-pressed={lang === 'en'}
+            className={`px-3 py-1 rounded-full text-xs font-semibold transition ${
+              lang === 'en' ? 'bg-white text-slate-900' : 'text-white/80 hover:text-white'
+            }`}
+          >
+            EN
+          </button>
+          <button
+            onClick={() => setLang('it')}
+            aria-pressed={lang === 'it'}
+            className={`px-3 py-1 rounded-full text-xs font-semibold transition ${
+              lang === 'it' ? 'bg-white text-slate-900' : 'text-white/80 hover:text-white'
+            }`}
+          >
+            IT
+          </button>
+        </div>
       </div>
+
 
       {/* Hero */}
       <section className="pt-32 pb-12 px-4">
