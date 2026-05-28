@@ -198,9 +198,9 @@ const content = {
         body: [
           'The three rules derived directly from the Selina case study become the construction principles of the Nuovi Mondi model.',
         ],
-        subhead: 'Rule 1 — Asset-heavy, not leaseback',
+        subhead: 'Rule 1 — Asset-heavy acquisition, not JV nor leaseback',
         para1:
-          "Joint ventures with local landowners or developers (30-50% equity), not master leases on others' buildings. The descent of Selina and Common showed that leasing on repositioned buildings is suicide in a high-rate cycle. Target model inspired by Six Senses Residences (unit sales + management fee with hospitality services) or equity JVs with local family offices. It reduces initial capex, aligns incentives, and offloads part of the risk to local partners.",
+          "Full ownership acquisition of distressed boutique properties from motivated sellers (30-50 keys, $3-5M acquisition + $4-7M renovation per location). 60-65% LTV mortgage refinancing post-stabilization releases ~$3M equity per location for redeployment. Cleaner control vs JV, higher IRR (20-25% target), exit pathway via branded residences sale (15% of capital stack) or full asset sale. Target model inspired by Habitas operating playbook (acquire-and-rebrand) and Six Senses Residences for the unit-sales optionality.",
         subhead2: 'Rule 2 — Multi-revenue stream',
         list: [
           'Annual membership: target $2-5K/year, positioning "Soho House for premium nomads."',
@@ -227,9 +227,9 @@ const content = {
           'The model is feasible. The timing is favorable — competitive supply contracted in 2024 precisely as demand accelerated. The positioning is defensible: the mid-luxury + slow/long-stay + multi-location membership quadrant is not seriously occupied today. There are five conditions for execution.',
         ],
         ol: [
-          'Asset-heavy capital structure with local JVs, not leaseback. Equity or quasi-equity from family offices or hospitality funds with a 7-10 year horizon. No SPAC, no short-term debt, no operating leases as the primary asset.',
+          'Asset-heavy full ownership acquisition, not JV nor leaseback. Equity or quasi-equity from family offices or hospitality funds with a 7-10 year horizon. No SPAC, no short-term debt, no operating leases as the primary asset.',
           'Premium pricing with membership at minimum $2-5K/year. Explicit positioning as "Soho House for coastal lifestyle," not "Selina with better service."',
-          'Local asset partners in every city. A JV with a developer or property owner reduces initial capex, reduces regulatory friction, and aligns incentives.',
+          'Acquisition + optional 5-15% minority local operating partner per city (regulatory/F&B execution only, NOT capex). Cleaner control, no alignment friction with seller post-deal, and exit options remain unencumbered.',
           'Community as product, not as marketing. Weekly programming, residence chef, cultural curator, retention metrics tracked from month one. This is exactly where Selina got it wrong.',
           'Disciplined sequence. Tamarindo as lighthouse location, Málaga as scale proof, third location decided only after the first two have closed 24 months above 90% occupancy.',
         ],
