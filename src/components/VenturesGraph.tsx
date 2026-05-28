@@ -200,9 +200,6 @@ const VenturesGraph: React.FC = () => {
 
     {/* Desktop: orbit */}
     <div className="relative w-full hidden md:block" style={{ height: '820px' }} ref={containerRef}>
-
-  return (
-    <div className="relative w-full" style={{ height: '820px' }} ref={containerRef}>
       {/* Orbit ring */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none"
