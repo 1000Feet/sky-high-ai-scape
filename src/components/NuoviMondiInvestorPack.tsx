@@ -571,11 +571,6 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
           </p>
         </header>
 
-        {/* ============ HERO IMAGE (cover #10) ============ */}
-        <Figure
-          src="/images/nuovi-mondi/10.png"
-          alt="Nuovi Mondi — coastal community dinner under stars"
-        />
 
         {/* ============ THESIS (quote) ============ */}
         <div className="my-16 sm:my-20 max-w-3xl mx-auto text-center">
