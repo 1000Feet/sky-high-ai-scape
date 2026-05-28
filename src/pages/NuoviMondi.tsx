@@ -154,7 +154,7 @@ const content = {
           'Average ROI 22.3% for coliving (asset-heavy) vs 8-12% for traditional rentals.',
           'Break-even occupancy: 85%. Structurally profitable only above 90%.',
           'Ancillary revenue (F&B, events, parking, storage): +8-12% on base revenue.',
-          '2025 trend confirmed: asset-heavy ownership is becoming dominant again. Asset-light leaseback is precisely the model that killed Selina and Common.',
+          '2025 trend confirmed: asset-heavy ownership-led structures are becoming dominant again, with strategic equity JVs preserved for unique assets. Asset-light leaseback is precisely the model that killed Selina and Common.',
         ],
       },
       {
