@@ -535,7 +535,7 @@ const Row = ({ cells, emphasized = false }: RowProps) => (
     <td className="py-3 px-4 text-sm sm:text-base text-slate-200 border-t border-white/5">
       {cells[0]}
     </td>
-    <td className="py-3 px-4 text-sm sm:text-base text-white text-right whitespace-nowrap border-t border-white/5">
+    <td className="py-3 px-4 text-sm sm:text-base text-white text-right border-t border-white/5 break-words">
       {cells[1]}
     </td>
   </tr>
