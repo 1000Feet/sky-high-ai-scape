@@ -61,7 +61,7 @@ const ventures: Venture[] = [
     logo: '/ventures/ConciergeDesk-Logo.png',
     description: 'AI-powered concierge service for hotels and hospitality businesses.',
     url: '',
-    size: 'lg',
+    size: 'md',
   },
   {
     id: 'time4love',
@@ -77,7 +77,7 @@ const ventures: Venture[] = [
     logo: '/ventures/GyroTours-Logo.png',
     description: 'Gyrocopter tours in Costa Rica — an unforgettable aerial adventure over stunning landscapes.',
     url: 'https://gyrotours.cr',
-    size: 'md',
+    size: 'lg',
   },
   {
     id: 'nameswiki',
