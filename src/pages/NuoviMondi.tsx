@@ -40,7 +40,7 @@ const content = {
         ],
         callout: {
           title: 'Preliminary verdict',
-          text: 'The model is feasible. The timing is favorable. A defensible positioning exists. Three conditions apply: (1) asset-heavy acquisition full ownership, no JV nor leaseback; (2) premium pricing with membership at $2-5K/year; (3) surgical roll-out — 3 locations in the first 36 months, not 10. Main risk — Our Habitas / Ennismore (Accor) — reclassified after the May 2026 deep dive (Appendix A) as lateral, not frontal: they sell short-stay experiential resorts, not long-stay residence-community, and over the next 24-36 months they have not announced anything in our European Atlantic / Mediterranean coastal geography. The strategic window is open.',
+          text: 'The model is feasible. The timing is favorable. A defensible positioning exists. Three conditions apply: (1) asset-heavy ownership-led capital structure — acquisition as default model, strategic equity JVs preserved as exception for unique passive-equity assets, no leaseback; (2) premium pricing with membership at $2-5K/year; (3) surgical roll-out — 3 locations in the first 36 months, not 10. Main risk — Our Habitas / Ennismore (Accor) — reclassified after the May 2026 deep dive (Appendix A) as lateral, not frontal: they sell short-stay experiential resorts, not long-stay residence-community, and over the next 24-36 months they have not announced anything in our European Atlantic / Mediterranean coastal geography. The strategic window is open.',
         },
       },
       {
