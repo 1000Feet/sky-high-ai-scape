@@ -25,7 +25,7 @@ const content = {
     intro:
       'First market analysis of a community coliving and long-stay network across 10 coastal cities. Comparison with the Selina Hospitality collapse (2024), mapping of surviving competitors, validation of Tamarindo, Málaga, and Lisbon/Cascais as initial locations, and preliminary feasibility verdict.',
     meta: 'Preliminary document — for internal use and first conversations with trusted investors.',
-    byline: 'Rome, May 26, 2026 · Angelo Magni · bastoparty@gmail.com',
+    byline: 'Rome, May 26, 2026 · Angelo Magni · info@1000feetabove.com',
     sections: [
       {
         n: '1',
@@ -291,7 +291,7 @@ const content = {
     intro:
       'Prima analisi di mercato sul modello di rete di community coliving e long-stay in 10 città costiere. Confronto con il fallimento di Selina Hospitality (2024), mappatura dei competitor sopravvissuti, validazione di Tamarindo, Malaga e Bali come prime location, e verdetto preliminare di fattibilità.',
     meta: 'Documento preliminare — uso interno e prime conversazioni con investitori di fiducia.',
-    byline: 'Roma, 26 maggio 2026 · Angelo Magni · bastoparty@gmail.com',
+    byline: 'Roma, 26 maggio 2026 · Angelo Magni · info@1000feetabove.com',
     sections: [
       {
         n: '1',
