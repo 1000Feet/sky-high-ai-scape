@@ -323,7 +323,9 @@ const VenturesGraph: React.FC = () => {
         );
       })()}
     </div>
+    </>
   );
+
 };
 
 export default VenturesGraph;
