@@ -167,9 +167,22 @@ const VenturesGraph: React.FC = () => {
   const cx = containerSize.w / 2;
   const cy = containerSize.h / 2;
   const rx = Math.min(cx - 110, 360);
+  const ry = Math.min(cy - 100, 270);
+
+  /** Compute popup top-left so it stays within the container */
+  const popupPos = (cardCx: number, cardCy: number) => {
+    // Try to place popup to the right of the card, fallback left
+    let left = cardCx + 70;
+    if (left + POPUP_W > containerSize.w - 8) left = cardCx - POPUP_W - 70;
+    left = Math.max(8, left);
+    let top = cardCy - POPUP_H / 2;
+    top = Math.max(8, Math.min(top, containerSize.h - POPUP_H - 8));
+    return { left, top };
+  };
+
   return (
     <>
-    {/* Mobile: vertical list */}
+    {/* Mobile: grid */}
     <div className="md:hidden grid grid-cols-2 gap-4 px-4 max-w-md mx-auto">
       {ventures.map((v) => (
         <a
@@ -187,16 +200,6 @@ const VenturesGraph: React.FC = () => {
 
     {/* Desktop: orbit */}
     <div className="relative w-full hidden md:block" style={{ height: '820px' }} ref={containerRef}>
-
-  const popupPos = (cardCx: number, cardCy: number) => {
-    // Try to place popup to the right of the card, fallback left
-    let left = cardCx + 70;
-    if (left + POPUP_W > containerSize.w - 8) left = cardCx - POPUP_W - 70;
-    left = Math.max(8, left);
-    let top = cardCy - POPUP_H / 2;
-    top = Math.max(8, Math.min(top, containerSize.h - POPUP_H - 8));
-    return { left, top };
-  };
 
   return (
     <div className="relative w-full" style={{ height: '820px' }} ref={containerRef}>
