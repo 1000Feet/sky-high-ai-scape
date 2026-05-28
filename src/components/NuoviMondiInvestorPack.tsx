@@ -619,15 +619,15 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
             {c.product.tagline}
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+          <div className="flex flex-col gap-10 mt-10">
             <Figure
               src="/images/nuovi-mondi/09.png"
-              alt="Nuovi Mondi exterior at sunset"
+              alt="Nuovi Mondi operating roadmap"
               caption={c.product.exteriorCaption}
             />
             <Figure
               src="/images/nuovi-mondi/08.png"
-              alt="Nuovi Mondi interior — Slow Pottery Tuesday"
+              alt="Digital nomad and coliving market growth"
               caption={c.product.interiorCaption}
             />
           </div>
