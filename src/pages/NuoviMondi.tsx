@@ -515,7 +515,7 @@ const content = {
           'Modello finanziario di una location-tipo. CapEx per location costiera 40-60 unità, P&L year 1-5 base/bull/bear, sensitivity su occupancy e ADR, IRR per LP.',
           'Long-list 10 città con criteri di scoring espliciti. DNV regulatory, costi RE, infrastruttura volo internazionale, community esistente, climate stability, overlap Our Habitas.',
           'Investor narrative. 10-15 slide con il framing "Soho House meets digital nomad" e il differential vs Selina esplicito dalla slide 2.',
-          'Pilot Tamarindo. Verificare se esiste una proprietà candidata sulla costa di Tamarindo o Playa Grande dove provare il modello tramite JV con un proprietario locale — leveraging il network 15Love e Casa Idea.',
+          "Pilot Tamarindo. Identificare candidati per acquisizione sulla costa di Tamarindo o Playa Grande tramite broker hospitality specializzati (Mercury Hospitality Costa Rica), con esplorazione parallela di opportunità di JV strategica per asset landmark unici — leveraging il network locale esistente di Angelo (Casa Idea, Autogyro, relazione cliente 15Love).",
         ],
       },
     ],
