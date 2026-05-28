@@ -83,8 +83,8 @@ const CONTENT = {
         },
       ],
       tagline: "Soho House meets the digital nomad.",
-      exteriorCaption: "Concept esterno — villa costiera mid-luxury al tramonto, community visibile sul terrazzo.",
-      interiorCaption: "Concept interno — cucina-living comunale dove la programmazione settimanale accade.",
+      exteriorCaption: "Roadmap operativa — sette milestone dal fundraising alla Series A lungo i primi 24 mesi.",
+      interiorCaption: "Mercato di riferimento — turismo digital nomad $89.7B → $243.6B e coliving $12.8B → $42B by 2034.",
     },
 
     market: {
