@@ -9,7 +9,7 @@ import colivingFailures from '@/assets/nuovi-mondi/coliving-failures.png';
 import competitorMap from '@/assets/nuovi-mondi/competitor-map.png';
 import marketGrowth from '@/assets/nuovi-mondi/market-growth.png';
 
-import selinaVsNuoviMondi from '@/assets/nuovi-mondi/selina-vs-nuovi-mondi.png';
+
 import fiveNonNegotiables from '@/assets/nuovi-mondi/five-non-negotiables.png';
 import nuoviMondiVsHabitas from '@/assets/nuovi-mondi/nuovi-mondi-vs-habitas.png';
 import roadmapTimeline from '@/assets/nuovi-mondi/roadmap-timeline.png';
@@ -40,7 +40,7 @@ const content = {
         ],
         callout: {
           title: 'Preliminary verdict',
-          text: 'The model is feasible. The timing is favorable. A defensible positioning exists. Three conditions apply: (1) asset-heavy acquisition full ownership, no JV nor leaseback; (2) premium pricing with membership at $2-5K/year; (3) surgical roll-out — 3 locations in the first 36 months, not 10. Main risk — Our Habitas / Ennismore (Accor) — reclassified after the May 2026 deep dive (Appendix A) as lateral, not frontal: they sell short-stay experiential resorts, not long-stay residence-community, and over the next 24-36 months they have not announced anything in our European Atlantic / Mediterranean coastal geography. The strategic window is open.',
+          text: 'The model is feasible. The timing is favorable. A defensible positioning exists. Three conditions apply: (1) asset-heavy ownership-led capital structure — acquisition as default model, strategic equity JVs preserved as exception for unique passive-equity assets, no leaseback; (2) premium pricing with membership at $2-5K/year; (3) surgical roll-out — 3 locations in the first 36 months, not 10. Main risk — Our Habitas / Ennismore (Accor) — reclassified after the May 2026 deep dive (Appendix A) as lateral, not frontal: they sell short-stay experiential resorts, not long-stay residence-community, and over the next 24-36 months they have not announced anything in our European Atlantic / Mediterranean coastal geography. The strategic window is open.',
         },
       },
       {
@@ -154,7 +154,7 @@ const content = {
           'Average ROI 22.3% for coliving (asset-heavy) vs 8-12% for traditional rentals.',
           'Break-even occupancy: 85%. Structurally profitable only above 90%.',
           'Ancillary revenue (F&B, events, parking, storage): +8-12% on base revenue.',
-          '2025 trend confirmed: asset-heavy ownership is becoming dominant again. Asset-light leaseback is precisely the model that killed Selina and Common.',
+          '2025 trend confirmed: asset-heavy ownership-led structures are becoming dominant again, with strategic equity JVs preserved for unique assets. Asset-light leaseback is precisely the model that killed Selina and Common.',
         ],
       },
       {
@@ -198,9 +198,9 @@ const content = {
         body: [
           'The three rules derived directly from the Selina case study become the construction principles of the Nuovi Mondi model.',
         ],
-        subhead: 'Rule 1 — Asset-heavy acquisition, not JV nor leaseback',
+        subhead: 'Rule 1 — Asset-heavy, not leaseback',
         para1:
-          "Full ownership acquisition of distressed boutique properties from motivated sellers (30-50 keys, $3-5M acquisition + $4-7M renovation per location). 60-65% LTV mortgage refinancing post-stabilization releases ~$3M equity per location for redeployment. Cleaner control vs JV, higher IRR (20-25% target), exit pathway via branded residences sale (15% of capital stack) or full asset sale. Target model inspired by Habitas operating playbook (acquire-and-rebrand) and Six Senses Residences for the unit-sales optionality.",
+          "Full ownership acquisition of distressed boutique properties from motivated sellers is the default model (30-50 keys per location, $3-5M acquisition + $4-7M renovation). 60-65% LTV mortgage refi post-stabilization releases ~$3M equity per location for redeployment. Strategic equity JVs preserved as exception for unique asset opportunities — typically historic landmark properties where a family owner enters as passive equity-partner without operational involvement. Master leases (Selina's model) excluded entirely. Target playbook: Habitas operating model (acquire-and-rebrand) for the default, Six Senses Residences for unit-sales optionality, equity JV with passive owner for unique passes-through-the-net opportunities.",
         subhead2: 'Rule 2 — Multi-revenue stream',
         list: [
           'Annual membership: target $2-5K/year, positioning "Soho House for premium nomads."',
@@ -214,7 +214,7 @@ const content = {
           'Max 3 locations in the first 36 months, each proven at steady-state before opening the fourth. Selina had 100+ locations open without a single one proven profitable. The 10-city plan should be presented as a five-year vision (years 5-7), not as an aggressive three-year plan. The informed investor who watched Selina fall appreciates the pacing.',
         subhead4: 'Indicative capex per typical location',
         para4:
-          "A credible mid-luxury coastal location (40-60 units, signed design, common area, F&B, spa, community-led programming) requires, as a first approximation, $7-18M between property acquisition, renovation, and working capital. The figure should be validated against a specific property with a developer — it's an order-of-magnitude estimate, not a pitch number. On a 10-location plan, total commitment is in the $50-150M range — hospitality fund and family office syndicate territory, not Series A startup.",
+          "A credible mid-luxury coastal location (40-60 units, signed design, common area, F&B, spa, community-led programming) requires, as a first approximation, $7-18M between property acquisition (or strategic equity JV for unique assets), renovation, and working capital. The figure should be validated against a specific property with a developer — it's an order-of-magnitude estimate, not a pitch number. On a 10-location plan, total commitment is in the $50-150M range — hospitality fund and family office syndicate territory, not Series A startup.",
         callout: {
           title: 'Capital structure implication',
           text: "The structure is not venture capital. It's real-estate / hospitality private equity with a 7-10 year horizon, with possible LP family offices + small sovereign wealth allocations, integrated with branded residences sales as pre-equity for locations 2 and 3. No SPAC. No short-term debt. The pitch to investors must explicitly differentiate the capital structure from Selina's approach.",
@@ -227,9 +227,9 @@ const content = {
           'The model is feasible. The timing is favorable — competitive supply contracted in 2024 precisely as demand accelerated. The positioning is defensible: the mid-luxury + slow/long-stay + multi-location membership quadrant is not seriously occupied today. There are five conditions for execution.',
         ],
         ol: [
-          'Asset-heavy full ownership acquisition, not JV nor leaseback. Equity or quasi-equity from family offices or hospitality funds with a 7-10 year horizon. No SPAC, no short-term debt, no operating leases as the primary asset.',
+          'Asset-heavy ownership-led capital structure, no leaseback. Acquisition as default model; strategic equity JVs preserved as exception for unique passive-equity-partner assets. Equity or quasi-equity from family offices or hospitality funds with a 7-10 year horizon. No SPAC, no short-term debt, no operating leases as the primary asset.',
           'Premium pricing with membership at minimum $2-5K/year. Explicit positioning as "Soho House for coastal lifestyle," not "Selina with better service."',
-          'Acquisition + optional 5-15% minority local operating partner per city (regulatory/F&B execution only, NOT capex). Cleaner control, no alignment friction with seller post-deal, and exit options remain unencumbered.',
+          'Default model = full-ownership acquisition via specialized hospitality brokers (Mercury Hospitality for Costa Rica, Christie & Co + Colliers for Europe). Optional minority local operating partner per city (5-15% equity for regulatory navigation and F&B execution alignment, NOT capex JV). Strategic equity JV reserved as exception for unique asset opportunities where the property owner is willing to enter as passive equity-partner — preserving the option without making it the default.',
           'Community as product, not as marketing. Weekly programming, residence chef, cultural curator, retention metrics tracked from month one. This is exactly where Selina got it wrong.',
           'Disciplined sequence. Tamarindo as lighthouse location, Málaga as scale proof, third location decided only after the first two have closed 24 months above 90% occupancy.',
         ],
@@ -306,7 +306,7 @@ const content = {
         ],
         callout: {
           title: 'Verdetto preliminare',
-          text: 'Il modello è fattibile. Il timing è favorevole. Esiste un posizionamento difendibile. Le condizioni sono tre: (1) capital structure asset-heavy con JV locali, niente leaseback; (2) pricing premium con membership $2-5K/anno; (3) roll-out chirurgico — 3 location nei primi 36 mesi, non 10. Rischio principale identificato: Our Habitas / Ennismore (Accor Group) che ha appena lanciato un programma residential 45+ progetti in 20 paesi e potrebbe scendere di tier.',
+          text: 'Il modello è fattibile. Il timing è favorevole. Esiste un posizionamento difendibile. Le condizioni sono tre: (1) capital structure asset-heavy ownership-led — acquisizione come modello di default, JV equity strategiche preservate come eccezione per asset unici con partner equity passivo, niente leaseback; (2) pricing premium con membership $2-5K/anno; (3) roll-out chirurgico — 3 location nei primi 36 mesi, non 10. Rischio principale identificato: Our Habitas / Ennismore (Accor Group) che ha appena lanciato un programma residential 45+ progetti in 20 paesi e potrebbe scendere di tier.',
         },
       },
       {
@@ -420,7 +420,7 @@ const content = {
           'ROI medio 22,3% per il coliving (asset-heavy) vs 8-12% per affitti tradizionali.',
           'Break-even occupancy: 85%. Profittevole strutturalmente solo sopra il 90%.',
           'Ancillary revenue (F&B, eventi, parking, storage): +8-12% sui ricavi base.',
-          'Trend 2025 confermato: asset-heavy (ownership o JV) sta tornando dominante. Asset-light leaseback è proprio il modello che ha ucciso Selina e Common.',
+          'Trend 2025 confermato: strutture asset-heavy ownership-led stanno tornando dominanti, con JV equity strategiche preservate per asset unici. Asset-light leaseback è proprio il modello che ha ucciso Selina e Common.',
         ],
       },
       {
@@ -432,7 +432,7 @@ const content = {
         table: {
           headers: ['Città', 'Pro', 'Contro', 'Saturazione'],
           rows: [
-            ['Tamarindo, Costa Rica', 'DNV $3K/mese reddito, esente income tax. Costo vita medio. Community nomadica esistente ma piccola. HUB GEOGRAFICO ESISTENTE per Angelo (15Love, Autogyro, Casa Idea).', 'Solo 2 coworking attivi (Sand & Surf, In the Shade). Alta stagionalità (dic-apr alta, mag-nov bassa). Mercato locale piccolo.', 'Bassa — white space disponibile, vantaggio asimmetrico'],
+            ['Tamarindo, Costa Rica', 'DNV $3K/mese reddito, esente income tax. Costo vita medio. Community nomadica esistente ma piccola. Hub geografico esistente per Angelo: Autogyro + Casa Idea (asset di Angelo) + 15Love (cliente locale di lunga data di 1000 Feet).', 'Solo 2 coworking attivi (Sand & Surf, In the Shade). Alta stagionalità (dic-apr alta, mag-nov bassa). Mercato locale piccolo.', 'Bassa — white space disponibile, vantaggio asimmetrico'],
             ['Malaga, Spagna', 'Spain DNV €2.160/mese, valida 5 anni. #1 expat city al mondo 2023 (Internations), #2 nel 2024. "Silicon Valley Costa del Sol". 320 giorni di sole. Fiber 197 Mbps media.', 'Coliving già abbondante (€500-1.200/mese). Costi acquisizione real estate in salita rapida. Concorrenza diretta dei coliving budget.', 'Media-alta — posizionamento mid-luxury ancora aperto se ben differenziato'],
             ['Bali (Canggu/Ubud), Indonesia', 'Visa E33G (1 anno, $60K/anno income). Coliving market più maturo al mondo. Costo operativo basso.', 'Saturazione altissima (Outpost dominante + decine di alternative). "Bali fatigue" tra nomadi senior. Reputazione "party nomad" rema contro il mid-luxury.', 'Alta — più difficile differenziarsi. Valutare Uluwatu/Bingin invece di Canggu'],
           ],
@@ -466,7 +466,7 @@ const content = {
         ],
         subhead: 'Regola 1 — Asset-heavy, non leaseback',
         para1:
-          'Joint venture con landowner o developer locali (equity 30-50%), non master lease su edifici altrui. La discesa di Selina e Common ha dimostrato che il leasing su edifici riposizionati è suicidio in un ciclo di tassi alti. Modello target ispirato a Six Senses Residences (vendita unit + management fee con servizi hospitality) o JV equity con family office locali. Riduce capex iniziale, allinea incentivi, scarica una parte del rischio sui partner locali.',
+          "Acquisizione full ownership di boutique properties distressed da seller motivati come modello di default (30-50 keys per location, $3-5M acquisto + $4-7M ristrutturazione). Refinancing mutuo 60-65% LTV post-stabilization libera ~$3M di equity per location da redeployare. JV equity strategiche preservate come eccezione per opportunità di asset unici — tipicamente immobili landmark storici dove un proprietario di famiglia entra come partner equity passivo senza coinvolgimento operativo. Master lease (modello Selina) esclusi completamente. Playbook target: modello operativo Habitas (acquire-and-rebrand) per il default, Six Senses Residences per l'optionality di unit sales, JV equity con proprietario passivo per opportunità uniche.",
         subhead2: 'Regola 2 — Multi-revenue stream',
         list: [
           'Membership annuale: target $2-5K/anno, posizionamento "Soho House per nomadi premium".',
@@ -480,7 +480,7 @@ const content = {
           "Massimo 3 location nei primi 36 mesi, ognuna provata steady-state prima di aprire la quarta. Selina aveva 100+ location aperte senza una sola provata profittevole. Il piano 10-città va presentato come vision quinquennale (anno 5-7), non come piano triennale aggressivo. L'investitore informato che ha visto cadere Selina apprezza il pacing.",
         subhead4: 'Capex indicativo per location-tipo',
         para4:
-          "Una location costiera mid-luxury credibile (40-60 unità, design firmato, area comune, F&B, spa, programmazione community-led) richiede in prima approssimazione $5-15M tra acquisto/JV terreno, ristrutturazione, capitale di lavoro. Il numero va validato con un developer su una proprietà specifica — è una stima d'ordine, non una cifra da pitch. Su un piano 10-location il commitment totale ordina di grandezza è $50-150M, ovvero territorio di hospitality fund e family office syndicate, non di Series A startup.",
+          "Una location costiera mid-luxury credibile (40-60 unità, design firmato, area comune, F&B, spa, programmazione community-led) richiede in prima approssimazione $7-18M tra acquisizione proprietà (o JV equity strategica per asset unici), ristrutturazione, capitale di lavoro. Il numero va validato con un developer su una proprietà specifica — è una stima d'ordine, non una cifra da pitch. Su un piano 10-location il commitment totale ordina di grandezza è $50-150M, ovvero territorio di hospitality fund e family office syndicate, non di Series A startup.",
         callout: {
           title: 'Implicazione per la struttura del capitale',
           text: 'La struttura non è venture capital. È fondo immobiliare/hospitality private equity con orizzonte 7-10 anni, possibili LP family office + sovereign wealth in piccola quota, integrato con vendita di branded residences come pre-equity per le location 2 e 3. Niente SPAC. Niente debito a breve. La pitch agli investitori deve esplicitamente differenziare la struttura del capitale dalle modalità di Selina.',
@@ -493,9 +493,9 @@ const content = {
           "Il modello è fattibile. Il timing è favorevole — l'offerta competitiva si è contratta nel 2024 proprio mentre la domanda accelera. Il posizionamento è difendibile: il quadrante mid-luxury + slow/long-stay + multi-location membership non è oggi occupato in modo serio. Le condizioni per realizzarlo sono cinque.",
         ],
         ol: [
-          'Capital structure asset-heavy con JV locali, non leaseback. Equity o quasi-equity da family office o hospitality fund con orizzonte 7-10 anni. No SPAC, no debito a breve termine, no leasing operativo come asset principale.',
+          'Capital structure asset-heavy ownership-led, no leaseback. Acquisizione come modello di default; JV equity strategiche preservate come eccezione per asset unici con partner equity passivo. Equity o quasi-equity da family office o hospitality fund con orizzonte 7-10 anni. No SPAC, no debito a breve termine, no leasing operativo come asset principale.',
           'Pricing premium con membership $2-5K/anno minimo. Posizionamento esplicito "Soho House per costiero/lifestyle", non "Selina con servizi migliori".',
-          'Asset partner locali in ogni città. JV con un developer o property owner riduce capex iniziale, riduce frizione regolatoria, allinea gli incentivi.',
+          'Modello di default = acquisizione full-ownership tramite broker hospitality specializzati (Mercury Hospitality per Costa Rica, Christie & Co + Colliers per Europa). Partner operativo locale di minoranza opzionale per città (5-15% equity per navigazione regolatoria e allineamento esecutivo F&B, NON JV di capex). JV equity strategica riservata come eccezione per opportunità di asset unici dove il proprietario è disposto a entrare come partner equity passivo — preservando l\'opzione senza renderla il default.',
           'Community come prodotto, non come marketing. Programmazione settimanale, residence chef, curator culturale, retention metrics tracciate dal mese uno. È esattamente dove Selina ha sbagliato.',
           'Sequenza disciplinata. Tamarindo come lighthouse location, Malaga come scale proof, terza location decisa solo dopo che le prime due hanno chiuso 24 mesi sopra il 90% di occupancy.',
         ],
@@ -515,7 +515,7 @@ const content = {
           'Modello finanziario di una location-tipo. CapEx per location costiera 40-60 unità, P&L year 1-5 base/bull/bear, sensitivity su occupancy e ADR, IRR per LP.',
           'Long-list 10 città con criteri di scoring espliciti. DNV regulatory, costi RE, infrastruttura volo internazionale, community esistente, climate stability, overlap Our Habitas.',
           'Investor narrative. 10-15 slide con il framing "Soho House meets digital nomad" e il differential vs Selina esplicito dalla slide 2.',
-          'Pilot Tamarindo. Verificare se esiste una proprietà candidata sulla costa di Tamarindo o Playa Grande dove provare il modello tramite JV con un proprietario locale — leveraging il network 15Love e Casa Idea.',
+          "Pilot Tamarindo. Identificare candidati per acquisizione sulla costa di Tamarindo o Playa Grande tramite broker hospitality specializzati (Mercury Hospitality Costa Rica), con esplorazione parallela di opportunità di JV strategica per asset landmark unici — leveraging il network locale esistente di Angelo (Casa Idea, Autogyro, relazione cliente 15Love).",
         ],
       },
     ],
@@ -629,18 +629,6 @@ const sectionVisuals: Record<string, SectionVisualEntry> = {
     caption: {
       en: 'Demand is compounding across both coliving and digital nomad travel.',
       it: 'La domanda accelera sia nel coliving sia nel digital nomad travel.',
-    },
-  },
-  '7': {
-    src: selinaVsNuoviMondi,
-    position: 'afterList',
-    alt: {
-      en: 'Comparison between Selina asset-light model and Nuovi Mondi asset-heavy full-ownership acquisition model.',
-      it: 'Confronto tra il modello asset-light di Selina e il modello asset-heavy in joint venture di Nuovi Mondi.',
-    },
-    caption: {
-      en: 'The capital structure is the core strategic divergence from Selina.',
-      it: 'La struttura del capitale è la divergenza strategica fondamentale rispetto a Selina.',
     },
   },
   '8': {
