@@ -535,7 +535,7 @@ const Row = ({ cells, emphasized = false }: RowProps) => (
     <td className="py-3 px-4 text-sm sm:text-base text-slate-200 border-t border-white/5">
       {cells[0]}
     </td>
-    <td className="py-3 px-4 text-sm sm:text-base text-white text-right whitespace-nowrap border-t border-white/5">
+    <td className="py-3 px-4 text-sm sm:text-base text-white text-right border-t border-white/5 break-words">
       {cells[1]}
     </td>
   </tr>
@@ -747,7 +747,7 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
               <h4 className="text-lg font-semibold text-white mb-3">
                 {c.economics.capexTitle}
               </h4>
-              <table className="w-full">
+              <table className="w-full table-fixed">
                 <tbody>
                   {c.economics.capexRows.map((r, i) => (
                     <Row key={i} cells={r as readonly [string, string]} />
@@ -762,7 +762,7 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
               <h4 className="text-lg font-semibold text-white mb-3">
                 {c.economics.revenueTitle}
               </h4>
-              <table className="w-full">
+              <table className="w-full table-fixed">
                 <tbody>
                   {c.economics.revenueRows.map((r, i) => (
                     <Row key={i} cells={r as readonly [string, string]} />
@@ -780,7 +780,7 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
               <h4 className="text-lg font-semibold text-white mb-3">
                 {c.economics.opsTitle}
               </h4>
-              <table className="w-full">
+              <table className="w-full table-fixed">
                 <tbody>
                   {c.economics.opsRows.map((r, i) => (
                     <Row key={i} cells={r as readonly [string, string]} />
@@ -794,7 +794,7 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
               <h4 className="text-lg font-semibold text-white mb-3">
                 {c.economics.programTitle}
               </h4>
-              <table className="w-full">
+              <table className="w-full table-fixed">
                 <tbody>
                   {c.economics.programRows.map((r, i) => (
                     <Row key={i} cells={r as readonly [string, string]} />
@@ -821,7 +821,7 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
           />
 
           <div className="mt-10 max-w-2xl mx-auto">
-            <table className="w-full">
+            <table className="w-full table-fixed">
               <tbody>
                 {c.capital.useOfFunds.map((r, i) => (
                   <Row key={i} cells={r as readonly [string, string]} />
