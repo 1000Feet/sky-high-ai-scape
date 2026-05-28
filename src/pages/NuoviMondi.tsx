@@ -25,7 +25,7 @@ const content = {
     intro:
       'First market analysis of a community coliving and long-stay network across 10 coastal cities. Comparison with the Selina Hospitality collapse (2024), mapping of surviving competitors, validation of Tamarindo, Málaga, and Lisbon/Cascais as initial locations, and preliminary feasibility verdict.',
     meta: 'Preliminary document — for internal use and first conversations with trusted investors.',
-    byline: 'Rome, May 26, 2026 · Angelo Magni · info@1000feetabove.com',
+    byline: 'Milan, May 2026 \u00b7 Angelo Magni \u00b7 info@1000feetabove.com',
     sections: [
       {
         n: '1',
