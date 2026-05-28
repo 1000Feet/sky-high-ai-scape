@@ -306,7 +306,7 @@ const content = {
         ],
         callout: {
           title: 'Verdetto preliminare',
-          text: 'Il modello è fattibile. Il timing è favorevole. Esiste un posizionamento difendibile. Le condizioni sono tre: (1) capital structure asset-heavy con JV locali, niente leaseback; (2) pricing premium con membership $2-5K/anno; (3) roll-out chirurgico — 3 location nei primi 36 mesi, non 10. Rischio principale identificato: Our Habitas / Ennismore (Accor Group) che ha appena lanciato un programma residential 45+ progetti in 20 paesi e potrebbe scendere di tier.',
+          text: 'Il modello è fattibile. Il timing è favorevole. Esiste un posizionamento difendibile. Le condizioni sono tre: (1) capital structure asset-heavy ownership-led — acquisizione come modello di default, JV equity strategiche preservate come eccezione per asset unici con partner equity passivo, niente leaseback; (2) pricing premium con membership $2-5K/anno; (3) roll-out chirurgico — 3 location nei primi 36 mesi, non 10. Rischio principale identificato: Our Habitas / Ennismore (Accor Group) che ha appena lanciato un programma residential 45+ progetti in 20 paesi e potrebbe scendere di tier.',
         },
       },
       {
