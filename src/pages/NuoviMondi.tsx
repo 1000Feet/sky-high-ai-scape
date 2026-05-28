@@ -466,7 +466,7 @@ const content = {
         ],
         subhead: 'Regola 1 — Asset-heavy, non leaseback',
         para1:
-          'Joint venture con landowner o developer locali (equity 30-50%), non master lease su edifici altrui. La discesa di Selina e Common ha dimostrato che il leasing su edifici riposizionati è suicidio in un ciclo di tassi alti. Modello target ispirato a Six Senses Residences (vendita unit + management fee con servizi hospitality) o JV equity con family office locali. Riduce capex iniziale, allinea incentivi, scarica una parte del rischio sui partner locali.',
+          "Acquisizione full ownership di boutique properties distressed da seller motivati come modello di default (30-50 keys per location, $3-5M acquisto + $4-7M ristrutturazione). Refinancing mutuo 60-65% LTV post-stabilization libera ~$3M di equity per location da redeployare. JV equity strategiche preservate come eccezione per opportunità di asset unici — tipicamente immobili landmark storici dove un proprietario di famiglia entra come partner equity passivo senza coinvolgimento operativo. Master lease (modello Selina) esclusi completamente. Playbook target: modello operativo Habitas (acquire-and-rebrand) per il default, Six Senses Residences per l'optionality di unit sales, JV equity con proprietario passivo per opportunità uniche.",
         subhead2: 'Regola 2 — Multi-revenue stream',
         list: [
           'Membership annuale: target $2-5K/anno, posizionamento "Soho House per nomadi premium".',
