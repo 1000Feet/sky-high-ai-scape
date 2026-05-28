@@ -61,7 +61,7 @@ const ventures: Venture[] = [
     logo: '/ventures/ConciergeDesk-Logo.png',
     description: 'AI-powered concierge service for hotels and hospitality businesses.',
     url: '',
-    size: 'md',
+    size: 'lg',
   },
   {
     id: 'time4love',
