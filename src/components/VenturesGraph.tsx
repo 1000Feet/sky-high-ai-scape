@@ -77,7 +77,7 @@ const ventures: Venture[] = [
     logo: '/ventures/GyroTours-Logo.png',
     description: 'Gyrocopter tours in Costa Rica — an unforgettable aerial adventure over stunning landscapes.',
     url: 'https://gyrotours.cr',
-    size: 'md',
+    size: 'lg',
   },
   {
     id: 'nameswiki',
