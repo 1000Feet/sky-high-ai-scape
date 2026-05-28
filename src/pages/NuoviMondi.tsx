@@ -198,9 +198,9 @@ const content = {
         body: [
           'The three rules derived directly from the Selina case study become the construction principles of the Nuovi Mondi model.',
         ],
-        subhead: 'Rule 1 — Asset-heavy acquisition, not JV nor leaseback',
+        subhead: 'Rule 1 — Asset-heavy, not leaseback',
         para1:
-          "Full ownership acquisition of distressed boutique properties from motivated sellers (30-50 keys, $3-5M acquisition + $4-7M renovation per location). 60-65% LTV mortgage refinancing post-stabilization releases ~$3M equity per location for redeployment. Cleaner control vs JV, higher IRR (20-25% target), exit pathway via branded residences sale (15% of capital stack) or full asset sale. Target model inspired by Habitas operating playbook (acquire-and-rebrand) and Six Senses Residences for the unit-sales optionality.",
+          "Full ownership acquisition of distressed boutique properties from motivated sellers is the default model (30-50 keys per location, $3-5M acquisition + $4-7M renovation). 60-65% LTV mortgage refi post-stabilization releases ~$3M equity per location for redeployment. Strategic equity JVs preserved as exception for unique asset opportunities — typically historic landmark properties where a family owner enters as passive equity-partner without operational involvement. Master leases (Selina's model) excluded entirely. Target playbook: Habitas operating model (acquire-and-rebrand) for the default, Six Senses Residences for unit-sales optionality, equity JV with passive owner for unique passes-through-the-net opportunities.",
         subhead2: 'Rule 2 — Multi-revenue stream',
         list: [
           'Annual membership: target $2-5K/year, positioning "Soho House for premium nomads."',
