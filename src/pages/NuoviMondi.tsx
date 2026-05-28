@@ -9,7 +9,7 @@ import colivingFailures from '@/assets/nuovi-mondi/coliving-failures.png';
 import competitorMap from '@/assets/nuovi-mondi/competitor-map.png';
 import marketGrowth from '@/assets/nuovi-mondi/market-growth.png';
 
-import selinaVsNuoviMondi from '@/assets/nuovi-mondi/selina-vs-nuovi-mondi.png';
+
 import fiveNonNegotiables from '@/assets/nuovi-mondi/five-non-negotiables.png';
 import nuoviMondiVsHabitas from '@/assets/nuovi-mondi/nuovi-mondi-vs-habitas.png';
 import roadmapTimeline from '@/assets/nuovi-mondi/roadmap-timeline.png';
