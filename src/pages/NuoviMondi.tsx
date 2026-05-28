@@ -227,9 +227,9 @@ const content = {
           'The model is feasible. The timing is favorable — competitive supply contracted in 2024 precisely as demand accelerated. The positioning is defensible: the mid-luxury + slow/long-stay + multi-location membership quadrant is not seriously occupied today. There are five conditions for execution.',
         ],
         ol: [
-          'Asset-heavy full ownership acquisition, not JV nor leaseback. Equity or quasi-equity from family offices or hospitality funds with a 7-10 year horizon. No SPAC, no short-term debt, no operating leases as the primary asset.',
+          'Asset-heavy ownership-led capital structure, no leaseback. Acquisition as default model; strategic equity JVs preserved as exception for unique passive-equity-partner assets. Equity or quasi-equity from family offices or hospitality funds with a 7-10 year horizon. No SPAC, no short-term debt, no operating leases as the primary asset.',
           'Premium pricing with membership at minimum $2-5K/year. Explicit positioning as "Soho House for coastal lifestyle," not "Selina with better service."',
-          'Acquisition + optional 5-15% minority local operating partner per city (regulatory/F&B execution only, NOT capex). Cleaner control, no alignment friction with seller post-deal, and exit options remain unencumbered.',
+          'Default model = full-ownership acquisition via specialized hospitality brokers (Mercury Hospitality for Costa Rica, Christie & Co + Colliers for Europe). Optional minority local operating partner per city (5-15% equity for regulatory navigation and F&B execution alignment, NOT capex JV). Strategic equity JV reserved as exception for unique asset opportunities where the property owner is willing to enter as passive equity-partner — preserving the option without making it the default.',
           'Community as product, not as marketing. Weekly programming, residence chef, cultural curator, retention metrics tracked from month one. This is exactly where Selina got it wrong.',
           'Disciplined sequence. Tamarindo as lighthouse location, Málaga as scale proof, third location decided only after the first two have closed 24 months above 90% occupancy.',
         ],
