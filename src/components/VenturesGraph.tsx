@@ -181,7 +181,25 @@ const VenturesGraph: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full" style={{ height: '820px' }} ref={containerRef}>
+    <>
+    {/* Mobile: grid */}
+    <div className="md:hidden grid grid-cols-2 gap-4 px-4 max-w-md mx-auto">
+      {ventures.map((v) => (
+        <a
+          key={v.id}
+          href={v.url || '#'}
+          target={v.url?.startsWith('http') ? '_blank' : undefined}
+          rel="noopener noreferrer"
+          className="rounded-2xl border border-blue-500/30 bg-white aspect-square flex flex-col items-center justify-center p-3 shadow-lg active:scale-95 transition-transform"
+        >
+          <img src={encodeURI(v.logo)} alt={v.name} className="max-h-16 max-w-full object-contain mb-2" />
+          <span className="text-xs font-semibold text-slate-800 text-center">{v.name}</span>
+        </a>
+      ))}
+    </div>
+
+    {/* Desktop: orbit */}
+    <div className="relative w-full hidden md:block" style={{ height: '820px' }} ref={containerRef}>
       {/* Orbit ring */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none"
@@ -305,7 +323,9 @@ const VenturesGraph: React.FC = () => {
         );
       })()}
     </div>
+    </>
   );
+
 };
 
 export default VenturesGraph;
