@@ -40,7 +40,7 @@ const content = {
         ],
         callout: {
           title: 'Preliminary verdict',
-          text: 'The model is feasible. The timing is favorable. A defensible positioning exists. Three conditions apply: (1) asset-heavy capital structure with local JVs, no leaseback; (2) premium pricing with membership at $2-5K/year; (3) surgical roll-out — 3 locations in the first 36 months, not 10. Main risk — Our Habitas / Ennismore (Accor) — reclassified after the May 2026 deep dive (Appendix A) as lateral, not frontal: they sell short-stay experiential resorts, not long-stay residence-community, and over the next 24-36 months they have not announced anything in our European Atlantic / Mediterranean coastal geography. The strategic window is open.',
+          text: 'The model is feasible. The timing is favorable. A defensible positioning exists. Three conditions apply: (1) asset-heavy acquisition full ownership, no JV nor leaseback; (2) premium pricing with membership at $2-5K/year; (3) surgical roll-out — 3 locations in the first 36 months, not 10. Main risk — Our Habitas / Ennismore (Accor) — reclassified after the May 2026 deep dive (Appendix A) as lateral, not frontal: they sell short-stay experiential resorts, not long-stay residence-community, and over the next 24-36 months they have not announced anything in our European Atlantic / Mediterranean coastal geography. The strategic window is open.',
         },
       },
       {
@@ -154,7 +154,7 @@ const content = {
           'Average ROI 22.3% for coliving (asset-heavy) vs 8-12% for traditional rentals.',
           'Break-even occupancy: 85%. Structurally profitable only above 90%.',
           'Ancillary revenue (F&B, events, parking, storage): +8-12% on base revenue.',
-          '2025 trend confirmed: asset-heavy (ownership or JV) is becoming dominant again. Asset-light leaseback is precisely the model that killed Selina and Common.',
+          '2025 trend confirmed: asset-heavy ownership is becoming dominant again. Asset-light leaseback is precisely the model that killed Selina and Common.',
         ],
       },
       {
@@ -166,7 +166,7 @@ const content = {
         table: {
           headers: ['City', 'Pros', 'Cons', 'Saturation'],
           rows: [
-            ['Tamarindo, Costa Rica', 'DNV $3K/month income, income-tax exempt. Mid-range cost of living. Existing but small nomad community. EXISTING GEOGRAPHIC HUB for Angelo (15Love, Autogyro, Casa Idea).', 'Only 2 active coworking spaces (Sand & Surf, In the Shade). High seasonality (Dec-Apr high, May-Nov low). Small local market.', 'Low — white space available, asymmetric advantage'],
+            ['Tamarindo, Costa Rica', 'DNV $3K/month income, income-tax exempt. Mid-range cost of living. Existing but small nomad community. Existing geographic hub for Angelo: Autogyro + Casa Idea (Angelo\'s own assets) + 15Love (long-time local client of 1000 Feet).', 'Only 2 active coworking spaces (Sand & Surf, In the Shade). High seasonality (Dec-Apr high, May-Nov low). Small local market.', 'Low — white space available, asymmetric advantage'],
             ['Málaga, Spain', 'Spain DNV €2,160/month, 5-year validity. #1 expat city worldwide 2023 (Internations), #2 in 2024. "Silicon Valley Costa del Sol." 320 days of sun. Avg fiber 197 Mbps.', 'Coliving already abundant (€500-1,200/month). Real estate acquisition costs rising fast. Direct competition from budget coliving.', 'Medium-high — mid-luxury positioning still open if well differentiated'],
             ['Lisbon/Cascais, Portugal', 'Portugal DNV active (€3,480/month income, 1-year renewable). Cascais is already the Atlantic digital-nomad capital. Real estate still accessible vs central Lisbon. Direct international flights from Lisbon. Mature expat community, zero Habitas/Ennismore coastal presence announced in PT.', 'Real estate in Cascais and Estoril rising fast (+30% over three years). Personal tax (NHR regime) reformed in 2024. Budget coliving competition already present in central Lisbon (to be differentiated with coastal mid-luxury positioning).', 'Low-medium — dense market but residential-community positioning still uncovered. White space confirmed vs Habitas/Ennismore'],
           ],
@@ -214,7 +214,7 @@ const content = {
           'Max 3 locations in the first 36 months, each proven at steady-state before opening the fourth. Selina had 100+ locations open without a single one proven profitable. The 10-city plan should be presented as a five-year vision (years 5-7), not as an aggressive three-year plan. The informed investor who watched Selina fall appreciates the pacing.',
         subhead4: 'Indicative capex per typical location',
         para4:
-          "A credible mid-luxury coastal location (40-60 units, signed design, common area, F&B, spa, community-led programming) requires, as a first approximation, $5-15M between land acquisition/JV, renovation, and working capital. The figure should be validated against a specific property with a developer — it's an order-of-magnitude estimate, not a pitch number. On a 10-location plan, total commitment is in the $50-150M range — hospitality fund and family office syndicate territory, not Series A startup.",
+          "A credible mid-luxury coastal location (40-60 units, signed design, common area, F&B, spa, community-led programming) requires, as a first approximation, $7-18M between property acquisition, renovation, and working capital. The figure should be validated against a specific property with a developer — it's an order-of-magnitude estimate, not a pitch number. On a 10-location plan, total commitment is in the $50-150M range — hospitality fund and family office syndicate territory, not Series A startup.",
         callout: {
           title: 'Capital structure implication',
           text: "The structure is not venture capital. It's real-estate / hospitality private equity with a 7-10 year horizon, with possible LP family offices + small sovereign wealth allocations, integrated with branded residences sales as pre-equity for locations 2 and 3. No SPAC. No short-term debt. The pitch to investors must explicitly differentiate the capital structure from Selina's approach.",
@@ -249,7 +249,7 @@ const content = {
           'Financial model for a typical location. CapEx for a 40-60 unit coastal location, year 1-5 P&L base/bull/bear, sensitivity on occupancy and ADR, IRR for LPs.',
           '10-city long-list with explicit scoring criteria. DNV regulatory, RE costs, international flight infrastructure, existing community, climate stability, Our Habitas overlap.',
           'Investor narrative. 10-15 slides with the "Soho House meets digital nomad" framing and the differential vs Selina made explicit from slide 2 onward.',
-          'Tamarindo pilot. Verify whether a candidate property exists on the Tamarindo or Playa Grande coast where the model can be tested via JV with a local owner — leveraging the 15Love and Casa Idea network.',
+          "Tamarindo pilot. Identify an acquisition candidate on the Tamarindo or Playa Grande coast via specialized hospitality brokers (e.g. Mercury Hospitality Costa Rica) — leveraging Angelo's existing local network (Casa Idea, Autogyro, 15Love client relationship).",
         ],
       },
       {
@@ -893,13 +893,13 @@ const formCopy = {
     errorTitle: 'Something went wrong',
     errorDesc: 'Please try again in a moment.',
     ranges: [
-      'Under €25k',
-      '€25k – €100k',
-      '€100k – €250k',
-      '€250k – €500k',
-      '€500k – €1M',
-      '€1M – €5M',
-      'Over €5M',
+      '$50k – $100k',
+      '$100k – $250k',
+      '$250k – $500k',
+      '$500k – $1M',
+      '$1M – $2M',
+      '$2M – $5M',
+      '$5M+',
       'Prefer to discuss',
     ],
   },
@@ -922,13 +922,13 @@ const formCopy = {
     errorTitle: 'Qualcosa è andato storto',
     errorDesc: 'Riprova tra un momento.',
     ranges: [
-      'Sotto €25k',
-      '€25k – €100k',
-      '€100k – €250k',
-      '€250k – €500k',
-      '€500k – €1M',
-      '€1M – €5M',
-      'Oltre €5M',
+      '$50k – $100k',
+      '$100k – $250k',
+      '$250k – $500k',
+      '$500k – $1M',
+      '$1M – $2M',
+      '$2M – $5M',
+      '$5M+',
       'Preferisco discuterne',
     ],
   },

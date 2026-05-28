@@ -331,7 +331,7 @@ const CONTENT = {
           capex: "$7-12M",
           points: [
             "DNV $3K/month, income-tax exempt",
-            "Existing HUB of Angelo (15Love, Casa Idea, Autogyro)",
+            "Angelo's existing HUB (Casa Idea, Autogyro) + local client 15Love",
             "Target: 30-40 key boutique ($3-5M acquisition + remodel)",
             "Habitas Santa Teresa risk, but different coast",
           ],
@@ -810,10 +810,6 @@ export default function NuoviMondiInvestorPack({ lang = "it" }: Props) {
           </h3>
           <p className="text-base text-slate-300 max-w-3xl mb-10">{c.capital.lead}</p>
 
-          <Figure
-            src="/images/nuovi-mondi/03.png"
-            alt="Capital ask — $5M soft-circle round use of funds breakdown"
-          />
 
           <div className="mt-10 max-w-2xl mx-auto">
             <table className="w-full table-fixed">
