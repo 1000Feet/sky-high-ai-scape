@@ -635,7 +635,7 @@ const sectionVisuals: Record<string, SectionVisualEntry> = {
     src: selinaVsNuoviMondi,
     position: 'afterList',
     alt: {
-      en: 'Comparison between Selina asset-light model and Nuovi Mondi asset-heavy joint venture model.',
+      en: 'Comparison between Selina asset-light model and Nuovi Mondi asset-heavy full-ownership acquisition model.',
       it: 'Confronto tra il modello asset-light di Selina e il modello asset-heavy in joint venture di Nuovi Mondi.',
     },
     caption: {
