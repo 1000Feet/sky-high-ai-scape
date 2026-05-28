@@ -114,7 +114,7 @@ const CONTENT = {
           capex: "$7-12M",
           points: [
             "DNV $3K/mese, esente income tax",
-            "HUB esistente di Angelo (15Love, Casa Idea, Autogyro)",
+            "HUB esistente di Angelo (Casa Idea, Autogyro) + cliente locale 15Love",
             "Target: boutique 30-40 keys ($3-5M acquisto + remodel)",
             "Rischio Habitas Santa Teresa, ma costa diversa",
           ],
