@@ -631,18 +631,6 @@ const sectionVisuals: Record<string, SectionVisualEntry> = {
       it: 'La domanda accelera sia nel coliving sia nel digital nomad travel.',
     },
   },
-  '7': {
-    src: selinaVsNuoviMondi,
-    position: 'afterList',
-    alt: {
-      en: 'Comparison between Selina asset-light model and Nuovi Mondi asset-heavy full-ownership acquisition model.',
-      it: 'Confronto tra il modello asset-light di Selina e il modello asset-heavy in joint venture di Nuovi Mondi.',
-    },
-    caption: {
-      en: 'The capital structure is the core strategic divergence from Selina.',
-      it: 'La struttura del capitale è la divergenza strategica fondamentale rispetto a Selina.',
-    },
-  },
   '8': {
     src: fiveNonNegotiables,
     position: 'afterOl',
