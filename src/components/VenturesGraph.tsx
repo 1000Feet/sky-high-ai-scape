@@ -52,7 +52,7 @@ const ventures: Venture[] = [
     name: 'Reserve A Table',
     logo: '/ventures/RAT-Logo-Circle.png',
     description: 'AI-driven restaurant booking and tables management system — seamless for both diners and venues.',
-    url: 'https://reserveatable.com',
+    url: '',
     size: 'sm',
   },
   {
