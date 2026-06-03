@@ -83,6 +83,21 @@ WhatsApp directo: <a href="https://wa.me/50687524442" style="color:#3daaf2;text-
 </div>`
 }
 
+// V2: short & personal. Plain look, no heavy HTML, single CTA.
+function buildHtmlES2(businessName: string): string {
+  const nombre = businessName || 'amigo'
+  return `<div style="font-family:Arial,sans-serif;font-size:14px;color:#222;line-height:1.55;">
+<p>Hola ${nombre},</p>
+<p>Soy Angelo. Vi que tienen restaurante en Costa Rica y quería preguntarles algo rápido.</p>
+<p>Este mes estamos regalando a 10 restaurantes un sistema gratuito de <strong>reservas + comandas por WhatsApp</strong>. Sin costo, sin contrato.</p>
+<p>Si les interesa, contesten "<strong>info</strong>" y les explico en 2 minutos cómo funciona.</p>
+<p>Pura vida,<br>
+Angelo · ReservaMesa<br>
+WhatsApp: <a href="https://wa.me/50687524442" style="color:#3daaf2;text-decoration:none;">wa.me/50687524442</a></p>
+<p style="font-size:11px;color:#999;margin-top:18px;">Si prefiere no recibir más correos, responda "remover".</p>
+</div>`
+}
+
 function detectLanguage(sourceQuery: string | null): 'it' | 'en' {
   if (!sourceQuery) return 'en'
   const code = sourceQuery.split(',').pop()?.trim().toUpperCase() || ''
@@ -101,7 +116,7 @@ function deriveDomain(website: string | null, name: string): string {
 
 const RECIPIENT_ERR_RX = /(\b4\d\d\b|\b5\d\d\b|lookup failure|user unknown|does not exist|invalid recipient|mailbox|no such user|recipient address rejected|nested MAIL command)/i
 
-type CampaignType = 'default' | 'reserva_mesa'
+type CampaignType = 'default' | 'reserva_mesa' | 'reserva_mesa_v2'
 
 interface CampaignConfig {
   prospectsTable: string
@@ -126,6 +141,14 @@ const CONFIGS: Record<CampaignType, CampaignConfig> = {
     logTable: 'campaign_email_log_reserva_mesa',
     batchTable: 'email_batches_reserva_mesa',
     fromHeader: 'Reserva Mesa <info@reservamesa.cr>',
+    smtpUser: 'info@reservamesa.cr',
+    smtpPasswordEnv: 'SMTP_PASSWORD_RESERVA_MESA',
+  },
+  reserva_mesa_v2: {
+    prospectsTable: 'potential_clients_reserva_mesa',
+    logTable: 'campaign_email_log_reserva_mesa',
+    batchTable: 'email_batches_reserva_mesa',
+    fromHeader: 'Angelo · ReservaMesa <info@reservamesa.cr>',
     smtpUser: 'info@reservamesa.cr',
     smtpPasswordEnv: 'SMTP_PASSWORD_RESERVA_MESA',
   },
@@ -241,12 +264,40 @@ Deno.serve(async (req) => {
     })
   }
 
-  // Cross-batch dedupe: don't email same address twice ever (matches old behavior).
+  // 4. Build subject + body (need language first for scoped dedupe)
+  let subject: string
+  let html: string
+  let language: string
+  const extraHeaders: Record<string, string> = {}
+
+  if (claimed.campaign_type === 'reserva_mesa_v2') {
+    language = 'es2'
+    subject = `Sistema gratis de reservas para ${prospect.name || 'su restaurante'} este mes`
+    html = buildHtmlES2(prospect.name)
+    extraHeaders['List-Unsubscribe'] = '<mailto:info@reservamesa.cr?subject=remover>'
+    extraHeaders['List-Unsubscribe-Post'] = 'List-Unsubscribe=One-Click'
+  } else if (claimed.campaign_type === 'reserva_mesa') {
+    language = 'es'
+    subject = 'Sistema gratuito para reservas y comandas — ReservaMesa'
+    html = buildHtmlES(prospect.name)
+  } else {
+    language = detectLanguage(prospect.source_query)
+    const domain = deriveDomain(prospect.website, prospect.name)
+    subject = language === 'it'
+      ? `Una demo gratuita del sito per ${prospect.name}`
+      : `A free website demo for ${prospect.name}`
+    html = language === 'it' ? buildHtmlIT(domain) : buildHtmlEN(domain)
+  }
+
+  // Cross-batch dedupe, scoped per campaign variant (via `language` column).
+  // V1 (language='es') and V2 (language='es2') are independent: a V1 send
+  // does NOT block a V2 send to the same address, but a second V2 send is blocked.
   const { data: dupAddr } = await supabase
     .from(cfg.logTable)
     .select('id')
     .eq('recipient_email', prospect.email)
     .eq('status', 'sent')
+    .eq('language', language)
     .limit(1)
     .maybeSingle()
 
@@ -256,7 +307,8 @@ Deno.serve(async (req) => {
       prospect_id: claimed.prospect_id,
       recipient_email: prospect.email,
       status: 'skipped',
-      error_message: 'duplicate (already sent in prior batch)',
+      language,
+      error_message: 'duplicate (already sent in this campaign variant)',
     })
     await supabase.from('email_send_queue').update({
       status: 'skipped', claimed_by: null, claimed_until: null,
@@ -269,23 +321,6 @@ Deno.serve(async (req) => {
     })
   }
 
-  // 4. Build subject + body
-  let subject: string
-  let html: string
-  let language: string
-
-  if (claimed.campaign_type === 'reserva_mesa') {
-    language = 'es'
-    subject = 'Sistema gratuito para reservas y comandas — ReservaMesa'
-    html = buildHtmlES(prospect.name)
-  } else {
-    language = detectLanguage(prospect.source_query)
-    const domain = deriveDomain(prospect.website, prospect.name)
-    subject = language === 'it'
-      ? `Una demo gratuita del sito per ${prospect.name}`
-      : `A free website demo for ${prospect.name}`
-    html = language === 'it' ? buildHtmlIT(domain) : buildHtmlEN(domain)
-  }
 
   // 5. Send (single attempt per invocation; retries handled by queue backoff)
   let sent = false
@@ -299,6 +334,7 @@ Deno.serve(async (req) => {
       replyTo: cfg.smtpUser,
       subject,
       html,
+      headers: extraHeaders,
     })
     sent = true
   } catch (e) {
