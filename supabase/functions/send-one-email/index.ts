@@ -83,6 +83,21 @@ WhatsApp directo: <a href="https://wa.me/50687524442" style="color:#3daaf2;text-
 </div>`
 }
 
+// V2: short & personal. Plain look, no heavy HTML, single CTA.
+function buildHtmlES2(businessName: string): string {
+  const nombre = businessName || 'amigo'
+  return `<div style="font-family:Arial,sans-serif;font-size:14px;color:#222;line-height:1.55;">
+<p>Hola ${nombre},</p>
+<p>Soy Angelo. Vi que tienen restaurante en Costa Rica y quería preguntarles algo rápido.</p>
+<p>Este mes estamos regalando a 10 restaurantes un sistema gratuito de <strong>reservas + comandas por WhatsApp</strong>. Sin costo, sin contrato.</p>
+<p>Si les interesa, contesten "<strong>info</strong>" y les explico en 2 minutos cómo funciona.</p>
+<p>Pura vida,<br>
+Angelo · ReservaMesa<br>
+WhatsApp: <a href="https://wa.me/50687524442" style="color:#3daaf2;text-decoration:none;">wa.me/50687524442</a></p>
+<p style="font-size:11px;color:#999;margin-top:18px;">Si prefiere no recibir más correos, responda "remover".</p>
+</div>`
+}
+
 function detectLanguage(sourceQuery: string | null): 'it' | 'en' {
   if (!sourceQuery) return 'en'
   const code = sourceQuery.split(',').pop()?.trim().toUpperCase() || ''
