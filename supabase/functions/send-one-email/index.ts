@@ -264,12 +264,40 @@ Deno.serve(async (req) => {
     })
   }
 
-  // Cross-batch dedupe: don't email same address twice ever (matches old behavior).
+  // 4. Build subject + body (need language first for scoped dedupe)
+  let subject: string
+  let html: string
+  let language: string
+  const extraHeaders: Record<string, string> = {}
+
+  if (claimed.campaign_type === 'reserva_mesa_v2') {
+    language = 'es2'
+    subject = `Sistema gratis de reservas para ${prospect.name || 'su restaurante'} este mes`
+    html = buildHtmlES2(prospect.name)
+    extraHeaders['List-Unsubscribe'] = '<mailto:info@reservamesa.cr?subject=remover>'
+    extraHeaders['List-Unsubscribe-Post'] = 'List-Unsubscribe=One-Click'
+  } else if (claimed.campaign_type === 'reserva_mesa') {
+    language = 'es'
+    subject = 'Sistema gratuito para reservas y comandas — ReservaMesa'
+    html = buildHtmlES(prospect.name)
+  } else {
+    language = detectLanguage(prospect.source_query)
+    const domain = deriveDomain(prospect.website, prospect.name)
+    subject = language === 'it'
+      ? `Una demo gratuita del sito per ${prospect.name}`
+      : `A free website demo for ${prospect.name}`
+    html = language === 'it' ? buildHtmlIT(domain) : buildHtmlEN(domain)
+  }
+
+  // Cross-batch dedupe, scoped per campaign variant (via `language` column).
+  // V1 (language='es') and V2 (language='es2') are independent: a V1 send
+  // does NOT block a V2 send to the same address, but a second V2 send is blocked.
   const { data: dupAddr } = await supabase
     .from(cfg.logTable)
     .select('id')
     .eq('recipient_email', prospect.email)
     .eq('status', 'sent')
+    .eq('language', language)
     .limit(1)
     .maybeSingle()
 
@@ -279,7 +307,8 @@ Deno.serve(async (req) => {
       prospect_id: claimed.prospect_id,
       recipient_email: prospect.email,
       status: 'skipped',
-      error_message: 'duplicate (already sent in prior batch)',
+      language,
+      error_message: 'duplicate (already sent in this campaign variant)',
     })
     await supabase.from('email_send_queue').update({
       status: 'skipped', claimed_by: null, claimed_until: null,
@@ -292,23 +321,6 @@ Deno.serve(async (req) => {
     })
   }
 
-  // 4. Build subject + body
-  let subject: string
-  let html: string
-  let language: string
-
-  if (claimed.campaign_type === 'reserva_mesa') {
-    language = 'es'
-    subject = 'Sistema gratuito para reservas y comandas — ReservaMesa'
-    html = buildHtmlES(prospect.name)
-  } else {
-    language = detectLanguage(prospect.source_query)
-    const domain = deriveDomain(prospect.website, prospect.name)
-    subject = language === 'it'
-      ? `Una demo gratuita del sito per ${prospect.name}`
-      : `A free website demo for ${prospect.name}`
-    html = language === 'it' ? buildHtmlIT(domain) : buildHtmlEN(domain)
-  }
 
   // 5. Send (single attempt per invocation; retries handled by queue backoff)
   let sent = false
