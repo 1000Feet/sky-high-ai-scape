@@ -116,7 +116,7 @@ function deriveDomain(website: string | null, name: string): string {
 
 const RECIPIENT_ERR_RX = /(\b4\d\d\b|\b5\d\d\b|lookup failure|user unknown|does not exist|invalid recipient|mailbox|no such user|recipient address rejected|nested MAIL command)/i
 
-type CampaignType = 'default' | 'reserva_mesa'
+type CampaignType = 'default' | 'reserva_mesa' | 'reserva_mesa_v2'
 
 interface CampaignConfig {
   prospectsTable: string
@@ -141,6 +141,14 @@ const CONFIGS: Record<CampaignType, CampaignConfig> = {
     logTable: 'campaign_email_log_reserva_mesa',
     batchTable: 'email_batches_reserva_mesa',
     fromHeader: 'Reserva Mesa <info@reservamesa.cr>',
+    smtpUser: 'info@reservamesa.cr',
+    smtpPasswordEnv: 'SMTP_PASSWORD_RESERVA_MESA',
+  },
+  reserva_mesa_v2: {
+    prospectsTable: 'potential_clients_reserva_mesa',
+    logTable: 'campaign_email_log_reserva_mesa',
+    batchTable: 'email_batches_reserva_mesa',
+    fromHeader: 'Angelo · ReservaMesa <info@reservamesa.cr>',
     smtpUser: 'info@reservamesa.cr',
     smtpPasswordEnv: 'SMTP_PASSWORD_RESERVA_MESA',
   },
