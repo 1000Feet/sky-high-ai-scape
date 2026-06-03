@@ -334,6 +334,7 @@ Deno.serve(async (req) => {
       replyTo: cfg.smtpUser,
       subject,
       html,
+      headers: extraHeaders,
     })
     sent = true
   } catch (e) {
