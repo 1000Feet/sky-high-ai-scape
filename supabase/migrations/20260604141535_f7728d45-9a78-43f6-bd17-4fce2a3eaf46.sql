@@ -1,0 +1,2 @@
+ALTER TABLE public.email_send_queue DROP CONSTRAINT IF EXISTS email_send_queue_campaign_type_check;
+ALTER TABLE public.email_send_queue ADD CONSTRAINT email_send_queue_campaign_type_check CHECK (campaign_type = ANY (ARRAY['default'::text, 'reserva_mesa'::text, 'reserva_mesa_v2'::text]));
