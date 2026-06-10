@@ -24,6 +24,7 @@ const ventures: Venture[] = [
   { id: 'flashlogo', name: 'Flashlogo', logo: '/ventures/Flashlogo-Logo.jpg', description: 'Instant AI logo creation tailored for freelancers, creators, and personal brands.', url: 'https://flashlogo.com' },
   { id: '1000bots', name: '1000 Bots', logo: '/ventures/1000-Bots-Logo-Small.jpg', description: 'Custom AI chatbots and automation solutions for any industry — from support to lead generation.', url: 'https://1000bots.com' },
   { id: 'whatsapp-translator', name: 'WhatsApp Translator', logo: '/ventures/Whatsapp-Translator-Logo.png', description: 'Real-time translation built directly into WhatsApp — break language barriers in any conversation.', url: '' },
+  { id: 'savemybiz', name: 'SaveMyBiz', logo: '/ventures/SaveMyBiz-Logo.png', description: 'AI-powered business rescue and growth platform — turn struggling businesses around with data-driven insights.', url: 'https://savemybiz.netlify.app', darkBg: true },
 ];
 
 const VenturesGraph: React.FC = () => {
