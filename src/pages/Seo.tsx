@@ -65,6 +65,18 @@ const Seo: React.FC = () => {
         social_media: parsed.data.message || null,
       });
       if (error) throw error;
+
+      // Fire notification + confirmation emails (non-blocking)
+      supabase.functions.invoke('send-client-signup-email', {
+        body: {
+          name: parsed.data.name,
+          email: parsed.data.email,
+          website: parsed.data.website,
+          desiredServices: 'GEO / AEO — Check gratuito visibilità AI',
+          socialMedia: parsed.data.message || undefined,
+        },
+      }).catch((e) => console.error('Email send error:', e));
+
       setSubmitted(true);
       toast({ title: 'Richiesta inviata', description: 'Ti contattiamo entro 48 ore con il tuo check gratuito.' });
     } catch (err) {
