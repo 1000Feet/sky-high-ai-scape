@@ -171,15 +171,6 @@ const Portfolio = () => {
       link: "https://lemarze.it/"
     },
     {
-      id: 13,
-      title: "Realysta",
-      category: "real-estate",
-      image: "/lovable-uploads/565ad44c-ce58-4720-b6a6-5f41137009e7.png",
-      description: "AI-driven real estate website builder with IDX and RETS integration for property listings.",
-      tech: ["Real Estate Tech", "IDX Integration", "AI Website Builder", "Property Management"],
-      link: "https://www.realysta.com/"
-    },
-    {
       id: 14,
       title: "Flash Logo",
       category: "design",
