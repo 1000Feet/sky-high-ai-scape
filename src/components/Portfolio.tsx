@@ -54,15 +54,6 @@ const Portfolio = () => {
       link: "https://tennesseetowtruckassociation.com/"
     },
     {
-      id: 105,
-      title: "Palmetto State Quartet",
-      category: "media",
-      image: "/portfolio/palmettostatequartet.png",
-      description: "Southern gospel music quartet website with bios, music catalog, press, and event scheduling.",
-      tech: ["Website Development", "Music Platform", "Media Content", "Event Booking"],
-      link: "https://www.palmettostatequartet.net/"
-    },
-    {
       id: 106,
       title: "ABBÀ",
       category: "business",
