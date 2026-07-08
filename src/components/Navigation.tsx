@@ -58,6 +58,12 @@ const Navigation = () => {
               >
                 Ventures
               </Link>
+              <Link
+                to="/seo"
+                className="text-gray-300 hover:text-blue-400 px-3 py-2 text-sm font-medium transition-all duration-200 hover:scale-105"
+              >
+                SEO/GEO
+              </Link>
             </div>
             <Button asChild size="sm">
               <Link 
