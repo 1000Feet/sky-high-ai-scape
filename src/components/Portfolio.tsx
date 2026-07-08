@@ -171,15 +171,6 @@ const Portfolio = () => {
       link: "https://lemarze.it/"
     },
     {
-      id: 12,
-      title: "TheoloGPT",
-      category: "education",
-      image: "/lovable-uploads/2522aa93-2f25-47c0-86ed-7b59bc2bffc7.png",
-      description: "AI-powered theological chatbot for religious education and spiritual guidance.",
-      tech: ["AI Chatbot", "Natural Language Processing", "Religious Education", "Conversational AI"],
-      link: "https://lemarze.it/"
-    },
-    {
       id: 13,
       title: "Realysta",
       category: "real-estate",
