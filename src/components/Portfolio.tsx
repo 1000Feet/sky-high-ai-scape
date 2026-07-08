@@ -279,6 +279,138 @@ const Portfolio = () => {
       image: "/lovable-uploads/896f6c46-2bda-45e1-a96d-7b54d528863b.png",
       description: "Custom AI chatbot development with personalized conversational interfaces and intelligent response systems.",
       tech: ["Custom AI", "Chatbot Development", "Mobile Integration", "Conversational Design"]
+    },
+    {
+      id: 200,
+      title: "15 Love Tamarindo",
+      category: "tourism",
+      image: "https://image.thum.io/get/width/800/crop/600/https://15lovetamarindo.com/",
+      description: "Tennis club and community platform in Tamarindo, Costa Rica — lessons, court booking, and events.",
+      tech: ["Website Development", "Booking System", "Community", "Branding"],
+      link: "https://15lovetamarindo.com/"
+    },
+    {
+      id: 201,
+      title: "Sophia's Suites",
+      category: "tourism",
+      image: "https://image.thum.io/get/width/800/crop/600/https://sophiassuites.cr/",
+      description: "Boutique hospitality suites in Costa Rica with elegant branding and direct booking experience.",
+      tech: ["Website Development", "Hospitality Tech", "Booking System", "Luxury Branding"],
+      link: "https://sophiassuites.cr/"
+    },
+    {
+      id: 202,
+      title: "Demo Adventures",
+      category: "tourism",
+      image: "https://image.thum.io/get/width/800/crop/600/https://demoadventures.1000feetabove.com/",
+      description: "Adventure tours and activity booking demo platform built by 1000 Feet — immersive tourism experiences.",
+      tech: ["Website Development", "Booking System", "Tourism", "UX Design"],
+      link: "https://demoadventures.1000feetabove.com/"
+    },
+    {
+      id: 203,
+      title: "Alltec",
+      category: "business",
+      image: "https://image.thum.io/get/width/800/crop/600/https://alltec.cr/",
+      description: "Technology and services company in Costa Rica — corporate website with services showcase and lead capture.",
+      tech: ["Website Development", "Corporate Branding", "Lead Generation", "SEO"],
+      link: "https://alltec.cr/"
+    },
+    {
+      id: 300,
+      title: "Nuovi Mondi",
+      category: "real-estate",
+      image: "/ventures/Nuovi-Mondi-Logo.png",
+      description: "A new kind of coliving spaces — community-driven living for modern nomads and creators.",
+      tech: ["Coliving", "Real Estate", "Community", "Branding"],
+      link: "/nuovimondi"
+    },
+    {
+      id: 301,
+      title: "AIwege",
+      category: "machine-learning",
+      image: "/ventures/AIwege-Logo.jpg",
+      description: "AI-powered website generator — build professional websites in minutes, no coding required.",
+      tech: ["AI Integration", "Website Builder", "SaaS", "Automation"],
+      link: "https://aiwege.com"
+    },
+    {
+      id: 302,
+      title: "ReservaMesa",
+      category: "food-tech",
+      image: "/ventures/reservamesa-logo.png",
+      description: "AI-driven restaurant reservations and table management for the Spanish-speaking market.",
+      tech: ["AI Integration", "Restaurant Tech", "Booking System", "SaaS"],
+      link: "https://reservamesa.cr"
+    },
+    {
+      id: 303,
+      title: "Reserve A Table",
+      category: "food-tech",
+      image: "/ventures/RAT-Logo-Circle.png",
+      description: "AI-driven restaurant booking and table management — seamless for both diners and venues.",
+      tech: ["AI Integration", "Restaurant Tech", "Booking System", "SaaS"]
+    },
+    {
+      id: 304,
+      title: "ConciergeDesk",
+      category: "tourism",
+      image: "/ventures/ConciergeDesk-Logo.png",
+      description: "AI-powered concierge service for hotels and hospitality businesses.",
+      tech: ["AI Integration", "Hospitality Tech", "Concierge", "SaaS"]
+    },
+    {
+      id: 305,
+      title: "Time 4 Love",
+      category: "business",
+      image: "/ventures/Time-4-Love-Logo.png",
+      description: "Volunteer recruitment and HR management platform for charity organizations and non-profits.",
+      tech: ["Non-Profit", "HR Platform", "Volunteer Management", "SaaS"],
+      link: "https://time4love.org"
+    },
+    {
+      id: 306,
+      title: "GyroTours",
+      category: "tourism",
+      image: "/ventures/GyroTours-Logo.png",
+      description: "Gyrocopter tours in Costa Rica — an unforgettable aerial adventure over stunning landscapes.",
+      tech: ["Tourism", "Booking System", "Aviation", "Branding"],
+      link: "https://gyrotours.cr"
+    },
+    {
+      id: 307,
+      title: "NamesWiki",
+      category: "media",
+      image: "/ventures/nameswiki-logo.png",
+      description: "The world's largest searchable database of names — meanings, origins, and cultural history.",
+      tech: ["Content Platform", "SEO", "Search", "Database"],
+      link: "https://nameswiki.com"
+    },
+    {
+      id: 308,
+      title: "WhatsApp Translator",
+      category: "machine-learning",
+      image: "/ventures/Whatsapp-Translator-Logo.png",
+      description: "Real-time translation built directly into WhatsApp — break language barriers in any conversation.",
+      tech: ["AI Translation", "Messaging", "NLP", "Mobile"]
+    },
+    {
+      id: 309,
+      title: "SaveMyBiz",
+      category: "business",
+      image: "/ventures/SaveMyBiz-Logo.png",
+      description: "AI-powered business rescue and growth platform — turn struggling businesses around with data-driven insights.",
+      tech: ["AI Integration", "Business Intelligence", "SaaS", "Analytics"],
+      link: "https://savemybiz.netlify.app"
+    },
+    {
+      id: 310,
+      title: "DistressBerg",
+      category: "real-estate",
+      image: "/ventures/DistressBerg-Logo.png",
+      description: "Distressed real estate terminal — Bloomberg-style intelligence for foreclosure, REO, and off-market opportunities.",
+      tech: ["Real Estate Tech", "Data Intelligence", "SaaS", "Analytics"],
+      link: "https://distressberg.netlify.app"
     }
   ];
 
