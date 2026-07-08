@@ -145,11 +145,11 @@ const Portfolio = () => {
     },
     {
       id: 9,
-      title: "Amphibians Documentary",
+      title: "Angelo Magni Personal Website",
       category: "media",
       image: "/lovable-uploads/055c27a5-e1ec-442a-83d4-ad58023a455d.png",
-      description: "Aerial cinematography and pilot documentation project showcasing aviation expertise.",
-      tech: ["Aerial Filming", "Documentary", "Aviation", "Cinematography"],
+      description: "Personal website of our CEO, showcasing professional background, aviation expertise, and creative portfolio.",
+      tech: ["Personal Branding", "Web Design", "Portfolio", "Professional Profile"],
       link: "https://www.angelomagni.it/"
     },
     {
