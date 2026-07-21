@@ -84,10 +84,10 @@ serve(async (req) => {
 
     const origin = req.headers.get("origin") || "https://www.1000feetabove.com";
     const productNames: Record<string, string> = {
-      p6_hd:  "ReVideos — 6 Photos · Full HD",
-      p12_hd: "ReVideos — 12 Photos · Full HD",
-      p6_4k:  "ReVideos — 6 Photos · 4K",
-      p12_4k: "ReVideos — 12 Photos · 4K",
+      p7_hd:  "ReVideos — 7 Photos · Full HD",
+      p15_hd: "ReVideos — 15 Photos · Full HD",
+      p7_4k:  "ReVideos — 7 Photos · 4K",
+      p15_4k: "ReVideos — 15 Photos · 4K",
     };
     const productName = productNames[package_name] || `ReVideos ${package_name}`;
     const session = await stripe.checkout.sessions.create({
