@@ -13,19 +13,19 @@ import { Loader2, Video, Camera, Check, Sparkles, X } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 
 type Pkg = {
-  id: 'p6_hd' | 'p12_hd' | 'p6_4k' | 'p12_4k';
+  id: 'p7_hd' | 'p15_hd' | 'p7_4k' | 'p15_4k';
   name: string;
   priceCents: number;
-  photos: 6 | 12;
+  photos: 7 | 15;
   resolution: '1080p' | '4K Ultra HD';
   duration: string;
 };
 
 const packages: Pkg[] = [
-  { id: 'p6_hd',  name: '6 Photos · Full HD',  priceCents: 4900,  photos: 6,  resolution: '1080p', duration: '~30s video' },
-  { id: 'p12_hd', name: '12 Photos · Full HD', priceCents: 9900,  photos: 12, resolution: '1080p', duration: '~60s video' },
-  { id: 'p6_4k',  name: '6 Photos · 4K',        priceCents: 12900, photos: 6,  resolution: '4K Ultra HD', duration: '~30s video' },
-  { id: 'p12_4k', name: '12 Photos · 4K',       priceCents: 24900, photos: 12, resolution: '4K Ultra HD', duration: '~60s video' },
+  { id: 'p7_hd',  name: '7 Photos · Full HD',  priceCents: 4900,  photos: 7,  resolution: '1080p', duration: '~30s video' },
+  { id: 'p15_hd', name: '15 Photos · Full HD', priceCents: 9900,  photos: 15, resolution: '1080p', duration: '~60s video' },
+  { id: 'p7_4k',  name: '7 Photos · 4K',        priceCents: 12900, photos: 7,  resolution: '4K Ultra HD', duration: '~30s video' },
+  { id: 'p15_4k', name: '15 Photos · 4K',       priceCents: 24900, photos: 15, resolution: '4K Ultra HD', duration: '~60s video' },
 ];
 
 const includedFeatures = [
