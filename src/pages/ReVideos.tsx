@@ -178,8 +178,8 @@ const ReVideos = () => {
       <section className="max-w-5xl mx-auto px-4 pb-20">
         <h2 className="text-3xl md:text-4xl font-bold text-slate-50 text-center mb-2">From photos to film</h2>
         <p className="text-slate-400 text-center mb-10">A real example — Casa Idea, one of our reference properties.</p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-          {[1,2,3,4,5,6,7,8].map((n) => (
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-8">
+          {Array.from({ length: 15 }, (_, i) => i + 1).map((n) => (
             <div key={n} className="aspect-[4/3] rounded-lg overflow-hidden bg-slate-800 border border-slate-700">
               <img
                 src={`/revideos/casa-idea/${n}.jpg`}
@@ -194,7 +194,7 @@ const ReVideos = () => {
         <div className="aspect-video rounded-xl overflow-hidden border border-slate-700 bg-slate-900">
           <iframe
             className="w-full h-full"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            src="https://www.youtube.com/embed/PJTZBu0pGvk"
             title="Casa Idea AI video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
