@@ -3,8 +3,10 @@ import { Helmet } from 'react-helmet-async';
 import { useSearchParams } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
 import { toast } from 'sonner';
-import { Loader2, Upload, CheckCircle, Clock, X } from 'lucide-react';
+import { Loader2, Upload, CheckCircle, Clock, X, AlertCircle, Film, Download } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 
 const ALLOWED_MIME = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
@@ -14,24 +16,50 @@ const ReVideosSuccess = () => {
   const [params] = useSearchParams();
   const [order, setOrder] = useState<any>(null);
   const [assets, setAssets] = useState<any[]>([]);
+  const [clips, setClips] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
 
-  useEffect(() => {
-    const verify = async () => {
-      const sessionId = params.get('session_id');
-      const orderId = params.get('order_id');
-      if (!sessionId && !orderId) { setLoading(false); return; }
-      const { data, error } = await supabase.functions.invoke('verify-revideo-payment', {
-        body: { session_id: sessionId, order_id: orderId }
-      });
-      if (error || !data?.order) { toast.error(error?.message || 'Payment verification failed'); setLoading(false); return; }
-      setOrder(data.order);
-      setAssets(data.assets || []);
+  const orderId = order?.id || params.get('order_id');
+
+  const loadOrder = async () => {
+    const sessionId = params.get('session_id');
+    const idParam = params.get('order_id');
+    if (!sessionId && !idParam) { setLoading(false); return; }
+
+    const { data, error } = await supabase.functions.invoke('verify-revideo-payment', {
+      body: { session_id: sessionId, order_id: idParam }
+    });
+    if (error || !data?.order) {
+      toast.error(error?.message || 'Payment verification failed');
       setLoading(false);
-    };
-    verify();
+      return;
+    }
+    setOrder(data.order);
+    setAssets(data.assets || []);
+
+    if (data.order?.id) {
+      await loadClips(data.order.id);
+    }
+    setLoading(false);
+  };
+
+  const loadClips = async (id: string) => {
+    const { data, error } = await supabase.from('revideo_clips').select('*').eq('order_id', id).order('seq', { ascending: true });
+    if (!error) setClips(data || []);
+  };
+
+  useEffect(() => {
+    loadOrder();
   }, [params]);
+
+  useEffect(() => {
+    if (!orderId || order?.status === 'delivered') return;
+    const interval = setInterval(() => {
+      loadOrder();
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [orderId, order?.status]);
 
   const requiredPhotos: number = order?.photo_count || 0;
   const remaining = Math.max(0, requiredPhotos - assets.length);
@@ -69,7 +97,6 @@ const ReVideosSuccess = () => {
     }
     setUploading(false);
 
-    // Finalize if we now have all photos
     const total = assets.length + files.length;
     if (total >= requiredPhotos) {
       const { data: fin } = await supabase.functions.invoke('finalize-revideo-upload', {
@@ -77,11 +104,84 @@ const ReVideosSuccess = () => {
       });
       if (fin?.ready) {
         toast.success('All photos uploaded — production is starting.');
-        setOrder((o: any) => o ? { ...o, status: 'paid' } : o);
+        setOrder((o: any) => o ? { ...o, status: fin.status || 'generating' } : o);
+        await loadClips(order.id);
       }
     } else {
       toast.success('Photos uploaded');
     }
+  };
+
+  const clipProgress = clips.length > 0 ? Math.round((clips.filter(c => c.status === 'done').length / clips.length) * 100) : 0;
+
+  const statusNode = () => {
+    if (!order) return null;
+
+    if (order.status === 'delivered') {
+      return (
+        <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-4 space-y-3">
+          <div className="flex items-center gap-2 text-emerald-200 font-medium">
+            <Film size={18} /> Your video is ready
+          </div>
+          <p className="text-sm text-emerald-100/80">
+            We've sent the download link to <strong>{order.customer_email}</strong>.
+          </p>
+          <Button asChild className="bg-emerald-600 hover:bg-emerald-500 text-white">
+            <a href={order.final_video_url} target="_blank" rel="noreferrer">
+              <Download size={16} className="mr-2" /> Download your video
+            </a>
+          </Button>
+        </div>
+      );
+    }
+
+    if (order.status === 'failed') {
+      return (
+        <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-4 flex items-start gap-3">
+          <AlertCircle className="text-red-400 shrink-0 mt-0.5" size={20} />
+          <div>
+            <p className="text-sm font-medium text-red-200">Something went wrong during production.</p>
+            <p className="text-sm text-slate-300 mt-1">Contact us at <a href="mailto:info@1000feetabove.com" className="underline">info@1000feetabove.com</a> and we'll fix it.</p>
+          </div>
+        </div>
+      );
+    }
+
+    if (order.status === 'generating') {
+      return (
+        <div className="rounded-lg border border-blue-500/30 bg-blue-500/10 p-4 space-y-3">
+          <div className="flex items-center gap-2 text-blue-200 font-medium">
+            <Loader2 className="animate-spin" size={18} /> Generating your clips
+          </div>
+          <Progress value={clipProgress} className="h-2 bg-blue-900/50" />
+          <p className="text-xs text-blue-200/70">{clips.filter(c => c.status === 'done').length} of {clips.length} clips ready</p>
+          <ul className="text-xs text-slate-300 space-y-1">
+            {clips.map((c) => (
+              <li key={c.id} className="flex items-center gap-2">
+                {c.status === 'done' ? <CheckCircle size={12} className="text-green-400" /> :
+                 c.status === 'running' ? <Loader2 size={12} className="animate-spin text-blue-400" /> :
+                 <Clock size={12} className="text-slate-500" />}
+                <span className="capitalize">{c.status}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+
+    if (order.status === 'editing') {
+      return (
+        <div className="rounded-lg border border-purple-500/30 bg-purple-500/10 p-4 flex items-start gap-3">
+          <Loader2 className="animate-spin text-purple-400 shrink-0 mt-0.5" size={20} />
+          <div>
+            <p className="text-sm font-medium text-purple-200">All clips are ready — editing the final film now.</p>
+            <p className="text-sm text-slate-300 mt-1">You'll receive an email with the download link as soon as it's done.</p>
+          </div>
+        </div>
+      );
+    }
+
+    return null;
   };
 
   if (loading) return <div className="min-h-screen flex items-center justify-center bg-slate-950"><Loader2 className="animate-spin text-blue-400" /></div>;
@@ -98,31 +198,36 @@ const ReVideosSuccess = () => {
           </CardHeader>
           <CardContent className="space-y-6">
             <p className="text-slate-300">
-              Order <strong>#{order.id.slice(0, 8)}</strong> is paid. Upload exactly <strong>{requiredPhotos}</strong> photos to start production.
+              Order <strong>#{order.id.slice(0, 8)}</strong> is paid. {order.status === 'awaiting_photos' && `Upload exactly ${requiredPhotos} photos to start production.`}
             </p>
 
-            <div className="rounded-lg border border-blue-500/30 bg-blue-500/10 p-4 flex items-start gap-3">
-              <Clock className="text-blue-400 shrink-0 mt-0.5" size={20} />
-              <div>
-                <p className="text-sm font-medium text-blue-200">We're on it — your video lands in your inbox within 24 hours.</p>
-                <p className="text-sm text-slate-300 mt-1">
-                  We'll send the download link to <strong className="text-slate-100">{order.customer_email || 'your email'}</strong> as soon as it's ready.
-                </p>
+            {statusNode()}
+
+            {!['delivered', 'failed', 'generating', 'editing'].includes(order.status) && (
+              <div className="rounded-lg border border-blue-500/30 bg-blue-500/10 p-4 flex items-start gap-3">
+                <Clock className="text-blue-400 shrink-0 mt-0.5" size={20} />
+                <div>
+                  <p className="text-sm font-medium text-blue-200">We're on it — your video lands in your inbox within 24 hours.</p>
+                  <p className="text-sm text-slate-300 mt-1">
+                    We'll send the download link to <strong className="text-slate-100">{order.customer_email || 'your email'}</strong> as soon as it's ready.
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
 
-            {/* Photo tips */}
-            <div className="rounded-lg border border-blue-500/30 bg-blue-500/5 p-4 text-sm text-slate-200 space-y-1">
-              <p className="font-semibold text-blue-300">Photo tips for best results</p>
-              <ul className="list-disc pl-5 text-slate-300 space-y-1">
-                <li>Horizontal (landscape) photos only</li>
-                <li>No people or pets in the frame</li>
-                <li>Good natural light, minimal clutter</li>
-                <li>JPG, PNG or WEBP · min. 1920×1080 · max 10 MB per photo</li>
-              </ul>
-            </div>
+            {!isComplete && !['delivered', 'failed', 'generating', 'editing'].includes(order.status) && (
+              <div className="rounded-lg border border-blue-500/30 bg-blue-500/5 p-4 text-sm text-slate-200 space-y-1">
+                <p className="font-semibold text-blue-300">Photo tips for best results</p>
+                <ul className="list-disc pl-5 text-slate-300 space-y-1">
+                  <li>Horizontal (landscape) photos only</li>
+                  <li>No people or pets in the frame</li>
+                  <li>Good natural light, minimal clutter</li>
+                  <li>JPG, PNG or WEBP · min. 1920×1080 · max 10 MB per photo</li>
+                </ul>
+              </div>
+            )}
 
-            {!isComplete && (
+            {!isComplete && !['delivered', 'failed', 'generating', 'editing'].includes(order.status) && (
               <div className="p-4 border border-dashed border-slate-600 rounded-lg text-center">
                 <input
                   id="upload"
@@ -144,13 +249,13 @@ const ReVideosSuccess = () => {
               </div>
             )}
 
-            {isComplete && (
+            {isComplete && !['delivered', 'failed', 'generating', 'editing'].includes(order.status) && (
               <div className="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-200 text-sm">
                 All {requiredPhotos} photos received. Your video is now being produced.
               </div>
             )}
 
-            {assets.length > 0 && (
+            {assets.length > 0 && !['delivered', 'failed', 'generating', 'editing'].includes(order.status) && (
               <div className="space-y-2">
                 <p className="text-sm text-slate-400">{assets.length} / {requiredPhotos} uploaded</p>
                 <ul className="text-sm text-slate-300 space-y-1">
