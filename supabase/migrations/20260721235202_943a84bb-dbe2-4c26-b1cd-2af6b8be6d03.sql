@@ -1,0 +1,1 @@
+ALTER TABLE public.revideo_orders ALTER COLUMN user_id DROP NOT NULL;
