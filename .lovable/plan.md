@@ -1,78 +1,117 @@
-# /revideos — Real Estate AI Videos (Phase 1) — v2
+# ReVideos — Fix Fase 1 + Implementazione Fase 2
 
-Modifiche rispetto alla v1 approvata: **sequenza di attivazione auth** rivista per non lasciarti fuori, e **hardening di `create-revideo-checkout`** contro abuso del bucket.
+## 1. Fix Success page (`src/pages/ReVideosSuccess.tsx`)
 
-## Sequenza auth corretta (step 1–3 rivisti)
+- Rimuovere il messaggio "30 minuti".
+- Nuovo box informativo: **"We're on it — your video lands in your inbox within 24 hours"**, con l'email del cliente evidenziata.
+- Testo copy resta in inglese.
 
-Il problema: se disabilito i signup prima che tu abbia creato l'account, resti fuori. Sequenza:
+## 2. Order form (`src/pages/ReVideos.tsx`) — validazione upload
 
-1. **Migration**: enum `app_role` (`admin`), tabella `user_roles`, funzione security-definer `has_role(uuid, app_role)`, RLS (`SELECT` self, scritture solo `service_role`). GRANT `SELECT` a `authenticated`, `ALL` a `service_role`. Signup **ancora aperto** in questa fase.
-2. **Pagina `/auth`** (login + signup email/password, `emailRedirectTo: window.location.origin`) e componente `RequireAdmin` (usa `onAuthStateChange` + `getSession` + query `has_role`; se non admin → redirect `/auth`). Applicato a `/admin` e (più avanti) `/revideos/admin`.
-3. **Tu fai signup** su `/auth` con `info@1000feetabove.com`. Mi confermi appena fatto.
-4. Io recupero il tuo `user_id` con `supabase--read_query` su `auth.users` e ti inserisco in `user_roles` con `supabase--insert` (`role='admin'`).
-5. **Solo ora** chiamo `configure_auth` con `disable_signup=true`, `auto_confirm_email=false`, `password_hibp_enabled=true`, `external_anonymous_users_enabled=false`. Da questo momento nessuno può più auto-registrarsi; futuri admin li aggiungo io lato DB.
+Già presente ma da rafforzare:
+- Uploader accetta esattamente 7 o 15 foto (in base al pacchetto).
+- Accept: `image/jpeg,image/png,image/webp`.
+- Max 10MB/file (validazione client con toast di errore).
+- Tips box sopra (già c'è).
+- Checkbox diritti obbligatoria (già c'è).
+- Preview grid con remove (già c'è).
 
-Verifico login `/admin` prima di procedere con il resto.
+## 3. Pricing 2×2 (`src/pages/ReVideos.tsx`)
 
-## Hardening di `create-revideo-checkout`
+Conferma la griglia già in codice:
+- p7_hd $49 · ~30s · 1080p
+- p15_hd $99 · ~60-70s · 1080p
+- p7_4k $129 · ~30s · 4K
+- p15_4k $249 · ~60-70s · 4K
 
-Endpoint pubblico (necessariamente `verify_jwt=false` perché il cliente non è loggato). Layer di difesa:
+Aggiornare `duration` di `p15_*` a "~60-70s video". Ogni card mostra: cinematic camera movements, day/night scene ordering, smooth transitions, license Airbnb/Booking/social, 24h delivery. Hero copy: "in 24 hours". Sezione "From photos to film" + FAQ restano.
 
-**Validazione server-side rigorosa (zod):**
-- `package_id ∈ {p6_hd, p12_hd, p6_4k, p12_4k}`.
-- `photo_count` derivato dal package (6 o 12), **non accettato dal client**.
-- `email` valida, max 255 char.
-- `note` max 1000 char, `rights_confirmed === true` altrimenti 400.
-- Numero di signed upload URL emessi = esattamente `photo_count` del package (hard cap 12). Nessun modo di chiederne di più.
+## 4. Stato ordine `awaiting_photos`
 
-**Signed URL restrittive:**
-- `createSignedUploadUrl` per path deterministici `revideo-uploads/{order_id}/{index}.{ext}` con `expiresIn: 900` (15 min).
-- Bucket policy: mime `image/*`, size max 10MB, enforced dal bucket stesso (limite Supabase Storage) — non solo client-side.
+**Migrazione DB**:
+- Estendere il CHECK di `revideo_orders.status` per includere `awaiting_photos` e (per Fase 2) `generating`, `editing`, `failed`.
+- Aggiungere colonne: `photos_uploaded_at timestamptz`, `reminder_sent_at timestamptz`, `admin_notified_at timestamptz`.
 
-**Rate limit ad-hoc per IP** (il backend non ha un primitive standard di rate limiting; implemento manualmente su tua richiesta esplicita):
-- Nuova tabella `revideo_checkout_attempts` (`ip` text, `created_at` timestamptz, index su `(ip, created_at desc)`). RLS on, GRANT solo `service_role`.
-- Nella edge function leggo `x-forwarded-for` (primo IP), conto righe `WHERE ip=$1 AND created_at > now() - interval '1 hour'`. Se `>= 3` pending → `429 Too many requests, try again later.` Altrimenti inserisco la riga e proseguo.
-- Retention: cron `cleanup-revideo-orphans` fa anche `DELETE FROM revideo_checkout_attempts WHERE created_at < now() - interval '24 hours'`.
-- Nota trasparenza: `x-forwarded-for` è spoofable ma alza abbastanza il costo d'attacco; non è una difesa crittografica. Il cleanup 48h resta come rete di sicurezza finale.
+**Logica**:
+- `verify-revideo-payment`: quando conferma pagamento → status = `awaiting_photos` (invece di `paid`).
+- `create-revideo-upload-url` o nuova funzione `finalize-revideo-upload`: quando `count(assets) == photo_count` → status = `paid`, `photos_uploaded_at = now()`, invia email a `info@1000feetabove.com` ("Order X ready to process").
+- Admin dashboard (`ReVideosAdmin`): mostrare filtri stato incluso `awaiting_photos`, badge chiaro.
 
-**Ordine solo con Stripe session valido:**
-- La row `revideo_orders` viene creata con `payment_status='pending'` e mai promossa senza `checkout.session.completed` firmato con `STRIPE_WEBHOOK_SECRET`.
+## 5. Reminder automatico 24h (upload mancanti)
 
-**Delivery bucket separato:**
-- `revideo-uploads` (privato, 10MB, image/*) — solo signed upload URL emesse dalla funzione.
-- `revideo-deliveries` (privato, 500MB, video/mp4) — signed download URL emesse solo dal webhook / delivery.
+- Nuova edge function `revideo-photo-reminder` (cron ogni ora via pg_cron):
+  - Trova ordini `status = 'awaiting_photos'` con `created_at < now() - 24h` e `reminder_sent_at IS NULL`.
+  - Invia email al cliente (Resend, template inline) con link diretto a `/revideos/success?order_id=…`.
+  - Set `reminder_sent_at = now()`.
 
-## Il resto del piano (invariato rispetto alla v1)
+## 6. Fase 2 — Automazione Higgsfield + Creatomate
 
-- Tabella `revideo_orders` con RLS `service_role`-only, campi `rights_confirmed`, `photo_paths`, `stripe_session_id`, `payment_status`, `automation_status`, `final_video_path`.
-- Pagina `/revideos` (EN) con hero, "From photos to film" (6 placeholder + freccia + YouTube embed), 3-step how-it-works, pricing 2×2 ($49/$99/$129/$249), form con box tips + checkbox rights obbligatoria, FAQ, `/revideos/success`.
-- Voce menu "Video AI" in `Navigation.tsx`.
-- Edge functions: `create-revideo-checkout`, `revideo-stripe-webhook`, `cleanup-revideo-orphans` (+ cron 04:00 UTC daily).
-- Email templates React Email: new-order (a te), order-confirmation, delivery, failure-alert.
-- Stripe: `recommend_payment_provider` → `enable_stripe_payments` → 4 product/price USD one-time con `automatic_tax`.
-- Admin `/revideos/admin` protetto da `RequireAdmin`: lista ordini, download foto, upload video finale, marca delivered → invia email delivery.
-- Phase 2 (Higgsfield + Creatomate): solo scaffold dietro flag `REVIDEO_AUTOMATION_ENABLED=false`. Endpoint Higgsfield verificato via docs quando arriva la key.
+Segue esattamente il piano già approvato.
 
-## Ordine di implementazione aggiornato
+### Secrets richiesti
+- `HIGGSFIELD_API_KEY`
+- `CREATOMATE_API_KEY`
+- `CREATOMATE_TEMPLATE_ID` (o JSON template inline)
+- `REVIDEO_AUTOMATION_ENABLED` (feature flag, default `false`)
 
-1. Migration `user_roles` + `has_role`.
-2. `/auth` + `RequireAdmin` + guard su `/admin` esistente. **Signup ancora aperto.**
-3. ⏸ **Ti chiedo: fai signup su `/auth` con `info@1000feetabove.com`.**
-4. Insert `user_roles` con `supabase--insert` sul tuo `user_id`.
-5. `configure_auth(disable_signup=true, auto_confirm_email=false, password_hibp_enabled=true)`. Verifica login admin funzionante.
-6. Migration `revideo_orders` + `revideo_checkout_attempts` + trigger updated_at.
-7. Bucket `revideo-uploads` e `revideo-deliveries` (privati).
-8. Email templates + `enable_stripe_payments` + 4 product/price.
-9. Edge functions `create-revideo-checkout` (con rate limit + validation hard), `revideo-stripe-webhook`, `cleanup-revideo-orphans` + cron.
-10. Pagine `/revideos`, `/revideos/success`, `/revideos/admin`.
-11. Voce menu "Video AI".
+### Tabella `revideo_clips`
+```
+id uuid pk
+order_id uuid fk revideo_orders
+asset_id uuid fk revideo_assets
+seq int              -- ordine nel montaggio finale
+higgsfield_job_id text
+status text          -- queued | running | done | failed | retry
+model text           -- 'seedance_2_0'
+mode text            -- 'std'
+resolution text      -- '1080p' | '4k'
+duration_seconds int -- 5, ultima clip 8
+prompt text
+video_url text       -- clip generata
+error text
+attempts int default 0
+created_at, updated_at
+```
++ GRANT + RLS (admin all, service_role all) + trigger updated_at.
 
-## Cosa serve da te
+Aggiungere a `revideo_orders`: `creatomate_render_id text`, `final_video_url text`, `automation_started_at`, `automation_completed_at`.
 
-1. Foto placeholder `casa-idea-1..6.jpg` (quando siamo allo step 10).
-2. URL YouTube del video demo.
-3. **Al passaggio 3**: signup su `/auth` con `info@1000feetabove.com`.
-4. Compilazione form Stripe quando parte `enable_stripe_payments`.
-5. Fase 2 (più avanti): `HIGGSFIELD_API_KEY`, `CREATOMATE_API_KEY`.
+### Edge functions Fase 2
+1. **`revideo-launch-automation`**: trigger quando status → `paid` e feature flag on.
+   - Ordina asset per `sort_order` (giorno/notte come da piano).
+   - Crea record `revideo_clips` (7 o 15), imposta ultima clip `duration=8`.
+   - Enqueue con concorrenza max 8: per ognuno chiama Higgsfield `seedance_2_0` mode std, resolution da pacchetto, con prompt cinematografico contestuale.
+   - Status ordine → `generating`.
 
-Approvi? Parto con lo step 1.
+2. **`revideo-poll-higgsfield`** (cron ogni 60s):
+   - Poll job in stato `running`.
+   - Retry policy: se errore = `preset_recommendation` o `nsfw` → riprompt con preset alternativo (max 2 retry); `failed` generico → retry base (max 3); dopo max retry → status `failed` + email alert a `info@1000feetabove.com`.
+   - Quando tutte le clip di un ordine sono `done` → invoca `revideo-launch-editing`.
+
+3. **`revideo-launch-editing`**:
+   - Costruisce Creatomate render: sequence delle clip, crossfade 0.6s, 24fps, H.264, output mp4.
+   - Registra `creatomate_render_id`, status ordine → `editing`.
+   - Webhook URL punta a `revideo-creatomate-webhook`.
+
+4. **`revideo-creatomate-webhook`** (verify_jwt = false, HMAC check se disponibile):
+   - Alla ricezione `succeeded` → salva `final_video_url`, status → `delivered`, invia email al cliente col link (Resend), copia a `info@1000feetabove.com`.
+   - `failed` → status `failed`, email alert admin, fallback coda manuale (l'ordine rimane visibile in admin con banner "Automation failed, process manually").
+
+### Feature flag & fallback
+- `REVIDEO_AUTOMATION_ENABLED=false` di default: `verify-revideo-payment` non chiama `revideo-launch-automation`; ordini rimangono in coda manuale come oggi. Admin può forzare lancio da dashboard.
+- Ogni errore irrecuperabile → email di alert.
+
+### Admin UI (`src/pages/ReVideosAdmin.tsx`)
+Nuove colonne/azioni: stato dettagliato (`awaiting_photos`, `generating`, `editing`, `delivered`, `failed`), progress clip (`x/n done`), pulsante "Launch automation" (se paid + flag off), "Retry failed clip", link `final_video_url`.
+
+## Ordine di esecuzione
+1. Migrazione DB (status enum esteso + colonne + tabella `revideo_clips`).
+2. Fix success page copy + validazione uploader (max 10MB, mime whitelist).
+3. Logica `awaiting_photos` + notifica upload completo + reminder 24h.
+4. Fase 2: secrets → edge functions Higgsfield → Creatomate → webhook → admin UI.
+5. Deploy edge functions e pianificazione cron (`revideo-photo-reminder`, `revideo-poll-higgsfield`).
+
+## Note tecniche
+- Nessuna modifica ai 4 package Stripe già configurati.
+- Prompt cinematografico per Higgsfield: base template per interior/exterior + variazione day/night, parametrizzato per foto (verrà rifinito in fase di test con `REVIDEO_AUTOMATION_ENABLED=false`).
+- Tutte le email di sistema usano Resend (`RESEND_API_KEY` già presente).

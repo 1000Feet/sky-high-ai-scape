@@ -16,33 +16,36 @@ serve(async (req) => {
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const stripeSecret = Deno.env.get("STRIPE_SECRET_KEY")!;
-    if (!stripeSecret) {
-      throw new Error("Stripe is not configured");
-    }
+    if (!stripeSecret) throw new Error("Stripe is not configured");
     const stripe = new Stripe(stripeSecret, { apiVersion: "2024-06-20" as any });
     const supabase = createClient(supabaseUrl, serviceKey);
 
-    const body = await req.json();
-    const { session_id, order_id } = body;
-    if (!session_id && !order_id) {
-      throw new Error("Missing session_id or order_id");
-    }
+    const { session_id, order_id } = await req.json();
+    if (!session_id && !order_id) throw new Error("Missing session_id or order_id");
 
     let order;
     if (session_id) {
       const session = await stripe.checkout.sessions.retrieve(session_id);
       const orderId = session.metadata?.order_id;
-      if (!orderId) {
-        throw new Error("No order linked to session");
-      }
-      const status = session.payment_status === "paid" ? "paid" : "pending";
-      const paymentStatus = session.payment_status;
+      if (!orderId) throw new Error("No order linked to session");
+
+      // Only transition when paid; else keep current status
+      const { data: existing } = await supabase
+        .from("revideo_orders")
+        .select("*")
+        .eq("id", orderId)
+        .single();
+
+      const isPaid = session.payment_status === "paid";
+      const alreadyAdvanced = existing && !["pending"].includes(existing.status);
+      const newStatus = isPaid && !alreadyAdvanced ? "awaiting_photos" : (existing?.status ?? "pending");
+
       const { data, error } = await supabase
         .from("revideo_orders")
         .update({
-          status,
-          payment_status: paymentStatus,
-          stripe_session_id: session_id,
+          status: newStatus,
+          stripe_checkout_session_id: session_id,
+          stripe_payment_intent_id: (session.payment_intent as string) || null,
           updated_at: new Date().toISOString(),
         })
         .eq("id", orderId)
@@ -61,7 +64,7 @@ serve(async (req) => {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), {
+    return new Response(JSON.stringify({ error: (err as Error).message }), {
       status: 400,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });

@@ -9,7 +9,20 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from 'sonner';
 import Navigation from '@/components/Navigation';
 
-const STATUSES = ['pending','paid','processing','delivered','cancelled','refunded'];
+const STATUSES = ['pending','awaiting_photos','paid','processing','generating','editing','delivered','failed','cancelled','refunded'];
+
+const STATUS_COLORS: Record<string, string> = {
+  pending: 'text-slate-400',
+  awaiting_photos: 'text-amber-300',
+  paid: 'text-blue-300',
+  processing: 'text-blue-300',
+  generating: 'text-purple-300',
+  editing: 'text-purple-300',
+  delivered: 'text-emerald-300',
+  failed: 'text-rose-300',
+  cancelled: 'text-slate-500',
+  refunded: 'text-slate-500',
+};
 
 const ReVideosAdmin = () => {
   const [orders, setOrders] = useState([]);
@@ -63,8 +76,12 @@ const ReVideosAdmin = () => {
                 <div className="md:col-span-4 space-y-1"><Label>Delivery URLs (comma separated)</Label>
                   <Input value={o.delivered_urls ? o.delivered_urls.join(', ') : ''} onChange={e => updateOrder(o.id, { delivered_urls: e.target.value.split(',').map(s => s.trim()).filter(Boolean) })} className="bg-slate-800 border-slate-600 text-white" />
                 </div>
-                <div className="md:col-span-4 text-slate-400">
-                  {o.revideo_assets?.length || 0} assets uploaded · {o.package_name} · {o.property_type} · {o.special_requests}
+                <div className="md:col-span-4 text-slate-400 flex flex-wrap gap-x-4 gap-y-1">
+                  <span className={STATUS_COLORS[o.status] || ''}>● {o.status}</span>
+                  <span>{o.revideo_assets?.length || 0} / {o.photo_count || '?'} photos</span>
+                  <span>{o.package_name}</span>
+                  <span>{o.customer_email}</span>
+                  {o.special_requests && <span>· {o.special_requests}</span>}
                 </div>
               </CardContent>
             </Card>

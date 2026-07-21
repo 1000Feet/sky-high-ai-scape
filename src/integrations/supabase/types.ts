@@ -530,18 +530,97 @@ export type Database = {
           },
         ]
       }
+      revideo_clips: {
+        Row: {
+          asset_id: string | null
+          attempts: number
+          created_at: string
+          duration_seconds: number
+          error: string | null
+          higgsfield_job_id: string | null
+          id: string
+          mode: string
+          model: string
+          order_id: string
+          prompt: string | null
+          resolution: string
+          seq: number
+          status: string
+          updated_at: string
+          video_url: string | null
+        }
+        Insert: {
+          asset_id?: string | null
+          attempts?: number
+          created_at?: string
+          duration_seconds?: number
+          error?: string | null
+          higgsfield_job_id?: string | null
+          id?: string
+          mode?: string
+          model?: string
+          order_id: string
+          prompt?: string | null
+          resolution?: string
+          seq: number
+          status?: string
+          updated_at?: string
+          video_url?: string | null
+        }
+        Update: {
+          asset_id?: string | null
+          attempts?: number
+          created_at?: string
+          duration_seconds?: number
+          error?: string | null
+          higgsfield_job_id?: string | null
+          id?: string
+          mode?: string
+          model?: string
+          order_id?: string
+          prompt?: string | null
+          resolution?: string
+          seq?: number
+          status?: string
+          updated_at?: string
+          video_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "revideo_clips_asset_id_fkey"
+            columns: ["asset_id"]
+            isOneToOne: false
+            referencedRelation: "revideo_assets"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "revideo_clips_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "revideo_orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       revideo_orders: {
         Row: {
           admin_notes: string | null
+          admin_notified_at: string | null
+          automation_completed_at: string | null
+          automation_started_at: string | null
           created_at: string
+          creatomate_render_id: string | null
           customer_email: string | null
           delivered_urls: string[] | null
+          final_video_url: string | null
           id: string
           package_name: string
           photo_count: number | null
+          photos_uploaded_at: string | null
           price_cents: number
           property_address: string | null
           property_type: string | null
+          reminder_sent_at: string | null
           resolution: string | null
           rights_accepted: boolean
           special_requests: string | null
@@ -553,15 +632,22 @@ export type Database = {
         }
         Insert: {
           admin_notes?: string | null
+          admin_notified_at?: string | null
+          automation_completed_at?: string | null
+          automation_started_at?: string | null
           created_at?: string
+          creatomate_render_id?: string | null
           customer_email?: string | null
           delivered_urls?: string[] | null
+          final_video_url?: string | null
           id?: string
           package_name: string
           photo_count?: number | null
+          photos_uploaded_at?: string | null
           price_cents: number
           property_address?: string | null
           property_type?: string | null
+          reminder_sent_at?: string | null
           resolution?: string | null
           rights_accepted?: boolean
           special_requests?: string | null
@@ -573,15 +659,22 @@ export type Database = {
         }
         Update: {
           admin_notes?: string | null
+          admin_notified_at?: string | null
+          automation_completed_at?: string | null
+          automation_started_at?: string | null
           created_at?: string
+          creatomate_render_id?: string | null
           customer_email?: string | null
           delivered_urls?: string[] | null
+          final_video_url?: string | null
           id?: string
           package_name?: string
           photo_count?: number | null
+          photos_uploaded_at?: string | null
           price_cents?: number
           property_address?: string | null
           property_type?: string | null
+          reminder_sent_at?: string | null
           resolution?: string | null
           rights_accepted?: boolean
           special_requests?: string | null
