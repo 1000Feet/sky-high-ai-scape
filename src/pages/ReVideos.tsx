@@ -23,10 +23,13 @@ type Pkg = {
 
 const packages: Pkg[] = [
   { id: 'p7_hd',  name: '7 Photos · Full HD',  priceCents: 4900,  photos: 7,  resolution: '1080p', duration: '~30s video' },
-  { id: 'p15_hd', name: '15 Photos · Full HD', priceCents: 9900,  photos: 15, resolution: '1080p', duration: '~60s video' },
+  { id: 'p15_hd', name: '15 Photos · Full HD', priceCents: 9900,  photos: 15, resolution: '1080p', duration: '~60-70s video' },
   { id: 'p7_4k',  name: '7 Photos · 4K',        priceCents: 12900, photos: 7,  resolution: '4K Ultra HD', duration: '~30s video' },
-  { id: 'p15_4k', name: '15 Photos · 4K',       priceCents: 24900, photos: 15, resolution: '4K Ultra HD', duration: '~60s video' },
+  { id: 'p15_4k', name: '15 Photos · 4K',       priceCents: 24900, photos: 15, resolution: '4K Ultra HD', duration: '~60-70s video' },
 ];
+
+const ALLOWED_MIME = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
 const includedFeatures = [
   'Cinematic AI camera movements',
@@ -83,10 +86,22 @@ const ReVideos = () => {
   }, [files]);
 
   const onFilesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const incoming = Array.from(e.target.files || []).filter(f => f.type.startsWith('image/'));
-    const combined = [...files, ...incoming].slice(0, pkg.photos);
-    setFiles(combined);
+    const raw = Array.from(e.target.files || []);
     e.target.value = '';
+    const accepted: File[] = [];
+    for (const f of raw) {
+      if (!ALLOWED_MIME.includes(f.type.toLowerCase())) {
+        toast.error(`${f.name}: only JPG, PNG or WEBP allowed`);
+        continue;
+      }
+      if (f.size > MAX_FILE_SIZE) {
+        toast.error(`${f.name}: file exceeds 10 MB`);
+        continue;
+      }
+      accepted.push(f);
+    }
+    const combined = [...files, ...accepted].slice(0, pkg.photos);
+    setFiles(combined);
   };
 
   const removeFile = (idx: number) => setFiles(files.filter((_, i) => i !== idx));
@@ -253,12 +268,13 @@ const ReVideos = () => {
                   <input
                     id="revideo-upload"
                     type="file"
-                    accept="image/*"
+                    accept="image/jpeg,image/png,image/webp"
                     multiple
                     className="hidden"
                     onChange={onFilesChange}
                     disabled={files.length >= pkg.photos}
                   />
+                  <div className="text-xs text-slate-500 mt-2">JPG, PNG or WEBP · max 10 MB each</div>
                 </label>
                 {previews.length > 0 && (
                   <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 pt-2">
