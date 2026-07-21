@@ -45,14 +45,63 @@ serve(async (req) => {
       });
     }
 
-    if (order.status === "awaiting_photos") {
-      const nowIso = new Date().toISOString();
+    if (["generating", "editing", "delivered"].includes(order.status)) {
+      return new Response(JSON.stringify({ ready: true, status: order.status }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    const automationEnabled = Deno.env.get("REVIDEO_AUTOMATION_ENABLED") !== "false";
+    const nowIso = new Date().toISOString();
+
+    if (automationEnabled) {
+      const { count: clipCount } = await supabase
+        .from("revideo_clips")
+        .select("*", { count: "exact", head: true })
+        .eq("order_id", order_id);
+
+      if ((clipCount || 0) === 0) {
+        const { data: assets } = await supabase
+          .from("revideo_assets")
+          .select("*")
+          .eq("order_id", order_id)
+          .order("uploaded_at", { ascending: true });
+
+        const basePrompt = buildPrompt(order);
+        const clips = (assets || []).map((asset, idx) => ({
+          order_id,
+          asset_id: asset.id,
+          seq: idx + 1,
+          model: "seedance_2_0",
+          mode: "std",
+          resolution: order.resolution || "1080p",
+          duration_seconds: 5,
+          prompt: basePrompt,
+          status: "queued",
+        }));
+
+        const { error: clipsErr } = await supabase.from("revideo_clips").insert(clips);
+        if (clipsErr) throw clipsErr;
+      }
+
       await supabase
         .from("revideo_orders")
-        .update({ status: "paid", photos_uploaded_at: nowIso, admin_notified_at: nowIso, updated_at: nowIso })
+        .update({
+          status: "generating",
+          photos_uploaded_at: order.photos_uploaded_at || nowIso,
+          automation_started_at: nowIso,
+          admin_notified_at: nowIso,
+          updated_at: nowIso,
+        })
         .eq("id", order_id);
+    } else {
+      if (order.status === "awaiting_photos") {
+        await supabase
+          .from("revideo_orders")
+          .update({ status: "paid", photos_uploaded_at: nowIso, admin_notified_at: nowIso, updated_at: nowIso })
+          .eq("id", order_id);
+      }
 
-      // Notify admin
       if (resendKey) {
         try {
           await fetch("https://api.resend.com/emails", {
@@ -78,7 +127,7 @@ serve(async (req) => {
       }
     }
 
-    return new Response(JSON.stringify({ ready: true }), {
+    return new Response(JSON.stringify({ ready: true, status: automationEnabled ? "generating" : order.status }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (err) {
@@ -88,3 +137,9 @@ serve(async (req) => {
     });
   }
 });
+
+function buildPrompt(order: any) {
+  const address = order.property_address ? `of ${order.property_address}` : "";
+  const type = order.property_type ? ` (${order.property_type})` : "";
+  return `Cinematic real estate video ${address}${type}. Smooth, elegant camera movement, warm natural light, professional architectural photography, no people or pets, dreamy modern atmosphere.`.trim();
+}

@@ -611,9 +611,12 @@ export type Database = {
           created_at: string
           creatomate_render_id: string | null
           customer_email: string | null
+          customer_notified_at: string | null
           delivered_urls: string[] | null
+          error_message: string | null
           final_video_url: string | null
           id: string
+          manual_override: boolean | null
           package_name: string
           photo_count: number | null
           photos_uploaded_at: string | null
@@ -638,9 +641,12 @@ export type Database = {
           created_at?: string
           creatomate_render_id?: string | null
           customer_email?: string | null
+          customer_notified_at?: string | null
           delivered_urls?: string[] | null
+          error_message?: string | null
           final_video_url?: string | null
           id?: string
+          manual_override?: boolean | null
           package_name: string
           photo_count?: number | null
           photos_uploaded_at?: string | null
@@ -665,9 +671,12 @@ export type Database = {
           created_at?: string
           creatomate_render_id?: string | null
           customer_email?: string | null
+          customer_notified_at?: string | null
           delivered_urls?: string[] | null
+          error_message?: string | null
           final_video_url?: string | null
           id?: string
+          manual_override?: boolean | null
           package_name?: string
           photo_count?: number | null
           photos_uploaded_at?: string | null
