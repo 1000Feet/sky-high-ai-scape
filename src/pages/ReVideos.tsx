@@ -47,7 +47,7 @@ const faqs = [
 const ReVideos = () => {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(false);
-  const [selected, setSelected] = useState<Pkg['id']>('p12_hd');
+  const [selected, setSelected] = useState<Pkg['id']>('p15_hd');
   const [files, setFiles] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
   const [email, setEmail] = useState('');
