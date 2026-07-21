@@ -68,6 +68,15 @@ const ReVideosSuccess = () => {
           </CardHeader>
           <CardContent className="space-y-6">
             <p className="text-slate-300">Order <strong>#{order.id.slice(0,8)}</strong> is paid. Upload your {maxFiles} photos to start production.</p>
+            <div className="rounded-lg border border-blue-500/30 bg-blue-500/10 p-4 flex items-start gap-3">
+              <Clock className="text-blue-400 shrink-0 mt-0.5" size={20} />
+              <div>
+                <p className="text-sm font-medium text-blue-200">Your video is being processed</p>
+                <p className="text-sm text-slate-300 mt-1">
+                  A download link will be sent to <strong className="text-slate-100">{order.customer_email || 'your email'}</strong> in about 30 minutes once the video is ready.
+                </p>
+              </div>
+            </div>
             <div className="p-4 border border-dashed border-slate-600 rounded-lg text-center">
               <input id="upload" type="file" multiple accept="image/*" className="hidden" onChange={handleFiles} />
               <label htmlFor="upload" className="cursor-pointer flex flex-col items-center gap-2">
