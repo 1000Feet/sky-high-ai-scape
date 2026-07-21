@@ -457,6 +457,95 @@ export type Database = {
         }
         Relationships: []
       }
+      revideo_assets: {
+        Row: {
+          file_size_bytes: number
+          id: string
+          mime_type: string
+          order_id: string
+          original_filename: string
+          storage_path: string
+          uploaded_at: string
+        }
+        Insert: {
+          file_size_bytes: number
+          id?: string
+          mime_type: string
+          order_id: string
+          original_filename: string
+          storage_path: string
+          uploaded_at?: string
+        }
+        Update: {
+          file_size_bytes?: number
+          id?: string
+          mime_type?: string
+          order_id?: string
+          original_filename?: string
+          storage_path?: string
+          uploaded_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "revideo_assets_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "revideo_orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      revideo_orders: {
+        Row: {
+          admin_notes: string | null
+          created_at: string
+          delivered_urls: string[] | null
+          id: string
+          package_name: string
+          price_cents: number
+          property_address: string | null
+          property_type: string | null
+          special_requests: string | null
+          status: string
+          stripe_checkout_session_id: string | null
+          stripe_payment_intent_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          admin_notes?: string | null
+          created_at?: string
+          delivered_urls?: string[] | null
+          id?: string
+          package_name: string
+          price_cents: number
+          property_address?: string | null
+          property_type?: string | null
+          special_requests?: string | null
+          status?: string
+          stripe_checkout_session_id?: string | null
+          stripe_payment_intent_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          admin_notes?: string | null
+          created_at?: string
+          delivered_urls?: string[] | null
+          id?: string
+          package_name?: string
+          price_cents?: number
+          property_address?: string | null
+          property_type?: string | null
+          special_requests?: string | null
+          status?: string
+          stripe_checkout_session_id?: string | null
+          stripe_payment_intent_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
