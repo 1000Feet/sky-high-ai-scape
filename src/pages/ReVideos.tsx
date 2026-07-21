@@ -40,7 +40,7 @@ const faqs = [
   { q: 'How does it work?', a: 'You pick a package, pay, and upload the exact number of photos required. Our AI pipeline turns them into a cinematic listing video with camera moves and transitions, ready in 24 hours.' },
   { q: 'What photos work best?', a: 'Horizontal, high-resolution photos of empty rooms and exteriors. Avoid people, pets, or cluttered scenes. Good natural light produces the best results.' },
   { q: 'Can I use the video commercially?', a: 'Yes. The delivered video comes with a license to publish on Airbnb, Booking, your website and social channels.' },
-  { q: 'What if I have more than 12 photos?', a: 'Pick the 12-photo package and send us your best 12. If you need a longer edit, contact us for a custom quote.' },
+  { q: 'What if I have more than 15 photos?', a: 'Pick the 15-photo package and send us your best 15. If you need a longer edit, contact us for a custom quote.' },
   { q: 'Do you offer refunds?', a: 'If we cannot deliver a usable video from your photos we will issue a full refund. Refunds are not available after delivery.' },
 ];
 
