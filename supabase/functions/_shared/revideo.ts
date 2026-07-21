@@ -205,10 +205,28 @@ export async function sendDeliveryEmail(order: any, supabase: any, videoUrl: str
     });
     if (res.ok) {
       await supabase.from("revideo_orders").update({ customer_notified_at: new Date().toISOString() }).eq("id", order.id);
+      await sendAdminEmail(resendKey, `ReVideos order delivered #${order.id.slice(0, 8)}`, `Order ${order.id} (${order.package_name}) is ready.<br>Download: ${videoUrl}`);
     } else {
       console.error("Delivery email failed:", res.status, await res.text());
     }
   } catch (e) {
     console.error("Delivery email exception:", e);
+  }
+}
+
+export async function sendAdminEmail(resendKey: string, subject: string, htmlBody: string): Promise<void> {
+  try {
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from: "ReVideos <noreply@1000feetabove.com>",
+        to: ["info@1000feetabove.com"],
+        subject,
+        html: htmlBody,
+      }),
+    });
+  } catch (e) {
+    console.error("Admin email exception:", e);
   }
 }
