@@ -466,6 +466,7 @@ export type Database = {
           original_filename: string
           storage_path: string
           uploaded_at: string
+          user_id: string | null
         }
         Insert: {
           file_size_bytes: number
@@ -475,6 +476,7 @@ export type Database = {
           original_filename: string
           storage_path: string
           uploaded_at?: string
+          user_id?: string | null
         }
         Update: {
           file_size_bytes?: number
@@ -484,10 +486,43 @@ export type Database = {
           original_filename?: string
           storage_path?: string
           uploaded_at?: string
+          user_id?: string | null
         }
         Relationships: [
           {
             foreignKeyName: "revideo_assets_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "revideo_orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      revideo_checkout_attempts: {
+        Row: {
+          created_at: string
+          id: string
+          ip_address: string
+          order_id: string | null
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          ip_address: string
+          order_id?: string | null
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          ip_address?: string
+          order_id?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "revideo_checkout_attempts_order_id_fkey"
             columns: ["order_id"]
             isOneToOne: false
             referencedRelation: "revideo_orders"
@@ -734,6 +769,7 @@ export type Database = {
           isSetofReturn: false
         }
       }
+      cleanup_revideo_orphans: { Args: never; Returns: undefined }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
