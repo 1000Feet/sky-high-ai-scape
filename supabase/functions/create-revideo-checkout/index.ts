@@ -68,7 +68,7 @@ serve(async (req) => {
     const order = await supabase
       .from("revideo_orders")
       .insert({
-        user_id: userData.user.id,
+        user_id: userId,
         package_name,
         price_cents: Number(price_cents),
         photo_count: Number(photo_count),
@@ -108,7 +108,7 @@ serve(async (req) => {
       ],
       success_url: `${origin}/revideos/success?session_id={CHECKOUT_SESSION_ID}&order_id=${order.data.id}`,
       cancel_url: `${origin}/revideos`,
-      metadata: { order_id: order.data.id, user_id: userData.user.id },
+      metadata: { order_id: order.data.id, user_id: userId ?? "" },
     });
 
     await supabase.from("revideo_checkout_attempts").insert({
