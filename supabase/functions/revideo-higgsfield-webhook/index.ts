@@ -1,10 +1,13 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { getClips, startCreatomateRender, submitNextQueuedClips } from "../_shared/revideo.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
+
+const MAX_CONCURRENT = parseInt(Deno.env.get("REVIDEO_MAX_CONCURRENT") || "8", 10);
 
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
@@ -57,6 +60,28 @@ serve(async (req) => {
 
     const { error } = await supabase.from("revideo_clips").update(update).eq("id", targetClipId);
     if (error) throw error;
+
+    if (orderId && status === "completed") {
+      const { data: order } = await supabase.from("revideo_orders").select("*").eq("id", orderId).single();
+      if (order && !order.manual_override) {
+        const { submitted, allDone, anyFailed } = await submitNextQueuedClips(supabase, order, MAX_CONCURRENT);
+
+        if (allDone) {
+          try {
+            await startCreatomateRender(supabase, order);
+          } catch (e) {
+            console.error("Failed to start Creatomate render:", e);
+          }
+        }
+
+        if (anyFailed && !allDone) {
+          await supabase
+            .from("revideo_orders")
+            .update({ status: "failed", error_message: "One or more clips failed", updated_at: new Date().toISOString() })
+            .eq("id", orderId);
+        }
+      }
+    }
 
     return new Response(JSON.stringify({ received: true, clip_id: targetClipId, status: update.status }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
