@@ -24,11 +24,13 @@ serve(async (req) => {
     const stripe = new Stripe(stripeSecret, { apiVersion: "2024-06-20" as any });
     const supabase = createClient(supabaseUrl, serviceKey);
 
+    // Optional auth: associate order to a user if a valid JWT is provided; otherwise allow guest checkout.
+    let userId: string | null = null;
     const authHeader = req.headers.get("authorization") || "";
-    const token = authHeader.replace("Bearer ", "");
-    const { data: userData, error: userErr } = await supabase.auth.getUser(token);
-    if (userErr || !userData.user) {
-      throw new Error("Authentication required");
+    const token = authHeader.replace("Bearer ", "").trim();
+    if (token && token !== Deno.env.get("SUPABASE_ANON_KEY")) {
+      const { data: userData } = await supabase.auth.getUser(token);
+      if (userData?.user) userId = userData.user.id;
     }
 
     const ip = req.headers.get("x-real-ip") || req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
