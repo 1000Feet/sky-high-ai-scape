@@ -130,15 +130,17 @@ async function processEditing(order: any, supabase: any) {
   const webhookUrl = `${supabaseUrl}/functions/v1/revideo-creatomate-webhook?token=${encodeURIComponent(webhookSecret)}&order_id=${order.id}`;
 
   const dims = getDimensions(order.resolution);
-  const elements = done.map((clip) => ({
+  const elements = done.map((clip, index) => ({
     type: "video",
     source: clip.video_url,
     track: 1,
     animations: [
       {
+        time: 0,
         duration: 0.6,
         transition: true,
         type: "fade",
+        enable: "second-only",
       },
     ],
   }));
