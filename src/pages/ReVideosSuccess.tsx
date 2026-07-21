@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 import { Loader2, Upload, CheckCircle } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 
-const MAX_FILES = 12;
+const DEFAULT_MAX = 12;
 
 const ReVideosSuccess = () => {
   const [params] = useSearchParams();
