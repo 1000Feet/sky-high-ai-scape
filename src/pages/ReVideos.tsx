@@ -13,19 +13,19 @@ import { Loader2, Video, Camera, Check, Sparkles, X } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 
 type Pkg = {
-  id: 'p6_hd' | 'p12_hd' | 'p6_4k' | 'p12_4k';
+  id: 'p7_hd' | 'p15_hd' | 'p7_4k' | 'p15_4k';
   name: string;
   priceCents: number;
-  photos: 6 | 12;
+  photos: 7 | 15;
   resolution: '1080p' | '4K Ultra HD';
   duration: string;
 };
 
 const packages: Pkg[] = [
-  { id: 'p6_hd',  name: '6 Photos · Full HD',  priceCents: 4900,  photos: 6,  resolution: '1080p', duration: '~30s video' },
-  { id: 'p12_hd', name: '12 Photos · Full HD', priceCents: 9900,  photos: 12, resolution: '1080p', duration: '~60s video' },
-  { id: 'p6_4k',  name: '6 Photos · 4K',        priceCents: 12900, photos: 6,  resolution: '4K Ultra HD', duration: '~30s video' },
-  { id: 'p12_4k', name: '12 Photos · 4K',       priceCents: 24900, photos: 12, resolution: '4K Ultra HD', duration: '~60s video' },
+  { id: 'p7_hd',  name: '7 Photos · Full HD',  priceCents: 4900,  photos: 7,  resolution: '1080p', duration: '~30s video' },
+  { id: 'p15_hd', name: '15 Photos · Full HD', priceCents: 9900,  photos: 15, resolution: '1080p', duration: '~60s video' },
+  { id: 'p7_4k',  name: '7 Photos · 4K',        priceCents: 12900, photos: 7,  resolution: '4K Ultra HD', duration: '~30s video' },
+  { id: 'p15_4k', name: '15 Photos · 4K',       priceCents: 24900, photos: 15, resolution: '4K Ultra HD', duration: '~60s video' },
 ];
 
 const includedFeatures = [
@@ -37,17 +37,17 @@ const includedFeatures = [
 ];
 
 const faqs = [
-  { q: 'How does it work?', a: 'You pick a package, pay, and upload the exact number of photos required. Our AI pipeline turns them into a cinematic listing video with camera moves and transitions, ready in 24 hours.' },
+  { q: 'How does it work?', a: 'You pick a package, pay, and upload the exact number of photos required (7 or 15). Our AI pipeline turns them into a cinematic listing video with camera moves and transitions, ready in 24 hours.' },
   { q: 'What photos work best?', a: 'Horizontal, high-resolution photos of empty rooms and exteriors. Avoid people, pets, or cluttered scenes. Good natural light produces the best results.' },
   { q: 'Can I use the video commercially?', a: 'Yes. The delivered video comes with a license to publish on Airbnb, Booking, your website and social channels.' },
-  { q: 'What if I have more than 12 photos?', a: 'Pick the 12-photo package and send us your best 12. If you need a longer edit, contact us for a custom quote.' },
+  { q: 'What if I have more than 15 photos?', a: 'Pick the 15-photo package and send us your best 15. If you need a longer edit, contact us for a custom quote.' },
   { q: 'Do you offer refunds?', a: 'If we cannot deliver a usable video from your photos we will issue a full refund. Refunds are not available after delivery.' },
 ];
 
 const ReVideos = () => {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(false);
-  const [selected, setSelected] = useState<Pkg['id']>('p12_hd');
+  const [selected, setSelected] = useState<Pkg['id']>('p15_hd');
   const [files, setFiles] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
   const [email, setEmail] = useState('');
@@ -128,18 +128,61 @@ const ReVideos = () => {
       <Navigation />
 
       {/* HERO */}
-      <section className="max-w-6xl mx-auto px-4 pt-24 pb-12 text-center">
+      <section className="max-w-4xl mx-auto px-4 pt-24 pb-10 text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs mb-6">
           <Sparkles size={14} /> AI real estate video studio
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold gradient-text mb-6">Real Estate AI Videos in 24 hours</h1>
-        <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-          Upload 6 or 12 property photos. Get a cinematic listing video with camera movements, day/night flow and smooth transitions — delivered in 24 hours.
+        <h1 className="text-4xl md:text-6xl font-bold gradient-text mb-6">Turn your property photos into a cinematic video</h1>
+        <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-4">
+          Send us 7 or 15 photos of your property. Our AI pipeline transforms them into a professional listing video with cinematic camera movements, day-to-night scene flow, and smooth transitions — ready to publish on Airbnb, Booking, your website and social channels.
+        </p>
+        <p className="text-base text-slate-400 max-w-2xl mx-auto">
+          No shoots, no crews, no editing. Just upload, pay, and receive your video in 24 hours.
         </p>
       </section>
 
-      {/* PACKAGES 2x2 */}
+      {/* FROM PHOTOS TO FILM — moved to top as real example */}
       <section className="max-w-5xl mx-auto px-4 pb-16">
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs mb-4">
+            <Check size={14} /> Real example
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-50 mb-3">From photos to film</h2>
+          <p className="text-slate-300 max-w-2xl mx-auto">
+            This is a real project we delivered for <span className="text-slate-100 font-semibold">Casa Idea</span>: the 15 photos below were transformed by our AI pipeline into the cinematic <span className="text-slate-100 font-semibold">4K video</span> you can watch underneath.
+          </p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-8">
+          {Array.from({ length: 15 }, (_, i) => i + 1).map((n) => (
+            <div key={n} className="aspect-[4/3] rounded-lg overflow-hidden bg-slate-800 border border-slate-700">
+              <img
+                src={`/revideos/casa-idea/${n}.jpg`}
+                alt={`Casa Idea photo ${n}`}
+                className="w-full h-full object-cover"
+                onError={(e) => { (e.currentTarget as HTMLImageElement).style.visibility = 'hidden'; }}
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+        <div className="aspect-video rounded-xl overflow-hidden border border-slate-700 bg-slate-900">
+          <iframe
+            className="w-full h-full"
+            src="https://www.youtube.com/embed/PJTZBu0pGvk"
+            title="Casa Idea AI video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+        <p className="text-center text-sm text-slate-500 mt-4">15 photos → 1 cinematic 4K video, delivered in 24 hours.</p>
+      </section>
+
+      {/* PACKAGES 2x2 — now below the example */}
+      <section className="max-w-5xl mx-auto px-4 pb-20">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-50 mb-3">Choose your package</h2>
+          <p className="text-slate-400">Pick the number of photos and the resolution that fits your listing.</p>
+        </div>
         <div className="grid sm:grid-cols-2 gap-6">
           {packages.map((p) => {
             const isSel = selected === p.id;
@@ -171,34 +214,6 @@ const ReVideos = () => {
               </button>
             );
           })}
-        </div>
-      </section>
-
-      {/* FROM PHOTOS TO FILM */}
-      <section className="max-w-5xl mx-auto px-4 pb-20">
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-50 text-center mb-2">From photos to film</h2>
-        <p className="text-slate-400 text-center mb-10">A real example — Casa Idea, one of our reference properties.</p>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-8">
-          {Array.from({ length: 15 }, (_, i) => i + 1).map((n) => (
-            <div key={n} className="aspect-[4/3] rounded-lg overflow-hidden bg-slate-800 border border-slate-700">
-              <img
-                src={`/revideos/casa-idea/${n}.jpg`}
-                alt={`Casa Idea photo ${n}`}
-                className="w-full h-full object-cover"
-                onError={(e) => { (e.currentTarget as HTMLImageElement).style.visibility = 'hidden'; }}
-                loading="lazy"
-              />
-            </div>
-          ))}
-        </div>
-        <div className="aspect-video rounded-xl overflow-hidden border border-slate-700 bg-slate-900">
-          <iframe
-            className="w-full h-full"
-            src="https://www.youtube.com/embed/PJTZBu0pGvk"
-            title="Casa Idea AI video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
         </div>
       </section>
 
