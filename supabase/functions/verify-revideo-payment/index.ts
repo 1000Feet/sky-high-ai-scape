@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import Stripe from "https://esm.sh/stripe@14.0.0?target=deno";
+import { sendAdminEmail } from "../_shared/revideo.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -53,6 +54,18 @@ serve(async (req) => {
         .single();
       if (error) throw error;
       order = data;
+
+      if (newStatus === "awaiting_photos" && !existing?.admin_notified_at) {
+        const resendKey = Deno.env.get("RESEND_API_KEY");
+        if (resendKey) {
+          await sendAdminEmail(
+            resendKey,
+            `New ReVideos order #${order.id.slice(0, 8)}`,
+            `A new ${order.package_name} order was paid.<br>Property: ${order.property_address || "not specified"}<br>Customer: ${order.customer_email || "not provided"}<br>Amount: $${(order.price_cents / 100).toFixed(2)}`,
+          );
+          await supabase.from("revideo_orders").update({ admin_notified_at: new Date().toISOString() }).eq("id", order.id);
+        }
+      }
     } else {
       const { data, error } = await supabase.from("revideo_orders").select("*").eq("id", order_id).single();
       if (error) throw error;

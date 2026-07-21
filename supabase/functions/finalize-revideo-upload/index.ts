@@ -1,10 +1,12 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { buildPrompt, sendAdminEmail, submitHiggsfieldClip } from "../_shared/revideo.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
+const MAX_CONCURRENT = parseInt(Deno.env.get("REVIDEO_MAX_CONCURRENT") || "8", 10);
 
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
@@ -84,6 +86,23 @@ serve(async (req) => {
         if (clipsErr) throw clipsErr;
       }
 
+      const { data: createdClips } = await supabase
+        .from("revideo_clips")
+        .select("*")
+        .eq("order_id", order_id)
+        .order("seq", { ascending: true });
+
+      const queued = (createdClips || []).filter((c: any) => c.status === "queued");
+      let submitted = 0;
+      for (const clip of queued.slice(0, MAX_CONCURRENT)) {
+        try {
+          await submitHiggsfieldClip(supabase, clip, order);
+          submitted++;
+        } catch (e) {
+          console.error(`Failed to submit clip ${clip.id}:`, e);
+        }
+      }
+
       await supabase
         .from("revideo_orders")
         .update({
@@ -94,6 +113,14 @@ serve(async (req) => {
           updated_at: nowIso,
         })
         .eq("id", order_id);
+
+      if (resendKey) {
+        await sendAdminEmail(
+          resendKey,
+          `ReVideos: production started #${order_id.slice(0, 8)}`,
+          `Automation started for ${order.package_name} (${order.photo_count} photos · ${order.resolution}).<br>Customer: ${order.customer_email || "—"}<br>Property: ${order.property_address || "—"}`,
+        );
+      }
     } else {
       if (order.status === "awaiting_photos") {
         await supabase
@@ -138,8 +165,3 @@ serve(async (req) => {
   }
 });
 
-function buildPrompt(order: any) {
-  const address = order.property_address ? `of ${order.property_address}` : "";
-  const type = order.property_type ? ` (${order.property_type})` : "";
-  return `Cinematic real estate video ${address}${type}. Smooth, elegant camera movement, warm natural light, professional architectural photography, no people or pets, dreamy modern atmosphere.`.trim();
-}

@@ -1,10 +1,11 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { corsHeaders } from "npm:@supabase/supabase-js@2/cors";
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-};
+const DEADLINE_HOURS = 48;
+const REMINDER_INTERVALS_HOURS = [24, 12, 4, 1]; // hours before deadline
+
+const ADMIN_EMAIL = "info@1000feetabove.com";
 
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
@@ -12,49 +13,57 @@ serve(async (req) => {
   try {
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const resendKey = Deno.env.get("RESEND_API_KEY");
     const supabase = createClient(supabaseUrl, serviceKey);
 
-    const cutoff = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
-    const { data: orders, error } = await supabase
+    const resendKey = Deno.env.get("RESEND_API_KEY");
+    if (!resendKey) {
+      return new Response(JSON.stringify({ error: "Missing RESEND_API_KEY" }), {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    const now = new Date();
+    const { data: orders, error: fetchError } = await supabase
       .from("revideo_orders")
-      .select("id, customer_email, package_name, photo_count")
-      .eq("status", "awaiting_photos")
-      .is("reminder_sent_at", null)
-      .lt("created_at", cutoff);
-    if (error) throw error;
+      .select("*")
+      .in("status", ["awaiting_photos", "paid"])
+      .is("photos_uploaded_at", null)
+      .order("created_at", { ascending: true });
+
+    if (fetchError) throw fetchError;
 
     let sent = 0;
-    for (const o of orders || []) {
-      if (!o.customer_email || !resendKey) continue;
-      const link = `https://www.1000feetabove.com/revideos/success?order_id=${o.id}`;
-      try {
-        const res = await fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
-          body: JSON.stringify({
-            from: "ReVideos <noreply@1000feetabove.com>",
-            to: [o.customer_email],
-            subject: "Upload your photos to start your video",
-            html: `
-              <h2>Your ReVideos order is waiting for photos</h2>
-              <p>We received your payment for the <strong>${o.package_name}</strong> package (${o.photo_count} photos), but haven't received your photos yet.</p>
-              <p>Once you upload them, we'll deliver your cinematic video within 24 hours.</p>
-              <p><a href="${link}" style="display:inline-block;padding:12px 20px;background:#2563eb;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;">Upload photos</a></p>
-              <p style="color:#64748b;font-size:13px;">If you need help, reply to this email or write to info@1000feetabove.com.</p>
-            `,
-          }),
-        });
-        if (res.ok) {
-          await supabase.from("revideo_orders").update({ reminder_sent_at: new Date().toISOString() }).eq("id", o.id);
+    for (const order of orders || []) {
+      const deadline = new Date(order.created_at);
+      deadline.setHours(deadline.getHours() + DEADLINE_HOURS);
+      const hoursRemaining = (deadline.getTime() - now.getTime()) / (1000 * 60 * 60);
+      const count = order.reminder_count || 0;
+      const lastReminder = order.last_reminder_sent_at ? new Date(order.last_reminder_sent_at).getTime() : 0;
+      const hoursSinceLastReminder = lastReminder ? (now.getTime() - lastReminder) / (1000 * 60 * 60) : Infinity;
+
+      const nextIndex = count; // 0-based, so first reminder is 24h before deadline
+      if (nextIndex >= REMINDER_INTERVALS_HOURS.length) continue;
+
+      const dueHours = REMINDER_INTERVALS_HOURS[nextIndex];
+      if (hoursRemaining <= dueHours && hoursSinceLastReminder >= 1) {
+        const hoursLeft = Math.max(0, Math.round(hoursRemaining));
+        const success = await sendReminderEmail(resendKey, order, hoursLeft, dueHours);
+        if (success) {
+          await supabase
+            .from("revideo_orders")
+            .update({
+              reminder_count: count + 1,
+              last_reminder_sent_at: now.toISOString(),
+              updated_at: now.toISOString(),
+            })
+            .eq("id", order.id);
           sent++;
         }
-      } catch (e) {
-        console.error("Reminder failed for order", o.id, e);
       }
     }
 
-    return new Response(JSON.stringify({ candidates: orders?.length ?? 0, sent }), {
+    return new Response(JSON.stringify({ ok: true, sent }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (err) {
@@ -64,3 +73,35 @@ serve(async (req) => {
     });
   }
 });
+
+async function sendReminderEmail(resendKey: string, order: any, hoursLeft: number, dueHours: number): Promise<boolean> {
+  try {
+    const deadlineText = dueHours === 1 ? "1 hour" : `${dueHours} hours`;
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from: "ReVideos <noreply@1000feetabove.com>",
+        to: [order.customer_email],
+        bcc: [ADMIN_EMAIL],
+        subject: `Reminder: upload your photos (${hoursLeft} hours left)`,
+        html: `
+          <h2>Don't forget your photos</h2>
+          <p>Hi there,</p>
+          <p>You ordered the <strong>${order.package_name}</strong> ReVideos package for ${order.property_address || "your property"}.</p>
+          <p>You now have about <strong>${hoursLeft} hours</strong> left to upload your photos so we can keep the 24-hour delivery promise.</p>
+          <p><a href="https://1000feetabove.com/revideos/success?order_id=${order.id}" style="display:inline-block;padding:12px 20px;background:#2563eb;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;">Upload photos</a></p>
+          <p style="color:#64748b;font-size:13px;">Questions? Reply to this email or contact info@1000feetabove.com.</p>
+        `,
+      }),
+    });
+    if (!res.ok) {
+      console.error("Reminder email failed:", res.status, await res.text());
+      return false;
+    }
+    return true;
+  } catch (e) {
+    console.error("Reminder email exception:", e);
+    return false;
+  }
+}

@@ -616,6 +616,7 @@ export type Database = {
           error_message: string | null
           final_video_url: string | null
           id: string
+          last_reminder_sent_at: string | null
           manual_override: boolean | null
           package_name: string
           photo_count: number | null
@@ -623,6 +624,7 @@ export type Database = {
           price_cents: number
           property_address: string | null
           property_type: string | null
+          reminder_count: number | null
           reminder_sent_at: string | null
           resolution: string | null
           rights_accepted: boolean
@@ -646,6 +648,7 @@ export type Database = {
           error_message?: string | null
           final_video_url?: string | null
           id?: string
+          last_reminder_sent_at?: string | null
           manual_override?: boolean | null
           package_name: string
           photo_count?: number | null
@@ -653,6 +656,7 @@ export type Database = {
           price_cents: number
           property_address?: string | null
           property_type?: string | null
+          reminder_count?: number | null
           reminder_sent_at?: string | null
           resolution?: string | null
           rights_accepted?: boolean
@@ -676,6 +680,7 @@ export type Database = {
           error_message?: string | null
           final_video_url?: string | null
           id?: string
+          last_reminder_sent_at?: string | null
           manual_override?: boolean | null
           package_name?: string
           photo_count?: number | null
@@ -683,6 +688,7 @@ export type Database = {
           price_cents?: number
           property_address?: string | null
           property_type?: string | null
+          reminder_count?: number | null
           reminder_sent_at?: string | null
           resolution?: string | null
           rights_accepted?: boolean
