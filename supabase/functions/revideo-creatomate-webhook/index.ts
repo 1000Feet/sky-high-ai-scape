@@ -21,8 +21,8 @@ serve(async (req) => {
     const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, serviceKey);
 
-    const orderId = url.searchParams.get("order_id") || (await req.json()).metadata;
     const body = await req.json();
+    const orderId = url.searchParams.get("order_id") || body.metadata;
     const status = body.status;
     const videoUrl = body.url;
 
