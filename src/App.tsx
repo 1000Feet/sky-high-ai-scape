@@ -15,6 +15,9 @@ import OutboxPrivacyPolicy from "./pages/OutboxPrivacyPolicy";
 import Ventures from "./pages/Ventures";
 import NuoviMondi from "./pages/NuoviMondi";
 import Seo from "./pages/Seo";
+import ReVideos from "./pages/ReVideos";
+import ReVideosSuccess from "./pages/ReVideosSuccess";
+import ReVideosAdmin from "./pages/ReVideosAdmin";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +38,9 @@ const App = () => (
           <Route path="/ventures" element={<Ventures />} />
           <Route path="/nuovimondi" element={<NuoviMondi />} />
           <Route path="/seo" element={<Seo />} />
+          <Route path="/revideos" element={<ReVideos />} />
+          <Route path="/revideos/success" element={<ReVideosSuccess />} />
+          <Route path="/revideos/admin" element={<RequireAdmin><ReVideosAdmin /></RequireAdmin>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
