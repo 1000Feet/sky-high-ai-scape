@@ -105,8 +105,8 @@ async function processEditing(order: any, supabase: any) {
 
   const body = await res.json();
   if (body.status === "succeeded") {
-    await startCreatomateRender(supabase, order); // will error if already started, but called only when no render_id
-    // Actually startCreatomateRender above sets render_id; this branch unreachable in practice.
+    if (!body.url) throw new Error("Render succeeded but no URL returned");
+    await finalizeDelivery(order, supabase, body.url);
   } else if (body.status === "failed") {
     await supabase
       .from("revideo_orders")
