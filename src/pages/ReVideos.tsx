@@ -17,7 +17,7 @@ type Pkg = {
   name: string;
   priceCents: number;
   photos: 6 | 12;
-  resolution: '1080p' | '4K';
+  resolution: '1080p' | '4K Ultra HD';
   duration: string;
 };
 
