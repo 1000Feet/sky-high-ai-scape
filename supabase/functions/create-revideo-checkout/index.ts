@@ -44,9 +44,20 @@ serve(async (req) => {
     }
 
     const body = await req.json();
-    const { package_name, price_cents, property_address, property_type, special_requests } = body;
-    if (!package_name || !price_cents || !property_address) {
+    const {
+      package_name,
+      price_cents,
+      photo_count,
+      resolution,
+      customer_email,
+      special_requests,
+      rights_accepted,
+    } = body;
+    if (!package_name || !price_cents || !photo_count || !resolution || !customer_email) {
       throw new Error("Missing required fields");
+    }
+    if (!rights_accepted) {
+      throw new Error("Photo rights confirmation required");
     }
     if (Number(price_cents) <= 0) {
       throw new Error("Invalid price");
@@ -58,9 +69,11 @@ serve(async (req) => {
         user_id: userData.user.id,
         package_name,
         price_cents: Number(price_cents),
-        property_address,
-        property_type: property_type || "",
+        photo_count: Number(photo_count),
+        resolution,
+        customer_email,
         special_requests: special_requests || "",
+        rights_accepted: true,
         status: "pending",
         payment_status: "pending",
         currency: "USD",
