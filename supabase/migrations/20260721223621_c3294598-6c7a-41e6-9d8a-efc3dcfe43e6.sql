@@ -1,0 +1,1 @@
+ALTER TABLE public.revideo_orders DROP CONSTRAINT revideo_orders_package_name_check; ALTER TABLE public.revideo_orders ADD CONSTRAINT revideo_orders_package_name_check CHECK (package_name = ANY (ARRAY['p7_hd','p15_hd','p7_4k','p15_4k']));
