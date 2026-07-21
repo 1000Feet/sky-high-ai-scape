@@ -9,6 +9,8 @@ import NotFound from "./pages/NotFound";
 import ClientSignup from "./pages/ClientSignup";
 import SignupSuccess from "./pages/SignupSuccess";
 import Admin from "./pages/Admin";
+import Auth from "./pages/Auth";
+import RequireAdmin from "./components/RequireAdmin";
 import OutboxPrivacyPolicy from "./pages/OutboxPrivacyPolicy";
 import Ventures from "./pages/Ventures";
 import NuoviMondi from "./pages/NuoviMondi";
@@ -27,7 +29,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/signup" element={<ClientSignup />} />
           <Route path="/signup/success" element={<SignupSuccess />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/admin" element={<RequireAdmin><Admin /></RequireAdmin>} />
           <Route path="/outboxprivacypolicy" element={<OutboxPrivacyPolicy />} />
           <Route path="/ventures" element={<Ventures />} />
           <Route path="/nuovimondi" element={<NuoviMondi />} />
