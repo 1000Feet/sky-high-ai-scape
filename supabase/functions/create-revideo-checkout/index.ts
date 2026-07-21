@@ -24,11 +24,13 @@ serve(async (req) => {
     const stripe = new Stripe(stripeSecret, { apiVersion: "2024-06-20" as any });
     const supabase = createClient(supabaseUrl, serviceKey);
 
+    // Optional auth: associate order to a user if a valid JWT is provided; otherwise allow guest checkout.
+    let userId: string | null = null;
     const authHeader = req.headers.get("authorization") || "";
-    const token = authHeader.replace("Bearer ", "");
-    const { data: userData, error: userErr } = await supabase.auth.getUser(token);
-    if (userErr || !userData.user) {
-      throw new Error("Authentication required");
+    const token = authHeader.replace("Bearer ", "").trim();
+    if (token && token !== Deno.env.get("SUPABASE_ANON_KEY")) {
+      const { data: userData } = await supabase.auth.getUser(token);
+      if (userData?.user) userId = userData.user.id;
     }
 
     const ip = req.headers.get("x-real-ip") || req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
@@ -66,7 +68,7 @@ serve(async (req) => {
     const order = await supabase
       .from("revideo_orders")
       .insert({
-        user_id: userData.user.id,
+        user_id: userId,
         package_name,
         price_cents: Number(price_cents),
         photo_count: Number(photo_count),
@@ -106,7 +108,7 @@ serve(async (req) => {
       ],
       success_url: `${origin}/revideos/success?session_id={CHECKOUT_SESSION_ID}&order_id=${order.data.id}`,
       cancel_url: `${origin}/revideos`,
-      metadata: { order_id: order.data.id, user_id: userData.user.id },
+      metadata: { order_id: order.data.id, user_id: userId ?? "" },
     });
 
     await supabase.from("revideo_checkout_attempts").insert({
@@ -119,7 +121,9 @@ serve(async (req) => {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), {
+    console.error("create-revideo-checkout error:", err);
+    const message = err instanceof Error ? err.message : String(err);
+    return new Response(JSON.stringify({ error: message }), {
       status: 400,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
