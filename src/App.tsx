@@ -15,6 +15,9 @@ import OutboxPrivacyPolicy from "./pages/OutboxPrivacyPolicy";
 import Ventures from "./pages/Ventures";
 import NuoviMondi from "./pages/NuoviMondi";
 import Seo from "./pages/Seo";
+import ReVideos from "./pages/ReVideos";
+import ReVideosSuccess from "./pages/ReVideosSuccess";
+import ReVideosAdmin from "./pages/ReVideosAdmin";
 
 const queryClient = new QueryClient();
 
