@@ -113,6 +113,14 @@ serve(async (req) => {
           updated_at: nowIso,
         })
         .eq("id", order_id);
+
+      if (resendKey) {
+        await sendAdminEmail(
+          resendKey,
+          `ReVideos: production started #${order_id.slice(0, 8)}`,
+          `Automation started for ${order.package_name} (${order.photo_count} photos · ${order.resolution}).<br>Customer: ${order.customer_email || "—"}<br>Property: ${order.property_address || "—"}`,
+        );
+      }
     } else {
       if (order.status === "awaiting_photos") {
         await supabase
