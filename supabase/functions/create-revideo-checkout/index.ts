@@ -92,6 +92,7 @@ serve(async (req) => {
     const productName = productNames[package_name] || `ReVideos ${package_name}`;
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
+      managed_payments: { enabled: false } as any,
       customer_email: customer_email,
       line_items: [
         {
