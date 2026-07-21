@@ -10,7 +10,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from 'sonner';
 import { Loader2, Video, Camera, Check } from 'lucide-react';
 import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 
 const packages = [
   { id: 'starter', name: 'Starter', priceCents: 9900, videos: 1, photos: 15, description: '1 AI video + up to 15 photos' },
@@ -108,7 +107,6 @@ const ReVideos = () => {
           </CardContent>
         </Card>
       </div>
-      <Footer />
     </div>
   );
 };

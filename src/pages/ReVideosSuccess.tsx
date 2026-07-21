@@ -7,7 +7,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from 'sonner';
 import { Loader2, Upload, CheckCircle } from 'lucide-react';
 import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 
 const MAX_FILES = 12;
 
@@ -34,8 +33,8 @@ const ReVideosSuccess = () => {
     verify();
   }, [params]);
 
-  const handleFiles = async (e) => {
-    const files = Array.from(e.target.files);
+  const handleFiles = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []) as File[];
     if (!order || !files.length) return;
     const remaining = MAX_FILES - assets.length;
     if (files.length > remaining) { toast.error(`You can upload up to ${remaining} more files`); return; }
@@ -86,7 +85,6 @@ const ReVideosSuccess = () => {
           </CardContent>
         </Card>
       </div>
-      <Footer />
     </div>
   );
 };
