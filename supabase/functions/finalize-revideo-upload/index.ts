@@ -157,8 +157,3 @@ serve(async (req) => {
   }
 });
 
-function buildPrompt(order: any) {
-  const address = order.property_address ? `of ${order.property_address}` : "";
-  const type = order.property_type ? ` (${order.property_type})` : "";
-  return `Cinematic real estate video ${address}${type}. Smooth, elegant camera movement, warm natural light, professional architectural photography, no people or pets, dreamy modern atmosphere.`.trim();
-}
