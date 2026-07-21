@@ -75,8 +75,6 @@ serve(async (req) => {
         special_requests: special_requests || "",
         rights_accepted: true,
         status: "pending",
-        payment_status: "pending",
-        currency: "USD",
       })
       .select()
       .single();
