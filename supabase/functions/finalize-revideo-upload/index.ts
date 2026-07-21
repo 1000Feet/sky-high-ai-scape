@@ -86,6 +86,23 @@ serve(async (req) => {
         if (clipsErr) throw clipsErr;
       }
 
+      const { data: createdClips } = await supabase
+        .from("revideo_clips")
+        .select("*")
+        .eq("order_id", order_id)
+        .order("seq", { ascending: true });
+
+      const queued = (createdClips || []).filter((c: any) => c.status === "queued");
+      let submitted = 0;
+      for (const clip of queued.slice(0, MAX_CONCURRENT)) {
+        try {
+          await submitHiggsfieldClip(supabase, clip, order);
+          submitted++;
+        } catch (e) {
+          console.error(`Failed to submit clip ${clip.id}:`, e);
+        }
+      }
+
       await supabase
         .from("revideo_orders")
         .update({
