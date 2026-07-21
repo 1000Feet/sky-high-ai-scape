@@ -534,12 +534,16 @@ export type Database = {
         Row: {
           admin_notes: string | null
           created_at: string
+          customer_email: string | null
           delivered_urls: string[] | null
           id: string
           package_name: string
+          photo_count: number | null
           price_cents: number
           property_address: string | null
           property_type: string | null
+          resolution: string | null
+          rights_accepted: boolean
           special_requests: string | null
           status: string
           stripe_checkout_session_id: string | null
@@ -550,12 +554,16 @@ export type Database = {
         Insert: {
           admin_notes?: string | null
           created_at?: string
+          customer_email?: string | null
           delivered_urls?: string[] | null
           id?: string
           package_name: string
+          photo_count?: number | null
           price_cents: number
           property_address?: string | null
           property_type?: string | null
+          resolution?: string | null
+          rights_accepted?: boolean
           special_requests?: string | null
           status?: string
           stripe_checkout_session_id?: string | null
@@ -566,12 +574,16 @@ export type Database = {
         Update: {
           admin_notes?: string | null
           created_at?: string
+          customer_email?: string | null
           delivered_urls?: string[] | null
           id?: string
           package_name?: string
+          photo_count?: number | null
           price_cents?: number
           property_address?: string | null
           property_type?: string | null
+          resolution?: string | null
+          rights_accepted?: boolean
           special_requests?: string | null
           status?: string
           stripe_checkout_session_id?: string | null

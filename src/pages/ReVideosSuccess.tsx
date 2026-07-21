@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 import { Loader2, Upload, CheckCircle } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 
-const MAX_FILES = 12;
+const DEFAULT_MAX = 12;
 
 const ReVideosSuccess = () => {
   const [params] = useSearchParams();
@@ -33,10 +33,12 @@ const ReVideosSuccess = () => {
     verify();
   }, [params]);
 
+  const maxFiles: number = order?.photo_count || DEFAULT_MAX;
+
   const handleFiles = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []) as File[];
     if (!order || !files.length) return;
-    const remaining = MAX_FILES - assets.length;
+    const remaining = maxFiles - assets.length;
     if (files.length > remaining) { toast.error(`You can upload up to ${remaining} more files`); return; }
     setUploading(true);
     for (const file of files) {
@@ -62,21 +64,21 @@ const ReVideosSuccess = () => {
       <div className="max-w-3xl mx-auto px-4 py-24">
         <Card className="bg-slate-900/80 border-slate-700">
           <CardHeader>
-            <CardTitle className="text-white flex items-center gap-2"><CheckCircle className="text-green-400"/> Order confirmed</CardTitle>
+            <CardTitle className="text-slate-50 flex items-center gap-2"><CheckCircle className="text-green-400"/> Order confirmed</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            <p className="text-slate-300">Order <strong>#{order.id.slice(0,8)}</strong> for <strong>{order.property_address}</strong> is paid. Upload up to {MAX_FILES} photos or short videos.</p>
+            <p className="text-slate-300">Order <strong>#{order.id.slice(0,8)}</strong> is paid. Upload your {maxFiles} photos to start production.</p>
             <div className="p-4 border border-dashed border-slate-600 rounded-lg text-center">
-              <input id="upload" type="file" multiple accept="image/*,video/*" className="hidden" onChange={handleFiles} />
+              <input id="upload" type="file" multiple accept="image/*" className="hidden" onChange={handleFiles} />
               <label htmlFor="upload" className="cursor-pointer flex flex-col items-center gap-2">
                 <Upload className="text-blue-400" />
-                <span className="text-sm text-slate-300">Click to upload files</span>
+                <span className="text-sm text-slate-300">Click to upload photos</span>
               </label>
               {uploading && <Loader2 className="animate-spin mt-2" />}
             </div>
             {assets.length > 0 && (
               <div className="space-y-2">
-                <p className="text-sm text-slate-400">{assets.length} / {MAX_FILES} uploaded</p>
+                <p className="text-sm text-slate-400">{assets.length} / {maxFiles} uploaded</p>
                 <ul className="text-sm text-slate-300 space-y-1">
                   {assets.map((a, i) => <li key={i}>{a.original_filename}</li>)}
                 </ul>

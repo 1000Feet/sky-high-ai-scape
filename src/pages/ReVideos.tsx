@@ -1,112 +1,341 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
 import { toast } from 'sonner';
-import { Loader2, Video, Camera, Check } from 'lucide-react';
+import { Loader2, Video, Camera, Check, Sparkles, X } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 
-const packages = [
-  { id: 'starter', name: 'Starter', priceCents: 9900, videos: 1, photos: 15, description: '1 AI video + up to 15 photos' },
-  { id: 'pro', name: 'Pro', priceCents: 24900, videos: 3, photos: 40, description: '3 AI videos + up to 40 photos' },
-  { id: 'premium', name: 'Premium', priceCents: 49900, videos: 6, photos: 100, description: '6 AI videos + up to 100 photos, 4K delivery' },
+type Pkg = {
+  id: 'p6_hd' | 'p12_hd' | 'p6_4k' | 'p12_4k';
+  name: string;
+  priceCents: number;
+  photos: 6 | 12;
+  resolution: '1080p' | '4K Ultra HD';
+  duration: string;
+};
+
+const packages: Pkg[] = [
+  { id: 'p6_hd',  name: '6 Photos · Full HD',  priceCents: 4900,  photos: 6,  resolution: '1080p', duration: '~30s video' },
+  { id: 'p12_hd', name: '12 Photos · Full HD', priceCents: 9900,  photos: 12, resolution: '1080p', duration: '~60s video' },
+  { id: 'p6_4k',  name: '6 Photos · 4K',        priceCents: 12900, photos: 6,  resolution: '4K Ultra HD', duration: '~30s video' },
+  { id: 'p12_4k', name: '12 Photos · 4K',       priceCents: 24900, photos: 12, resolution: '4K Ultra HD', duration: '~60s video' },
+];
+
+const includedFeatures = [
+  'Cinematic AI camera movements',
+  'Day / night scene ordering',
+  'Smooth transitions',
+  'License for Airbnb, Booking & social',
+  '24h delivery',
+];
+
+const faqs = [
+  { q: 'How does it work?', a: 'You pick a package, pay, and upload the exact number of photos required. Our AI pipeline turns them into a cinematic listing video with camera moves and transitions, ready in 24 hours.' },
+  { q: 'What photos work best?', a: 'Horizontal, high-resolution photos of empty rooms and exteriors. Avoid people, pets, or cluttered scenes. Good natural light produces the best results.' },
+  { q: 'Can I use the video commercially?', a: 'Yes. The delivered video comes with a license to publish on Airbnb, Booking, your website and social channels.' },
+  { q: 'What if I have more than 12 photos?', a: 'Pick the 12-photo package and send us your best 12. If you need a longer edit, contact us for a custom quote.' },
+  { q: 'Do you offer refunds?', a: 'If we cannot deliver a usable video from your photos we will issue a full refund. Refunds are not available after delivery.' },
 ];
 
 const ReVideos = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(false);
-  const [selected, setSelected] = useState('pro');
-  const [form, setForm] = useState({ address: '', type: '', notes: '' });
-  const navigate = useNavigate();
+  const [selected, setSelected] = useState<Pkg['id']>('p12_hd');
+  const [files, setFiles] = useState<File[]>([]);
+  const [previews, setPreviews] = useState<string[]>([]);
+  const [email, setEmail] = useState('');
+  const [notes, setNotes] = useState('');
+  const [rights, setRights] = useState(false);
+
+  const pkg = useMemo(() => packages.find(p => p.id === selected)!, [selected]);
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setUser(data.user));
-    const { data: sub } = supabase.auth.onAuthStateChange((_, s) => setUser(s?.user ?? null));
+    supabase.auth.getUser().then(({ data }) => {
+      setUser(data.user);
+      if (data.user?.email) setEmail(data.user.email);
+    });
+    const { data: sub } = supabase.auth.onAuthStateChange((_, s) => {
+      setUser(s?.user ?? null);
+      if (s?.user?.email) setEmail(s.user.email);
+    });
     return () => sub.subscription.unsubscribe();
   }, []);
 
-  const handleSubmit = async (e) => {
+  useEffect(() => {
+    // trim files if package downgrades photo count
+    if (files.length > pkg.photos) {
+      const trimmed = files.slice(0, pkg.photos);
+      setFiles(trimmed);
+    }
+  }, [pkg.photos]); // eslint-disable-line
+
+  useEffect(() => {
+    const urls = files.map(f => URL.createObjectURL(f));
+    setPreviews(urls);
+    return () => urls.forEach(u => URL.revokeObjectURL(u));
+  }, [files]);
+
+  const onFilesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const incoming = Array.from(e.target.files || []).filter(f => f.type.startsWith('image/'));
+    const combined = [...files, ...incoming].slice(0, pkg.photos);
+    setFiles(combined);
+    e.target.value = '';
+  };
+
+  const removeFile = (idx: number) => setFiles(files.filter((_, i) => i !== idx));
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) { toast.error('Please sign in to place an order'); return; }
+    if (!email.trim()) { toast.error('Email is required'); return; }
+    if (!rights) { toast.error('Please confirm you own the rights to the photos'); return; }
+    if (files.length !== pkg.photos) {
+      toast.error(`This package requires exactly ${pkg.photos} photos. You have ${files.length}.`);
+      return;
+    }
     setLoading(true);
-    const pkg = packages.find(p => p.id === selected);
     const { data, error } = await supabase.functions.invoke('create-revideo-checkout', {
       body: {
-        package_name: selected,
+        package_name: pkg.id,
         price_cents: pkg.priceCents,
-        property_address: form.address,
-        property_type: form.type,
-        special_requests: form.notes,
+        photo_count: pkg.photos,
+        resolution: pkg.resolution,
+        customer_email: email.trim(),
+        special_requests: notes.trim(),
+        rights_accepted: true,
       }
     });
     setLoading(false);
     if (error || !data?.url) { toast.error(error?.message || 'Checkout failed'); return; }
+    // Photos will be uploaded on the success page after payment
+    sessionStorage.setItem('revideo_pending_photo_count', String(pkg.photos));
     window.location.href = data.url;
   };
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
       <Helmet>
-        <title>Real Estate AI Videos | 1000 Feet</title>
-        <meta name="description" content="Self-service AI video production for real estate listings." />
+        <title>Real Estate AI Videos in 24h | 1000 Feet</title>
+        <meta name="description" content="Turn your property photos into cinematic listing videos with AI. Delivered in 24 hours. From $49." />
       </Helmet>
       <Navigation />
-      <div className="max-w-6xl mx-auto px-4 py-24">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold gradient-text mb-6">Real Estate AI Videos</h1>
-          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            Upload property photos and get cinematic listing videos in 48 hours.
-          </p>
+
+      {/* HERO */}
+      <section className="max-w-6xl mx-auto px-4 pt-24 pb-12 text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs mb-6">
+          <Sparkles size={14} /> AI real estate video studio
         </div>
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
-          {packages.map((pkg) => (
-            <Card key={pkg.id} className={`bg-slate-900/60 border-slate-700 cursor-pointer hover:border-blue-500 transition ${selected === pkg.id ? 'border-blue-500 ring-2 ring-blue-500/30' : ''}`} onClick={() => setSelected(pkg.id)}>
-              <CardHeader><CardTitle className="text-2xl text-white">{pkg.name}</CardTitle></CardHeader>
-              <CardContent className="space-y-3">
-                <div className="text-3xl font-bold text-blue-400">${(pkg.priceCents/100).toFixed(0)}</div>
-                <p className="text-slate-300 text-sm">{pkg.description}</p>
-                <ul className="text-sm text-slate-400 space-y-1">
-                  <li className="flex items-center gap-2"><Video size={16}/> {pkg.videos} AI video{pkg.videos>1?'s':''}</li>
-                  <li className="flex items-center gap-2"><Camera size={16}/> Up to {pkg.photos} photos</li>
-                  <li className="flex items-center gap-2"><Check size={16}/> 48h delivery</li>
+        <h1 className="text-4xl md:text-6xl font-bold gradient-text mb-6">Real Estate AI Videos in 24 hours</h1>
+        <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+          Upload 6 or 12 property photos. Get a cinematic listing video with camera movements, day/night flow and smooth transitions — delivered in 24 hours.
+        </p>
+      </section>
+
+      {/* PACKAGES 2x2 */}
+      <section className="max-w-5xl mx-auto px-4 pb-16">
+        <div className="grid sm:grid-cols-2 gap-6">
+          {packages.map((p) => {
+            const isSel = selected === p.id;
+            return (
+              <button
+                type="button"
+                key={p.id}
+                onClick={() => setSelected(p.id)}
+                className={`text-left rounded-2xl border p-6 transition bg-slate-900/60 backdrop-blur ${
+                  isSel ? 'border-blue-500 ring-2 ring-blue-500/40 shadow-lg shadow-blue-500/10' : 'border-slate-700 hover:border-slate-500'
+                }`}
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 className="text-xl font-semibold text-slate-50">{p.name}</h3>
+                    <p className="text-sm text-slate-400 mt-1">{p.duration} · {p.resolution}</p>
+                  </div>
+                  <div className="text-3xl font-bold text-blue-400">${(p.priceCents/100).toFixed(0)}</div>
+                </div>
+                <ul className="text-sm text-slate-300 space-y-2">
+                  <li className="flex items-center gap-2"><Camera size={16} className="text-blue-400"/> {p.photos} photos → 1 video</li>
+                  {includedFeatures.map((f) => (
+                    <li key={f} className="flex items-center gap-2"><Check size={16} className="text-blue-400"/> {f}</li>
+                  ))}
                 </ul>
-              </CardContent>
-            </Card>
+                {isSel && (
+                  <div className="mt-4 text-xs text-blue-300 font-medium">Selected</div>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* FROM PHOTOS TO FILM */}
+      <section className="max-w-5xl mx-auto px-4 pb-20">
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-50 text-center mb-2">From photos to film</h2>
+        <p className="text-slate-400 text-center mb-10">A real example — Casa Idea, one of our reference properties.</p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+          {[1,2,3,4,5,6,7,8].map((n) => (
+            <div key={n} className="aspect-[4/3] rounded-lg overflow-hidden bg-slate-800 border border-slate-700">
+              <img
+                src={`/revideos/casa-idea/${n}.jpg`}
+                alt={`Casa Idea photo ${n}`}
+                className="w-full h-full object-cover"
+                onError={(e) => { (e.currentTarget as HTMLImageElement).style.visibility = 'hidden'; }}
+                loading="lazy"
+              />
+            </div>
           ))}
         </div>
-        <Card className="max-w-2xl mx-auto bg-slate-900/80 border-slate-700">
-          <CardHeader><CardTitle className="text-white">Order your package</CardTitle></CardHeader>
+        <div className="aspect-video rounded-xl overflow-hidden border border-slate-700 bg-slate-900">
+          <iframe
+            className="w-full h-full"
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            title="Casa Idea AI video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      </section>
+
+      {/* ORDER FORM */}
+      <section className="max-w-2xl mx-auto px-4 pb-24">
+        <Card className="bg-slate-900/80 border-slate-700">
+          <CardHeader>
+            <CardTitle className="text-slate-50">Order — {pkg.name}</CardTitle>
+            <p className="text-sm text-slate-400">Upload exactly {pkg.photos} photos to continue.</p>
+          </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="address">Property address</Label>
-                <Input id="address" required value={form.address} onChange={e => setForm({...form, address: e.target.value})} className="bg-slate-800 border-slate-600 text-white" />
+              {/* Tips */}
+              <div className="rounded-lg border border-blue-500/30 bg-blue-500/5 p-4 text-sm text-slate-200 space-y-1">
+                <p className="font-semibold text-blue-300">Photo tips for best results</p>
+                <ul className="list-disc pl-5 text-slate-300 space-y-1">
+                  <li>Horizontal (landscape) photos only</li>
+                  <li>No people or pets in the frame</li>
+                  <li>Good natural light, minimal clutter</li>
+                  <li>High resolution (min. 1920×1080)</li>
+                </ul>
               </div>
+
+              {/* Uploader */}
               <div className="space-y-2">
-                <Label htmlFor="type">Property type</Label>
-                <Input id="type" placeholder="House, apartment, villa, land..." value={form.type} onChange={e => setForm({...form, type: e.target.value})} className="bg-slate-800 border-slate-600 text-white" />
+                <Label className="text-slate-200">Photos ({files.length}/{pkg.photos})</Label>
+                <label
+                  htmlFor="revideo-upload"
+                  className="block cursor-pointer rounded-lg border border-dashed border-slate-600 hover:border-blue-500 p-6 text-center transition"
+                >
+                  <Camera className="mx-auto text-blue-400 mb-2" />
+                  <div className="text-sm text-slate-300">
+                    {files.length < pkg.photos
+                      ? `Click to add ${pkg.photos - files.length} more photo${pkg.photos - files.length === 1 ? '' : 's'}`
+                      : 'All photos ready'}
+                  </div>
+                  <input
+                    id="revideo-upload"
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    className="hidden"
+                    onChange={onFilesChange}
+                    disabled={files.length >= pkg.photos}
+                  />
+                </label>
+                {previews.length > 0 && (
+                  <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 pt-2">
+                    {previews.map((src, i) => (
+                      <div key={i} className="relative aspect-square rounded overflow-hidden border border-slate-700 group">
+                        <img src={src} alt={`Upload ${i+1}`} className="w-full h-full object-cover" />
+                        <button
+                          type="button"
+                          onClick={() => removeFile(i)}
+                          className="absolute top-1 right-1 bg-black/70 rounded-full p-1 opacity-0 group-hover:opacity-100 transition"
+                          aria-label="Remove photo"
+                        >
+                          <X size={14} className="text-white" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <p className="text-xs text-slate-500">Photos will be uploaded securely after payment.</p>
               </div>
+
+              {/* Email */}
               <div className="space-y-2">
-                <Label htmlFor="notes">Special requests</Label>
-                <Textarea id="notes" placeholder="Music mood, key features, branding..." value={form.notes} onChange={e => setForm({...form, notes: e.target.value})} className="bg-slate-800 border-slate-600 text-white" />
+                <Label htmlFor="email" className="text-slate-200">Email *</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  className="bg-slate-800 border-slate-600 text-slate-50 placeholder:text-slate-500"
+                  placeholder="you@example.com"
+                />
               </div>
+
+              {/* Optional note */}
+              <div className="space-y-2">
+                <Label htmlFor="notes" className="text-slate-200">Note (optional)</Label>
+                <Textarea
+                  id="notes"
+                  placeholder="Property name + anything we should know"
+                  value={notes}
+                  onChange={e => setNotes(e.target.value)}
+                  className="bg-slate-800 border-slate-600 text-slate-50 placeholder:text-slate-500"
+                />
+              </div>
+
+              {/* Rights checkbox */}
+              <label className="flex items-start gap-3 text-sm text-slate-200 cursor-pointer">
+                <Checkbox
+                  checked={rights}
+                  onCheckedChange={(v) => setRights(Boolean(v))}
+                  className="mt-1 border-slate-500 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
+                />
+                <span>
+                  I confirm I own the rights to the uploaded photos and authorize 1000 Feet to process them into an AI video.
+                </span>
+              </label>
+
               {!user && (
                 <div className="p-4 rounded-lg bg-slate-800 text-sm text-slate-300">
                   <Link to="/auth?redirect=/revideos" className="text-blue-400 underline">Sign in</Link> to place an order.
                 </div>
               )}
-              <Button type="submit" disabled={loading || !user} className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white">
-                {loading ? <Loader2 className="animate-spin" /> : 'Proceed to payment'}
+
+              <Button
+                type="submit"
+                disabled={loading || !user || files.length !== pkg.photos || !rights}
+                className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:opacity-90"
+              >
+                {loading ? <Loader2 className="animate-spin" /> : `Pay $${(pkg.priceCents/100).toFixed(0)} & continue`}
               </Button>
             </form>
           </CardContent>
         </Card>
-      </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="max-w-3xl mx-auto px-4 pb-24">
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-50 text-center mb-10">FAQ</h2>
+        <div className="space-y-4">
+          {faqs.map((f) => (
+            <details key={f.q} className="rounded-lg border border-slate-700 bg-slate-900/60 p-5 group">
+              <summary className="cursor-pointer font-semibold text-slate-50 list-none flex justify-between items-center">
+                {f.q}
+                <span className="text-blue-400 group-open:rotate-45 transition">+</span>
+              </summary>
+              <p className="mt-3 text-slate-300 text-sm leading-relaxed">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };
