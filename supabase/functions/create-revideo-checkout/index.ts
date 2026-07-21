@@ -83,16 +83,23 @@ serve(async (req) => {
     if (order.error) throw order.error;
 
     const origin = req.headers.get("origin") || "https://www.1000feetabove.com";
+    const productNames: Record<string, string> = {
+      p6_hd:  "ReVideos — 6 Photos · Full HD",
+      p12_hd: "ReVideos — 12 Photos · Full HD",
+      p6_4k:  "ReVideos — 6 Photos · 4K",
+      p12_4k: "ReVideos — 12 Photos · 4K",
+    };
+    const productName = productNames[package_name] || `ReVideos ${package_name}`;
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
-      customer_email: userData.user.email,
+      customer_email: customer_email,
       line_items: [
         {
           price_data: {
             currency: "USD",
             product_data: {
-              name: `ReVideos ${package_name} Package`,
-              description: property_address,
+              name: productName,
+              description: `${photo_count} photos → 1 AI video · ${resolution} · 24h delivery`,
             },
             unit_amount: Number(price_cents),
           },
