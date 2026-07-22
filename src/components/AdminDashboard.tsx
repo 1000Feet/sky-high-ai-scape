@@ -13,6 +13,7 @@ import { format } from 'date-fns';
 import PotentialClients from './PotentialClients';
 import PotentialClientsReservaMesa from './PotentialClientsReservaMesa';
 import AuditsTab from './AuditsTab';
+import ReVideosAdminTab from './ReVideosAdminTab';
 
 interface ClientSignup {
   id: string;
