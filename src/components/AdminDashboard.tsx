@@ -690,6 +690,9 @@ const AdminDashboard: React.FC = () => {
         <TabsContent value="audits">
           <AuditsTab />
         </TabsContent>
+        <TabsContent value="revideos">
+          <ReVideosAdminTab />
+        </TabsContent>
       </Tabs>
 
       {/* Code Dialog */}
