@@ -375,7 +375,7 @@ const AdminDashboard: React.FC = () => {
 
       {/* Tabs */}
       <Tabs defaultValue="websites" className="space-y-4">
-        <TabsList>
+        <TabsList className="flex flex-wrap h-auto justify-start gap-1">
           <TabsTrigger value="websites">Website Requests ({websiteRequests.length})</TabsTrigger>
           <TabsTrigger value="signups">Client Signups ({signups.length})</TabsTrigger>
           <TabsTrigger value="potential">Potential Clients ({potentialClientsCount})</TabsTrigger>
