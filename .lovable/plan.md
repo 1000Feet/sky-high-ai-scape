@@ -1,43 +1,64 @@
-# Fix: ReVideos checkout returns 400
+## Opzione B — Upload foto prima del pagamento + salvataggio contatti
 
-## Diagnosi
-`create-revideo-checkout` risponde 400 perché richiede un utente autenticato (`supabase.auth.getUser(token)` → se fallisce, throw "Authentication required" → catch → status 400). La pagina `/revideos` non forza login prima del checkout, quindi stai chiamando la function senza token.
+Nuovo flusso su `/revideos`:
+1. Utente compila **nome, email, package, foto, diritti**
+2. Click "Continue" → crea `revideo_orders` con status `awaiting_payment` (nome/email/foto salvati subito)
+3. Upload delle foto direttamente su storage (associate all'order_id)
+4. Solo dopo l'upload completo → redirect a Stripe checkout
+5. Sulla success page, siccome le foto sono già presenti, la pipeline parte immediatamente
 
-Cause secondarie possibili (da escludere durante il fix):
-- `STRIPE_SECRET_KEY` mancante nei secrets.
-- Rate limit: >3 righe `pending` in `revideo_checkout_attempts` per il tuo IP nell'ultima ora (probabile dopo i tentativi falliti — anche se qui l'insert avviene solo dopo il successo, quindi meno grave).
+Se l'utente abbandona Stripe, **l'ordine e l'email restano** (mai cancellati). Un cron orario invia reminder dopo qualche ora chiedendo se vuole completare il pagamento.
 
-## Decisione da prendere
-Il flusso ReVideos è pensato come **self-service pubblico** (paghi, poi carichi foto), oppure vogliamo **richiedere signup** prima del pagamento?
+---
 
-Assumo self-service pubblico (coerente con la landing e con l'assenza di gate nella UI). Il fix va nella direzione "guest checkout".
+### 1. Database migration
 
-## Piano
+- `revideo_orders`:
+  - Aggiungi `customer_name TEXT`
+  - Aggiungi `abandoned_reminder_sent_at TIMESTAMPTZ`, `abandoned_reminder_count INT DEFAULT 0`
+  - Rimuovi vincolo status per aggiungere `'awaiting_payment'` come stato iniziale valido
+- Modifica `cleanup_revideo_orphans`: **non elimina più nulla**. Diventa no-op o marca solo (manteniamo il DB per il follow-up).
 
-### 1. Rimuovere il requisito auth dalla edge function
-File: `supabase/functions/create-revideo-checkout/index.ts`
-- Rendere il token opzionale: se presente e valido, associare `user_id`; se assente, `user_id = null` (guest order).
-- Rimuovere il throw "Authentication required".
-- Mantenere validazioni: rights_accepted, email, price, package.
-- Migliorare error handling: loggare `err` con `console.error` e ritornare messaggio chiaro (attualmente `err.message` è generico).
+### 2. Nuovo edge function `create-revideo-order`
 
-### 2. Database
-Verificare che `revideo_orders.user_id` sia nullable. Se non lo è, migration per renderlo nullable.
+Pubblico (no auth richiesta). Input: `package_name, price_cents, photo_count, resolution, customer_name, customer_email, rights_accepted, special_requests`. Rate-limit per IP (stesso `MAX_PENDING_PER_HOUR`). Crea la riga con status `awaiting_payment` e ritorna `{ order_id }`.
 
-### 3. RLS
-Assicurarsi che gli ordini guest siano accessibili via `session_id` sulla success page (la lookup avviene via edge function con service role, quindi RLS non blocca — da confermare leggendo `verify-revideo-payment`).
+### 3. Modifiche edge functions esistenti
 
-### 4. Verifiche di runtime
-- Confermare che `STRIPE_SECRET_KEY` sia settato (via test dopo il deploy — se manca, il messaggio ora sarà esplicito).
-- Pulire eventuali righe `pending` vecchie in `revideo_checkout_attempts` per il tuo IP se il rate limit scatta.
+- **`create-revideo-upload-url`**: rendi auth opzionale. Se manca il JWT, accetta upload solo se `order.status = 'awaiting_payment'` o `awaiting_photos`. Non forziamo `user_id` match sul guest path (l'`order_id` opaco funge da capability).
+- **`create-revideo-checkout`**: accetta `order_id` opzionale. Se presente, salta la INSERT e recupera l'ordine esistente per creare la sessione Stripe (mantiene il rate-limit).
+- **`verify-revideo-payment`**: dopo la transizione a paid, controlla se le foto sono già ≥ `photo_count` → se sì, chiama internamente la logica di `finalize` (avvio Higgsfield) e imposta status `generating`.
 
-### 5. Retest end-to-end
-Ripetere l'ordine Starter $49 con carta 4242… e verificare arrivo alla success page.
+### 4. Nuovo edge function `revideo-abandoned-reminder` (cron orario)
 
-## Tecnico
-- La function usa service role client, quindi può inserire ordini con `user_id = null` senza problemi RLS.
-- La success page identifica l'ordine tramite `order_id` in URL + `session_id` Stripe, non serve auth.
-- Se in futuro vuoi collegare gli ordini a un account, si può aggiungere un claim post-pagamento via email match.
+Trova ordini con `status = 'awaiting_payment'` creati > 3h fa (foto caricate, pagamento mai completato). Invia email al cliente con link "Complete your purchase" che riporta al checkout Stripe (riutilizza `create-revideo-checkout` con l'`order_id` esistente). Escalation: dopo 3h, 24h, 72h. Max 3 reminder. Aggiorna `abandoned_reminder_sent_at` e `abandoned_reminder_count`. Notifica anche l'admin.
 
-## Domanda aperta
-Vuoi confermare che il flusso è **guest checkout** (nessun login richiesto) prima che io applichi il fix? Se invece preferisci richiedere signup, il piano cambia: aggiungerei un redirect a `/auth` prima del click su "Pay".
+Schedule via `pg_cron` chiamando la funzione ogni ora.
+
+### 5. Frontend `src/pages/ReVideos.tsx`
+
+Riordina il form:
+1. Campi **Name + Email** (obbligatori, sopra il selettore foto)
+2. File picker foto
+3. Checkbox rights
+4. Bottone "Continue to payment"
+
+Al click:
+- POST `create-revideo-order` → ottieni `order_id`
+- Ciclo di upload: per ogni foto, chiama `create-revideo-upload-url` (senza auth, con `order_id`) → PUT su signed URL. Mostra progress bar "Uploading X/Y".
+- Quando tutte le foto sono su storage, POST `create-revideo-checkout` con `{ order_id }`
+- Redirect a `session.url`
+
+Rimuovi il messaggio "Photos will be uploaded securely after payment" (ora non serve più).
+
+### 6. Success page `ReVideosSuccess.tsx`
+
+Nessun uploader più. Mostra "Order confirmed — your video is being generated" con tracker esistente. La chiamata `verify-revideo-payment` triggera l'automation se le foto ci sono già.
+
+---
+
+### Note tecniche
+
+- **Sicurezza**: siccome l'upload guest è capability-based (chi conosce l'`order_id` UUID può caricare fino a `photo_count`), va bene per il nostro use case. Il rate-limit IP + il limite `photo_count` server-side impediscono abusi.
+- **Email**: l'email del cliente resta nel DB anche se abbandona — GDPR-compliant perché è un ordine in corso, e user consenso implicito per follow-up sulla propria transazione.
+- **Nessuna cancellazione**: la funzione `cleanup_revideo_orphans` viene neutralizzata, non chiamata dal cron. Se in futuro serve pulizia, sarà decisione manuale admin.

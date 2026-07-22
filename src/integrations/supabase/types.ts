@@ -604,6 +604,8 @@ export type Database = {
       }
       revideo_orders: {
         Row: {
+          abandoned_reminder_count: number
+          abandoned_reminder_sent_at: string | null
           admin_notes: string | null
           admin_notified_at: string | null
           automation_completed_at: string | null
@@ -611,6 +613,7 @@ export type Database = {
           created_at: string
           creatomate_render_id: string | null
           customer_email: string | null
+          customer_name: string | null
           customer_notified_at: string | null
           delivered_urls: string[] | null
           error_message: string | null
@@ -636,6 +639,8 @@ export type Database = {
           user_id: string | null
         }
         Insert: {
+          abandoned_reminder_count?: number
+          abandoned_reminder_sent_at?: string | null
           admin_notes?: string | null
           admin_notified_at?: string | null
           automation_completed_at?: string | null
@@ -643,6 +648,7 @@ export type Database = {
           created_at?: string
           creatomate_render_id?: string | null
           customer_email?: string | null
+          customer_name?: string | null
           customer_notified_at?: string | null
           delivered_urls?: string[] | null
           error_message?: string | null
@@ -668,6 +674,8 @@ export type Database = {
           user_id?: string | null
         }
         Update: {
+          abandoned_reminder_count?: number
+          abandoned_reminder_sent_at?: string | null
           admin_notes?: string | null
           admin_notified_at?: string | null
           automation_completed_at?: string | null
@@ -675,6 +683,7 @@ export type Database = {
           created_at?: string
           creatomate_render_id?: string | null
           customer_email?: string | null
+          customer_name?: string | null
           customer_notified_at?: string | null
           delivered_urls?: string[] | null
           error_message?: string | null

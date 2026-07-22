@@ -1,5 +1,103 @@
 const HIGGSFIELD_BASE_URL = "https://platform.higgsfield.ai";
 const CREATOMATE_API_URL = "https://api.creatomate.com/v2";
+const MAX_CONCURRENT_DEFAULT = parseInt(Deno.env.get("REVIDEO_MAX_CONCURRENT") || "8", 10);
+
+/**
+ * Idempotent production kick-off. Safe to call whenever an order's photo
+ * count is reached (finalize endpoint OR verify-payment when photos were
+ * uploaded before checkout). Creates clips (once) and submits the first
+ * batch to Higgsfield. Sets order.status = 'generating'.
+ */
+export async function startProductionIfReady(
+  supabase: any,
+  order: any,
+  resendKey?: string | null,
+): Promise<{ started: boolean; status: string }> {
+  const orderId = order.id;
+  const { count: uploaded } = await supabase
+    .from("revideo_assets")
+    .select("*", { count: "exact", head: true })
+    .eq("order_id", orderId);
+  if ((uploaded || 0) < (order.photo_count || 0)) {
+    return { started: false, status: order.status };
+  }
+  if (["generating", "editing", "delivered"].includes(order.status)) {
+    return { started: true, status: order.status };
+  }
+
+  const automationEnabled = Deno.env.get("REVIDEO_AUTOMATION_ENABLED") !== "false";
+  const nowIso = new Date().toISOString();
+  if (!automationEnabled) {
+    await supabase
+      .from("revideo_orders")
+      .update({ status: "paid", photos_uploaded_at: order.photos_uploaded_at || nowIso, updated_at: nowIso })
+      .eq("id", orderId);
+    return { started: true, status: "paid" };
+  }
+
+  const { count: clipCount } = await supabase
+    .from("revideo_clips")
+    .select("*", { count: "exact", head: true })
+    .eq("order_id", orderId);
+
+  if ((clipCount || 0) === 0) {
+    const { data: assets } = await supabase
+      .from("revideo_assets")
+      .select("*")
+      .eq("order_id", orderId)
+      .order("uploaded_at", { ascending: true });
+    const basePrompt = buildPrompt(order);
+    const clips = (assets || []).map((asset: any, idx: number) => ({
+      order_id: orderId,
+      asset_id: asset.id,
+      seq: idx + 1,
+      model: "seedance_2_0",
+      mode: "std",
+      resolution: order.resolution || "1080p",
+      duration_seconds: 5,
+      prompt: basePrompt,
+      status: "queued",
+    }));
+    const { error: clipsErr } = await supabase.from("revideo_clips").insert(clips);
+    if (clipsErr) throw clipsErr;
+  }
+
+  const { data: createdClips } = await supabase
+    .from("revideo_clips")
+    .select("*")
+    .eq("order_id", orderId)
+    .order("seq", { ascending: true });
+  const queued = (createdClips || []).filter((c: any) => c.status === "queued");
+  for (const clip of queued.slice(0, MAX_CONCURRENT_DEFAULT)) {
+    try {
+      await submitHiggsfieldClip(supabase, clip, order);
+    } catch (e) {
+      console.error(`Failed to submit clip ${clip.id}:`, e);
+    }
+  }
+
+  await supabase
+    .from("revideo_orders")
+    .update({
+      status: "generating",
+      photos_uploaded_at: order.photos_uploaded_at || nowIso,
+      automation_started_at: nowIso,
+      admin_notified_at: order.admin_notified_at || nowIso,
+      updated_at: nowIso,
+    })
+    .eq("id", orderId);
+
+  if (resendKey) {
+    try {
+      await sendAdminEmail(
+        resendKey,
+        `ReVideos: production started #${orderId.slice(0, 8)}`,
+        `Automation started for ${order.package_name} (${order.photo_count} photos · ${order.resolution}).<br>Customer: ${order.customer_email || "—"}`,
+      );
+    } catch (e) { console.error("admin email failed", e); }
+  }
+  return { started: true, status: "generating" };
+}
 
 export function getEnv(name: string): string {
   const value = Deno.env.get(name);

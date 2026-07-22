@@ -50,9 +50,11 @@ const faqs = [
 const ReVideos = () => {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState<{ done: number; total: number } | null>(null);
   const [selected, setSelected] = useState<Pkg['id']>('p15_hd');
   const [files, setFiles] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [notes, setNotes] = useState('');
   const [rights, setRights] = useState(false);
@@ -72,11 +74,7 @@ const ReVideos = () => {
   }, []);
 
   useEffect(() => {
-    // trim files if package downgrades photo count
-    if (files.length > pkg.photos) {
-      const trimmed = files.slice(0, pkg.photos);
-      setFiles(trimmed);
-    }
+    if (files.length > pkg.photos) setFiles(files.slice(0, pkg.photos));
   }, [pkg.photos]); // eslint-disable-line
 
   useEffect(() => {
@@ -100,39 +98,67 @@ const ReVideos = () => {
       }
       accepted.push(f);
     }
-    const combined = [...files, ...accepted].slice(0, pkg.photos);
-    setFiles(combined);
+    setFiles([...files, ...accepted].slice(0, pkg.photos));
   };
 
   const removeFile = (idx: number) => setFiles(files.filter((_, i) => i !== idx));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user) { toast.error('Please sign in to place an order'); return; }
+    if (!name.trim()) { toast.error('Name is required'); return; }
     if (!email.trim()) { toast.error('Email is required'); return; }
     if (!rights) { toast.error('Please confirm you own the rights to the photos'); return; }
     if (files.length !== pkg.photos) {
       toast.error(`This package requires exactly ${pkg.photos} photos. You have ${files.length}.`);
       return;
     }
+
     setLoading(true);
-    const { data, error } = await supabase.functions.invoke('create-revideo-checkout', {
-      body: {
-        package_name: pkg.id,
-        price_cents: pkg.priceCents,
-        photo_count: pkg.photos,
-        resolution: pkg.resolution,
-        customer_email: email.trim(),
-        special_requests: notes.trim(),
-        rights_accepted: true,
+    try {
+      // 1) Create the order (name + email saved immediately, status awaiting_payment)
+      const { data: orderData, error: orderErr } = await supabase.functions.invoke('create-revideo-order', {
+        body: {
+          package_name: pkg.id,
+          price_cents: pkg.priceCents,
+          photo_count: pkg.photos,
+          resolution: pkg.resolution,
+          customer_name: name.trim(),
+          customer_email: email.trim(),
+          special_requests: notes.trim(),
+          rights_accepted: true,
+        }
+      });
+      if (orderErr || !orderData?.order_id) throw new Error(orderErr?.message || 'Could not create order');
+      const orderId: string = orderData.order_id;
+
+      // 2) Upload every photo BEFORE redirecting to Stripe
+      setUploadProgress({ done: 0, total: files.length });
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const { data: urlData, error: urlErr } = await supabase.functions.invoke('create-revideo-upload-url', {
+          body: { order_id: orderId, filename: file.name, file_size: file.size, mime_type: file.type },
+        });
+        if (urlErr || !urlData?.signedUrl) throw new Error(urlErr?.message || `Upload failed for ${file.name}`);
+        const res = await fetch(urlData.signedUrl, {
+          method: 'PUT', body: file, headers: { 'Content-Type': file.type },
+        });
+        if (!res.ok) throw new Error(`Upload failed for ${file.name}: ${res.statusText}`);
+        setUploadProgress({ done: i + 1, total: files.length });
       }
-    });
-    setLoading(false);
-    if (error || !data?.url) { toast.error(error?.message || 'Checkout failed'); return; }
-    // Photos will be uploaded on the success page after payment
-    sessionStorage.setItem('revideo_pending_photo_count', String(pkg.photos));
-    window.location.href = data.url;
+
+      // 3) Create Stripe checkout for this order and redirect
+      const { data: coData, error: coErr } = await supabase.functions.invoke('create-revideo-checkout', {
+        body: { order_id: orderId },
+      });
+      if (coErr || !coData?.url) throw new Error(coErr?.message || 'Checkout failed');
+      window.location.href = coData.url;
+    } catch (err: any) {
+      toast.error(err?.message || 'Something went wrong');
+      setLoading(false);
+      setUploadProgress(null);
+    }
   };
+
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
@@ -252,6 +278,35 @@ const ReVideos = () => {
                 </ul>
               </div>
 
+              {/* Name */}
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-slate-200">Full name *</Label>
+                <Input
+                  id="name"
+                  type="text"
+                  required
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  className="bg-slate-800 border-slate-600 text-slate-50 placeholder:text-slate-500"
+                  placeholder="Jane Doe"
+                />
+              </div>
+
+              {/* Email */}
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-slate-200">Email *</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  className="bg-slate-800 border-slate-600 text-slate-50 placeholder:text-slate-500"
+                  placeholder="you@example.com"
+                />
+                <p className="text-xs text-slate-500">We'll deliver your finished video here.</p>
+              </div>
+
               {/* Uploader */}
               <div className="space-y-2">
                 <Label className="text-slate-200">Photos ({files.length}/{pkg.photos})</Label>
@@ -293,21 +348,7 @@ const ReVideos = () => {
                     ))}
                   </div>
                 )}
-                <p className="text-xs text-slate-500">Photos will be uploaded securely after payment.</p>
-              </div>
-
-              {/* Email */}
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-slate-200">Email *</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  required
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  className="bg-slate-800 border-slate-600 text-slate-50 placeholder:text-slate-500"
-                  placeholder="you@example.com"
-                />
+                <p className="text-xs text-slate-500">Your photos are uploaded securely to our servers before you're taken to checkout.</p>
               </div>
 
               {/* Optional note */}
@@ -334,20 +375,20 @@ const ReVideos = () => {
                 </span>
               </label>
 
-              {!user && (
-                <div className="p-4 rounded-lg bg-slate-800 text-sm text-slate-300">
-                  <Link to="/auth?redirect=/revideos" className="text-blue-400 underline">Sign in</Link> to place an order.
-                </div>
-              )}
-
               <Button
                 type="submit"
-                disabled={loading || !user || files.length !== pkg.photos || !rights}
+                disabled={loading || files.length !== pkg.photos || !rights || !name.trim() || !email.trim()}
                 className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:opacity-90"
               >
-                {loading ? <Loader2 className="animate-spin" /> : `Pay $${(pkg.priceCents/100).toFixed(0)} & continue`}
+                {loading
+                  ? (uploadProgress
+                      ? <span className="flex items-center gap-2"><Loader2 className="animate-spin" size={16}/> Uploading {uploadProgress.done}/{uploadProgress.total}…</span>
+                      : <Loader2 className="animate-spin" />)
+                  : `Continue to payment · $${(pkg.priceCents/100).toFixed(0)}`}
               </Button>
+              <p className="text-xs text-slate-500 text-center">You'll be redirected to Stripe after your photos finish uploading.</p>
             </form>
+
           </CardContent>
         </Card>
       </section>
