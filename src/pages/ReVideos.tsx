@@ -278,6 +278,35 @@ const ReVideos = () => {
                 </ul>
               </div>
 
+              {/* Name */}
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-slate-200">Full name *</Label>
+                <Input
+                  id="name"
+                  type="text"
+                  required
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  className="bg-slate-800 border-slate-600 text-slate-50 placeholder:text-slate-500"
+                  placeholder="Jane Doe"
+                />
+              </div>
+
+              {/* Email */}
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-slate-200">Email *</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  className="bg-slate-800 border-slate-600 text-slate-50 placeholder:text-slate-500"
+                  placeholder="you@example.com"
+                />
+                <p className="text-xs text-slate-500">We'll deliver your finished video here.</p>
+              </div>
+
               {/* Uploader */}
               <div className="space-y-2">
                 <Label className="text-slate-200">Photos ({files.length}/{pkg.photos})</Label>
@@ -319,21 +348,7 @@ const ReVideos = () => {
                     ))}
                   </div>
                 )}
-                <p className="text-xs text-slate-500">Photos will be uploaded securely after payment.</p>
-              </div>
-
-              {/* Email */}
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-slate-200">Email *</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  required
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  className="bg-slate-800 border-slate-600 text-slate-50 placeholder:text-slate-500"
-                  placeholder="you@example.com"
-                />
+                <p className="text-xs text-slate-500">Your photos are uploaded securely to our servers before you're taken to checkout.</p>
               </div>
 
               {/* Optional note */}
@@ -360,20 +375,20 @@ const ReVideos = () => {
                 </span>
               </label>
 
-              {!user && (
-                <div className="p-4 rounded-lg bg-slate-800 text-sm text-slate-300">
-                  <Link to="/auth?redirect=/revideos" className="text-blue-400 underline">Sign in</Link> to place an order.
-                </div>
-              )}
-
               <Button
                 type="submit"
-                disabled={loading || !user || files.length !== pkg.photos || !rights}
+                disabled={loading || files.length !== pkg.photos || !rights || !name.trim() || !email.trim()}
                 className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:opacity-90"
               >
-                {loading ? <Loader2 className="animate-spin" /> : `Pay $${(pkg.priceCents/100).toFixed(0)} & continue`}
+                {loading
+                  ? (uploadProgress
+                      ? <span className="flex items-center gap-2"><Loader2 className="animate-spin" size={16}/> Uploading {uploadProgress.done}/{uploadProgress.total}…</span>
+                      : <Loader2 className="animate-spin" />)
+                  : `Continue to payment · $${(pkg.priceCents/100).toFixed(0)}`}
               </Button>
+              <p className="text-xs text-slate-500 text-center">You'll be redirected to Stripe after your photos finish uploading.</p>
             </form>
+
           </CardContent>
         </Card>
       </section>
