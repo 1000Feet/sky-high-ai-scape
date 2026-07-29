@@ -64,12 +64,6 @@ const Navigation = () => {
               >
                 SEO/GEO
               </Link>
-              <Link
-                to="/revideos"
-                className="text-gray-300 hover:text-blue-400 px-3 py-2 text-sm font-medium transition-all duration-200 hover:scale-105"
-              >
-                Video AI
-              </Link>
             </div>
             <Button asChild size="sm">
               <Link 
