@@ -381,7 +381,7 @@ const AdminDashboard: React.FC = () => {
           <TabsTrigger value="potential">Potential Clients ({potentialClientsCount})</TabsTrigger>
           <TabsTrigger value="reserva-mesa">🇨🇷 Reserva Mesa ({reservaMesaCount})</TabsTrigger>
           <TabsTrigger value="audits">🔍 Audits</TabsTrigger>
-          <TabsTrigger value="revideos">🎬 ReVideos</TabsTrigger>
+          
         </TabsList>
 
         <TabsContent value="signups">
@@ -689,9 +689,6 @@ const AdminDashboard: React.FC = () => {
         </TabsContent>
         <TabsContent value="audits">
           <AuditsTab />
-        </TabsContent>
-        <TabsContent value="revideos">
-          <ReVideosAdminTab />
         </TabsContent>
       </Tabs>
 
