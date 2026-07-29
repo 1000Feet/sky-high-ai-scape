@@ -23,6 +23,18 @@ Deno.serve(async (req) => {
   const serviceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
   const supabase = createClient(supabaseUrl, serviceKey)
 
+  // Short-circuit: only run when there is an active campaign batch.
+  const [runningBatches, runningReserva] = await Promise.all([
+    supabase.from('email_batches').select('id').eq('status', 'running').limit(1),
+    supabase.from('email_batches_reserva_mesa').select('id').eq('status', 'running').limit(1),
+  ])
+  if ((runningBatches.data || []).length === 0 && (runningReserva.data || []).length === 0) {
+    return new Response(JSON.stringify({ dispatched: 0, reason: 'no active campaigns' }), {
+      status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
+  }
+
+
   // 1. Recover stale leases first (workers that crashed / timed out).
   const { data: recovered, error: recErr } = await supabase
     .from('email_send_queue')
