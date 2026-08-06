@@ -12,8 +12,6 @@ interface Venture {
 
 const ventures: Venture[] = [
   { id: 'dawlink', name: 'DawLink AI', logo: '/ventures/DawLink-AI-Logo-LR-Dark-Bk.jpg', description: 'AI tools for music producers — bridge the gap between your DAW and creative ideas.', url: 'https://dawlinkai.com', darkBg: true },
-  
-  { id: 'dawlink', name: 'DawLink AI', logo: '/ventures/DawLink-AI-Logo-LR-Dark-Bk.jpg', description: 'AI tools for music producers — bridge the gap between your DAW and creative ideas.', url: 'https://dawlinkai.com', darkBg: true },
   { id: 'aiwege', name: 'AIwege', logo: '/ventures/AIwege-Logo.jpg', description: 'AI-powered website generator — build professional websites in minutes, no coding required.', url: 'https://aiwege.com' },
   { id: 'reservamesa', name: 'ReservaMesa', logo: '/ventures/reservamesa-logo.png', description: 'AI-driven restaurant reservations and table management for the Spanish-speaking market.', url: 'https://reservamesa.cr' },
   { id: 'rat', name: 'Reserve A Table', logo: '/ventures/RAT-Logo-Circle.png', description: 'AI-driven restaurant booking and tables management system — seamless for both diners and venues.', url: '' },
