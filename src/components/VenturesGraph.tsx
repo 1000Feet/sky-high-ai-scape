@@ -18,7 +18,7 @@ const ventures: Venture[] = [
   { id: 'rat', name: 'Reserve A Table', logo: '/ventures/RAT-Logo-Circle.png', description: 'AI-driven restaurant booking and tables management system — seamless for both diners and venues.', url: '' },
   { id: 'conciergedesk', name: 'ConciergeDesk', logo: '/ventures/ConciergeDesk-Logo.png', description: 'AI-powered concierge service for hotels and hospitality businesses.', url: '' },
   { id: 'time4love', name: 'Time 4 Love', logo: '/ventures/Time-4-Love-Logo.png', description: 'Volunteer recruitment and HR management platform for charity organizations and non-profits.', url: 'https://time4love.org' },
-  { id: 'gyrotours', name: 'GyroTours', logo: '/ventures/GyroTours-Logo.png', description: 'Gyrocopter tours in Costa Rica — an unforgettable aerial adventure over stunning landscapes.', url: 'https://gyrotours.cr' },
+  
   { id: 'nameswiki', name: 'NamesWiki', logo: '/ventures/nameswiki-logo.png', description: 'The world\'s largest searchable database of names — meanings, origins, and cultural history.', url: 'https://nameswiki.com' },
   { id: 'wonderlogo', name: 'Wonderlogo', logo: '/ventures/Wonderlogo-Logo.jpg', description: 'Generate stunning, professional logos in seconds with AI — for businesses of any size.', url: 'https://wonderlogo.art' },
   { id: 'flashlogo', name: 'Flashlogo', logo: '/ventures/Flashlogo-Logo.jpg', description: 'Instant AI logo creation tailored for freelancers, creators, and personal brands.', url: 'https://flashlogo.com' },
