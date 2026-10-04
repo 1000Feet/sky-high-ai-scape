@@ -1,14 +1,14 @@
-# Music explainer demo — giro I–V–vi–IV
+# Music explainer demo — the I–V–vi–IV progression
 
-Animazione verticale 9:16 (1080×1920, 39 s) sul giro di accordi I–V–vi–IV con esempi da brani famosi.
+Vertical 9:16 animation (1080×1920, 39 s) explaining pop's most famous chord progression, with examples from Let It Be, With or Without You, Someone Like You and Don't Stop Believin'.
 
-- `timeline.js` — tempi di scene, accordi, didascalie e brani (condiviso da audio e video)
-- `audio.js` — sintetizza la colonna sonora in `audio.wav` (nessuna registrazione originale)
-- `index.html` — animazione su canvas, funzione `draw(t)`
-- `render.js` — renderizza con Playwright + ffmpeg in `demo.mp4` (`node render.js 5 10` per anteprime)
+- `timeline.js` — scene, chord, caption and song timings (shared by audio and video)
+- `audio.js` — synthesizes the soundtrack into `audio.wav` (no original recordings)
+- `index.html` — canvas animation, `draw(t)` function
+- `render.js` — renders with Playwright + ffmpeg into `demo.mp4` (`node render.js 5 10` for preview stills)
 
 ```
 node audio.js && node render.js
 ```
 
-Font: DM Sans / DM Mono (SIL Open Font License).
+Fonts: DM Sans / DM Mono (SIL Open Font License).

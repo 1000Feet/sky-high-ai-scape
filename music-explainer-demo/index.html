@@ -15,7 +15,7 @@ canvas{display:block}
 <script>
 const W = 1080, H = 1920, ctx = document.getElementById('c').getContext('2d');
 const CX = 540, CY = 830, RAD = 255;
-const NAMES = ['Do','Do#','Re','Re#','Mi','Fa','Fa#','Sol','Sol#','La','La#','Si'];
+const NAMES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
 const SCALE = [0, 2, 4, 5, 7, 9, 11];
 const DEG_COL = { 0:'#ff7a93', 2:'#ffa45c', 4:'#ffd84a', 5:'#7be07b', 7:'#45d6c8', 9:'#62a8ff', 11:'#b48cff' };
 const ACCENT = '#ffcf5a';
@@ -59,14 +59,14 @@ function text(str, x, y, { size = 40, weight = 700, family = 'DM Sans', color = 
 
 // ---------- scene title -------------
 function titleFor(t) {
-  if (t < TL.HOOK_END) return { label: '4 ACCORDI', title: 'MILLE CANZONI', accent: true, key: 'hook' };
-  if (t < TL.SCALE_END) return { label: 'IL PUNTO DI PARTENZA', title: 'LA SCALA DI DO', key: 'scale' };
-  if (t < TL.SONG_T0) return { label: 'IL GIRO PIÙ FAMOSO DEL POP', title: '4 ACCORDI', key: 'prog' };
+  if (t < TL.HOOK_END) return { label: '4 CHORDS', title: 'A THOUSAND SONGS', accent: true, key: 'hook' };
+  if (t < TL.SCALE_END) return { label: 'THE STARTING POINT', title: 'THE C MAJOR SCALE', key: 'scale' };
+  if (t < TL.SONG_T0) return { label: "POP'S MOST FAMOUS PROGRESSION", title: '4 CHORDS', key: 'prog' };
   if (t < TL.OUTRO_T0) {
     const si = Math.floor((t - TL.SONG_T0) / TL.SONG_LEN), s = TL.SONGS[si];
-    return { label: 'LO SENTI IN', title: s.title, sub: `${s.artist} · ${s.year} · in ${s.keyName}`, key: 'song' + si, t0: s.t0 };
+    return { label: 'YOU HEAR IT IN', title: s.title, sub: `${s.artist} · ${s.year} · in ${s.keyName}`, key: 'song' + si, t0: s.t0 };
   }
-  return { label: 'CAMBIA LA TONALITÀ', title: 'STESSA FORMA', accent: true, key: 'outro', t0: TL.OUTRO_T0 };
+  return { label: 'CHANGE THE KEY', title: 'SAME SHAPE', accent: true, key: 'outro', t0: TL.OUTRO_T0 };
 }
 const SCENE_STARTS = { hook: 0, scale: TL.HOOK_END, prog: TL.PROG_T0 };
 
@@ -76,7 +76,7 @@ function drawTitle(t) {
   const k = easeOut((t - t0) / 0.45);
   const dy = (1 - k) * 24;
   text(T.label, CX, 230 + dy, { size: 28, weight: 500, family: 'DM Mono', color: T.accent ? ACCENT : '#8a8a92', spacing: 6, alpha: k });
-  const tsize = T.title.length > 16 ? 72 : 88;
+  const tsize = T.title.length > 15 ? 72 : 88;
   text(T.title, CX, 310 + dy, { size: tsize, weight: 800, color: T.accent ? ACCENT : '#ffffff', alpha: k, blur: T.accent ? 30 : 12 });
   if (T.sub) text(T.sub, CX, 385 + dy, { size: 32, weight: 400, family: 'DM Mono', color: '#b9b9c2', alpha: k * 0.9 });
 }
@@ -240,7 +240,7 @@ function drawKeyboard(t, ci) {
     ctx.globalAlpha = a * (on ? 0.55 + 0.45 * on.k : 0.9);
     ctx.beginPath(); ctx.roundRect(x + 2, KB_Y, KW - 4, KB_H, [0, 0, 8, 8]); ctx.fill();
     noGlow();
-    if (mod(m, 12) === 0) { ctx.globalAlpha = a * 0.5; text('Do' + (Math.floor(m / 12) - 1), x + KW / 2, KB_Y + KB_H - 22, { size: 16, weight: 500, family: 'DM Mono', color: '#55555d' }); }
+    if (mod(m, 12) === 0) { ctx.globalAlpha = a * 0.5; text('C' + (Math.floor(m / 12) - 1), x + KW / 2, KB_Y + KB_H - 22, { size: 16, weight: 500, family: 'DM Mono', color: '#55555d' }); }
   }
   for (let m = KB_LO; m <= KB_HI; m++) {
     if (!isBlack(m)) continue;
@@ -316,7 +316,7 @@ function draw(t) {
   drawRoman(t, ci);
   drawKeyboard(t, ci);
   drawCaption(t);
-  if (t > TL.OUTRO_T0 + 3) text('Che brano analizziamo dopo?', CX, 1600, { size: 30, weight: 500, family: 'DM Mono', color: ACCENT, alpha: easeOut((t - TL.OUTRO_T0 - 3) / 0.5) });
+  if (t > TL.OUTRO_T0 + 3) text('Which song should we break down next?', CX, 1600, { size: 30, weight: 500, family: 'DM Mono', color: ACCENT, alpha: easeOut((t - TL.OUTRO_T0 - 3) / 0.5) });
 }
 window.draw = draw;
 draw(0);

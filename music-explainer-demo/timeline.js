@@ -8,10 +8,10 @@
   ];
 
   const SONGS = [
-    { title: 'Let It Be', artist: 'The Beatles', year: 1970, key: 0, keyName: 'Do' },
-    { title: 'With or Without You', artist: 'U2', year: 1987, key: 2, keyName: 'Re' },
-    { title: 'Someone Like You', artist: 'Adele', year: 2011, key: -3, keyName: 'La' },
-    { title: "Don't Stop Believin'", artist: 'Journey', year: 1981, key: 4, keyName: 'Mi' },
+    { title: 'Let It Be', artist: 'The Beatles', year: 1970, key: 0, keyName: 'C' },
+    { title: 'With or Without You', artist: 'U2', year: 1987, key: 2, keyName: 'D' },
+    { title: 'Someone Like You', artist: 'Adele', year: 2011, key: -3, keyName: 'A' },
+    { title: "Don't Stop Believin'", artist: 'Journey', year: 1981, key: 4, keyName: 'E' },
   ];
 
   const HOOK_END = 3.2, SCALE_END = 7.2, PROG_T0 = 7.2, SONG_T0 = 13.6, SONG_LEN = 4.8;
@@ -45,15 +45,15 @@
   pushKey(OUTRO_T0, 0);
 
   const CAPTIONS = [
-    { t0: 0.2,  t1: 3.2,  text: 'Perché così tante hit suonano uguali?' },
-    { t0: 3.3,  t1: 7.1,  text: 'Prendi le sette note della scala di Do.' },
-    { t0: 7.2,  t1: 13.5, text: 'Costruisci quattro accordi: primo, quinto, sesto e quarto grado.' },
-    { t0: 13.6, t1: 18.4, text: 'Li senti in Let It Be dei Beatles…' },
-    { t0: 18.4, t1: 23.2, text: '…in With or Without You degli U2…' },
-    { t0: 23.2, t1: 28.0, text: '…in Someone Like You di Adele…' },
-    { t0: 28.0, t1: 32.8, text: "…e in Don't Stop Believin' dei Journey." },
-    { t0: 32.8, t1: 35.4, text: 'Cambia la tonalità…' },
-    { t0: 35.4, t1: 39.0, text: '…ma la forma resta identica.' },
+    { t0: 0.2,  t1: 3.2,  text: 'Why do so many hits sound the same?' },
+    { t0: 3.3,  t1: 7.1,  text: 'Take the seven notes of the C major scale.' },
+    { t0: 7.2,  t1: 13.5, text: 'Build four chords on the first, fifth, sixth and fourth notes.' },
+    { t0: 13.6, t1: 18.4, text: 'You hear them in Let It Be by the Beatles…' },
+    { t0: 18.4, t1: 23.2, text: '…in With or Without You by U2…' },
+    { t0: 23.2, t1: 28.0, text: '…in Someone Like You by Adele…' },
+    { t0: 28.0, t1: 32.8, text: "…and in Don't Stop Believin' by Journey." },
+    { t0: 32.8, t1: 35.4, text: 'Change the key…' },
+    { t0: 35.4, t1: 39.0, text: '…and the shape stays the same.' },
   ];
 
   const TL = { PROG, SONGS, CHORDS, TEASER, SCALE_NOTES, KEYFRAMES, CAPTIONS,
