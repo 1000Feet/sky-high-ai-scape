@@ -67,8 +67,11 @@ function titleFor(t) {
     const si = Math.max(0, TL.SONGS.findIndex(s => t >= s.t0 && t < s.t1)), s = TL.SONGS[si];
     return { label: 'YOU HEAR IT IN', title: s.title, sub: `${s.artist} · ${s.year} · in ${s.keyName}`, key: 'song' + si, t0: s.t0 };
   }
-  return { label: 'CHANGE THE KEY', title: 'SAME SHAPE', accent: true, key: 'outro', t0: TL.OUTRO_T0 };
+  if (t < TL.P2_T0) return { label: 'CHANGE THE KEY', title: 'SAME SHAPE', accent: true, key: 'outro', t0: TL.OUTRO_T0 };
+  const sc = sceneP2(t);
+  return { ...sc, key: sc.id };
 }
+const sceneP2 = t => TL.P2.find(s => t >= s.t0 && t < s.t1) || TL.P2[TL.P2.length - 1];
 const SCENE_STARTS = { hook: 0, scale: TL.HOOK_END, prog: TL.PROG_T0 };
 
 function drawTitle(t) {
@@ -86,11 +89,13 @@ function drawTitle(t) {
 function drawRoman(t, ci) {
   if (t < TL.PROG_T0) return;
   const a = easeOut((t - TL.PROG_T0) / 0.5);
-  const y = t >= TL.SONG_T0 ? 465 : 425;
+  const T = titleFor(t);
+  const y = T.sub || (t >= TL.SONG_T0 && t < TL.P2_T0) ? 465 : 425;
   const xs = [-270, -90, 90, 270];
   const active = ci >= 0 && !TL.CHORDS[ci].outro ? TL.CHORDS[ci].idx : -1;
-  TL.PROG.forEach((p, i) => {
-    const on = i === active;
+  const order = T.order || [0, 1, 2, 3];
+  order.map(j => TL.PROG[j]).forEach((p, i) => {
+    const on = order[i] === active;
     const col = DEG_COL[p.root];
     const since = on ? t - TL.CHORDS[ci].t0 : 9;
     const s = on ? 1 + 0.18 * Math.exp(-since * 6) : 1;
@@ -168,13 +173,17 @@ function chordVerts(c) { return TL.PROG[c.idx].upper.map(m => mod(m, 12)); }
 
 function drawChord(t, ci, kv) {
   if (ci < 0) return;
+  const M = TL.MIRROR;
+  if (t >= M.flipT0 && t < M.flipT1) return drawFlip(t, kv);
   const c = TL.CHORDS[ci], p = TL.PROG[c.idx];
   const col = DEG_COL[p.root];
   let verts = chordVerts(c);
   const since = t - c.t0;
   let grow = 1;
   const prev = TL.CHORDS[ci - 1];
-  if (prev && Math.abs(prev.t1 - c.t0) < 0.01) {
+  if (c.snap) {
+    // keep the shape where the mirror flip left it
+  } else if (prev && Math.abs(prev.t1 - c.t0) < 0.01) {
     const pv = chordVerts(prev), k = ease(since / 0.28);
     verts = verts.map((v, i) => { const d = mod(v - pv[i] + 6, 12) - 6; return pv[i] + d * k; });
   } else grow = backOut(since / 0.4);
@@ -207,6 +216,102 @@ function drawChord(t, ci, kv) {
   ctx.restore();
 }
 
+// ---------- part 2 overlays -------------
+function reflectPc(p, axis) { return 2 * axis - p; } // mirror across the line through pc `axis`
+function drawFlip(t, kv) {
+  const M = TL.MIRROR, k = ease((t - M.flipT0) / (M.flipT1 - M.flipT0));
+  const from = TL.PROG[M.from], to = TL.PROG[M.to];
+  const pts = from.upper.map(m => {
+    const p = mod(m, 12), [x0, y0] = pos(p + kv), [x1, y1] = pos(reflectPc(p, M.axis[0]) + kv);
+    return [x0 + (x1 - x0) * k, y0 + (y1 - y0) * k];
+  });
+  const col = k < 0.5 ? DEG_COL[from.root] : DEG_COL[to.root];
+  ctx.save();
+  ctx.beginPath(); pts.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.closePath();
+  ctx.fillStyle = rgba(col, 0.1 + 0.15 * Math.abs(1 - 2 * k)); ctx.fill();
+  glow(col, 30); ctx.strokeStyle = col; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.stroke();
+  ctx.restore();
+}
+function drawMirrorAxis(t, kv) {
+  const M = TL.MIRROR;
+  if (t < M.t0 || t >= M.t1) return;
+  const a = easeOut((t - M.t0) / 0.4) * (1 - easeOut((t - M.t1 + 0.4) / 0.4));
+  const [x0, y0] = pos(M.axis[0] + kv, RAD + 30), [x1, y1] = pos(M.axis[1] + kv, RAD + 30);
+  const grow = easeOut((t - M.t0) / 0.6), mx = (x0 + x1) / 2, my = (y0 + y1) / 2;
+  ctx.save(); ctx.globalAlpha = a * 0.8;
+  ctx.setLineDash([14, 10]); ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 3; glow('#ffffff', 16);
+  ctx.beginPath(); ctx.moveTo(mx + (x0 - mx) * grow, my + (y0 - my) * grow); ctx.lineTo(mx + (x1 - mx) * grow, my + (y1 - my) * grow); ctx.stroke();
+  ctx.restore();
+  const [lx, ly] = pos(M.axis[1] + kv, RAD + 58);
+  text('MIRROR', lx + 40, ly + 40, { size: 24, weight: 500, family: 'DM Mono', color: '#ffffff', spacing: 4, alpha: a * 0.8 });
+}
+function drawGhosts(t, kv) {
+  for (const g of TL.GHOSTS) {
+    if (t < g.t0 || t >= g.t1) continue;
+    const a = easeOut((t - g.t0) / 0.3) * (1 - easeOut((t - g.t1 + 0.5) / 0.5));
+    const pts = TL.PROG[g.idx].upper.map(m => pos(mod(m, 12) + g.key + kv));
+    const flicker = 0.75 + 0.25 * Math.sin(t * 18);
+    ctx.save(); ctx.globalAlpha = a * flicker;
+    ctx.setLineDash([12, 10]); ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 3;
+    ctx.beginPath(); pts.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.closePath(); ctx.stroke();
+    ctx.restore();
+    const cx = pts.reduce((s, p) => s + p[0], 0) / 3, cy = pts.reduce((s, p) => s + p[1], 0) / 3;
+    pill(g.label + '?', cx, cy + 70, '#ffffff', a * flicker);
+  }
+}
+function pill(str, x, y, col, a, scale = 1) {
+  if (a <= 0) return;
+  ctx.save(); ctx.globalAlpha = a; ctx.translate(x, y); ctx.scale(scale, scale);
+  ctx.font = `500 24px 'DM Mono'`; ctx.letterSpacing = '3px';
+  const w = ctx.measureText(str).width + 30;
+  ctx.fillStyle = 'rgba(11,11,13,0.85)'; ctx.strokeStyle = col; ctx.lineWidth = 2; glow(col, 14);
+  ctx.beginPath(); ctx.roundRect(-w / 2, -21, w, 42, 21); ctx.fill(); ctx.stroke(); noGlow();
+  ctx.fillStyle = col; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(str, 1, 1);
+  ctx.restore();
+}
+function drawTags(t, kv) {
+  for (const g of TL.TAGS) {
+    if (t < g.t0 || t >= g.t1) continue;
+    const a = clamp((t - g.t0) / 0.2) * (1 - easeOut((t - g.t1 + 0.3) / 0.3));
+    const [x, y] = pos(g.pc + kv, RAD - 92);
+    pill(g.text, x, y, g.color || DEG_COL[g.pc], a, backOut((t - g.t0) / 0.35));
+  }
+}
+function drawRings(t, kv) {
+  for (const r of TL.RINGS) {
+    if (t < r.t0 || t >= r.t1) continue;
+    const a = easeOut((t - r.t0) / 0.25) * (1 - easeOut((t - r.t1 + 0.3) / 0.3));
+    const beat = 0.5 + 0.5 * Math.sin((t - r.t0) * 9);
+    for (const pc of r.pcs) {
+      const [x, y] = pos(pc + kv);
+      ctx.save(); ctx.globalAlpha = a; glow(r.color, 30);
+      ctx.strokeStyle = r.color; ctx.lineWidth = 4;
+      ctx.beginPath(); ctx.arc(x, y, 34 + 8 * beat, 0, Math.PI * 2); ctx.stroke();
+      ctx.restore();
+    }
+  }
+}
+function drawArrows(t, kv) {
+  for (const ar of TL.ARROWS) {
+    if (t < ar.t0 || t >= ar.t1) continue;
+    const a = easeOut((t - ar.t0) / 0.3) * (1 - easeOut((t - ar.t1 + 0.3) / 0.3));
+    const grow = easeOut((t - ar.t0) / 0.6);
+    const r = RAD + 30, a0 = ang(ar.from + kv), a1 = ang(ar.from + kv + (ar.to - ar.from) * grow);
+    ctx.save(); ctx.globalAlpha = a; glow(ar.color, 24);
+    ctx.strokeStyle = ar.color; ctx.fillStyle = ar.color; ctx.lineWidth = 5; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.arc(CX, CY, r, a0, a1); ctx.stroke();
+    const hx = CX + Math.cos(a1) * r, hy = CY + Math.sin(a1) * r, d = a1 + Math.PI / 2;
+    ctx.beginPath();
+    ctx.moveTo(hx + Math.cos(d) * 16, hy + Math.sin(d) * 16);
+    ctx.lineTo(hx + Math.cos(d + 2.5) * 16, hy + Math.sin(d + 2.5) * 16);
+    ctx.lineTo(hx + Math.cos(d - 2.5) * 16, hy + Math.sin(d - 2.5) * 16);
+    ctx.closePath(); ctx.fill();
+    ctx.restore();
+    const [lx, ly] = pos((ar.from + ar.to) / 2 + kv, RAD - 150);
+    text(ar.label, lx, ly, { size: 24, weight: 500, family: 'DM Mono', color: ar.color, spacing: 3, alpha: a });
+  }
+}
+
 // ---------- keyboard -------------
 const KB_LO = 36, KB_HI = 76, KB_Y = 1195, KB_H = 165;
 const isBlack = m => [1, 3, 6, 8, 10].includes(mod(m, 12));
@@ -228,6 +333,7 @@ function pressedNotes(t, ci) {
     const k = c.outro ? 1 - clamp((t - c.t0) / 5) * 0.5 : 1 - (t - c.t0) / (c.t1 - c.t0) * 0.5;
     [...p.upper, p.bass].forEach(m => out.set(m + c.key, { deg: mod(m, 12), k }));
   }
+  for (const n of TL.EXTRA_NOTES) if (t >= n.t0 && t < n.t0 + n.dur) out.set(n.m, { deg: 11, k: 1 });
   return out;
 }
 function drawKeyboard(t, ci) {
@@ -301,24 +407,31 @@ function draw(t) {
   const kv = keyVis(t), ci = chordAt(t);
   drawTitle(t);
   drawCircle(t, kv);
-  if (t >= TL.SONG_T0 - 0.2) {
+  if (t >= TL.SONG_T0 - 0.2 && t < TL.P2_T0 + 0.6) {
     const a = easeOut((t - TL.SONG_T0 + 0.2) / 0.6);
     if (t >= TL.OUTRO_T0) {
-      const o = easeOut((t - TL.OUTRO_T0 - 0.4) / 0.8);
+      const o = easeOut((t - TL.OUTRO_T0 - 0.4) / 0.8) * (1 - easeOut((t - TL.P2_T0) / 0.6));
       const m = ease((t - TL.OUTRO_T0 - 1.0) / 1.8);
       TL.SONGS.forEach((s, i) => {
         const d = mod(-s.key + 6, 12) - 6;
         drawProgShape(s.key + d * m, 0.55 * o * (1 - 0.6 * m), DEG_COL[[0, 7, 9, 5][i]], true);
       });
-      drawProgShape(0, 0.95 * m, ACCENT, false);
+      drawProgShape(0, 0.95 * m * (1 - easeOut((t - TL.P2_T0) / 0.6)), ACCENT, false);
     } else drawProgShape(kv, 0.35 * a);
   }
+  const sc = t >= TL.P2_T0 ? sceneP2(t) : null;
+  if (sc && sc.order) drawProgShape(kv, 0.35 * easeOut((t - TL.P2.find(s => s.order).t0) / 0.6));
+  drawMirrorAxis(t, kv);
   drawChord(t, ci, kv);
+  drawGhosts(t, kv);
+  drawRings(t, kv);
+  drawArrows(t, kv);
+  drawTags(t, kv);
   drawRoman(t, ci);
   drawKeyboard(t, ci);
   drawCaption(t);
-  const cta = TL.DURATION - 2.2;
-  if (t > cta) text('Which song should we break down next?', CX, 1600, { size: 30, weight: 500, family: 'DM Mono', color: ACCENT, alpha: easeOut((t - cta) / 0.5) });
+  const cta = TL.CTA_T0 + 0.6;
+  if (t > cta) text('Leave a song in the comments', CX, 1600, { size: 30, weight: 500, family: 'DM Mono', color: ACCENT, alpha: easeOut((t - cta) / 0.5) });
 }
 window.draw = draw;
 draw(0);

@@ -35,6 +35,8 @@ function bass(m, t0, dur, vel) {
 }
 
 function playChord(c, vel) {
+  if (c.mute) return;
+  if (c.soft) vel *= 0.6;
   const p = TL.PROG[c.idx];
   const dur = c.t1 - c.t0;
   const strikes = c.pulse ? [0, c.pulse] : [0];
@@ -48,6 +50,7 @@ function playChord(c, vel) {
 TL.TEASER.forEach(c => playChord(c, 0.16));
 TL.SCALE_NOTES.forEach(n => piano(n.m, n.t0, n.dur, 0.32, (n.m - 65) / 12));
 TL.CHORDS.forEach(c => playChord(c, c.outro ? 0.2 : 0.22));
+(TL.EXTRA_NOTES || []).forEach(n => piano(n.m, n.t0, n.dur, n.vel, 0));
 
 // simple Schroeder reverb
 function reverb(x) {

@@ -17,12 +17,30 @@ const SEGMENTS = [
   { id: 'song3',   text: "And Don't Stop Believin', by Journey." },
   { id: 'outro1',  text: 'Change the key, and the whole shape just rotates...' },
   { id: 'outro2',  text: "But it's the exact same shape." },
+  // part 2: what happens harmonically
+  { id: 'home',    text: 'So why does it work? Every key has a home... and C is home.' },
+  { id: 'tension', text: 'G pulls away. Its B sits a half step below home, aching to resolve.' },
+  { id: 'twist',   text: 'So your ear expects home. Instead... A minor.' },
+  { id: 'mirror',  text: 'Flip C in a mirror, and you get A minor. Same family... but sad.' },
+  { id: 'lift',    text: 'Then F lifts you up, and slides you back home.' },
+  { id: 'rot0',    text: 'Now start on the sad chord, and the whole mood flips.' },
+  { id: 'rot1',    text: 'Zombie, by the Cranberries...' },
+  { id: 'rot2',    text: 'Despacito...' },
+  { id: 'essence', text: "That's the essence of music: leave home, build tension... and find your way back." },
+  { id: 'cta',     text: 'Which song should I break down next?' },
 ];
 
 fs.mkdirSync(__dirname + '/vo', { recursive: true });
+// segments already generated with the same text are kept (no credits spent); FORCE=1 regenerates all
+let prev = null;
+try { prev = JSON.parse(fs.readFileSync(__dirname + '/voice.json')); } catch (e) {}
 const out = { voice_id: VOICE_ID, model_id: MODEL_ID, segments: {} };
 
 for (const seg of SEGMENTS) {
+  const old = prev && prev.voice_id === VOICE_ID && prev.segments[seg.id];
+  if (!process.env.FORCE && old && old.text === seg.text && fs.existsSync(`${__dirname}/vo/${seg.id}.mp3`)) {
+    out.segments[seg.id] = old; console.log(seg.id.padEnd(7), 'kept'); continue;
+  }
   const args = ['-sS', '-X', 'POST',
     `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}/with-timestamps?output_format=mp3_44100_128`,
     '-H', 'Content-Type: application/json',

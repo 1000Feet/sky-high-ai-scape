@@ -1,6 +1,9 @@
 # Music explainer demo — the I–V–vi–IV progression
 
-Vertical 9:16 animation (1080×1920, 39 s) explaining pop's most famous chord progression, with examples from Let It Be, With or Without You, Someone Like You and Don't Stop Believin'.
+Vertical 9:16 animation (1080×1920, ~1:32) explaining pop's most famous chord progression.
+
+- **Part 1** — the I–V–vi–IV progression and how it shows up in Let It Be, With or Without You, Someone Like You and Don't Stop Believin' (same shape, rotated per key).
+- **Part 2** — why it works: C is home, G pulls away (B is a half step below home), the deceptive cadence V → vi, C major mirrored across the D–G# axis becomes A minor, F lifts back home, starting on vi flips the mood (Zombie, Despacito), and the essence: tension and release.
 
 - `tts.js` — generates the English voiceover with ElevenLabs `eleven_v4` (voice: Jeremy – Warm, Trustworthy, Sincere) into `vo/`, plus word timings in `voice.json` / `voice.js`
 - `timeline.js` — scene, chord, caption and song timings (shared by audio and video); scenes stretch to fit the voice, captions and progression chords follow the spoken words
