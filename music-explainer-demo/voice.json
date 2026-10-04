@@ -1,0 +1,449 @@
+{
+ "voice_id": "EwzF7Z2UMSib9JaKx0Kg",
+ "model_id": "eleven_v4",
+ "segments": {
+  "hook": {
+   "text": "Why do so many hit songs sound... exactly the same?",
+   "dur": 4.205714,
+   "speechEnd": 4.24,
+   "words": [
+    {
+     "w": "Why",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "do",
+     "t": 0.36,
+     "end": 0.48
+    },
+    {
+     "w": "so",
+     "t": 0.56,
+     "end": 0.72
+    },
+    {
+     "w": "many",
+     "t": 0.8,
+     "end": 0.96
+    },
+    {
+     "w": "hit",
+     "t": 1.04,
+     "end": 1.28
+    },
+    {
+     "w": "songs",
+     "t": 1.36,
+     "end": 1.84
+    },
+    {
+     "w": "sound...",
+     "t": 2.08,
+     "end": 2.72
+    },
+    {
+     "w": "exactly",
+     "t": 2.88,
+     "end": 3.36
+    },
+    {
+     "w": "the",
+     "t": 3.44,
+     "end": 3.52
+    },
+    {
+     "w": "same?",
+     "t": 3.6,
+     "end": 4.24
+    }
+   ]
+  },
+  "scale": {
+   "text": "Take the seven notes of the C major scale.",
+   "dur": 3.082449,
+   "speechEnd": 3.04,
+   "words": [
+    {
+     "w": "Take",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "the",
+     "t": 0.32,
+     "end": 0.4
+    },
+    {
+     "w": "seven",
+     "t": 0.56,
+     "end": 0.8
+    },
+    {
+     "w": "notes",
+     "t": 0.88,
+     "end": 1.2
+    },
+    {
+     "w": "of",
+     "t": 1.28,
+     "end": 1.36
+    },
+    {
+     "w": "the",
+     "t": 1.44,
+     "end": 1.52
+    },
+    {
+     "w": "C",
+     "t": 1.6,
+     "end": 1.76
+    },
+    {
+     "w": "major",
+     "t": 1.84,
+     "end": 2.16
+    },
+    {
+     "w": "scale.",
+     "t": 2.24,
+     "end": 3.04
+    }
+   ]
+  },
+  "prog": {
+   "text": "Now build a chord on the first, the fifth, the sixth, and the fourth note.",
+   "dur": 4.91102,
+   "speechEnd": 4.96,
+   "words": [
+    {
+     "w": "Now",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "build",
+     "t": 0.32,
+     "end": 0.48
+    },
+    {
+     "w": "a",
+     "t": 0.56,
+     "end": 0.6
+    },
+    {
+     "w": "chord",
+     "t": 0.64,
+     "end": 0.96
+    },
+    {
+     "w": "on",
+     "t": 1.04,
+     "end": 1.12
+    },
+    {
+     "w": "the",
+     "t": 1.16,
+     "end": 1.2
+    },
+    {
+     "w": "first,",
+     "t": 1.36,
+     "end": 2
+    },
+    {
+     "w": "the",
+     "t": 2.08,
+     "end": 2.16
+    },
+    {
+     "w": "fifth,",
+     "t": 2.24,
+     "end": 2.88
+    },
+    {
+     "w": "the",
+     "t": 2.92,
+     "end": 2.96
+    },
+    {
+     "w": "sixth,",
+     "t": 3.12,
+     "end": 3.68
+    },
+    {
+     "w": "and",
+     "t": 3.76,
+     "end": 3.84
+    },
+    {
+     "w": "the",
+     "t": 3.88,
+     "end": 3.92
+    },
+    {
+     "w": "fourth",
+     "t": 4.08,
+     "end": 4.32
+    },
+    {
+     "w": "note.",
+     "t": 4.4,
+     "end": 4.96
+    }
+   ]
+  },
+  "song0": {
+   "text": "You've heard it in Let It Be, by the Beatles...",
+   "dur": 2.690612,
+   "speechEnd": 2.72,
+   "words": [
+    {
+     "w": "You've",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "heard",
+     "t": 0.24,
+     "end": 0.4
+    },
+    {
+     "w": "it",
+     "t": 0.44,
+     "end": 0.48
+    },
+    {
+     "w": "in",
+     "t": 0.56,
+     "end": 0.72
+    },
+    {
+     "w": "Let",
+     "t": 0.8,
+     "end": 0.88
+    },
+    {
+     "w": "It",
+     "t": 0.96,
+     "end": 1.04
+    },
+    {
+     "w": "Be,",
+     "t": 1.2,
+     "end": 1.6
+    },
+    {
+     "w": "by",
+     "t": 1.68,
+     "end": 1.76
+    },
+    {
+     "w": "the",
+     "t": 1.8,
+     "end": 1.84
+    },
+    {
+     "w": "Beatles...",
+     "t": 1.92,
+     "end": 2.72
+    }
+   ]
+  },
+  "song1": {
+   "text": "With or Without You, by U2...",
+   "dur": 2.847347,
+   "speechEnd": 2.88,
+   "words": [
+    {
+     "w": "With",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "or",
+     "t": 0.48,
+     "end": 0.56
+    },
+    {
+     "w": "Without",
+     "t": 0.64,
+     "end": 1.04
+    },
+    {
+     "w": "You,",
+     "t": 1.12,
+     "end": 1.36
+    },
+    {
+     "w": "by",
+     "t": 1.76,
+     "end": 1.92
+    },
+    {
+     "w": "U2...",
+     "t": 2,
+     "end": 2.88
+    }
+   ]
+  },
+  "song2": {
+   "text": "Someone Like You, by Adele...",
+   "dur": 2.429388,
+   "speechEnd": 2.48,
+   "words": [
+    {
+     "w": "Someone",
+     "t": 0,
+     "end": 0.48
+    },
+    {
+     "w": "Like",
+     "t": 0.56,
+     "end": 0.72
+    },
+    {
+     "w": "You,",
+     "t": 0.88,
+     "end": 1.32
+    },
+    {
+     "w": "by",
+     "t": 1.52,
+     "end": 1.68
+    },
+    {
+     "w": "Adele...",
+     "t": 1.76,
+     "end": 2.48
+    }
+   ]
+  },
+  "song3": {
+   "text": "And Don't Stop Believin', by Journey.",
+   "dur": 2.586122,
+   "speechEnd": 2.64,
+   "words": [
+    {
+     "w": "And",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "Don't",
+     "t": 0.32,
+     "end": 0.48
+    },
+    {
+     "w": "Stop",
+     "t": 0.56,
+     "end": 0.8
+    },
+    {
+     "w": "Believin',",
+     "t": 0.88,
+     "end": 1.68
+    },
+    {
+     "w": "by",
+     "t": 1.76,
+     "end": 1.84
+    },
+    {
+     "w": "Journey.",
+     "t": 2,
+     "end": 2.64
+    }
+   ]
+  },
+  "outro1": {
+   "text": "Change the key, and the whole shape just rotates...",
+   "dur": 3.317551,
+   "speechEnd": 3.36,
+   "words": [
+    {
+     "w": "Change",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "the",
+     "t": 0.4,
+     "end": 0.48
+    },
+    {
+     "w": "key,",
+     "t": 0.56,
+     "end": 1.12
+    },
+    {
+     "w": "and",
+     "t": 1.2,
+     "end": 1.28
+    },
+    {
+     "w": "the",
+     "t": 1.32,
+     "end": 1.36
+    },
+    {
+     "w": "whole",
+     "t": 1.44,
+     "end": 1.6
+    },
+    {
+     "w": "shape",
+     "t": 1.76,
+     "end": 2.08
+    },
+    {
+     "w": "just",
+     "t": 2.16,
+     "end": 2.32
+    },
+    {
+     "w": "rotates...",
+     "t": 2.4,
+     "end": 3.36
+    }
+   ]
+  },
+  "outro2": {
+   "text": "But it's the exact same shape.",
+   "dur": 2.194286,
+   "speechEnd": 2.24,
+   "words": [
+    {
+     "w": "But",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "it's",
+     "t": 0.24,
+     "end": 0.4
+    },
+    {
+     "w": "the",
+     "t": 0.44,
+     "end": 0.48
+    },
+    {
+     "w": "exact",
+     "t": 0.56,
+     "end": 1.12
+    },
+    {
+     "w": "same",
+     "t": 1.2,
+     "end": 1.44
+    },
+    {
+     "w": "shape.",
+     "t": 1.6,
+     "end": 2.24
+    }
+   ]
+  }
+ }
+}
