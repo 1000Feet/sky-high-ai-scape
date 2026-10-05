@@ -1,0 +1,859 @@
+{
+ "voice_id": "EwzF7Z2UMSib9JaKx0Kg",
+ "model_id": "eleven_v4",
+ "segments": {
+  "hook": {
+   "text": "Eight chords, written over three hundred years ago... and still all over the charts.",
+   "dur": 6.034286,
+   "speechEnd": 6.08,
+   "words": [
+    {
+     "w": "Eight",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "chords,",
+     "t": 0.32,
+     "end": 1.12
+    },
+    {
+     "w": "written",
+     "t": 1.28,
+     "end": 1.44
+    },
+    {
+     "w": "over",
+     "t": 1.52,
+     "end": 1.84
+    },
+    {
+     "w": "three",
+     "t": 1.92,
+     "end": 2.16
+    },
+    {
+     "w": "hundred",
+     "t": 2.32,
+     "end": 2.64
+    },
+    {
+     "w": "years",
+     "t": 2.72,
+     "end": 2.96
+    },
+    {
+     "w": "ago...",
+     "t": 3.04,
+     "end": 3.76
+    },
+    {
+     "w": "and",
+     "t": 3.88,
+     "end": 4
+    },
+    {
+     "w": "still",
+     "t": 4.08,
+     "end": 4.4
+    },
+    {
+     "w": "all",
+     "t": 4.64,
+     "end": 4.88
+    },
+    {
+     "w": "over",
+     "t": 5,
+     "end": 5.12
+    },
+    {
+     "w": "the",
+     "t": 5.16,
+     "end": 5.2
+    },
+    {
+     "w": "charts.",
+     "t": 5.28,
+     "end": 6.08
+    }
+   ]
+  },
+  "what": {
+   "text": "This is Pachelbel's Canon: D, A, B minor, F sharp minor, G, D, G, A.",
+   "dur": 8.829388,
+   "speechEnd": 8.88,
+   "words": [
+    {
+     "w": "This",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "is",
+     "t": 0.32,
+     "end": 0.4
+    },
+    {
+     "w": "Pachelbel's",
+     "t": 0.48,
+     "end": 1.12
+    },
+    {
+     "w": "Canon:",
+     "t": 1.36,
+     "end": 2.08
+    },
+    {
+     "w": "D,",
+     "t": 2.24,
+     "end": 2.56
+    },
+    {
+     "w": "A,",
+     "t": 2.96,
+     "end": 3.28
+    },
+    {
+     "w": "B",
+     "t": 3.6,
+     "end": 3.76
+    },
+    {
+     "w": "minor,",
+     "t": 3.84,
+     "end": 4.56
+    },
+    {
+     "w": "F",
+     "t": 4.64,
+     "end": 4.72
+    },
+    {
+     "w": "sharp",
+     "t": 4.8,
+     "end": 5.04
+    },
+    {
+     "w": "minor,",
+     "t": 5.12,
+     "end": 5.84
+    },
+    {
+     "w": "G,",
+     "t": 6,
+     "end": 6.72
+    },
+    {
+     "w": "D,",
+     "t": 6.8,
+     "end": 7.52
+    },
+    {
+     "w": "G,",
+     "t": 7.68,
+     "end": 8.32
+    },
+    {
+     "w": "A.",
+     "t": 8.4,
+     "end": 8.88
+    }
+   ]
+  },
+  "canon": {
+   "text": "On top, the violins sing one of the most famous melodies ever written.",
+   "dur": 4.91102,
+   "speechEnd": 4.96,
+   "words": [
+    {
+     "w": "On",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "top,",
+     "t": 0.32,
+     "end": 0.88
+    },
+    {
+     "w": "the",
+     "t": 0.96,
+     "end": 1.04
+    },
+    {
+     "w": "violins",
+     "t": 1.12,
+     "end": 1.68
+    },
+    {
+     "w": "sing",
+     "t": 1.8,
+     "end": 1.92
+    },
+    {
+     "w": "one",
+     "t": 2,
+     "end": 2.08
+    },
+    {
+     "w": "of",
+     "t": 2.12,
+     "end": 2.16
+    },
+    {
+     "w": "the",
+     "t": 2.24,
+     "end": 2.28
+    },
+    {
+     "w": "most",
+     "t": 2.32,
+     "end": 2.56
+    },
+    {
+     "w": "famous",
+     "t": 2.8,
+     "end": 3.2
+    },
+    {
+     "w": "melodies",
+     "t": 3.28,
+     "end": 3.84
+    },
+    {
+     "w": "ever",
+     "t": 3.92,
+     "end": 4.16
+    },
+    {
+     "w": "written.",
+     "t": 4.24,
+     "end": 4.96
+    }
+   ]
+  },
+  "basket": {
+   "text": "Green Day sped it up for Basket Case...",
+   "dur": 2.690612,
+   "speechEnd": 2.72,
+   "words": [
+    {
+     "w": "Green",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "Day",
+     "t": 0.4,
+     "end": 0.64
+    },
+    {
+     "w": "sped",
+     "t": 0.72,
+     "end": 0.96
+    },
+    {
+     "w": "it",
+     "t": 1,
+     "end": 1.04
+    },
+    {
+     "w": "up",
+     "t": 1.12,
+     "end": 1.28
+    },
+    {
+     "w": "for",
+     "t": 1.36,
+     "end": 1.44
+    },
+    {
+     "w": "Basket",
+     "t": 1.52,
+     "end": 1.92
+    },
+    {
+     "w": "Case...",
+     "t": 2,
+     "end": 2.72
+    }
+   ]
+  },
+  "memories": {
+   "text": "and Maroon 5 built Memories right on top of it.",
+   "dur": 3.317551,
+   "speechEnd": 3.36,
+   "words": [
+    {
+     "w": "and",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "Maroon",
+     "t": 0.28,
+     "end": 0.56
+    },
+    {
+     "w": "5",
+     "t": 0.64,
+     "end": 1.04
+    },
+    {
+     "w": "built",
+     "t": 1.12,
+     "end": 1.36
+    },
+    {
+     "w": "Memories",
+     "t": 1.44,
+     "end": 2
+    },
+    {
+     "w": "right",
+     "t": 2.16,
+     "end": 2.32
+    },
+    {
+     "w": "on",
+     "t": 2.4,
+     "end": 2.48
+    },
+    {
+     "w": "top",
+     "t": 2.56,
+     "end": 2.8
+    },
+    {
+     "w": "of",
+     "t": 2.84,
+     "end": 2.88
+    },
+    {
+     "w": "it.",
+     "t": 2.96,
+     "end": 3.36
+    }
+   ]
+  },
+  "why1": {
+   "text": "So what's the secret? Watch the bass.",
+   "dur": 3.160816,
+   "speechEnd": 3.2,
+   "words": [
+    {
+     "w": "So",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "what's",
+     "t": 0.48,
+     "end": 0.72
+    },
+    {
+     "w": "the",
+     "t": 0.76,
+     "end": 0.8
+    },
+    {
+     "w": "secret?",
+     "t": 0.88,
+     "end": 1.64
+    },
+    {
+     "w": "Watch",
+     "t": 1.92,
+     "end": 2.24
+    },
+    {
+     "w": "the",
+     "t": 2.32,
+     "end": 2.36
+    },
+    {
+     "w": "bass.",
+     "t": 2.4,
+     "end": 3.2
+    }
+   ]
+  },
+  "why2a": {
+   "text": "With the right inversions, it simply walks down the scale.",
+   "dur": 3.63102,
+   "speechEnd": 3.68,
+   "words": [
+    {
+     "w": "With",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "the",
+     "t": 0.24,
+     "end": 0.32
+    },
+    {
+     "w": "right",
+     "t": 0.44,
+     "end": 0.56
+    },
+    {
+     "w": "inversions,",
+     "t": 0.64,
+     "end": 1.52
+    },
+    {
+     "w": "it",
+     "t": 1.6,
+     "end": 1.76
+    },
+    {
+     "w": "simply",
+     "t": 1.84,
+     "end": 2.16
+    },
+    {
+     "w": "walks",
+     "t": 2.24,
+     "end": 2.56
+    },
+    {
+     "w": "down",
+     "t": 2.64,
+     "end": 2.8
+    },
+    {
+     "w": "the",
+     "t": 2.84,
+     "end": 2.88
+    },
+    {
+     "w": "scale.",
+     "t": 2.96,
+     "end": 3.68
+    }
+   ]
+  },
+  "why2": {
+   "text": "D, C sharp, B, A, G, F sharp... then climbs back home.",
+   "dur": 6.765714,
+   "speechEnd": 6.8,
+   "words": [
+    {
+     "w": "D,",
+     "t": 0,
+     "end": 0.8
+    },
+    {
+     "w": "C",
+     "t": 0.88,
+     "end": 1.04
+    },
+    {
+     "w": "sharp,",
+     "t": 1.12,
+     "end": 1.92
+    },
+    {
+     "w": "B,",
+     "t": 2,
+     "end": 2.72
+    },
+    {
+     "w": "A,",
+     "t": 2.8,
+     "end": 3.44
+    },
+    {
+     "w": "G,",
+     "t": 3.52,
+     "end": 4.16
+    },
+    {
+     "w": "F",
+     "t": 4.24,
+     "end": 4.32
+    },
+    {
+     "w": "sharp...",
+     "t": 4.4,
+     "end": 5.2
+    },
+    {
+     "w": "then",
+     "t": 5.28,
+     "end": 5.44
+    },
+    {
+     "w": "climbs",
+     "t": 5.52,
+     "end": 5.92
+    },
+    {
+     "w": "back",
+     "t": 6.04,
+     "end": 6.16
+    },
+    {
+     "w": "home.",
+     "t": 6.32,
+     "end": 6.8
+    }
+   ]
+  },
+  "why3": {
+   "text": "A line falling step by step feels like gravity. Calm, and inevitable.",
+   "dur": 6.530612,
+   "speechEnd": 6.56,
+   "words": [
+    {
+     "w": "A",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "line",
+     "t": 0.36,
+     "end": 0.56
+    },
+    {
+     "w": "falling",
+     "t": 0.64,
+     "end": 1.04
+    },
+    {
+     "w": "step",
+     "t": 1.12,
+     "end": 1.44
+    },
+    {
+     "w": "by",
+     "t": 1.52,
+     "end": 1.6
+    },
+    {
+     "w": "step",
+     "t": 1.76,
+     "end": 2.16
+    },
+    {
+     "w": "feels",
+     "t": 2.48,
+     "end": 2.8
+    },
+    {
+     "w": "like",
+     "t": 2.88,
+     "end": 2.96
+    },
+    {
+     "w": "gravity.",
+     "t": 3.04,
+     "end": 4.16
+    },
+    {
+     "w": "Calm,",
+     "t": 4.24,
+     "end": 5.04
+    },
+    {
+     "w": "and",
+     "t": 5.2,
+     "end": 5.36
+    },
+    {
+     "w": "inevitable.",
+     "t": 5.6,
+     "end": 6.56
+    }
+   ]
+  },
+  "violin": {
+   "text": "And the violin melody? It walks down too, right alongside the bass.",
+   "dur": 4.754286,
+   "speechEnd": 4.8,
+   "words": [
+    {
+     "w": "And",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "the",
+     "t": 0.24,
+     "end": 0.28
+    },
+    {
+     "w": "violin",
+     "t": 0.32,
+     "end": 0.72
+    },
+    {
+     "w": "melody?",
+     "t": 0.8,
+     "end": 1.44
+    },
+    {
+     "w": "It",
+     "t": 1.68,
+     "end": 1.84
+    },
+    {
+     "w": "walks",
+     "t": 1.96,
+     "end": 2.16
+    },
+    {
+     "w": "down",
+     "t": 2.28,
+     "end": 2.4
+    },
+    {
+     "w": "too,",
+     "t": 2.48,
+     "end": 3.12
+    },
+    {
+     "w": "right",
+     "t": 3.2,
+     "end": 3.36
+    },
+    {
+     "w": "alongside",
+     "t": 3.44,
+     "end": 3.92
+    },
+    {
+     "w": "the",
+     "t": 4,
+     "end": 4.08
+    },
+    {
+     "w": "bass.",
+     "t": 4.12,
+     "end": 4.8
+    }
+   ]
+  },
+  "ground": {
+   "text": "Pachelbel repeats that bass line twenty-eight times.",
+   "dur": 3.63102,
+   "speechEnd": 3.68,
+   "words": [
+    {
+     "w": "Pachelbel",
+     "t": 0,
+     "end": 0.56
+    },
+    {
+     "w": "repeats",
+     "t": 0.64,
+     "end": 1.04
+    },
+    {
+     "w": "that",
+     "t": 1.16,
+     "end": 1.28
+    },
+    {
+     "w": "bass",
+     "t": 1.32,
+     "end": 1.52
+    },
+    {
+     "w": "line",
+     "t": 1.6,
+     "end": 1.92
+    },
+    {
+     "w": "twenty-eight",
+     "t": 2.16,
+     "end": 2.72
+    },
+    {
+     "w": "times.",
+     "t": 2.8,
+     "end": 3.68
+    }
+   ]
+  },
+  "ground2": {
+   "text": "It never gets old, because it always leads you home.",
+   "dur": 3.970612,
+   "speechEnd": 4,
+   "words": [
+    {
+     "w": "It",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "never",
+     "t": 0.32,
+     "end": 0.56
+    },
+    {
+     "w": "gets",
+     "t": 0.64,
+     "end": 0.88
+    },
+    {
+     "w": "old,",
+     "t": 0.96,
+     "end": 1.68
+    },
+    {
+     "w": "because",
+     "t": 1.76,
+     "end": 2
+    },
+    {
+     "w": "it",
+     "t": 2.12,
+     "end": 2.24
+    },
+    {
+     "w": "always",
+     "t": 2.32,
+     "end": 2.8
+    },
+    {
+     "w": "leads",
+     "t": 2.88,
+     "end": 3.12
+    },
+    {
+     "w": "you",
+     "t": 3.2,
+     "end": 3.28
+    },
+    {
+     "w": "home.",
+     "t": 3.36,
+     "end": 4
+    }
+   ]
+  },
+  "essence": {
+   "text": "Two lines falling together, then rising home. Three centuries later, we still can't resist it.",
+   "dur": 7.079184,
+   "speechEnd": 7.12,
+   "words": [
+    {
+     "w": "Two",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "lines",
+     "t": 0.32,
+     "end": 0.72
+    },
+    {
+     "w": "falling",
+     "t": 0.8,
+     "end": 1.12
+    },
+    {
+     "w": "together,",
+     "t": 1.2,
+     "end": 2.08
+    },
+    {
+     "w": "then",
+     "t": 2.16,
+     "end": 2.32
+    },
+    {
+     "w": "rising",
+     "t": 2.4,
+     "end": 2.8
+    },
+    {
+     "w": "home.",
+     "t": 2.88,
+     "end": 3.28
+    },
+    {
+     "w": "Three",
+     "t": 3.92,
+     "end": 4.16
+    },
+    {
+     "w": "centuries",
+     "t": 4.24,
+     "end": 4.72
+    },
+    {
+     "w": "later,",
+     "t": 4.8,
+     "end": 5.36
+    },
+    {
+     "w": "we",
+     "t": 5.48,
+     "end": 5.6
+    },
+    {
+     "w": "still",
+     "t": 5.76,
+     "end": 5.92
+    },
+    {
+     "w": "can't",
+     "t": 6,
+     "end": 6.16
+    },
+    {
+     "w": "resist",
+     "t": 6.24,
+     "end": 6.64
+    },
+    {
+     "w": "it.",
+     "t": 6.76,
+     "end": 7.12
+    }
+   ]
+  },
+  "cta": {
+   "text": "What should I break down next?",
+   "dur": 1.880816,
+   "speechEnd": 1.92,
+   "words": [
+    {
+     "w": "What",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "should",
+     "t": 0.32,
+     "end": 0.48
+    },
+    {
+     "w": "I",
+     "t": 0.52,
+     "end": 0.56
+    },
+    {
+     "w": "break",
+     "t": 0.64,
+     "end": 0.88
+    },
+    {
+     "w": "down",
+     "t": 1,
+     "end": 1.12
+    },
+    {
+     "w": "next?",
+     "t": 1.36,
+     "end": 1.92
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,526 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:'DM Sans';font-weight:400;src:url(fonts/dm-sans-latin-400-normal.woff2)}
+@font-face{font-family:'DM Sans';font-weight:700;src:url(fonts/dm-sans-latin-700-normal.woff2)}
+@font-face{font-family:'DM Sans';font-weight:800;src:url(fonts/dm-sans-latin-800-normal.woff2)}
+@font-face{font-family:'DM Mono';font-weight:400;src:url(fonts/dm-mono-latin-400-normal.woff2)}
+@font-face{font-family:'DM Mono';font-weight:500;src:url(fonts/dm-mono-latin-500-normal.woff2)}
+html,body{margin:0;background:#0b0b0d}
+canvas{display:block}
+</style>
+<script src="theory.js"></script>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// Renders a timeline (window.TL, built by layout.js) frame by frame: draw(t).
+const W = 1080, H = 1920, ctx = document.getElementById('c').getContext('2d');
+const CX = 540, CY = 830, RAD = 255;
+const { mod, NAMES, degColor } = THEORY;
+const ACCENT = '#ffcf5a', RED = '#ff5d6c';
+
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const easeOut = x => 1 - Math.pow(1 - clamp(x), 3);
+const backOut = x => { x = clamp(x); const c = 1.9; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const rgba = (hex, a) => { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; };
+const life = (t, e, fin = 0.3, fout = 0.3) => (t < e.t0 || t >= e.t1) ? 0 : easeOut((t - e.t0) / fin) * (1 - easeOut((t - e.t1 + fout) / fout));
+const lerp = (a, b, k) => a + (b - a) * k;
+function glow(color, blur) { ctx.shadowColor = color; ctx.shadowBlur = blur; }
+function noGlow() { ctx.shadowBlur = 0; }
+function text(str, x, y, { size = 40, weight = 700, family = 'DM Sans', color = '#fff', align = 'center', spacing = 0, alpha = 1, blur = 0 } = {}) {
+  if (alpha <= 0) return;
+  ctx.save();
+  ctx.globalAlpha *= alpha;
+  ctx.font = `${weight} ${size}px '${family}'`;
+  ctx.textAlign = align; ctx.textBaseline = 'middle';
+  ctx.letterSpacing = spacing + 'px';
+  ctx.fillStyle = color;
+  if (blur) glow(color, blur);
+  ctx.fillText(str, x, y);
+  ctx.restore();
+}
+function pill(str, x, y, col, a, scale = 1, size = 24) {
+  if (a <= 0) return;
+  ctx.save(); ctx.globalAlpha = a; ctx.translate(x, y); ctx.scale(scale, scale);
+  ctx.font = `500 ${size}px 'DM Mono'`; ctx.letterSpacing = '3px';
+  const w = ctx.measureText(str).width + 30, h = size * 1.75;
+  ctx.fillStyle = 'rgba(11,11,13,0.85)'; ctx.strokeStyle = col; ctx.lineWidth = 2; glow(col, 14);
+  ctx.beginPath(); ctx.roundRect(-w / 2, -h / 2, w, h, h / 2); ctx.fill(); ctx.stroke(); noGlow();
+  ctx.fillStyle = col; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(str, 1, 1);
+  ctx.restore();
+}
+const sceneAt = t => TL.scenes.find(s => t >= s.t0 && t < s.t1) || TL.scenes[TL.scenes.length - 1];
+const prevScene = s => TL.scenes[TL.scenes.indexOf(s) - 1];
+
+// ---------- geometry: chromatic circle that can morph into the circle of fifths ----------
+let LAYOUT = 0;
+function layoutAt(t) {
+  const K = TL.layoutKeys;
+  for (let i = K.length - 1; i >= 0; i--) if (t >= K[i].t) {
+    if (i === K.length - 1) return K[i].m;
+    return lerp(K[i].m, K[i + 1].m, ease((t - K[i].t) / Math.max(0.001, K[i + 1].t - K[i].t)));
+  }
+  return 0;
+}
+function angOf(x) {
+  const a1 = -90 + x * 30;
+  if (LAYOUT <= 0) return a1 * Math.PI / 180;
+  const a2 = -90 + mod(Math.round(x) * 7, 12) * 30;
+  let d = mod(a2 - a1 + 180, 360) - 180;
+  return (a1 + d * LAYOUT) * Math.PI / 180;
+}
+const pos = (x, r = RAD) => { const a = angOf(x); return [CX + Math.cos(a) * r, CY + Math.sin(a) * r]; };
+
+// ---------- circle visibility ----------
+function circleAlpha(t) {
+  const s = sceneAt(t), on = s.circle === false ? 0 : 1;
+  const p = prevScene(s), was = p ? (p.circle === false ? 0 : 1) : 0;
+  const k = easeOut((t - s.t0) / (p ? 0.5 : 0.8));
+  return lerp(was, on, k);
+}
+
+// ---------- scale dots (degrees above an animated tonic) ----------
+function scaleState(t) {
+  const S = TL.scales;
+  let i = -1; for (let j = 0; j < S.length; j++) if (t >= S[j].t0) i = j;
+  if (i < 0) return null;
+  const cur = S[i], prev = S[i - 1];
+  const k = ease((t - cur.t0) / 0.65);
+  const same = prev && prev.degs.join() === cur.degs.join();
+  let tonic = cur.tonic;
+  if (same && k < 1) { const d = mod(cur.tonic - prev.tonic + 6, 12) - 6; tonic = prev.tonic + d * k; }
+  return { cur, prev: same ? null : prev, tonic, k };
+}
+function dotsOf(t, set, tonic, alpha) {
+  return set.degs.map((d, i) => {
+    let s = 1;
+    if (set.popIn) s = backOut((t - set.popIn.t0 - i * set.popIn.step) / 0.35);
+    return { x: d + tonic, deg: d, s: Math.max(0, s), a: alpha };
+  });
+}
+
+function drawCircle(t, A) {
+  if (A <= 0.001) return;
+  ctx.save(); ctx.globalAlpha = A;
+  ctx.strokeStyle = 'rgba(255,255,255,0.10)'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.arc(CX, CY, RAD, 0, Math.PI * 2); ctx.stroke();
+  ctx.restore();
+  const st = scaleState(t);
+  let dots = [];
+  if (st) {
+    dots = dotsOf(t, st.cur, st.tonic, st.prev ? easeOut(st.k) : 1);
+    if (st.prev) dots = dots.concat(dotsOf(t, st.prev, st.prev.tonic, 1 - easeOut(st.k)));
+  }
+  for (let p = 0; p < 12; p++) {
+    let lit = 0;
+    for (const d of dots) lit = Math.max(lit, clamp(1 - Math.abs(mod(d.x - p + 6, 12) - 6) / 0.6) * clamp(d.s) * d.a);
+    const [x, y] = pos(p);
+    ctx.save(); ctx.globalAlpha = A; ctx.fillStyle = 'rgba(255,255,255,0.18)';
+    ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+    const [lx, ly] = pos(p, RAD + 58);
+    text(NAMES[p], lx, ly, { size: 34, weight: 700, color: lit > 0.05 ? '#ffffff' : '#55555d', alpha: A * (0.45 + 0.55 * lit) });
+  }
+  for (const d of dots) {
+    if (d.s <= 0 || d.a <= 0) continue;
+    const [x, y] = pos(d.x), col = THEORY.DEG12[mod(d.deg, 12)];
+    ctx.save(); ctx.globalAlpha = A * d.a;
+    glow(col, 30); ctx.fillStyle = col;
+    ctx.beginPath(); ctx.arc(x, y, 15 * d.s, 0, Math.PI * 2); ctx.fill();
+    noGlow(); ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    ctx.beginPath(); ctx.arc(x, y, 5 * d.s, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+  }
+}
+
+// ---------- chords ----------
+const chordAt = t => { let r = -1; for (let i = 0; i < TL.chords.length; i++) if (t >= TL.chords[i].t0 && t < TL.chords[i].t1) r = i; return r; };
+const uniqPcs = c => { const seen = new Set(), out = []; for (const m of c.notes) { const p = mod(m, 12); if (!seen.has(p)) { seen.add(p); out.push(p); } } return out; };
+function shapePoints(xs, grow = 1) {
+  const pts = xs.map(x => { const [px, py] = pos(x); return [CX + (px - CX) * grow, CY + (py - CY) * grow, angOf(x)]; });
+  return pts.sort((a, b) => mod(a[2] + Math.PI / 2, Math.PI * 2) - mod(b[2] + Math.PI / 2, Math.PI * 2));
+}
+function pathPts(pts) { ctx.beginPath(); pts.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); if (pts.length > 2) ctx.closePath(); }
+function drawChord(t, ci, A) {
+  if (ci < 0 || A <= 0.001) return;
+  const c = TL.chords[ci];
+  if (!c.shape) return;
+  const col = degColor(c.root, c.tonic);
+  let xs = uniqPcs(c);
+  const since = t - c.t0;
+  let grow = 1;
+  const prev = TL.chords[ci - 1];
+  if (c.snap) { /* appear in place */ }
+  else if (prev && prev.shape && Math.abs(prev.t1 - c.t0) < 0.02) {
+    const pv = uniqPcs(prev);
+    if (pv.length === xs.length) {
+      const k = ease(since / 0.28);
+      xs = xs.map((v, i) => { const d = mod(v - pv[i] + 6, 12) - 6; return pv[i] + d * k; });
+    }
+  } else grow = backOut(since / 0.4);
+  const pts = shapePoints(xs, grow);
+  let pulse = Math.exp(-since * 5);
+  if (c.strikes) for (const s of c.strikes) if (since > s.o && s.o > 0) pulse = Math.max(pulse, Math.exp(-(since - s.o) * 5) * s.v);
+  ctx.save(); ctx.globalAlpha = A;
+  pathPts(pts);
+  if (pts.length > 2) { ctx.fillStyle = rgba(col, 0.14 + 0.12 * pulse); ctx.fill(); }
+  glow(col, 26 + 20 * pulse);
+  ctx.strokeStyle = col; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.stroke();
+  pts.forEach(([x, y]) => {
+    ctx.beginPath(); ctx.arc(x, y, 24 + 10 * pulse, 0, Math.PI * 2);
+    ctx.lineWidth = 3; ctx.strokeStyle = rgba('#ffffff', 0.55 + 0.4 * pulse); ctx.stroke();
+  });
+  ctx.restore();
+  if (!c.hideName) {
+    const s = 1 + 0.12 * Math.exp(-since * 6);
+    ctx.save(); ctx.translate(CX, CY); ctx.scale(s, s);
+    text(c.name, 0, 0, { size: c.name.length > 5 ? 58 : 76, weight: 800, color: '#ffffff', blur: 18, alpha: A });
+    ctx.restore();
+  }
+}
+
+// ---------- overlays ----------
+function drawPolys(t, A) {
+  for (const p of TL.polys) {
+    const a = life(t, p, 0.5, 0.5) * A * (p.alpha ?? 0.5);
+    if (a <= 0) continue;
+    const pts = p.order === false ? shapePoints(p.pcs) : p.pcs.map(x => pos(x, RAD - 2));
+    ctx.save(); ctx.globalAlpha = a; ctx.strokeStyle = p.color || '#ffffff'; ctx.lineWidth = p.width || 2.5;
+    if (p.dash !== false) ctx.setLineDash([10, 12]);
+    if (p.glow) glow(p.color || '#fff', 20);
+    ctx.beginPath(); pts.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); if (p.closed !== false) ctx.closePath(); ctx.stroke();
+    if (p.fill) { ctx.fillStyle = rgba(p.color || '#ffffff', 0.12); ctx.fill(); }
+    ctx.restore();
+  }
+}
+function drawGhosts(t, A) {
+  for (const g of TL.ghosts) {
+    const a = life(t, g, 0.3, 0.5) * A;
+    if (a <= 0) continue;
+    const pts = shapePoints(g.pcs);
+    const flicker = 0.75 + 0.25 * Math.sin(t * 18);
+    ctx.save(); ctx.globalAlpha = a * flicker;
+    ctx.setLineDash([12, 10]); ctx.strokeStyle = g.color || '#ffffff'; ctx.lineWidth = 3;
+    pathPts(pts); ctx.stroke(); ctx.restore();
+    if (g.label) {
+      const cx = pts.reduce((s, p) => s + p[0], 0) / pts.length, cy = pts.reduce((s, p) => s + p[1], 0) / pts.length;
+      pill(g.label, cx, cy + (g.ly ?? 70), g.color || '#ffffff', a * flicker);
+    }
+  }
+}
+function drawLines(t, A) {
+  for (const l of TL.lines) {
+    const a = life(t, l, 0.35, 0.35) * A;
+    if (a <= 0) continue;
+    const r = l.r ?? RAD, col = l.color || '#ffffff';
+    const [x0, y0] = pos(l.a, r), [x1, y1] = pos(l.b, r);
+    const grow = easeOut((t - l.t0) / 0.6);
+    const sx = l.arrow ? x0 : lerp((x0 + x1) / 2, x0, grow), sy = l.arrow ? y0 : lerp((y0 + y1) / 2, y0, grow);
+    const ex = l.arrow ? lerp(x0, x1, grow) : lerp((x0 + x1) / 2, x1, grow), ey = l.arrow ? lerp(y0, y1, grow) : lerp((y0 + y1) / 2, y1, grow);
+    ctx.save(); ctx.globalAlpha = a; ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = l.width || 4; ctx.lineCap = 'round';
+    if (l.dash) ctx.setLineDash([14, 10]);
+    glow(col, 20);
+    ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(ex, ey); ctx.stroke();
+    if (l.arrow) {
+      ctx.setLineDash([]);
+      const d = Math.atan2(ey - sy, ex - sx);
+      ctx.beginPath(); ctx.moveTo(ex, ey);
+      ctx.lineTo(ex - Math.cos(d - 0.45) * 22, ey - Math.sin(d - 0.45) * 22);
+      ctx.lineTo(ex - Math.cos(d + 0.45) * 22, ey - Math.sin(d + 0.45) * 22); ctx.closePath(); ctx.fill();
+    }
+    ctx.restore();
+    if (l.label) {
+      const mx = (x0 + x1) / 2 + (l.lx || 0), my = (y0 + y1) / 2 + (l.ly || 0);
+      pill(l.label, mx, my, col, a);
+    }
+  }
+}
+function drawRings(t, A) {
+  for (const r of TL.rings) {
+    const a = life(t, r, 0.25, 0.3) * A;
+    if (a <= 0) continue;
+    const beat = 0.5 + 0.5 * Math.sin((t - r.t0) * 9);
+    for (const p of r.pcs) {
+      const [x, y] = pos(p), col = r.color || '#ffffff';
+      ctx.save(); ctx.globalAlpha = a; glow(col, 30); ctx.strokeStyle = col; ctx.lineWidth = 4;
+      ctx.beginPath(); ctx.arc(x, y, 34 + 8 * beat, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+    }
+  }
+}
+function drawArcs(t, A) {
+  for (const ar of TL.arcs) {
+    const a = life(t, ar, 0.3, 0.3) * A;
+    if (a <= 0) continue;
+    const grow = easeOut((t - ar.t0) / 0.6), col = ar.color || RED;
+    const steps = ar.steps ?? (mod(ar.to - ar.from + 6, 12) - 6 || 6);
+    const r = RAD + (ar.dr ?? 30);
+    const N = 40, pts = [];
+    for (let i = 0; i <= N * grow; i++) { const x = ar.from + steps * (i / N); pts.push(pos(x, r)); }
+    if (pts.length < 2) continue;
+    ctx.save(); ctx.globalAlpha = a; glow(col, 24);
+    ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = 5; ctx.lineCap = 'round';
+    ctx.beginPath(); pts.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.stroke();
+    const [hx, hy] = pts[pts.length - 1], [px, py] = pts[pts.length - 2], d = Math.atan2(hy - py, hx - px);
+    ctx.beginPath(); ctx.moveTo(hx + Math.cos(d) * 8, hy + Math.sin(d) * 8);
+    ctx.lineTo(hx - Math.cos(d - 0.5) * 18, hy - Math.sin(d - 0.5) * 18);
+    ctx.lineTo(hx - Math.cos(d + 0.5) * 18, hy - Math.sin(d + 0.5) * 18); ctx.closePath(); ctx.fill();
+    ctx.restore();
+    if (ar.label) {
+      const [lx, ly] = pos(ar.from + steps / 2, ar.labelR ?? RAD - 150);
+      text(ar.label, lx, ly, { size: 24, weight: 500, family: 'DM Mono', color: col, spacing: 3, alpha: a });
+    }
+  }
+}
+function drawTags(t, A) {
+  for (const g of TL.tags) {
+    const a = clamp((t - g.t0) / 0.2) * (1 - easeOut((t - g.t1 + 0.3) / 0.3)) * A;
+    if (t < g.t0 || t >= g.t1 || a <= 0) continue;
+    let x, y;
+    if (g.x !== undefined) { x = g.x; y = g.y; } else [x, y] = pos(g.pc, RAD + (g.dr ?? -92));
+    pill(g.text, x, y, g.color || degColor(g.pc, g.tonic ?? sceneAt(g.t0).tonic ?? 0), a, backOut((t - g.t0) / 0.35));
+  }
+}
+function drawWalkers(t, A) {
+  // works in angle space so it follows the circle in both layouts
+  const shortest = (a0, a1) => a0 + (mod(a1 - a0 + Math.PI, Math.PI * 2) - Math.PI);
+  const at = (ang, r) => [CX + Math.cos(ang) * r, CY + Math.sin(ang) * r];
+  for (const wk of TL.walkers) {
+    const P = wk.points, t1 = wk.t1 ?? (P[P.length - 1].t + 1.5);
+    const a = life(t, { t0: P[0].t, t1 }, 0.3, 0.5) * A;
+    if (a <= 0) continue;
+    const r = RAD + (wk.dr ?? 0), col = wk.color || '#ffffff';
+    let cur = angOf(P[0].pc);
+    const segs = [];
+    for (let i = 1; i < P.length; i++) {
+      if (t < P[i].t) break;
+      const a0 = angOf(P[i - 1].pc), a1 = shortest(a0, angOf(P[i].pc));
+      const k = ease((t - P[i].t) / 0.25);
+      cur = a0 + (a1 - a0) * k;
+      segs.push([a0, cur]);
+    }
+    ctx.save(); ctx.globalAlpha = a * 0.5; ctx.strokeStyle = col; ctx.lineWidth = 3; ctx.setLineDash([6, 8]);
+    for (const [a0, a1] of segs) { ctx.beginPath(); ctx.arc(CX, CY, r, Math.min(a0, a1), Math.max(a0, a1)); ctx.stroke(); }
+    ctx.restore();
+    const [px, py] = at(cur, r);
+    ctx.save(); ctx.globalAlpha = a; glow(col, 30); ctx.fillStyle = col;
+    ctx.beginPath(); ctx.arc(px, py, 18, 0, Math.PI * 2); ctx.fill(); noGlow();
+    ctx.fillStyle = '#0b0b0d'; ctx.beginPath(); ctx.arc(px, py, 7, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+    if (wk.label) { const [lx, ly] = at(cur, r + (wk.labelDr ?? 46)); text(wk.label, lx, ly, { size: 22, weight: 500, family: 'DM Mono', color: col, spacing: 3, alpha: a }); }
+  }
+}
+function drawNoteSparks(t, A) {
+  for (const n of TL.notes) {
+    if (!n.show || t < n.t0 || t > n.t0 + 0.9) continue;
+    const k = (t - n.t0) / 0.9, [x, y] = pos(mod(n.m, 12)), col = degColor(mod(n.m, 12), n.tonic);
+    ctx.save(); ctx.globalAlpha = A * (1 - k); glow(col, 30); ctx.strokeStyle = col; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.arc(x, y, 18 + 40 * easeOut(k), 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+  }
+}
+function drawBigs(t) {
+  for (const b of TL.bigs) {
+    const a = life(t, b, 0.35, 0.35);
+    if (a <= 0) continue;
+    const dy = (1 - easeOut((t - b.t0) / 0.4)) * 20;
+    text(b.text, b.x ?? CX, (b.y ?? CY) + dy, { size: b.size ?? 96, weight: b.weight ?? 800, family: b.family ?? 'DM Sans', color: b.color || '#ffffff', alpha: a, blur: b.blur ?? 20 });
+  }
+}
+function drawLissajous(t) {
+  for (const L of TL.lissajous) {
+    const a = life(t, L, 0.4, 0.4);
+    if (a <= 0) continue;
+    const cx = L.x ?? CX, cy = L.y ?? CY, R = L.r ?? 230;
+    const draw = clamp((t - L.t0) / (L.drawIn ?? 2.5));
+    const phase = (t - L.t0) * (L.drift ?? 0.25);
+    const col = L.color || ACCENT, N = L.res ?? 1400;
+    ctx.save(); ctx.globalAlpha = a;
+    ctx.strokeStyle = 'rgba(255,255,255,0.08)'; ctx.lineWidth = 2; ctx.strokeRect(cx - R, cy - R, 2 * R, 2 * R);
+    glow(col, 22); ctx.strokeStyle = col; ctx.lineWidth = 3;
+    ctx.beginPath();
+    for (let i = 0; i <= N * draw; i++) {
+      const th = (i / N) * Math.PI * 2 * (L.loops ?? 1);
+      const x = cx + R * Math.sin(L.a * th + phase), y = cy + R * Math.sin(L.b * th);
+      i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+    }
+    ctx.stroke();
+    // the two "swinging" dots on the axes
+    const th = (t - L.t0) * 1.2;
+    const dx = cx + R * Math.sin(L.a * th + phase), dy = cy + R * Math.sin(L.b * th);
+    noGlow();
+    ctx.fillStyle = L.colorA || '#ff7a93'; glow(L.colorA || '#ff7a93', 20);
+    ctx.beginPath(); ctx.arc(dx, cy - R - 26, 12, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = L.colorB || '#45d6c8'; glow(L.colorB || '#45d6c8', 20);
+    ctx.beginPath(); ctx.arc(cx - R - 26, dy, 12, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#ffffff'; glow('#ffffff', 20); ctx.beginPath(); ctx.arc(dx, dy, 8, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+    if (L.labelA) text(L.labelA, cx + R + 10, cy - R - 26, { size: 28, weight: 700, color: L.colorA || '#ff7a93', align: 'left', alpha: a });
+    if (L.labelB) text(L.labelB, cx - R - 26, cy + R + 36, { size: 28, weight: 700, color: L.colorB || '#45d6c8', alpha: a });
+  }
+}
+function drawGrids(t) {
+  for (const g of TL.grids) {
+    const a = life(t, g, 0.4, 0.4);
+    if (a <= 0) continue;
+    const cw = g.cw ?? 220, chh = g.chh ?? 150, gx = (g.x ?? CX) - (g.cols * cw) / 2, gy = (g.y ?? 560);
+    g.cells.forEach((cell, i) => {
+      const r = Math.floor(i / g.cols), c = i % g.cols;
+      const x = gx + c * cw + 8, y = gy + r * chh + 8, w = cw - 16, h = chh - 16;
+      const act = g.active.find(e => t >= e.t0 && t < e.t1 && e.i === i);
+      const appear = g.revealStep ? clamp((t - g.t0 - i * g.revealStep) / 0.25) : 1;
+      if (appear <= 0) return;
+      const col = cell.color || '#ffffff';
+      const k = act ? 1 + 0.08 * Math.exp(-(t - act.t0) * 6) : 1;
+      ctx.save(); ctx.globalAlpha = a * appear; ctx.translate(x + w / 2, y + h / 2); ctx.scale(k, k);
+      ctx.fillStyle = act ? rgba(col, 0.28) : rgba(col, 0.07);
+      ctx.strokeStyle = act ? col : rgba(col, 0.35); ctx.lineWidth = act ? 4 : 2;
+      if (act) glow(col, 30);
+      ctx.beginPath(); ctx.roundRect(-w / 2, -h / 2, w, h, 18); ctx.fill(); ctx.stroke(); noGlow();
+      ctx.restore();
+      text(cell.label, x + w / 2, y + h / 2 - (cell.sub ? 12 : 0), { size: cell.size ?? 54, weight: 800, color: act ? '#ffffff' : rgba(col, 0.9), alpha: a * appear, blur: act ? 18 : 0 });
+      if (cell.sub) text(cell.sub, x + w / 2, y + h / 2 + 38, { size: cell.subSize ?? 28, weight: 500, family: 'DM Mono', color: act ? '#ffffff' : '#9a9aa2', alpha: a * appear });
+    });
+    if (g.caption) text(g.caption, CX, gy + g.rows * chh + 40, { size: 26, weight: 500, family: 'DM Mono', color: '#8a8a92', spacing: 4, alpha: a });
+  }
+}
+
+// ---------- title & row ----------
+function drawTitle(t) {
+  const s = sceneAt(t);
+  // scenes sharing the same title keep it on screen without re-animating
+  let i = TL.scenes.indexOf(s);
+  while (i > 0 && TL.scenes[i - 1].title === s.title && TL.scenes[i - 1].label === s.label && TL.scenes[i - 1].sub === s.sub) i--;
+  const start = TL.scenes[i].t0;
+  const k = easeOut((t - start) / 0.45), dy = (1 - k) * 24;
+  if (s.label) text(s.label, CX, 230 + dy, { size: 28, weight: 500, family: 'DM Mono', color: s.accent ? ACCENT : '#8a8a92', spacing: 6, alpha: k });
+  if (s.title) {
+    const tsize = s.title.length > 18 ? 62 : s.title.length > 15 ? 72 : 88;
+    text(s.title, CX, 310 + dy, { size: tsize, weight: 800, color: s.accent ? ACCENT : '#ffffff', alpha: k, blur: s.accent ? 30 : 12 });
+  }
+  if (s.sub) text(s.sub, CX, 385 + dy, { size: 32, weight: 400, family: 'DM Mono', color: '#b9b9c2', alpha: k * 0.9 });
+}
+function drawRow(t, ci) {
+  const s = sceneAt(t);
+  if (!s.row) return;
+  const p = prevScene(s), fresh = !p || (p.row || []).join() !== s.row.join();
+  const a = fresh ? easeOut((t - s.t0) / 0.5) : 1;
+  const y = s.sub ? 465 : 425, n = s.row.length;
+  const longest = Math.max(...s.row.map(x => x.length));
+  const size = n > 6 ? (longest > 3 ? 30 : 44) : n > 4 ? (longest > 4 ? 40 : 52) : 56;
+  const gapX = n > 6 ? 125 : n > 4 ? 160 : 180, x0 = CX - ((n - 1) * gapX) / 2;
+  const c = ci >= 0 ? TL.chords[ci] : null;
+  const active = c && c.row !== null ? c.row : -1;
+  s.row.forEach((item, i) => {
+    const on = i === active, col = on ? degColor(c.root, c.tonic) : '#4a4a52';
+    const sc = on ? 1 + 0.18 * Math.exp(-(t - c.t0) * 6) : 1;
+    ctx.save(); ctx.translate(x0 + i * gapX, y); ctx.scale(sc, sc);
+    text(item, 0, 0, { size, weight: 500, family: 'DM Mono', color: col, alpha: a, blur: on ? 28 : 0 });
+    ctx.restore();
+    if (i < n - 1) text('–', x0 + i * gapX + gapX / 2, y, { size: 36, weight: 400, family: 'DM Mono', color: '#3a3a42', alpha: a });
+  });
+}
+
+// ---------- keyboard ----------
+const KB_LO = 36, KB_HI = 79, KB_Y = 1195, KB_H = 165;
+const isBlack = m => [1, 3, 6, 8, 10].includes(mod(m, 12));
+const whites = []; for (let m = KB_LO; m <= KB_HI; m++) if (!isBlack(m)) whites.push(m);
+const KW = (W - 60) / whites.length, KX0 = 30;
+const keyX = m => isBlack(m) ? KX0 + whites.indexOf(m - 1) * KW + KW * 0.68 : KX0 + whites.indexOf(m) * KW;
+function pressed(t, ci) {
+  const out = new Map();
+  if (ci >= 0) {
+    const c = TL.chords[ci];
+    if (!c.mute) {
+      const k = 1 - clamp((t - c.t0) / Math.max(1.2, c.t1 - c.t0)) * 0.5;
+      [...c.notes, ...(c.bass !== null ? [c.bass] : [])].forEach(m => out.set(m, { col: degColor(mod(m, 12), c.tonic), k }));
+    }
+  }
+  for (const n of TL.notes) if (t >= n.t0 && t < n.t0 + Math.max(0.25, n.dur)) out.set(n.m, { col: degColor(mod(n.m, 12), n.tonic), k: 1 - clamp((t - n.t0) / Math.max(0.3, n.dur)) * 0.5 });
+  return out;
+}
+function drawKeyboard(t, ci) {
+  const a = easeOut((t - 0.1) / 0.6), pr = pressed(t, ci);
+  ctx.save(); ctx.globalAlpha = a;
+  for (const m of whites) {
+    const x = keyX(m), on = pr.get(m);
+    ctx.fillStyle = on ? on.col : '#e9e9ee';
+    if (on) glow(on.col, 30 * on.k);
+    ctx.globalAlpha = a * (on ? 0.55 + 0.45 * on.k : 0.9);
+    ctx.beginPath(); ctx.roundRect(x + 2, KB_Y, KW - 4, KB_H, [0, 0, 8, 8]); ctx.fill(); noGlow();
+    if (mod(m, 12) === 0) { ctx.globalAlpha = a * 0.5; text('C' + (Math.floor(m / 12) - 1), x + KW / 2, KB_Y + KB_H - 22, { size: 15, weight: 500, family: 'DM Mono', color: '#55555d' }); }
+  }
+  for (let m = KB_LO; m <= KB_HI; m++) {
+    if (!isBlack(m)) continue;
+    const x = keyX(m), on = pr.get(m);
+    ctx.globalAlpha = a; ctx.fillStyle = on ? on.col : '#141418';
+    if (on) glow(on.col, 30 * on.k);
+    ctx.beginPath(); ctx.roundRect(x, KB_Y, KW * 0.64, KB_H * 0.62, [0, 0, 6, 6]); ctx.fill(); noGlow();
+  }
+  ctx.restore();
+}
+
+// ---------- captions (karaoke) ----------
+function drawCaption(t) {
+  const c = TL.captions.find(c => t >= c.t0 && t < c.t1);
+  if (!c) return;
+  const words = c.text.split(' ');
+  const appear = easeOut((t - c.t0) / 0.25) * (1 - easeOut((t - (c.t1 - 0.15)) / 0.15));
+  ctx.save();
+  ctx.font = `700 52px 'DM Sans'`;
+  const maxW = 920, lines = [[]];
+  let lw = 0;
+  words.forEach(w => {
+    const ww = ctx.measureText(w + ' ').width;
+    if (lw + ww > maxW && lines[lines.length - 1].length) { lines.push([]); lw = 0; }
+    lines[lines.length - 1].push(w); lw += ww;
+  });
+  const size = lines.length > 2 ? 46 : 52;
+  ctx.font = `700 ${size}px 'DM Sans'`;
+  let wi = 0;
+  lines.forEach((ln, li) => {
+    const full = ctx.measureText(ln.join(' ')).width;
+    let x = CX - full / 2;
+    const y = 1470 + li * (size + 14) - (lines.length - 1) * (size + 14) / 2;
+    ln.forEach(w => {
+      const wt = c.words[wi] ? c.words[wi].t : c.t0;
+      const on = clamp((t - wt) / 0.12);
+      ctx.globalAlpha = appear;
+      ctx.fillStyle = `rgba(255,255,255,${0.32 + 0.68 * on})`;
+      ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+      ctx.fillText(w, x, y);
+      x += ctx.measureText(w + ' ').width; wi++;
+    });
+  });
+  ctx.restore();
+}
+
+// ---------- frame ----------
+function draw(t) {
+  LAYOUT = layoutAt(t);
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#0b0b0d'; ctx.fillRect(0, 0, W, H);
+  const g = ctx.createRadialGradient(CX, CY, 50, CX, CY, 1100);
+  g.addColorStop(0, 'rgba(40,36,52,0.55)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+  const ci = chordAt(t), A = circleAlpha(t);
+  drawTitle(t);
+  drawCircle(t, A);
+  drawPolys(t, A);
+  drawLines(t, A);
+  drawChord(t, ci, A);
+  drawGhosts(t, A);
+  drawWalkers(t, A);
+  drawRings(t, A);
+  drawArcs(t, A);
+  drawNoteSparks(t, A);
+  drawTags(t, A);
+  drawLissajous(t);
+  drawGrids(t);
+  drawBigs(t);
+  drawRow(t, ci);
+  drawKeyboard(t, ci);
+  drawCaption(t);
+  if (TL.cta && t > TL.cta.t) text(TL.cta.text, CX, 1600, { size: 30, weight: 500, family: 'DM Mono', color: ACCENT, alpha: easeOut((t - TL.cta.t) / 0.5) });
+}
+window.draw = draw;
+</script>
+</body></html>

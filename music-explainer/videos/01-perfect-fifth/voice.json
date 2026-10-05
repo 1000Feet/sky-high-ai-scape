@@ -1,0 +1,1053 @@
+{
+ "voice_id": "EwzF7Z2UMSib9JaKx0Kg",
+ "model_id": "eleven_v4",
+ "segments": {
+  "hook": {
+   "text": "One tiny interval is hiding in lullabies, movie heroes, and rock music.",
+   "dur": 5.407347,
+   "speechEnd": 5.44,
+   "words": [
+    {
+     "w": "One",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "tiny",
+     "t": 0.4,
+     "end": 0.72
+    },
+    {
+     "w": "interval",
+     "t": 0.8,
+     "end": 1.28
+    },
+    {
+     "w": "is",
+     "t": 1.36,
+     "end": 1.52
+    },
+    {
+     "w": "hiding",
+     "t": 1.6,
+     "end": 1.84
+    },
+    {
+     "w": "in",
+     "t": 1.92,
+     "end": 2
+    },
+    {
+     "w": "lullabies,",
+     "t": 2.08,
+     "end": 3.04
+    },
+    {
+     "w": "movie",
+     "t": 3.12,
+     "end": 3.44
+    },
+    {
+     "w": "heroes,",
+     "t": 3.52,
+     "end": 4.24
+    },
+    {
+     "w": "and",
+     "t": 4.32,
+     "end": 4.4
+    },
+    {
+     "w": "rock",
+     "t": 4.52,
+     "end": 4.64
+    },
+    {
+     "w": "music.",
+     "t": 4.72,
+     "end": 5.44
+    }
+   ]
+  },
+  "what": {
+   "text": "Start on C, and count up seven half steps... to G. That's a perfect fifth.",
+   "dur": 6.112653,
+   "speechEnd": 6.16,
+   "words": [
+    {
+     "w": "Start",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "on",
+     "t": 0.4,
+     "end": 0.56
+    },
+    {
+     "w": "C,",
+     "t": 0.72,
+     "end": 1.2
+    },
+    {
+     "w": "and",
+     "t": 1.28,
+     "end": 1.44
+    },
+    {
+     "w": "count",
+     "t": 1.52,
+     "end": 1.68
+    },
+    {
+     "w": "up",
+     "t": 1.76,
+     "end": 1.92
+    },
+    {
+     "w": "seven",
+     "t": 2.08,
+     "end": 2.32
+    },
+    {
+     "w": "half",
+     "t": 2.48,
+     "end": 2.64
+    },
+    {
+     "w": "steps...",
+     "t": 2.72,
+     "end": 3.6
+    },
+    {
+     "w": "to",
+     "t": 3.64,
+     "end": 3.68
+    },
+    {
+     "w": "G.",
+     "t": 3.84,
+     "end": 4.16
+    },
+    {
+     "w": "That's",
+     "t": 4.64,
+     "end": 4.84
+    },
+    {
+     "w": "a",
+     "t": 4.88,
+     "end": 4.96
+    },
+    {
+     "w": "perfect",
+     "t": 5.04,
+     "end": 5.44
+    },
+    {
+     "w": "fifth.",
+     "t": 5.52,
+     "end": 6.16
+    }
+   ]
+  },
+  "twinkle": {
+   "text": "It's the leap in Twinkle, Twinkle, Little Star...",
+   "dur": 3.239184,
+   "speechEnd": 3.2,
+   "words": [
+    {
+     "w": "It's",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "the",
+     "t": 0.28,
+     "end": 0.32
+    },
+    {
+     "w": "leap",
+     "t": 0.4,
+     "end": 0.8
+    },
+    {
+     "w": "in",
+     "t": 0.96,
+     "end": 1.12
+    },
+    {
+     "w": "Twinkle,",
+     "t": 1.28,
+     "end": 1.68
+    },
+    {
+     "w": "Twinkle,",
+     "t": 1.72,
+     "end": 2.08
+    },
+    {
+     "w": "Little",
+     "t": 2.16,
+     "end": 2.32
+    },
+    {
+     "w": "Star...",
+     "t": 2.4,
+     "end": 3.2
+    }
+   ]
+  },
+  "starwars": {
+   "text": "the heroic jump in the Star Wars theme...",
+   "dur": 2.586122,
+   "speechEnd": 2.64,
+   "words": [
+    {
+     "w": "the",
+     "t": 0,
+     "end": 0.08
+    },
+    {
+     "w": "heroic",
+     "t": 0.16,
+     "end": 0.64
+    },
+    {
+     "w": "jump",
+     "t": 0.8,
+     "end": 1.04
+    },
+    {
+     "w": "in",
+     "t": 1.12,
+     "end": 1.2
+    },
+    {
+     "w": "the",
+     "t": 1.24,
+     "end": 1.28
+    },
+    {
+     "w": "Star",
+     "t": 1.36,
+     "end": 1.6
+    },
+    {
+     "w": "Wars",
+     "t": 1.68,
+     "end": 1.92
+    },
+    {
+     "w": "theme...",
+     "t": 2,
+     "end": 2.64
+    }
+   ]
+  },
+  "zara": {
+   "text": "the sunrise in Also Sprach Zarathustra...",
+   "dur": 3.317551,
+   "speechEnd": 3.36,
+   "words": [
+    {
+     "w": "the",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "sunrise",
+     "t": 0.24,
+     "end": 0.88
+    },
+    {
+     "w": "in",
+     "t": 1.04,
+     "end": 1.28
+    },
+    {
+     "w": "Also",
+     "t": 1.44,
+     "end": 1.76
+    },
+    {
+     "w": "Sprach",
+     "t": 1.84,
+     "end": 2.16
+    },
+    {
+     "w": "Zarathustra...",
+     "t": 2.24,
+     "end": 3.36
+    }
+   ]
+  },
+  "rock": {
+   "text": "and every power chord in rock, like Smells Like Teen Spirit.",
+   "dur": 4.205714,
+   "speechEnd": 4.24,
+   "words": [
+    {
+     "w": "and",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "every",
+     "t": 0.4,
+     "end": 0.72
+    },
+    {
+     "w": "power",
+     "t": 0.8,
+     "end": 1.12
+    },
+    {
+     "w": "chord",
+     "t": 1.2,
+     "end": 1.44
+    },
+    {
+     "w": "in",
+     "t": 1.48,
+     "end": 1.52
+    },
+    {
+     "w": "rock,",
+     "t": 1.68,
+     "end": 2.32
+    },
+    {
+     "w": "like",
+     "t": 2.4,
+     "end": 2.56
+    },
+    {
+     "w": "Smells",
+     "t": 2.72,
+     "end": 2.96
+    },
+    {
+     "w": "Like",
+     "t": 3.04,
+     "end": 3.12
+    },
+    {
+     "w": "Teen",
+     "t": 3.2,
+     "end": 3.36
+    },
+    {
+     "w": "Spirit.",
+     "t": 3.44,
+     "end": 4.24
+    }
+   ]
+  },
+  "why1": {
+   "text": "So why does it sound so strong? Every note is a vibration.",
+   "dur": 4.91102,
+   "speechEnd": 4.96,
+   "words": [
+    {
+     "w": "So",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "why",
+     "t": 0.48,
+     "end": 0.64
+    },
+    {
+     "w": "does",
+     "t": 0.72,
+     "end": 0.8
+    },
+    {
+     "w": "it",
+     "t": 0.88,
+     "end": 0.96
+    },
+    {
+     "w": "sound",
+     "t": 1.04,
+     "end": 1.28
+    },
+    {
+     "w": "so",
+     "t": 1.36,
+     "end": 1.44
+    },
+    {
+     "w": "strong?",
+     "t": 1.6,
+     "end": 2.16
+    },
+    {
+     "w": "Every",
+     "t": 2.72,
+     "end": 3.04
+    },
+    {
+     "w": "note",
+     "t": 3.2,
+     "end": 3.52
+    },
+    {
+     "w": "is",
+     "t": 3.68,
+     "end": 3.76
+    },
+    {
+     "w": "a",
+     "t": 3.84,
+     "end": 3.88
+    },
+    {
+     "w": "vibration.",
+     "t": 3.92,
+     "end": 4.96
+    }
+   ]
+  },
+  "why2": {
+   "text": "While G swings three times, C swings exactly twice. A ratio of three to two.",
+   "dur": 6.687347,
+   "speechEnd": 6.72,
+   "words": [
+    {
+     "w": "While",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "G",
+     "t": 0.32,
+     "end": 0.56
+    },
+    {
+     "w": "swings",
+     "t": 0.64,
+     "end": 0.96
+    },
+    {
+     "w": "three",
+     "t": 1.04,
+     "end": 1.28
+    },
+    {
+     "w": "times,",
+     "t": 1.36,
+     "end": 2.08
+    },
+    {
+     "w": "C",
+     "t": 2.24,
+     "end": 2.48
+    },
+    {
+     "w": "swings",
+     "t": 2.64,
+     "end": 2.96
+    },
+    {
+     "w": "exactly",
+     "t": 3.04,
+     "end": 3.6
+    },
+    {
+     "w": "twice.",
+     "t": 3.76,
+     "end": 4.48
+    },
+    {
+     "w": "A",
+     "t": 4.72,
+     "end": 4.8
+    },
+    {
+     "w": "ratio",
+     "t": 4.88,
+     "end": 5.36
+    },
+    {
+     "w": "of",
+     "t": 5.44,
+     "end": 5.52
+    },
+    {
+     "w": "three",
+     "t": 5.68,
+     "end": 5.84
+    },
+    {
+     "w": "to",
+     "t": 5.92,
+     "end": 6.08
+    },
+    {
+     "w": "two.",
+     "t": 6.16,
+     "end": 6.72
+    }
+   ]
+  },
+  "why3": {
+   "text": "The ratio is so simple that the two waves keep lining up, and your brain hears them as one.",
+   "dur": 5.877551,
+   "speechEnd": 5.92,
+   "words": [
+    {
+     "w": "The",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "ratio",
+     "t": 0.4,
+     "end": 0.64
+    },
+    {
+     "w": "is",
+     "t": 0.76,
+     "end": 0.88
+    },
+    {
+     "w": "so",
+     "t": 1,
+     "end": 1.12
+    },
+    {
+     "w": "simple",
+     "t": 1.28,
+     "end": 1.68
+    },
+    {
+     "w": "that",
+     "t": 1.84,
+     "end": 2
+    },
+    {
+     "w": "the",
+     "t": 2.08,
+     "end": 2.16
+    },
+    {
+     "w": "two",
+     "t": 2.24,
+     "end": 2.32
+    },
+    {
+     "w": "waves",
+     "t": 2.4,
+     "end": 2.72
+    },
+    {
+     "w": "keep",
+     "t": 2.8,
+     "end": 3.04
+    },
+    {
+     "w": "lining",
+     "t": 3.12,
+     "end": 3.44
+    },
+    {
+     "w": "up,",
+     "t": 3.52,
+     "end": 4
+    },
+    {
+     "w": "and",
+     "t": 4.04,
+     "end": 4.08
+    },
+    {
+     "w": "your",
+     "t": 4.16,
+     "end": 4.24
+    },
+    {
+     "w": "brain",
+     "t": 4.32,
+     "end": 4.64
+    },
+    {
+     "w": "hears",
+     "t": 4.72,
+     "end": 4.96
+    },
+    {
+     "w": "them",
+     "t": 5.04,
+     "end": 5.12
+    },
+    {
+     "w": "as",
+     "t": 5.2,
+     "end": 5.28
+    },
+    {
+     "w": "one.",
+     "t": 5.36,
+     "end": 5.92
+    }
+   ]
+  },
+  "chaos": {
+   "text": "Make the ratio messy, like a tritone, and the pattern turns to chaos.",
+   "dur": 5.32898,
+   "speechEnd": 5.28,
+   "words": [
+    {
+     "w": "Make",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "the",
+     "t": 0.32,
+     "end": 0.36
+    },
+    {
+     "w": "ratio",
+     "t": 0.4,
+     "end": 0.88
+    },
+    {
+     "w": "messy,",
+     "t": 1.04,
+     "end": 1.84
+    },
+    {
+     "w": "like",
+     "t": 1.92,
+     "end": 2
+    },
+    {
+     "w": "a",
+     "t": 2.04,
+     "end": 2.08
+    },
+    {
+     "w": "tritone,",
+     "t": 2.16,
+     "end": 3.12
+    },
+    {
+     "w": "and",
+     "t": 3.16,
+     "end": 3.2
+    },
+    {
+     "w": "the",
+     "t": 3.28,
+     "end": 3.36
+    },
+    {
+     "w": "pattern",
+     "t": 3.44,
+     "end": 3.84
+    },
+    {
+     "w": "turns",
+     "t": 3.92,
+     "end": 4.16
+    },
+    {
+     "w": "to",
+     "t": 4.24,
+     "end": 4.32
+    },
+    {
+     "w": "chaos.",
+     "t": 4.4,
+     "end": 5.28
+    }
+   ]
+  },
+  "back": {
+   "text": "The fifth feels stable, open, powerful.",
+   "dur": 4.205714,
+   "speechEnd": 4.24,
+   "words": [
+    {
+     "w": "The",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "fifth",
+     "t": 0.24,
+     "end": 0.64
+    },
+    {
+     "w": "feels",
+     "t": 0.88,
+     "end": 1.2
+    },
+    {
+     "w": "stable,",
+     "t": 1.28,
+     "end": 2.24
+    },
+    {
+     "w": "open,",
+     "t": 2.48,
+     "end": 3.2
+    },
+    {
+     "w": "powerful.",
+     "t": 3.44,
+     "end": 4.24
+    }
+   ]
+  },
+  "organum": {
+   "text": "A thousand years ago, monks sang whole melodies in parallel fifths.",
+   "dur": 4.832653,
+   "speechEnd": 4.88,
+   "words": [
+    {
+     "w": "A",
+     "t": 0,
+     "end": 0.08
+    },
+    {
+     "w": "thousand",
+     "t": 0.16,
+     "end": 0.56
+    },
+    {
+     "w": "years",
+     "t": 0.64,
+     "end": 0.88
+    },
+    {
+     "w": "ago,",
+     "t": 0.96,
+     "end": 1.6
+    },
+    {
+     "w": "monks",
+     "t": 1.68,
+     "end": 2
+    },
+    {
+     "w": "sang",
+     "t": 2.04,
+     "end": 2.32
+    },
+    {
+     "w": "whole",
+     "t": 2.4,
+     "end": 2.64
+    },
+    {
+     "w": "melodies",
+     "t": 2.8,
+     "end": 3.36
+    },
+    {
+     "w": "in",
+     "t": 3.44,
+     "end": 3.52
+    },
+    {
+     "w": "parallel",
+     "t": 3.6,
+     "end": 4
+    },
+    {
+     "w": "fifths.",
+     "t": 4.16,
+     "end": 4.88
+    }
+   ]
+  },
+  "organum2": {
+   "text": "Today, guitarists do the same thing with power chords.",
+   "dur": 3.709388,
+   "speechEnd": 3.76,
+   "words": [
+    {
+     "w": "Today,",
+     "t": 0,
+     "end": 0.72
+    },
+    {
+     "w": "guitarists",
+     "t": 0.76,
+     "end": 1.44
+    },
+    {
+     "w": "do",
+     "t": 1.52,
+     "end": 1.6
+    },
+    {
+     "w": "the",
+     "t": 1.68,
+     "end": 1.76
+    },
+    {
+     "w": "same",
+     "t": 1.84,
+     "end": 2.08
+    },
+    {
+     "w": "thing",
+     "t": 2.16,
+     "end": 2.4
+    },
+    {
+     "w": "with",
+     "t": 2.48,
+     "end": 2.56
+    },
+    {
+     "w": "power",
+     "t": 2.64,
+     "end": 2.88
+    },
+    {
+     "w": "chords.",
+     "t": 2.96,
+     "end": 3.76
+    }
+   ]
+  },
+  "harm": {
+   "text": "And here's the secret: G is already hiding inside C. Play a low C, and its third harmonic... is a G.",
+   "dur": 8.829388,
+   "speechEnd": 8.88,
+   "words": [
+    {
+     "w": "And",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "here's",
+     "t": 0.24,
+     "end": 0.48
+    },
+    {
+     "w": "the",
+     "t": 0.56,
+     "end": 0.64
+    },
+    {
+     "w": "secret:",
+     "t": 0.72,
+     "end": 1.68
+    },
+    {
+     "w": "G",
+     "t": 1.84,
+     "end": 2.16
+    },
+    {
+     "w": "is",
+     "t": 2.32,
+     "end": 2.56
+    },
+    {
+     "w": "already",
+     "t": 2.64,
+     "end": 3.04
+    },
+    {
+     "w": "hiding",
+     "t": 3.12,
+     "end": 3.52
+    },
+    {
+     "w": "inside",
+     "t": 3.8,
+     "end": 4.08
+    },
+    {
+     "w": "C.",
+     "t": 4.16,
+     "end": 4.48
+    },
+    {
+     "w": "Play",
+     "t": 5.04,
+     "end": 5.2
+    },
+    {
+     "w": "a",
+     "t": 5.28,
+     "end": 5.36
+    },
+    {
+     "w": "low",
+     "t": 5.44,
+     "end": 5.6
+    },
+    {
+     "w": "C,",
+     "t": 5.76,
+     "end": 6.32
+    },
+    {
+     "w": "and",
+     "t": 6.36,
+     "end": 6.4
+    },
+    {
+     "w": "its",
+     "t": 6.48,
+     "end": 6.64
+    },
+    {
+     "w": "third",
+     "t": 6.72,
+     "end": 6.88
+    },
+    {
+     "w": "harmonic...",
+     "t": 6.96,
+     "end": 7.92
+    },
+    {
+     "w": "is",
+     "t": 8,
+     "end": 8.08
+    },
+    {
+     "w": "a",
+     "t": 8.16,
+     "end": 8.2
+    },
+    {
+     "w": "G.",
+     "t": 8.24,
+     "end": 8.88
+    }
+   ]
+  },
+  "essence": {
+   "text": "So every fifth is an echo of nature itself. No wonder heroes love it.",
+   "dur": 5.564082,
+   "speechEnd": 5.6,
+   "words": [
+    {
+     "w": "So",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "every",
+     "t": 0.48,
+     "end": 0.72
+    },
+    {
+     "w": "fifth",
+     "t": 0.88,
+     "end": 1.28
+    },
+    {
+     "w": "is",
+     "t": 1.36,
+     "end": 1.44
+    },
+    {
+     "w": "an",
+     "t": 1.52,
+     "end": 1.68
+    },
+    {
+     "w": "echo",
+     "t": 1.84,
+     "end": 2
+    },
+    {
+     "w": "of",
+     "t": 2.08,
+     "end": 2.16
+    },
+    {
+     "w": "nature",
+     "t": 2.24,
+     "end": 2.64
+    },
+    {
+     "w": "itself.",
+     "t": 2.76,
+     "end": 3.6
+    },
+    {
+     "w": "No",
+     "t": 3.84,
+     "end": 4
+    },
+    {
+     "w": "wonder",
+     "t": 4.16,
+     "end": 4.48
+    },
+    {
+     "w": "heroes",
+     "t": 4.68,
+     "end": 4.88
+    },
+    {
+     "w": "love",
+     "t": 4.96,
+     "end": 5.12
+    },
+    {
+     "w": "it.",
+     "t": 5.2,
+     "end": 5.6
+    }
+   ]
+  },
+  "cta": {
+   "text": "Which interval should I break down next?",
+   "dur": 2.35102,
+   "speechEnd": 2.4,
+   "words": [
+    {
+     "w": "Which",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "interval",
+     "t": 0.32,
+     "end": 0.72
+    },
+    {
+     "w": "should",
+     "t": 0.8,
+     "end": 0.88
+    },
+    {
+     "w": "I",
+     "t": 0.96,
+     "end": 1.04
+    },
+    {
+     "w": "break",
+     "t": 1.12,
+     "end": 1.28
+    },
+    {
+     "w": "down",
+     "t": 1.36,
+     "end": 1.52
+    },
+    {
+     "w": "next?",
+     "t": 1.6,
+     "end": 2.4
+    }
+   ]
+  }
+ }
+}
