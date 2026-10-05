@@ -1,0 +1,1022 @@
+{
+ "voice_id": "EwzF7Z2UMSib9JaKx0Kg",
+ "model_id": "eleven_v4",
+ "segments": {
+  "hook": {
+   "text": "There's one trick that makes the last chorus hit harder... and it's just one step up.",
+   "dur": 5.642449,
+   "speechEnd": 5.68,
+   "words": [
+    {
+     "w": "There's",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "one",
+     "t": 0.4,
+     "end": 0.56
+    },
+    {
+     "w": "trick",
+     "t": 0.64,
+     "end": 0.88
+    },
+    {
+     "w": "that",
+     "t": 0.96,
+     "end": 1.12
+    },
+    {
+     "w": "makes",
+     "t": 1.24,
+     "end": 1.36
+    },
+    {
+     "w": "the",
+     "t": 1.4,
+     "end": 1.44
+    },
+    {
+     "w": "last",
+     "t": 1.6,
+     "end": 1.84
+    },
+    {
+     "w": "chorus",
+     "t": 1.92,
+     "end": 2.32
+    },
+    {
+     "w": "hit",
+     "t": 2.4,
+     "end": 2.64
+    },
+    {
+     "w": "harder...",
+     "t": 2.8,
+     "end": 3.68
+    },
+    {
+     "w": "and",
+     "t": 3.72,
+     "end": 3.76
+    },
+    {
+     "w": "it's",
+     "t": 3.84,
+     "end": 4.08
+    },
+    {
+     "w": "just",
+     "t": 4.16,
+     "end": 4.32
+    },
+    {
+     "w": "one",
+     "t": 4.56,
+     "end": 4.72
+    },
+    {
+     "w": "step",
+     "t": 4.8,
+     "end": 5.04
+    },
+    {
+     "w": "up.",
+     "t": 5.12,
+     "end": 5.68
+    }
+   ]
+  },
+  "what": {
+   "text": "Play a chorus in G. Then, without warning, shift everything up a half step, to A flat. That's a key change.",
+   "dur": 8.594286,
+   "speechEnd": 8.64,
+   "words": [
+    {
+     "w": "Play",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "a",
+     "t": 0.28,
+     "end": 0.32
+    },
+    {
+     "w": "chorus",
+     "t": 0.4,
+     "end": 0.8
+    },
+    {
+     "w": "in",
+     "t": 0.88,
+     "end": 0.96
+    },
+    {
+     "w": "G.",
+     "t": 1.12,
+     "end": 1.52
+    },
+    {
+     "w": "Then,",
+     "t": 2.08,
+     "end": 2.56
+    },
+    {
+     "w": "without",
+     "t": 2.72,
+     "end": 2.88
+    },
+    {
+     "w": "warning,",
+     "t": 2.96,
+     "end": 3.6
+    },
+    {
+     "w": "shift",
+     "t": 3.68,
+     "end": 4
+    },
+    {
+     "w": "everything",
+     "t": 4.16,
+     "end": 4.56
+    },
+    {
+     "w": "up",
+     "t": 4.64,
+     "end": 4.8
+    },
+    {
+     "w": "a",
+     "t": 4.84,
+     "end": 4.88
+    },
+    {
+     "w": "half",
+     "t": 4.96,
+     "end": 5.12
+    },
+    {
+     "w": "step,",
+     "t": 5.2,
+     "end": 5.68
+    },
+    {
+     "w": "to",
+     "t": 5.76,
+     "end": 5.84
+    },
+    {
+     "w": "A",
+     "t": 5.92,
+     "end": 6
+    },
+    {
+     "w": "flat.",
+     "t": 6.08,
+     "end": 6.56
+    },
+    {
+     "w": "That's",
+     "t": 7.04,
+     "end": 7.36
+    },
+    {
+     "w": "a",
+     "t": 7.44,
+     "end": 7.52
+    },
+    {
+     "w": "key",
+     "t": 7.6,
+     "end": 7.76
+    },
+    {
+     "w": "change.",
+     "t": 7.84,
+     "end": 8.64
+    }
+   ]
+  },
+  "mirror": {
+   "text": "It's the moment in Man in the Mirror, right on the word change...",
+   "dur": 4.127347,
+   "speechEnd": 4.16,
+   "words": [
+    {
+     "w": "It's",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "the",
+     "t": 0.28,
+     "end": 0.32
+    },
+    {
+     "w": "moment",
+     "t": 0.4,
+     "end": 0.72
+    },
+    {
+     "w": "in",
+     "t": 0.8,
+     "end": 0.88
+    },
+    {
+     "w": "Man",
+     "t": 0.96,
+     "end": 1.12
+    },
+    {
+     "w": "in",
+     "t": 1.2,
+     "end": 1.28
+    },
+    {
+     "w": "the",
+     "t": 1.333,
+     "end": 1.387
+    },
+    {
+     "w": "Mirror,",
+     "t": 1.44,
+     "end": 2.16
+    },
+    {
+     "w": "right",
+     "t": 2.24,
+     "end": 2.4
+    },
+    {
+     "w": "on",
+     "t": 2.48,
+     "end": 2.56
+    },
+    {
+     "w": "the",
+     "t": 2.6,
+     "end": 2.64
+    },
+    {
+     "w": "word",
+     "t": 2.72,
+     "end": 2.96
+    },
+    {
+     "w": "change...",
+     "t": 3.28,
+     "end": 4.16
+    }
+   ]
+  },
+  "whitney": {
+   "text": "the drum hit before the last chorus of I Will Always Love You...",
+   "dur": 4.205714,
+   "speechEnd": 4.24,
+   "words": [
+    {
+     "w": "the",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "drum",
+     "t": 0.24,
+     "end": 0.48
+    },
+    {
+     "w": "hit",
+     "t": 0.56,
+     "end": 0.8
+    },
+    {
+     "w": "before",
+     "t": 0.96,
+     "end": 1.12
+    },
+    {
+     "w": "the",
+     "t": 1.2,
+     "end": 1.28
+    },
+    {
+     "w": "last",
+     "t": 1.44,
+     "end": 1.6
+    },
+    {
+     "w": "chorus",
+     "t": 1.68,
+     "end": 2.16
+    },
+    {
+     "w": "of",
+     "t": 2.28,
+     "end": 2.4
+    },
+    {
+     "w": "I",
+     "t": 2.64,
+     "end": 2.72
+    },
+    {
+     "w": "Will",
+     "t": 2.8,
+     "end": 2.88
+    },
+    {
+     "w": "Always",
+     "t": 3.04,
+     "end": 3.36
+    },
+    {
+     "w": "Love",
+     "t": 3.44,
+     "end": 3.68
+    },
+    {
+     "w": "You...",
+     "t": 3.76,
+     "end": 4.24
+    }
+   ]
+  },
+  "beyonce": {
+   "text": "and Love on Top, which does it four times in a row.",
+   "dur": 3.552653,
+   "speechEnd": 3.6,
+   "words": [
+    {
+     "w": "and",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "Love",
+     "t": 0.4,
+     "end": 0.56
+    },
+    {
+     "w": "on",
+     "t": 0.64,
+     "end": 0.72
+    },
+    {
+     "w": "Top,",
+     "t": 0.8,
+     "end": 1.44
+    },
+    {
+     "w": "which",
+     "t": 1.56,
+     "end": 1.68
+    },
+    {
+     "w": "does",
+     "t": 1.76,
+     "end": 1.84
+    },
+    {
+     "w": "it",
+     "t": 1.92,
+     "end": 2.08
+    },
+    {
+     "w": "four",
+     "t": 2.16,
+     "end": 2.4
+    },
+    {
+     "w": "times",
+     "t": 2.56,
+     "end": 2.72
+    },
+    {
+     "w": "in",
+     "t": 2.8,
+     "end": 2.84
+    },
+    {
+     "w": "a",
+     "t": 2.88,
+     "end": 2.92
+    },
+    {
+     "w": "row.",
+     "t": 2.96,
+     "end": 3.6
+    }
+   ]
+  },
+  "why1": {
+   "text": "So why does it work? By the last chorus, your brain already knows the melody by heart.",
+   "dur": 6.034286,
+   "speechEnd": 6.08,
+   "words": [
+    {
+     "w": "So",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "why",
+     "t": 0.48,
+     "end": 0.64
+    },
+    {
+     "w": "does",
+     "t": 0.72,
+     "end": 0.88
+    },
+    {
+     "w": "it",
+     "t": 0.92,
+     "end": 0.96
+    },
+    {
+     "w": "work?",
+     "t": 1.04,
+     "end": 1.72
+    },
+    {
+     "w": "By",
+     "t": 2,
+     "end": 2.08
+    },
+    {
+     "w": "the",
+     "t": 2.16,
+     "end": 2.2
+    },
+    {
+     "w": "last",
+     "t": 2.24,
+     "end": 2.56
+    },
+    {
+     "w": "chorus,",
+     "t": 2.64,
+     "end": 3.28
+    },
+    {
+     "w": "your",
+     "t": 3.36,
+     "end": 3.52
+    },
+    {
+     "w": "brain",
+     "t": 3.68,
+     "end": 3.84
+    },
+    {
+     "w": "already",
+     "t": 3.92,
+     "end": 4.32
+    },
+    {
+     "w": "knows",
+     "t": 4.4,
+     "end": 4.72
+    },
+    {
+     "w": "the",
+     "t": 4.76,
+     "end": 4.8
+    },
+    {
+     "w": "melody",
+     "t": 4.88,
+     "end": 5.2
+    },
+    {
+     "w": "by",
+     "t": 5.28,
+     "end": 5.36
+    },
+    {
+     "w": "heart.",
+     "t": 5.52,
+     "end": 6.08
+    }
+   ]
+  },
+  "why2": {
+   "text": "When it suddenly comes back higher, it feels brighter, more urgent... like a second wind.",
+   "dur": 6.112653,
+   "speechEnd": 6.16,
+   "words": [
+    {
+     "w": "When",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "it",
+     "t": 0.2,
+     "end": 0.24
+    },
+    {
+     "w": "suddenly",
+     "t": 0.4,
+     "end": 0.72
+    },
+    {
+     "w": "comes",
+     "t": 0.8,
+     "end": 1.04
+    },
+    {
+     "w": "back",
+     "t": 1.12,
+     "end": 1.28
+    },
+    {
+     "w": "higher,",
+     "t": 1.44,
+     "end": 2.08
+    },
+    {
+     "w": "it",
+     "t": 2.16,
+     "end": 2.24
+    },
+    {
+     "w": "feels",
+     "t": 2.32,
+     "end": 2.56
+    },
+    {
+     "w": "brighter,",
+     "t": 2.72,
+     "end": 3.44
+    },
+    {
+     "w": "more",
+     "t": 3.52,
+     "end": 3.68
+    },
+    {
+     "w": "urgent...",
+     "t": 3.84,
+     "end": 4.72
+    },
+    {
+     "w": "like",
+     "t": 4.8,
+     "end": 4.88
+    },
+    {
+     "w": "a",
+     "t": 4.96,
+     "end": 5.04
+    },
+    {
+     "w": "second",
+     "t": 5.2,
+     "end": 5.36
+    },
+    {
+     "w": "wind.",
+     "t": 5.52,
+     "end": 6.16
+    }
+   ]
+  },
+  "why3": {
+   "text": "Every note moves together, so on the circle, the whole shape simply rotates.",
+   "dur": 5.407347,
+   "speechEnd": 5.44,
+   "words": [
+    {
+     "w": "Every",
+     "t": 0,
+     "end": 0.4
+    },
+    {
+     "w": "note",
+     "t": 0.48,
+     "end": 0.72
+    },
+    {
+     "w": "moves",
+     "t": 0.8,
+     "end": 1.04
+    },
+    {
+     "w": "together,",
+     "t": 1.12,
+     "end": 1.92
+    },
+    {
+     "w": "so",
+     "t": 2,
+     "end": 2.24
+    },
+    {
+     "w": "on",
+     "t": 2.32,
+     "end": 2.48
+    },
+    {
+     "w": "the",
+     "t": 2.52,
+     "end": 2.56
+    },
+    {
+     "w": "circle,",
+     "t": 2.64,
+     "end": 3.28
+    },
+    {
+     "w": "the",
+     "t": 3.36,
+     "end": 3.44
+    },
+    {
+     "w": "whole",
+     "t": 3.56,
+     "end": 3.68
+    },
+    {
+     "w": "shape",
+     "t": 3.76,
+     "end": 4.08
+    },
+    {
+     "w": "simply",
+     "t": 4.16,
+     "end": 4.48
+    },
+    {
+     "w": "rotates.",
+     "t": 4.56,
+     "end": 5.44
+    }
+   ]
+  },
+  "prep": {
+   "text": "The smoothest key changes sneak in the new key's five chord first, so your ear gets pulled up into it.",
+   "dur": 6.687347,
+   "speechEnd": 6.72,
+   "words": [
+    {
+     "w": "The",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "smoothest",
+     "t": 0.24,
+     "end": 0.72
+    },
+    {
+     "w": "key",
+     "t": 0.8,
+     "end": 0.96
+    },
+    {
+     "w": "changes",
+     "t": 1.04,
+     "end": 1.52
+    },
+    {
+     "w": "sneak",
+     "t": 1.6,
+     "end": 1.92
+    },
+    {
+     "w": "in",
+     "t": 1.96,
+     "end": 2
+    },
+    {
+     "w": "the",
+     "t": 2.08,
+     "end": 2.16
+    },
+    {
+     "w": "new",
+     "t": 2.24,
+     "end": 2.4
+    },
+    {
+     "w": "key's",
+     "t": 2.48,
+     "end": 2.8
+    },
+    {
+     "w": "five",
+     "t": 2.88,
+     "end": 3.12
+    },
+    {
+     "w": "chord",
+     "t": 3.2,
+     "end": 3.52
+    },
+    {
+     "w": "first,",
+     "t": 3.6,
+     "end": 4.4
+    },
+    {
+     "w": "so",
+     "t": 4.48,
+     "end": 4.56
+    },
+    {
+     "w": "your",
+     "t": 4.64,
+     "end": 4.8
+    },
+    {
+     "w": "ear",
+     "t": 4.88,
+     "end": 5.12
+    },
+    {
+     "w": "gets",
+     "t": 5.2,
+     "end": 5.36
+    },
+    {
+     "w": "pulled",
+     "t": 5.52,
+     "end": 5.76
+    },
+    {
+     "w": "up",
+     "t": 5.84,
+     "end": 5.92
+    },
+    {
+     "w": "into",
+     "t": 6,
+     "end": 6.24
+    },
+    {
+     "w": "it.",
+     "t": 6.32,
+     "end": 6.72
+    }
+   ]
+  },
+  "truck": {
+   "text": "The sudden kind even has a nickname: the truck driver's gear change.",
+   "dur": 4.519184,
+   "speechEnd": 4.56,
+   "words": [
+    {
+     "w": "The",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "sudden",
+     "t": 0.2,
+     "end": 0.48
+    },
+    {
+     "w": "kind",
+     "t": 0.56,
+     "end": 0.88
+    },
+    {
+     "w": "even",
+     "t": 0.96,
+     "end": 1.2
+    },
+    {
+     "w": "has",
+     "t": 1.28,
+     "end": 1.36
+    },
+    {
+     "w": "a",
+     "t": 1.44,
+     "end": 1.48
+    },
+    {
+     "w": "nickname:",
+     "t": 1.52,
+     "end": 2.48
+    },
+    {
+     "w": "the",
+     "t": 2.52,
+     "end": 2.56
+    },
+    {
+     "w": "truck",
+     "t": 2.64,
+     "end": 2.88
+    },
+    {
+     "w": "driver's",
+     "t": 2.96,
+     "end": 3.36
+    },
+    {
+     "w": "gear",
+     "t": 3.44,
+     "end": 3.68
+    },
+    {
+     "w": "change.",
+     "t": 3.76,
+     "end": 4.56
+    }
+   ]
+  },
+  "cliche": {
+   "text": "Ballads and Eurovision used it so much it became a cliché... and it still works.",
+   "dur": 5.877551,
+   "speechEnd": 5.92,
+   "words": [
+    {
+     "w": "Ballads",
+     "t": 0,
+     "end": 0.48
+    },
+    {
+     "w": "and",
+     "t": 0.56,
+     "end": 0.64
+    },
+    {
+     "w": "Eurovision",
+     "t": 0.72,
+     "end": 1.36
+    },
+    {
+     "w": "used",
+     "t": 1.48,
+     "end": 1.6
+    },
+    {
+     "w": "it",
+     "t": 1.68,
+     "end": 1.76
+    },
+    {
+     "w": "so",
+     "t": 1.92,
+     "end": 2.08
+    },
+    {
+     "w": "much",
+     "t": 2.24,
+     "end": 2.56
+    },
+    {
+     "w": "it",
+     "t": 2.72,
+     "end": 2.88
+    },
+    {
+     "w": "became",
+     "t": 2.96,
+     "end": 3.12
+    },
+    {
+     "w": "a",
+     "t": 3.2,
+     "end": 3.28
+    },
+    {
+     "w": "cliché...",
+     "t": 3.32,
+     "end": 4.4
+    },
+    {
+     "w": "and",
+     "t": 4.52,
+     "end": 4.64
+    },
+    {
+     "w": "it",
+     "t": 4.72,
+     "end": 4.8
+    },
+    {
+     "w": "still",
+     "t": 4.88,
+     "end": 5.12
+    },
+    {
+     "w": "works.",
+     "t": 5.2,
+     "end": 5.92
+    }
+   ]
+  },
+  "essence": {
+   "text": "Same song, one step higher. That's how music turns hope into triumph.",
+   "dur": 5.799184,
+   "speechEnd": 5.84,
+   "words": [
+    {
+     "w": "Same",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "song,",
+     "t": 0.4,
+     "end": 1.12
+    },
+    {
+     "w": "one",
+     "t": 1.2,
+     "end": 1.36
+    },
+    {
+     "w": "step",
+     "t": 1.44,
+     "end": 1.68
+    },
+    {
+     "w": "higher.",
+     "t": 1.76,
+     "end": 2.16
+    },
+    {
+     "w": "That's",
+     "t": 2.72,
+     "end": 3
+    },
+    {
+     "w": "how",
+     "t": 3.04,
+     "end": 3.2
+    },
+    {
+     "w": "music",
+     "t": 3.28,
+     "end": 3.68
+    },
+    {
+     "w": "turns",
+     "t": 3.76,
+     "end": 4.08
+    },
+    {
+     "w": "hope",
+     "t": 4.16,
+     "end": 4.48
+    },
+    {
+     "w": "into",
+     "t": 4.64,
+     "end": 4.88
+    },
+    {
+     "w": "triumph.",
+     "t": 4.96,
+     "end": 5.84
+    }
+   ]
+  },
+  "cta": {
+   "text": "What should I break down next?",
+   "dur": 1.959184,
+   "speechEnd": 2,
+   "words": [
+    {
+     "w": "What",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "should",
+     "t": 0.32,
+     "end": 0.48
+    },
+    {
+     "w": "I",
+     "t": 0.52,
+     "end": 0.56
+    },
+    {
+     "w": "break",
+     "t": 0.64,
+     "end": 0.88
+    },
+    {
+     "w": "down",
+     "t": 1,
+     "end": 1.12
+    },
+    {
+     "w": "next?",
+     "t": 1.2,
+     "end": 2
+    }
+   ]
+  }
+ }
+}

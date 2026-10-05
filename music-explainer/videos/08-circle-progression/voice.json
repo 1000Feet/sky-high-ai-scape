@@ -1,0 +1,929 @@
+{
+ "voice_id": "EwzF7Z2UMSib9JaKx0Kg",
+ "model_id": "eleven_v4",
+ "segments": {
+  "hook": {
+   "text": "One chord progression is the backbone of jazz, disco... and a thousand love songs.",
+   "dur": 6.112653,
+   "speechEnd": 6.16,
+   "words": [
+    {
+     "w": "One",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "chord",
+     "t": 0.32,
+     "end": 0.48
+    },
+    {
+     "w": "progression",
+     "t": 0.56,
+     "end": 1.12
+    },
+    {
+     "w": "is",
+     "t": 1.2,
+     "end": 1.28
+    },
+    {
+     "w": "the",
+     "t": 1.36,
+     "end": 1.52
+    },
+    {
+     "w": "backbone",
+     "t": 1.68,
+     "end": 2
+    },
+    {
+     "w": "of",
+     "t": 2.08,
+     "end": 2.16
+    },
+    {
+     "w": "jazz,",
+     "t": 2.32,
+     "end": 3.04
+    },
+    {
+     "w": "disco...",
+     "t": 3.12,
+     "end": 4.08
+    },
+    {
+     "w": "and",
+     "t": 4.2,
+     "end": 4.32
+    },
+    {
+     "w": "a",
+     "t": 4.4,
+     "end": 4.56
+    },
+    {
+     "w": "thousand",
+     "t": 4.64,
+     "end": 5.04
+    },
+    {
+     "w": "love",
+     "t": 5.12,
+     "end": 5.28
+    },
+    {
+     "w": "songs.",
+     "t": 5.36,
+     "end": 6.16
+    }
+   ]
+  },
+  "what": {
+   "text": "Start on A minor, then keep falling by fifths: D minor, G, C, F, B, E... and home.",
+   "dur": 9.795918,
+   "speechEnd": 9.84,
+   "words": [
+    {
+     "w": "Start",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "on",
+     "t": 0.4,
+     "end": 0.56
+    },
+    {
+     "w": "A",
+     "t": 0.64,
+     "end": 0.8
+    },
+    {
+     "w": "minor,",
+     "t": 0.88,
+     "end": 1.68
+    },
+    {
+     "w": "then",
+     "t": 1.8,
+     "end": 1.92
+    },
+    {
+     "w": "keep",
+     "t": 2,
+     "end": 2.24
+    },
+    {
+     "w": "falling",
+     "t": 2.32,
+     "end": 2.64
+    },
+    {
+     "w": "by",
+     "t": 2.72,
+     "end": 2.8
+    },
+    {
+     "w": "fifths:",
+     "t": 2.96,
+     "end": 3.84
+    },
+    {
+     "w": "D",
+     "t": 3.92,
+     "end": 4.08
+    },
+    {
+     "w": "minor,",
+     "t": 4.16,
+     "end": 4.8
+    },
+    {
+     "w": "G,",
+     "t": 4.96,
+     "end": 5.6
+    },
+    {
+     "w": "C,",
+     "t": 5.76,
+     "end": 6.48
+    },
+    {
+     "w": "F,",
+     "t": 6.56,
+     "end": 7.28
+    },
+    {
+     "w": "B,",
+     "t": 7.36,
+     "end": 8.08
+    },
+    {
+     "w": "E...",
+     "t": 8.16,
+     "end": 8.96
+    },
+    {
+     "w": "and",
+     "t": 9.04,
+     "end": 9.12
+    },
+    {
+     "w": "home.",
+     "t": 9.2,
+     "end": 9.84
+    }
+   ]
+  },
+  "fly": {
+   "text": "It's Fly Me to the Moon...",
+   "dur": 1.959184,
+   "speechEnd": 1.92,
+   "words": [
+    {
+     "w": "It's",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "Fly",
+     "t": 0.48,
+     "end": 0.72
+    },
+    {
+     "w": "Me",
+     "t": 0.8,
+     "end": 0.88
+    },
+    {
+     "w": "to",
+     "t": 0.96,
+     "end": 1.04
+    },
+    {
+     "w": "the",
+     "t": 1.08,
+     "end": 1.12
+    },
+    {
+     "w": "Moon...",
+     "t": 1.2,
+     "end": 1.92
+    }
+   ]
+  },
+  "survive": {
+   "text": "I Will Survive...",
+   "dur": 1.645714,
+   "speechEnd": 1.68,
+   "words": [
+    {
+     "w": "I",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "Will",
+     "t": 0.4,
+     "end": 0.56
+    },
+    {
+     "w": "Survive...",
+     "t": 0.64,
+     "end": 1.68
+    }
+   ]
+  },
+  "autumn": {
+   "text": "and Autumn Leaves.",
+   "dur": 1.802449,
+   "speechEnd": 1.84,
+   "words": [
+    {
+     "w": "and",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "Autumn",
+     "t": 0.64,
+     "end": 0.96
+    },
+    {
+     "w": "Leaves.",
+     "t": 1.04,
+     "end": 1.84
+    }
+   ]
+  },
+  "why1": {
+   "text": "So why does it feel unstoppable? Each root falls a fifth: the strongest move in harmony.",
+   "dur": 6.922449,
+   "speechEnd": 6.96,
+   "words": [
+    {
+     "w": "So",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "why",
+     "t": 0.48,
+     "end": 0.64
+    },
+    {
+     "w": "does",
+     "t": 0.72,
+     "end": 0.8
+    },
+    {
+     "w": "it",
+     "t": 0.88,
+     "end": 0.96
+    },
+    {
+     "w": "feel",
+     "t": 1.12,
+     "end": 1.28
+    },
+    {
+     "w": "unstoppable?",
+     "t": 1.44,
+     "end": 2.32
+    },
+    {
+     "w": "Each",
+     "t": 2.88,
+     "end": 3.12
+    },
+    {
+     "w": "root",
+     "t": 3.2,
+     "end": 3.44
+    },
+    {
+     "w": "falls",
+     "t": 3.52,
+     "end": 3.76
+    },
+    {
+     "w": "a",
+     "t": 3.84,
+     "end": 3.92
+    },
+    {
+     "w": "fifth:",
+     "t": 4,
+     "end": 4.8
+    },
+    {
+     "w": "the",
+     "t": 4.84,
+     "end": 4.88
+    },
+    {
+     "w": "strongest",
+     "t": 4.96,
+     "end": 5.6
+    },
+    {
+     "w": "move",
+     "t": 5.68,
+     "end": 6
+    },
+    {
+     "w": "in",
+     "t": 6.04,
+     "end": 6.08
+    },
+    {
+     "w": "harmony.",
+     "t": 6.16,
+     "end": 6.96
+    }
+   ]
+  },
+  "why2": {
+   "text": "It's the same move as five to one, the cadence that ends almost every song.",
+   "dur": 4.989388,
+   "speechEnd": 5.04,
+   "words": [
+    {
+     "w": "It's",
+     "t": 0,
+     "end": 0.2
+    },
+    {
+     "w": "the",
+     "t": 0.24,
+     "end": 0.32
+    },
+    {
+     "w": "same",
+     "t": 0.4,
+     "end": 0.64
+    },
+    {
+     "w": "move",
+     "t": 0.72,
+     "end": 0.96
+    },
+    {
+     "w": "as",
+     "t": 1.04,
+     "end": 1.12
+    },
+    {
+     "w": "five",
+     "t": 1.2,
+     "end": 1.44
+    },
+    {
+     "w": "to",
+     "t": 1.52,
+     "end": 1.68
+    },
+    {
+     "w": "one,",
+     "t": 1.76,
+     "end": 2.4
+    },
+    {
+     "w": "the",
+     "t": 2.44,
+     "end": 2.48
+    },
+    {
+     "w": "cadence",
+     "t": 2.56,
+     "end": 2.96
+    },
+    {
+     "w": "that",
+     "t": 3.04,
+     "end": 3.12
+    },
+    {
+     "w": "ends",
+     "t": 3.2,
+     "end": 3.44
+    },
+    {
+     "w": "almost",
+     "t": 3.52,
+     "end": 3.84
+    },
+    {
+     "w": "every",
+     "t": 4,
+     "end": 4.32
+    },
+    {
+     "w": "song.",
+     "t": 4.4,
+     "end": 5.04
+    }
+   ]
+  },
+  "why3": {
+   "text": "So every chord sounds like the five of the next one. A line of dominoes.",
+   "dur": 4.91102,
+   "speechEnd": 4.96,
+   "words": [
+    {
+     "w": "So",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "every",
+     "t": 0.32,
+     "end": 0.56
+    },
+    {
+     "w": "chord",
+     "t": 0.64,
+     "end": 1.04
+    },
+    {
+     "w": "sounds",
+     "t": 1.12,
+     "end": 1.36
+    },
+    {
+     "w": "like",
+     "t": 1.44,
+     "end": 1.52
+    },
+    {
+     "w": "the",
+     "t": 1.6,
+     "end": 1.68
+    },
+    {
+     "w": "five",
+     "t": 1.76,
+     "end": 2.16
+    },
+    {
+     "w": "of",
+     "t": 2.2,
+     "end": 2.24
+    },
+    {
+     "w": "the",
+     "t": 2.32,
+     "end": 2.36
+    },
+    {
+     "w": "next",
+     "t": 2.4,
+     "end": 2.64
+    },
+    {
+     "w": "one.",
+     "t": 2.72,
+     "end": 3.2
+    },
+    {
+     "w": "A",
+     "t": 3.44,
+     "end": 3.52
+    },
+    {
+     "w": "line",
+     "t": 3.6,
+     "end": 3.76
+    },
+    {
+     "w": "of",
+     "t": 3.84,
+     "end": 3.92
+    },
+    {
+     "w": "dominoes.",
+     "t": 4,
+     "end": 4.96
+    }
+   ]
+  },
+  "circle": {
+   "text": "Rearrange the circle by fifths, and the chain simply walks around it, one neighbor at a time.",
+   "dur": 5.877551,
+   "speechEnd": 5.92,
+   "words": [
+    {
+     "w": "Rearrange",
+     "t": 0,
+     "end": 0.56
+    },
+    {
+     "w": "the",
+     "t": 0.6,
+     "end": 0.64
+    },
+    {
+     "w": "circle",
+     "t": 0.72,
+     "end": 1.04
+    },
+    {
+     "w": "by",
+     "t": 1.12,
+     "end": 1.2
+    },
+    {
+     "w": "fifths,",
+     "t": 1.36,
+     "end": 2.08
+    },
+    {
+     "w": "and",
+     "t": 2.16,
+     "end": 2.24
+    },
+    {
+     "w": "the",
+     "t": 2.28,
+     "end": 2.32
+    },
+    {
+     "w": "chain",
+     "t": 2.4,
+     "end": 2.72
+    },
+    {
+     "w": "simply",
+     "t": 2.8,
+     "end": 3.2
+    },
+    {
+     "w": "walks",
+     "t": 3.32,
+     "end": 3.48
+    },
+    {
+     "w": "around",
+     "t": 3.52,
+     "end": 3.84
+    },
+    {
+     "w": "it,",
+     "t": 3.92,
+     "end": 4.4
+    },
+    {
+     "w": "one",
+     "t": 4.48,
+     "end": 4.64
+    },
+    {
+     "w": "neighbor",
+     "t": 4.72,
+     "end": 5.04
+    },
+    {
+     "w": "at",
+     "t": 5.12,
+     "end": 5.2
+    },
+    {
+     "w": "a",
+     "t": 5.227,
+     "end": 5.253
+    },
+    {
+     "w": "time.",
+     "t": 5.28,
+     "end": 5.92
+    }
+   ]
+  },
+  "cheat": {
+   "text": "Only one step cheats. F to B is a tritone, so the chain stays inside the key.",
+   "dur": 6.347755,
+   "speechEnd": 6.4,
+   "words": [
+    {
+     "w": "Only",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "one",
+     "t": 0.48,
+     "end": 0.64
+    },
+    {
+     "w": "step",
+     "t": 0.8,
+     "end": 1.04
+    },
+    {
+     "w": "cheats.",
+     "t": 1.12,
+     "end": 1.88
+    },
+    {
+     "w": "F",
+     "t": 2.16,
+     "end": 2.32
+    },
+    {
+     "w": "to",
+     "t": 2.4,
+     "end": 2.48
+    },
+    {
+     "w": "B",
+     "t": 2.56,
+     "end": 2.8
+    },
+    {
+     "w": "is",
+     "t": 2.88,
+     "end": 2.96
+    },
+    {
+     "w": "a",
+     "t": 3.04,
+     "end": 3.12
+    },
+    {
+     "w": "tritone,",
+     "t": 3.2,
+     "end": 4.08
+    },
+    {
+     "w": "so",
+     "t": 4.16,
+     "end": 4.24
+    },
+    {
+     "w": "the",
+     "t": 4.32,
+     "end": 4.4
+    },
+    {
+     "w": "chain",
+     "t": 4.56,
+     "end": 4.72
+    },
+    {
+     "w": "stays",
+     "t": 4.8,
+     "end": 5.12
+    },
+    {
+     "w": "inside",
+     "t": 5.2,
+     "end": 5.68
+    },
+    {
+     "w": "the",
+     "t": 5.72,
+     "end": 5.76
+    },
+    {
+     "w": "key.",
+     "t": 5.84,
+     "end": 6.4
+    }
+   ]
+  },
+  "jazz0": {
+   "text": "Make every chord a dominant seventh, and you get the sound of ragtime.",
+   "dur": 4.519184,
+   "speechEnd": 4.56,
+   "words": [
+    {
+     "w": "Make",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "every",
+     "t": 0.4,
+     "end": 0.64
+    },
+    {
+     "w": "chord",
+     "t": 0.8,
+     "end": 1.12
+    },
+    {
+     "w": "a",
+     "t": 1.16,
+     "end": 1.2
+    },
+    {
+     "w": "dominant",
+     "t": 1.36,
+     "end": 1.76
+    },
+    {
+     "w": "seventh,",
+     "t": 1.92,
+     "end": 2.64
+    },
+    {
+     "w": "and",
+     "t": 2.76,
+     "end": 2.88
+    },
+    {
+     "w": "you",
+     "t": 2.96,
+     "end": 3.04
+    },
+    {
+     "w": "get",
+     "t": 3.12,
+     "end": 3.2
+    },
+    {
+     "w": "the",
+     "t": 3.24,
+     "end": 3.28
+    },
+    {
+     "w": "sound",
+     "t": 3.36,
+     "end": 3.6
+    },
+    {
+     "w": "of",
+     "t": 3.64,
+     "end": 3.68
+    },
+    {
+     "w": "ragtime.",
+     "t": 3.76,
+     "end": 4.56
+    }
+   ]
+  },
+  "jazz": {
+   "text": "E seven, A seven, D seven, G seven... C.",
+   "dur": 5.485714,
+   "speechEnd": 5.28,
+   "words": [
+    {
+     "w": "E",
+     "t": 0,
+     "end": 0.12
+    },
+    {
+     "w": "seven,",
+     "t": 0.12,
+     "end": 0.48
+    },
+    {
+     "w": "A",
+     "t": 0.48,
+     "end": 0.48
+    },
+    {
+     "w": "seven,",
+     "t": 0.48,
+     "end": 1.36
+    },
+    {
+     "w": "D",
+     "t": 1.36,
+     "end": 1.36
+    },
+    {
+     "w": "seven,",
+     "t": 1.36,
+     "end": 2.24
+    },
+    {
+     "w": "G",
+     "t": 2.4,
+     "end": 2.4
+    },
+    {
+     "w": "seven...",
+     "t": 2.48,
+     "end": 4.72
+    },
+    {
+     "w": "C.",
+     "t": 4.88,
+     "end": 5.28
+    }
+   ]
+  },
+  "essence": {
+   "text": "Every chord points to the next one. That's not just harmony... it's momentum.",
+   "dur": 5.564082,
+   "speechEnd": 5.6,
+   "words": [
+    {
+     "w": "Every",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "chord",
+     "t": 0.4,
+     "end": 0.8
+    },
+    {
+     "w": "points",
+     "t": 0.96,
+     "end": 1.28
+    },
+    {
+     "w": "to",
+     "t": 1.36,
+     "end": 1.44
+    },
+    {
+     "w": "the",
+     "t": 1.48,
+     "end": 1.52
+    },
+    {
+     "w": "next",
+     "t": 1.6,
+     "end": 1.84
+    },
+    {
+     "w": "one.",
+     "t": 1.92,
+     "end": 2.4
+    },
+    {
+     "w": "That's",
+     "t": 2.64,
+     "end": 2.84
+    },
+    {
+     "w": "not",
+     "t": 2.88,
+     "end": 3.04
+    },
+    {
+     "w": "just",
+     "t": 3.12,
+     "end": 3.28
+    },
+    {
+     "w": "harmony...",
+     "t": 3.36,
+     "end": 4.32
+    },
+    {
+     "w": "it's",
+     "t": 4.4,
+     "end": 4.52
+    },
+    {
+     "w": "momentum.",
+     "t": 4.56,
+     "end": 5.6
+    }
+   ]
+  },
+  "cta": {
+   "text": "What should I break down next?",
+   "dur": 1.959184,
+   "speechEnd": 2,
+   "words": [
+    {
+     "w": "What",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "should",
+     "t": 0.32,
+     "end": 0.48
+    },
+    {
+     "w": "I",
+     "t": 0.52,
+     "end": 0.56
+    },
+    {
+     "w": "break",
+     "t": 0.64,
+     "end": 0.88
+    },
+    {
+     "w": "down",
+     "t": 1,
+     "end": 1.12
+    },
+    {
+     "w": "next?",
+     "t": 1.2,
+     "end": 2
+    }
+   ]
+  }
+ }
+}
