@@ -7,7 +7,7 @@ interface Props {
 }
 
 const RequireAdmin: React.FC<Props> = ({ children }) => {
-  const [state, setState] = useState<'loading' | 'authorized' | 'denied'>('loading');
+  const [state, setState] = useState<'loading' | 'authorized' | 'denied' | 'forbidden'>('loading');
 
   useEffect(() => {
     let mounted = true;
@@ -22,7 +22,8 @@ const RequireAdmin: React.FC<Props> = ({ children }) => {
         _role: 'admin',
       });
       if (!mounted) return;
-      if (error || !data) setState('denied');
+      // Signed in but not admin: stay here (redirecting to /auth would bounce back and loop)
+      if (error || !data) setState('forbidden');
       else setState('authorized');
     };
 
@@ -48,6 +49,23 @@ const RequireAdmin: React.FC<Props> = ({ children }) => {
     );
   }
   if (state === 'denied') return <Navigate to="/auth" replace />;
+  if (state === 'forbidden') {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-slate-900 text-white/80 px-4 text-center">
+        <p>This account does not have admin access.</p>
+        <button
+          type="button"
+          className="underline"
+          onClick={async () => {
+            await supabase.auth.signOut();
+            setState('denied');
+          }}
+        >
+          Sign out and use a different account
+        </button>
+      </div>
+    );
+  }
   return <>{children}</>;
 };
 
