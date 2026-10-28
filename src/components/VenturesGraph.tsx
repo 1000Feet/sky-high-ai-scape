@@ -1,5 +1,7 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
+import learnMusicSecretsLogo from '@/assets/learnmusicsecrets-logo.png';
+import mapTheNotesLogo from '@/assets/mapthenotes-logo.png';
 
 interface Venture {
   id: string;
@@ -25,6 +27,8 @@ const ventures: Venture[] = [
   { id: 'whatsapp-translator', name: 'WhatsApp Translator', logo: '/ventures/Whatsapp-Translator-Logo.png', description: 'Real-time translation built directly into WhatsApp — break language barriers in any conversation.', url: '' },
   { id: 'savemybiz', name: 'SaveMyBiz', logo: '/ventures/SaveMyBiz-Logo.png', description: 'AI-powered business rescue and growth platform — turn struggling businesses around with data-driven insights.', url: 'https://savemybiz.netlify.app', darkBg: true },
   { id: 'distressberg', name: 'DistressBerg', logo: '/ventures/DistressBerg-Logo.png', description: 'Distressed real estate terminal — Bloomberg-style intelligence for foreclosure, REO, and off-market opportunities.', url: 'https://distressberg.netlify.app', darkBg: true },
+  { id: 'learnmusicsecrets', name: 'Music Secrets', logo: learnMusicSecretsLogo, description: 'Video lessons on the harmony behind hit songs — workbook, MIDI files and ear training in every lesson.', url: 'https://www.learnmusicsecrets.com', darkBg: true },
+  { id: 'mapthenotes', name: 'Map The Notes', logo: mapTheNotesLogo, description: 'Free web app to map chords and notes on guitar, bass and piano — color the shapes, read the score, keep the idea.', url: 'https://www.mapthenotes.com' },
 ];
 
 const VenturesGraph: React.FC = () => {
