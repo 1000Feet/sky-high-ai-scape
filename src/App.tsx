@@ -15,6 +15,9 @@ import OutboxPrivacyPolicy from "./pages/OutboxPrivacyPolicy";
 import Ventures from "./pages/Ventures";
 import NuoviMondi from "./pages/NuoviMondi";
 import Seo from "./pages/Seo";
+import { lazy, Suspense } from "react";
+
+const Outbox = lazy(() => import("./pages/Outbox"));
 
 
 const queryClient = new QueryClient();
@@ -33,6 +36,7 @@ const App = () => (
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<RequireAdmin><Admin /></RequireAdmin>} />
           <Route path="/outboxprivacypolicy" element={<OutboxPrivacyPolicy />} />
+          <Route path="/outbox" element={<Suspense fallback={null}><Outbox /></Suspense>} />
           <Route path="/ventures" element={<Ventures />} />
           <Route path="/nuovimondi" element={<NuoviMondi />} />
           <Route path="/seo" element={<Seo />} />
