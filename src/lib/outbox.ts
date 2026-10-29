@@ -1,5 +1,5 @@
 export const APP_STORE_URL = "https://apps.apple.com/app/apple-store/id6761489019?pt=127914093&ct=meta_us_video01&mt=8";
-export const META_PIXEL_ID = "REPLACE_ME";
+export const META_PIXEL_ID = "2087200238571342";
 export const OUTBOX_OFFER = { trialDays: 7, annualPrice: 14.99, minimumIOS: 17 };
 export const canLoadOutboxPixel = (id: string, pathname: string) => /^\d+$/.test(id) && pathname.replace(/\/$/, "") === "/outbox";
 
