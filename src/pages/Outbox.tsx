@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { ArrowDownToLine, ArrowUp, ArrowRight, Globe2, Keyboard, Languages, MessageCircle, Settings, ShieldCheck, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -44,6 +44,13 @@ export default function Outbox() {
   const root = useRef<HTMLElement>(null);
   const [sticky, setSticky] = useState(false);
   const [active, setActive] = useState(0);
+  useLayoutEffect(() => {
+    // Static homepage tags must not compete with this route's Helmet tags.
+    // Restore them unchanged when navigating away from Outbox.
+    const tags = Array.from(document.head.querySelectorAll('link[rel="canonical"], meta[name="description"], meta[property^="og:"], meta[name^="twitter:"]')).filter(tag => !tag.hasAttribute("data-rh"));
+    tags.forEach(tag => tag.remove());
+    return () => { tags.forEach(tag => document.head.appendChild(tag)); };
+  }, []);
   useEffect(() => {
     startOutboxPixel();
     const heroObserver = new IntersectionObserver(([entry]) => setSticky(!entry.isIntersecting && entry.boundingClientRect.top < 0));
@@ -63,6 +70,8 @@ export default function Outbox() {
       <meta property="og:url" content="https://1000feetabove.com/outbox" />
       <meta property="og:image" content={`https://1000feetabove.com${share.url}`} />
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Outbox — Translate as you type, in every chat" />
+      <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={`https://1000feetabove.com${share.url}`} />
       <link rel="icon" type="image/png" href="/outbox-icon.png" />
       <link rel="apple-touch-icon" href="/outbox-icon.png" />
