@@ -246,3 +246,135 @@ html {
   transform: translateY(-5px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
+
+/* Outbox: route-scoped brand tokens; never alter the main site's theme. */
+.outbox-page {
+  --background: 231 47% 97%;
+  --foreground: 241 48% 13%;
+  --primary: 29 100% 56%;
+  --primary-foreground: 241 48% 13%;
+  --border: 235 26% 87%;
+  --ring: 215 82% 50%;
+  --outbox-white: 0 0% 100%;
+  --outbox-indigo: 247 81% 31%;
+  --outbox-violet: 244 73% 45%;
+  --outbox-blue: 217 82% 50%;
+  --outbox-orange-light: 33 100% 66%;
+  --outbox-green: 140 82% 31%;
+  --outbox-green-light: 140 76% 73%;
+  --outbox-muted: 240 13% 42%;
+  --outbox-gradient: linear-gradient(145deg, hsl(var(--outbox-indigo)), hsl(var(--outbox-violet)) 54%, hsl(var(--outbox-blue)));
+  --outbox-phone-shadow: 0 20px 28px hsl(var(--outbox-indigo) / .17);
+  --outbox-bar-shadow: 0 -4px 24px hsl(var(--foreground) / .12);
+  font-family: Inter, system-ui, sans-serif;
+  letter-spacing: 0;
+  color: hsl(var(--foreground));
+  background: hsl(var(--background));
+  overflow: clip;
+}
+.outbox-page h1, .outbox-page h2, .outbox-page h3, .outbox-page p { margin: 0; letter-spacing: 0; }
+.outbox-page h1 { font-size: 36px; line-height: 1.16; font-weight: 800; }
+.outbox-page h2 { font-size: 32px; line-height: 1.18; font-weight: 800; }
+.outbox-page h3 { font-size: 19px; line-height: 1.35; font-weight: 700; }
+.outbox-page p { line-height: 1.65; }
+.outbox-hero { text-align: center; background: var(--outbox-gradient); color: hsl(var(--outbox-white)); padding: 30px 22px 0; }
+.outbox-brand { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 28px; }
+.outbox-brand img { width: 88px; height: 88px; border-radius: 22px; }
+.outbox-brand span { font-size: 32px; font-weight: 800; }
+.outbox-orange { color: hsl(var(--outbox-orange-light)); }
+.outbox-green { color: hsl(var(--outbox-green-light)); }
+.outbox-hero-description { max-width: 560px; margin: 20px auto 24px !important; font-size: 16px; }
+.outbox-download { min-height: 56px; height: auto; padding: 16px 26px; border-radius: 999px; font-size: 16px; font-weight: 800; background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); transition: background .2s, transform .2s; }
+.outbox-download:hover { background: hsl(var(--outbox-orange-light)); transform: translateY(-2px); }
+.outbox-availability { font-size: 11px; margin-top: 14px !important; }
+.outbox-phone { display: block; height: auto; width: 100%; filter: drop-shadow(var(--outbox-phone-shadow)); }
+.outbox-hero-phone { max-width: 286px; margin: 28px auto -42px; position: relative; z-index: 1; }
+.outbox-section { padding: 64px 24px; }
+.outbox-section-heading { text-align: center; margin: 0 auto 36px; max-width: 650px; }
+.outbox-eyebrow { display: block; font-size: 11px; font-weight: 800; margin-bottom: 14px; }
+.outbox-how { padding-top: 98px; }
+.outbox-steps { max-width: 1080px; margin: auto; display: grid; gap: 52px; }
+.outbox-step { max-width: 330px; margin: auto; text-align: center; }
+.outbox-step .outbox-phone { max-width: 268px; margin: 0 auto 26px; }
+.outbox-step-title { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 12px; }
+.outbox-number { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; font-size: 15px; font-weight: 800; background: hsl(var(--outbox-green)); color: hsl(var(--outbox-white)); flex-shrink: 0; }
+.outbox-step p { color: hsl(var(--outbox-muted)); font-size: 15px; }
+.outbox-dark { background: var(--outbox-gradient); color: hsl(var(--outbox-white)); text-align: center; }
+.outbox-video { display: block; width: auto; max-width: 100%; height: min(70vh, 640px); aspect-ratio: 9 / 16; object-fit: contain; margin: 30px auto 20px; border-radius: 24px; background: hsl(var(--outbox-indigo)); }
+.outbox-video-caption { font-size: 14px; }
+.outbox-chats { padding-left: 0; padding-right: 0; }
+.outbox-chats .outbox-section-heading { padding: 0 24px; }
+.outbox-carousel { display: flex; gap: 28px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 10px 50px 30px; max-width: 1160px; margin: auto; scrollbar-width: none; position: relative; }
+.outbox-carousel::-webkit-scrollbar { display: none; }
+.outbox-chat { flex: 0 0 270px; scroll-snap-align: center; text-align: center; margin: 0; }
+.outbox-chat figcaption { display: inline-block; margin-top: 24px; padding: 9px 16px; border-radius: 999px; background: hsl(var(--outbox-white)); border: 1px solid hsl(var(--border)); font-size: 13px; font-weight: 700; }
+.outbox-dots { display: flex; justify-content: center; }
+.outbox-dot { height: 48px; width: 48px; border-radius: 50%; }
+.outbox-dot:hover { background: hsl(var(--border) / .4); }
+.outbox-dot span { width: 8px; height: 8px; border-radius: 50%; background: hsl(var(--outbox-muted) / .4); }
+.outbox-dot[aria-pressed=true] span { background: hsl(var(--outbox-violet)); }
+.outbox-apps { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 600px; margin: 18px auto 0; padding: 0 24px; }
+.outbox-apps span { font-size: 12px; padding: 8px 12px; border: 1px solid hsl(var(--border)); border-radius: 999px; }
+.outbox-setup { background: hsl(var(--outbox-white)); }
+.outbox-setup .outbox-section-heading p { color: hsl(var(--outbox-muted)); margin-top: 16px; }
+.outbox-setup-panel { max-width: 800px; margin: auto; border: 1px solid hsl(var(--border)); background: hsl(var(--background)); border-radius: 20px; padding: 24px 20px; }
+.outbox-activation { list-style: none; counter-reset: setup; padding: 0; margin: 0; }
+.outbox-activation li { counter-increment: setup; display: grid; grid-template-columns: 28px 20px 1fr; gap: 9px; align-items: start; margin-bottom: 26px; font-size: 14px; line-height: 1.65; }
+.outbox-activation li::before { content: counter(setup); display: grid; place-items: center; background: hsl(var(--outbox-violet)); color: hsl(var(--outbox-white)); border-radius: 50%; height: 28px; font-weight: 800; }
+.outbox-activation svg { width: 18px; height: 18px; margin-top: 5px; color: hsl(var(--outbox-violet)); }
+.outbox-using { border-top: 1px solid hsl(var(--border)); padding-top: 24px; }
+.outbox-using h3 { margin-bottom: 16px; }
+.outbox-using ol { list-style: lower-alpha; padding-left: 20px; font-size: 14px; line-height: 1.65; }
+.outbox-using li { padding-left: 6px; margin-bottom: 10px; }
+.outbox-using p { color: hsl(var(--outbox-muted)); font-size: 12px; margin-top: 20px; }
+.outbox-benefit-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; max-width: 1000px; margin: auto; }
+.outbox-benefit { border: 1px solid hsl(var(--border)); background: hsl(var(--outbox-white)); padding: 24px 16px; border-radius: 16px; }
+.outbox-benefit svg { color: hsl(var(--outbox-green)); margin-bottom: 18px; width: 27px; height: 27px; }
+.outbox-benefit h3 { font-size: 16px; }
+.outbox-pricing-icon { margin: 0 auto 24px; color: hsl(var(--outbox-orange-light)); width: 32px; height: 32px; }
+.outbox-price { font-size: 22px; margin: 22px 0 12px !important; }
+.outbox-pricing > p:not(.outbox-price) { font-size: 14px; }
+.outbox-pricing .outbox-download { margin-top: 28px; }
+.outbox-faq { max-width: 800px; margin: auto; }
+.outbox-faq h2 { margin-bottom: 24px; }
+.outbox-faq-trigger { text-align: left; min-height: 64px; gap: 16px; font-size: 15px; }
+.outbox-faq-answer { color: hsl(var(--outbox-muted)); font-size: 14px; line-height: 1.7; }
+.outbox-setup-link { color: hsl(var(--outbox-violet)); display: inline-flex; align-items: center; gap: 4px; text-decoration: underline; }
+.outbox-setup-link svg { width: 16px; height: 16px; }
+.outbox-footer { padding: 32px 24px 120px; text-align: center; background: hsl(var(--outbox-white)); font-size: 12px; }
+.outbox-footer-brand { display: flex; justify-content: center; align-items: center; gap: 10px; font-size: 18px; margin-bottom: 16px; }
+.outbox-footer-brand img { border-radius: 8px; }
+.outbox-footer p { color: hsl(var(--outbox-muted)); }
+.outbox-footer > div:last-child { display: flex; justify-content: center; gap: 24px; }
+.outbox-footer a { display: inline-flex; align-items: center; min-height: 48px; text-decoration: underline; text-underline-offset: 3px; }
+.outbox-sticky { position: fixed; bottom: 0; left: 0; right: 0; z-index: 40; display: flex; align-items: center; gap: 10px; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: hsl(var(--outbox-white)); box-shadow: var(--outbox-bar-shadow); }
+.outbox-sticky img { border-radius: 10px; }
+.outbox-sticky > span { flex: 1; display: flex; flex-direction: column; font-size: 14px; }
+.outbox-sticky small { font-size: 11px; color: hsl(var(--outbox-muted)); }
+.outbox-download-small { font-size: 13px; min-height: 48px; padding: 12px 16px; }
+.outbox-reveal-ready { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s ease; }
+.outbox-visible { opacity: 1; transform: none; }
+@media (min-width: 768px) {
+  .outbox-page h1 { font-size: 56px; }
+  .outbox-page h2 { font-size: 42px; }
+  .outbox-hero { padding-top: 44px; }
+  .outbox-hero-phone { max-width: 310px; }
+  .outbox-hero-description { font-size: 18px; }
+  .outbox-section { padding: 84px 40px; }
+  .outbox-how { padding-top: 112px; }
+  .outbox-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+  .outbox-step { margin-top: 0; }
+  .outbox-steps .outbox-phone { max-width: 250px; }
+  .outbox-step-title { gap: 8px; }
+  .outbox-step h3 { font-size: 18px; }
+  .outbox-chats { padding-left: 0; padding-right: 0; }
+  .outbox-carousel { padding-left: 40px; padding-right: 40px; gap: 24px; }
+  .outbox-chat { flex-basis: 252px; }
+  .outbox-setup-panel { padding: 40px; }
+  .outbox-activation li { font-size: 16px; grid-template-columns: 32px 22px 1fr; gap: 14px; }
+  .outbox-benefit-grid { grid-template-columns: repeat(4, minmax(0,1fr)); }
+  .outbox-sticky { display: none; }
+  .outbox-footer { padding-bottom: 32px; }
+}
+@media (max-width: 359px) { .outbox-page h1 { font-size: 30px; } .outbox-sticky { gap: 7px; padding-left: 10px; padding-right: 10px; } .outbox-download-small { padding-left: 12px; padding-right: 12px; } }
+@media (prefers-reduced-motion: reduce) { .outbox-reveal-ready { opacity: 1; transform: none; transition: none; } .outbox-download { transition: none; } }
