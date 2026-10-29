@@ -13,6 +13,7 @@ import phone5 from "@/assets/outbox/phone-05-imessage.webp.asset.json";
 import phone6 from "@/assets/outbox/phone-06-instagram.webp.asset.json";
 import phone7 from "@/assets/outbox/phone-07-telegram.webp.asset.json";
 import demo from "@/assets/outbox/outbox-demo-720.mp4.asset.json";
+import demoWebm from "@/assets/outbox/outbox-demo.webm.asset.json";
 import poster from "@/assets/outbox/poster.jpg.asset.json";
 import share from "@/assets/outbox/outbox-share.jpg.asset.json";
 
@@ -97,7 +98,7 @@ export default function Outbox() {
 
     <section className="outbox-section outbox-dark outbox-watch">
       <span className="outbox-eyebrow">WATCH IT IN ACTION</span><h2>See the switch.</h2>
-      <video className="outbox-video" src={demo.url} poster={poster.url} autoPlay muted loop playsInline preload="metadata" controls aria-label="Outbox keyboard translation demonstration" />
+      <video className="outbox-video" poster={poster.url} autoPlay muted loop playsInline preload="metadata" controls aria-label="Outbox keyboard translation demonstration"><source src={demo.url} type="video/mp4" /><source src={demoWebm.url} type="video/webm" /></video>
       <p className="outbox-video-caption">19 seconds, no copy-paste.</p>
     </section>
 
