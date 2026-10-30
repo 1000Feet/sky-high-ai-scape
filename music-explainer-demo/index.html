@@ -1,0 +1,439 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:'DM Sans';font-weight:400;src:url(fonts/dm-sans-latin-400-normal.woff2)}
+@font-face{font-family:'DM Sans';font-weight:700;src:url(fonts/dm-sans-latin-700-normal.woff2)}
+@font-face{font-family:'DM Sans';font-weight:800;src:url(fonts/dm-sans-latin-800-normal.woff2)}
+@font-face{font-family:'DM Mono';font-weight:400;src:url(fonts/dm-mono-latin-400-normal.woff2)}
+@font-face{font-family:'DM Mono';font-weight:500;src:url(fonts/dm-mono-latin-500-normal.woff2)}
+html,body{margin:0;background:#0b0b0d}
+canvas{display:block}
+</style>
+<script src="voice.js"></script>
+<script src="timeline.js"></script>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+const W = 1080, H = 1920, ctx = document.getElementById('c').getContext('2d');
+const CX = 540, CY = 830, RAD = 255;
+const NAMES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+const SCALE = [0, 2, 4, 5, 7, 9, 11];
+const DEG_COL = { 0:'#ff7a93', 2:'#ffa45c', 4:'#ffd84a', 5:'#7be07b', 7:'#45d6c8', 9:'#62a8ff', 11:'#b48cff' };
+const ACCENT = '#ffcf5a';
+
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const easeOut = x => 1 - Math.pow(1 - clamp(x), 3);
+const backOut = x => { x = clamp(x); const c = 1.9; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const mod = (a, n) => ((a % n) + n) % n;
+const ang = p => (-90 + p * 30) * Math.PI / 180;
+const pos = (p, r = RAD) => [CX + Math.cos(ang(p)) * r, CY + Math.sin(ang(p)) * r];
+const rgba = (hex, a) => { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; };
+
+function keyVis(t) {
+  const K = TL.KEYFRAMES;
+  for (let i = K.length - 1; i >= 0; i--) {
+    if (t >= K[i].t) {
+      if (i === K.length - 1) return K[i].k;
+      const a = K[i], b = K[i + 1];
+      return a.k + (b.k - a.k) * ease((t - a.t) / (b.t - a.t));
+    }
+  }
+  return 0;
+}
+const chordAt = t => { for (let i = 0; i < TL.CHORDS.length; i++) if (t >= TL.CHORDS[i].t0 && t < TL.CHORDS[i].t1) return i; return -1; };
+
+function glow(color, blur) { ctx.shadowColor = color; ctx.shadowBlur = blur; }
+function noGlow() { ctx.shadowBlur = 0; }
+
+function text(str, x, y, { size = 40, weight = 700, family = 'DM Sans', color = '#fff', align = 'center', spacing = 0, alpha = 1, blur = 0 } = {}) {
+  ctx.save();
+  ctx.globalAlpha *= alpha;
+  ctx.font = `${weight} ${size}px '${family}'`;
+  ctx.textAlign = align; ctx.textBaseline = 'middle';
+  ctx.letterSpacing = spacing + 'px';
+  ctx.fillStyle = color;
+  if (blur) glow(color, blur);
+  ctx.fillText(str, x, y);
+  ctx.restore();
+}
+
+// ---------- scene title -------------
+function titleFor(t) {
+  if (t < TL.HOOK_END) return { label: '4 CHORDS', title: 'A THOUSAND SONGS', accent: true, key: 'hook' };
+  if (t < TL.SCALE_END) return { label: 'THE STARTING POINT', title: 'THE C MAJOR SCALE', key: 'scale' };
+  if (t < TL.SONG_T0) return { label: "POP'S MOST FAMOUS PROGRESSION", title: '4 CHORDS', key: 'prog' };
+  if (t < TL.OUTRO_T0) {
+    const si = Math.max(0, TL.SONGS.findIndex(s => t >= s.t0 && t < s.t1)), s = TL.SONGS[si];
+    return { label: 'YOU HEAR IT IN', title: s.title, sub: `${s.artist} · ${s.year} · in ${s.keyName}`, key: 'song' + si, t0: s.t0 };
+  }
+  if (t < TL.P2_T0) return { label: 'CHANGE THE KEY', title: 'SAME SHAPE', accent: true, key: 'outro', t0: TL.OUTRO_T0 };
+  const sc = sceneP2(t);
+  return { ...sc, key: sc.id };
+}
+const sceneP2 = t => TL.P2.find(s => t >= s.t0 && t < s.t1) || TL.P2[TL.P2.length - 1];
+const SCENE_STARTS = { hook: 0, scale: TL.HOOK_END, prog: TL.PROG_T0 };
+
+function drawTitle(t) {
+  const T = titleFor(t);
+  const t0 = T.t0 ?? SCENE_STARTS[T.key];
+  const k = easeOut((t - t0) / 0.45);
+  const dy = (1 - k) * 24;
+  text(T.label, CX, 230 + dy, { size: 28, weight: 500, family: 'DM Mono', color: T.accent ? ACCENT : '#8a8a92', spacing: 6, alpha: k });
+  const tsize = T.title.length > 15 ? 72 : 88;
+  text(T.title, CX, 310 + dy, { size: tsize, weight: 800, color: T.accent ? ACCENT : '#ffffff', alpha: k, blur: T.accent ? 30 : 12 });
+  if (T.sub) text(T.sub, CX, 385 + dy, { size: 32, weight: 400, family: 'DM Mono', color: '#b9b9c2', alpha: k * 0.9 });
+}
+
+// ---------- roman numerals -------------
+function drawRoman(t, ci) {
+  if (t < TL.PROG_T0) return;
+  const a = easeOut((t - TL.PROG_T0) / 0.5);
+  const T = titleFor(t);
+  const y = T.sub || (t >= TL.SONG_T0 && t < TL.P2_T0) ? 465 : 425;
+  const xs = [-270, -90, 90, 270];
+  const active = ci >= 0 && !TL.CHORDS[ci].outro ? TL.CHORDS[ci].idx : -1;
+  const order = T.order || [0, 1, 2, 3];
+  order.map(j => TL.PROG[j]).forEach((p, i) => {
+    const on = order[i] === active;
+    const col = DEG_COL[p.root];
+    const since = on ? t - TL.CHORDS[ci].t0 : 9;
+    const s = on ? 1 + 0.18 * Math.exp(-since * 6) : 1;
+    ctx.save();
+    ctx.translate(CX + xs[i], y); ctx.scale(s, s);
+    text(p.deg, 0, 0, { size: 60, weight: 500, family: 'DM Mono', color: on ? col : '#4a4a52', alpha: a, blur: on ? 28 : 0 });
+    ctx.restore();
+    if (i < 3) text('–', CX + xs[i] + 90, y, { size: 40, weight: 400, family: 'DM Mono', color: '#3a3a42', alpha: a });
+  });
+}
+
+// ---------- circle -------------
+function scaleDotScale(t, d) {
+  // scale degree dot pop-in during scale scene
+  const idx = SCALE.indexOf(d);
+  const n = TL.SCALE_NOTES[idx];
+  return backOut((t - n.t0) / 0.35);
+}
+
+function drawCircle(t, kv) {
+  const intro = easeOut(t / 0.8);
+  // ring
+  ctx.save();
+  ctx.globalAlpha = intro;
+  ctx.strokeStyle = 'rgba(255,255,255,0.10)'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.arc(CX, CY, RAD, 0, Math.PI * 2); ctx.stroke();
+  ctx.restore();
+
+  // 12 fixed chromatic positions + labels
+  for (let p = 0; p < 12; p++) {
+    let lit = 0;
+    for (const d of SCALE) {
+      const dist = Math.abs(mod(d + kv - p + 6, 12) - 6);
+      lit = Math.max(lit, clamp(1 - dist / 0.6) * (t >= TL.HOOK_END ? clamp(scaleDotScale(t, d)) : 0));
+    }
+    const [x, y] = pos(p);
+    ctx.save(); ctx.globalAlpha = intro;
+    ctx.fillStyle = 'rgba(255,255,255,0.18)';
+    ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+    const [lx, ly] = pos(p, RAD + 58);
+    text(NAMES[p], lx, ly, { size: 34, weight: 700, color: lit > 0.05 ? '#ffffff' : '#55555d', alpha: intro * (0.45 + 0.55 * lit) });
+  }
+
+  // scale degree dots (rotate with key)
+  if (t >= TL.HOOK_END) {
+    for (const d of SCALE) {
+      const s = scaleDotScale(t, d);
+      if (s <= 0) continue;
+      const [x, y] = pos(d + kv);
+      const col = DEG_COL[d];
+      ctx.save();
+      glow(col, 30); ctx.fillStyle = col;
+      ctx.beginPath(); ctx.arc(x, y, 15 * s, 0, Math.PI * 2); ctx.fill();
+      noGlow(); ctx.fillStyle = 'rgba(255,255,255,0.85)';
+      ctx.beginPath(); ctx.arc(x, y, 5 * s, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+    }
+  }
+}
+
+// polygon through the 4 chord roots = "shape" of the progression
+function drawProgShape(kv, alpha, col = '#ffffff', dash = true) {
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.strokeStyle = col; ctx.lineWidth = 2.5;
+  if (dash) ctx.setLineDash([10, 12]);
+  ctx.beginPath();
+  TL.PROG.forEach((p, i) => { const [x, y] = pos(p.root + kv, RAD - 2); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); });
+  ctx.closePath(); ctx.stroke();
+  ctx.restore();
+}
+
+function chordVerts(c) { return TL.PROG[c.idx].upper.map(m => mod(m, 12)); }
+
+function drawChord(t, ci, kv) {
+  if (ci < 0) return;
+  const M = TL.MIRROR;
+  if (t >= M.flipT0 && t < M.flipT1) return drawFlip(t, kv);
+  const c = TL.CHORDS[ci], p = TL.PROG[c.idx];
+  const col = DEG_COL[p.root];
+  let verts = chordVerts(c);
+  const since = t - c.t0;
+  let grow = 1;
+  const prev = TL.CHORDS[ci - 1];
+  if (c.snap) {
+    // keep the shape where the mirror flip left it
+  } else if (prev && Math.abs(prev.t1 - c.t0) < 0.01) {
+    const pv = chordVerts(prev), k = ease(since / 0.28);
+    verts = verts.map((v, i) => { const d = mod(v - pv[i] + 6, 12) - 6; return pv[i] + d * k; });
+  } else grow = backOut(since / 0.4);
+  const fadeOut = c.outro ? 1 : 1;
+
+  const pts = verts.map(v => {
+    const [x, y] = pos(v + kv);
+    return [CX + (x - CX) * grow, CY + (y - CY) * grow];
+  });
+  const pulse = Math.exp(-since * 5) + (c.pulse ? Math.exp(-Math.max(0, since - c.pulse) * 5) * (since > c.pulse ? 0.6 : 0) : 0);
+
+  ctx.save();
+  ctx.globalAlpha = fadeOut;
+  ctx.beginPath(); pts.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.closePath();
+  ctx.fillStyle = rgba(col, 0.14 + 0.12 * pulse); ctx.fill();
+  glow(col, 26 + 20 * pulse);
+  ctx.strokeStyle = col; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.stroke();
+  // vertex rings
+  pts.forEach(([x, y]) => {
+    ctx.beginPath(); ctx.arc(x, y, 24 + 10 * pulse, 0, Math.PI * 2);
+    ctx.lineWidth = 3; ctx.strokeStyle = rgba('#ffffff', 0.55 + 0.4 * pulse); ctx.stroke();
+  });
+  ctx.restore();
+
+  // chord name in centre
+  const name = NAMES[mod(p.root + c.key, 12)] + p.q;
+  const s = 1 + 0.12 * Math.exp(-since * 6);
+  ctx.save(); ctx.translate(CX, CY); ctx.scale(s, s);
+  text(name, 0, 0, { size: 76, weight: 800, color: '#ffffff', blur: 18 });
+  ctx.restore();
+}
+
+// ---------- part 2 overlays -------------
+function reflectPc(p, axis) { return 2 * axis - p; } // mirror across the line through pc `axis`
+function drawFlip(t, kv) {
+  const M = TL.MIRROR, k = ease((t - M.flipT0) / (M.flipT1 - M.flipT0));
+  const from = TL.PROG[M.from], to = TL.PROG[M.to];
+  const pts = from.upper.map(m => {
+    const p = mod(m, 12), [x0, y0] = pos(p + kv), [x1, y1] = pos(reflectPc(p, M.axis[0]) + kv);
+    return [x0 + (x1 - x0) * k, y0 + (y1 - y0) * k];
+  });
+  const col = k < 0.5 ? DEG_COL[from.root] : DEG_COL[to.root];
+  ctx.save();
+  ctx.beginPath(); pts.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.closePath();
+  ctx.fillStyle = rgba(col, 0.1 + 0.15 * Math.abs(1 - 2 * k)); ctx.fill();
+  glow(col, 30); ctx.strokeStyle = col; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.stroke();
+  ctx.restore();
+}
+function drawMirrorAxis(t, kv) {
+  const M = TL.MIRROR;
+  if (t < M.t0 || t >= M.t1) return;
+  const a = easeOut((t - M.t0) / 0.4) * (1 - easeOut((t - M.t1 + 0.4) / 0.4));
+  const [x0, y0] = pos(M.axis[0] + kv, RAD + 30), [x1, y1] = pos(M.axis[1] + kv, RAD + 30);
+  const grow = easeOut((t - M.t0) / 0.6), mx = (x0 + x1) / 2, my = (y0 + y1) / 2;
+  ctx.save(); ctx.globalAlpha = a * 0.8;
+  ctx.setLineDash([14, 10]); ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 3; glow('#ffffff', 16);
+  ctx.beginPath(); ctx.moveTo(mx + (x0 - mx) * grow, my + (y0 - my) * grow); ctx.lineTo(mx + (x1 - mx) * grow, my + (y1 - my) * grow); ctx.stroke();
+  ctx.restore();
+  const [lx, ly] = pos(M.axis[1] + kv, RAD + 58);
+  text('MIRROR', lx + 40, ly + 40, { size: 24, weight: 500, family: 'DM Mono', color: '#ffffff', spacing: 4, alpha: a * 0.8 });
+}
+function drawGhosts(t, kv) {
+  for (const g of TL.GHOSTS) {
+    if (t < g.t0 || t >= g.t1) continue;
+    const a = easeOut((t - g.t0) / 0.3) * (1 - easeOut((t - g.t1 + 0.5) / 0.5));
+    const pts = TL.PROG[g.idx].upper.map(m => pos(mod(m, 12) + g.key + kv));
+    const flicker = 0.75 + 0.25 * Math.sin(t * 18);
+    ctx.save(); ctx.globalAlpha = a * flicker;
+    ctx.setLineDash([12, 10]); ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 3;
+    ctx.beginPath(); pts.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.closePath(); ctx.stroke();
+    ctx.restore();
+    const cx = pts.reduce((s, p) => s + p[0], 0) / 3, cy = pts.reduce((s, p) => s + p[1], 0) / 3;
+    pill(g.label + '?', cx, cy + 70, '#ffffff', a * flicker);
+  }
+}
+function pill(str, x, y, col, a, scale = 1) {
+  if (a <= 0) return;
+  ctx.save(); ctx.globalAlpha = a; ctx.translate(x, y); ctx.scale(scale, scale);
+  ctx.font = `500 24px 'DM Mono'`; ctx.letterSpacing = '3px';
+  const w = ctx.measureText(str).width + 30;
+  ctx.fillStyle = 'rgba(11,11,13,0.85)'; ctx.strokeStyle = col; ctx.lineWidth = 2; glow(col, 14);
+  ctx.beginPath(); ctx.roundRect(-w / 2, -21, w, 42, 21); ctx.fill(); ctx.stroke(); noGlow();
+  ctx.fillStyle = col; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(str, 1, 1);
+  ctx.restore();
+}
+function drawTags(t, kv) {
+  for (const g of TL.TAGS) {
+    if (t < g.t0 || t >= g.t1) continue;
+    const a = clamp((t - g.t0) / 0.2) * (1 - easeOut((t - g.t1 + 0.3) / 0.3));
+    const [x, y] = pos(g.pc + kv, RAD - 92);
+    pill(g.text, x, y, g.color || DEG_COL[g.pc], a, backOut((t - g.t0) / 0.35));
+  }
+}
+function drawRings(t, kv) {
+  for (const r of TL.RINGS) {
+    if (t < r.t0 || t >= r.t1) continue;
+    const a = easeOut((t - r.t0) / 0.25) * (1 - easeOut((t - r.t1 + 0.3) / 0.3));
+    const beat = 0.5 + 0.5 * Math.sin((t - r.t0) * 9);
+    for (const pc of r.pcs) {
+      const [x, y] = pos(pc + kv);
+      ctx.save(); ctx.globalAlpha = a; glow(r.color, 30);
+      ctx.strokeStyle = r.color; ctx.lineWidth = 4;
+      ctx.beginPath(); ctx.arc(x, y, 34 + 8 * beat, 0, Math.PI * 2); ctx.stroke();
+      ctx.restore();
+    }
+  }
+}
+function drawArrows(t, kv) {
+  for (const ar of TL.ARROWS) {
+    if (t < ar.t0 || t >= ar.t1) continue;
+    const a = easeOut((t - ar.t0) / 0.3) * (1 - easeOut((t - ar.t1 + 0.3) / 0.3));
+    const grow = easeOut((t - ar.t0) / 0.6);
+    const r = RAD + 30, a0 = ang(ar.from + kv), a1 = ang(ar.from + kv + (ar.to - ar.from) * grow);
+    ctx.save(); ctx.globalAlpha = a; glow(ar.color, 24);
+    ctx.strokeStyle = ar.color; ctx.fillStyle = ar.color; ctx.lineWidth = 5; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.arc(CX, CY, r, a0, a1); ctx.stroke();
+    const hx = CX + Math.cos(a1) * r, hy = CY + Math.sin(a1) * r, d = a1 + Math.PI / 2;
+    ctx.beginPath();
+    ctx.moveTo(hx + Math.cos(d) * 16, hy + Math.sin(d) * 16);
+    ctx.lineTo(hx + Math.cos(d + 2.5) * 16, hy + Math.sin(d + 2.5) * 16);
+    ctx.lineTo(hx + Math.cos(d - 2.5) * 16, hy + Math.sin(d - 2.5) * 16);
+    ctx.closePath(); ctx.fill();
+    ctx.restore();
+    const [lx, ly] = pos((ar.from + ar.to) / 2 + kv, RAD - 150);
+    text(ar.label, lx, ly, { size: 24, weight: 500, family: 'DM Mono', color: ar.color, spacing: 3, alpha: a });
+  }
+}
+
+// ---------- keyboard -------------
+const KB_LO = 36, KB_HI = 76, KB_Y = 1195, KB_H = 165;
+const isBlack = m => [1, 3, 6, 8, 10].includes(mod(m, 12));
+const whites = []; for (let m = KB_LO; m <= KB_HI; m++) if (!isBlack(m)) whites.push(m);
+const KW = (W - 60) / whites.length, KX0 = 30;
+function keyX(m) {
+  if (!isBlack(m)) return KX0 + whites.indexOf(m) * KW;
+  return KX0 + whites.indexOf(m - 1) * KW + KW * 0.68;
+}
+function pressedNotes(t, ci) {
+  const out = new Map();
+  if (t < TL.HOOK_END) {
+    const c = TL.TEASER.find(c => t >= c.t0 && t < c.t1);
+    if (c) { const p = TL.PROG[c.idx]; [...p.upper, p.bass].forEach(m => out.set(m, { deg: p.root, k: 1 - (t - c.t0) / (c.t1 - c.t0) * 0.5 })); }
+  }
+  for (const n of TL.SCALE_NOTES) if (t >= n.t0 && t < n.t0 + 0.6) out.set(n.m, { deg: mod(n.m, 12), k: 1 - (t - n.t0) / 0.6 * 0.6 });
+  if (ci >= 0) {
+    const c = TL.CHORDS[ci], p = TL.PROG[c.idx];
+    const k = c.outro ? 1 - clamp((t - c.t0) / 5) * 0.5 : 1 - (t - c.t0) / (c.t1 - c.t0) * 0.5;
+    [...p.upper, p.bass].forEach(m => out.set(m + c.key, { deg: mod(m, 12), k }));
+  }
+  for (const n of TL.EXTRA_NOTES) if (t >= n.t0 && t < n.t0 + n.dur) out.set(n.m, { deg: 11, k: 1 });
+  return out;
+}
+function drawKeyboard(t, ci) {
+  const a = easeOut((t - 0.1) / 0.6);
+  const pr = pressedNotes(t, ci);
+  ctx.save(); ctx.globalAlpha = a;
+  for (const m of whites) {
+    const x = keyX(m), on = pr.get(m);
+    ctx.fillStyle = on ? DEG_COL[on.deg] : '#e9e9ee';
+    if (on) glow(DEG_COL[on.deg], 30 * on.k);
+    ctx.globalAlpha = a * (on ? 0.55 + 0.45 * on.k : 0.9);
+    ctx.beginPath(); ctx.roundRect(x + 2, KB_Y, KW - 4, KB_H, [0, 0, 8, 8]); ctx.fill();
+    noGlow();
+    if (mod(m, 12) === 0) { ctx.globalAlpha = a * 0.5; text('C' + (Math.floor(m / 12) - 1), x + KW / 2, KB_Y + KB_H - 22, { size: 16, weight: 500, family: 'DM Mono', color: '#55555d' }); }
+  }
+  for (let m = KB_LO; m <= KB_HI; m++) {
+    if (!isBlack(m)) continue;
+    const x = keyX(m), on = pr.get(m);
+    ctx.globalAlpha = a;
+    ctx.fillStyle = on ? DEG_COL[on.deg] : '#141418';
+    if (on) glow(DEG_COL[on.deg], 30 * on.k);
+    ctx.beginPath(); ctx.roundRect(x, KB_Y, KW * 0.64, KB_H * 0.62, [0, 0, 6, 6]); ctx.fill();
+    noGlow();
+  }
+  ctx.restore();
+}
+
+// ---------- captions (karaoke) -------------
+function drawCaption(t) {
+  const c = TL.CAPTIONS.find(c => t >= c.t0 && t < c.t1);
+  if (!c) return;
+  const words = c.text.split(' ');
+  const appear = easeOut((t - c.t0) / 0.25) * (1 - easeOut((t - (c.t1 - 0.15)) / 0.15));
+  ctx.save();
+  ctx.font = `700 52px 'DM Sans'`;
+  // wrap to max width
+  const maxW = 900, lines = [[]];
+  let lw = 0;
+  words.forEach(w => {
+    const ww = ctx.measureText(w + ' ').width;
+    if (lw + ww > maxW && lines[lines.length - 1].length) { lines.push([]); lw = 0; }
+    lines[lines.length - 1].push(w); lw += ww;
+  });
+  const speak = (c.t1 - c.t0) * 0.75;
+  let wi = 0;
+  lines.forEach((ln, li) => {
+    const full = ctx.measureText(ln.join(' ')).width;
+    let x = CX - full / 2;
+    const y = 1470 + li * 66 - (lines.length - 1) * 33;
+    ln.forEach(w => {
+      const wt = c.words && c.words[wi] ? c.words[wi].t : c.t0 + (wi / words.length) * speak;
+      const on = clamp((t - wt) / 0.12);
+      ctx.globalAlpha = appear;
+      ctx.fillStyle = on > 0 ? `rgba(255,255,255,${0.35 + 0.65 * on})` : 'rgba(255,255,255,0.32)';
+      ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+      ctx.fillText(w, x, y);
+      x += ctx.measureText(w + ' ').width; wi++;
+    });
+  });
+  ctx.restore();
+}
+
+// ---------- frame -------------
+function draw(t) {
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#0b0b0d'; ctx.fillRect(0, 0, W, H);
+  const g = ctx.createRadialGradient(CX, CY, 50, CX, CY, 1100);
+  g.addColorStop(0, 'rgba(40,36,52,0.55)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+  const kv = keyVis(t), ci = chordAt(t);
+  drawTitle(t);
+  drawCircle(t, kv);
+  if (t >= TL.SONG_T0 - 0.2 && t < TL.P2_T0 + 0.6) {
+    const a = easeOut((t - TL.SONG_T0 + 0.2) / 0.6);
+    if (t >= TL.OUTRO_T0) {
+      const o = easeOut((t - TL.OUTRO_T0 - 0.4) / 0.8) * (1 - easeOut((t - TL.P2_T0) / 0.6));
+      const m = ease((t - TL.OUTRO_T0 - 1.0) / 1.8);
+      TL.SONGS.forEach((s, i) => {
+        const d = mod(-s.key + 6, 12) - 6;
+        drawProgShape(s.key + d * m, 0.55 * o * (1 - 0.6 * m), DEG_COL[[0, 7, 9, 5][i]], true);
+      });
+      drawProgShape(0, 0.95 * m * (1 - easeOut((t - TL.P2_T0) / 0.6)), ACCENT, false);
+    } else drawProgShape(kv, 0.35 * a);
+  }
+  const sc = t >= TL.P2_T0 ? sceneP2(t) : null;
+  if (sc && sc.order) drawProgShape(kv, 0.35 * easeOut((t - TL.P2.find(s => s.order).t0) / 0.6));
+  drawMirrorAxis(t, kv);
+  drawChord(t, ci, kv);
+  drawGhosts(t, kv);
+  drawRings(t, kv);
+  drawArrows(t, kv);
+  drawTags(t, kv);
+  drawRoman(t, ci);
+  drawKeyboard(t, ci);
+  drawCaption(t);
+  const cta = TL.CTA_T0 + 0.6;
+  if (t > cta) text('Leave a song in the comments', CX, 1600, { size: 30, weight: 500, family: 'DM Mono', color: ACCENT, alpha: easeOut((t - cta) / 0.5) });
+}
+window.draw = draw;
+draw(0);
+</script>
+</body></html>

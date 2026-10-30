@@ -1,0 +1,994 @@
+{
+ "voice_id": "EwzF7Z2UMSib9JaKx0Kg",
+ "model_id": "eleven_v4",
+ "segments": {
+  "hook": {
+   "text": "There's one chord that makes rock sound like rock... and it isn't even in the key.",
+   "dur": 5.32898,
+   "speechEnd": 5.28,
+   "words": [
+    {
+     "w": "There's",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "one",
+     "t": 0.4,
+     "end": 0.56
+    },
+    {
+     "w": "chord",
+     "t": 0.64,
+     "end": 0.96
+    },
+    {
+     "w": "that",
+     "t": 1.04,
+     "end": 1.12
+    },
+    {
+     "w": "makes",
+     "t": 1.2,
+     "end": 1.36
+    },
+    {
+     "w": "rock",
+     "t": 1.52,
+     "end": 1.84
+    },
+    {
+     "w": "sound",
+     "t": 2.08,
+     "end": 2.32
+    },
+    {
+     "w": "like",
+     "t": 2.4,
+     "end": 2.56
+    },
+    {
+     "w": "rock...",
+     "t": 2.72,
+     "end": 3.6
+    },
+    {
+     "w": "and",
+     "t": 3.68,
+     "end": 3.76
+    },
+    {
+     "w": "it",
+     "t": 3.84,
+     "end": 3.92
+    },
+    {
+     "w": "isn't",
+     "t": 4,
+     "end": 4.16
+    },
+    {
+     "w": "even",
+     "t": 4.28,
+     "end": 4.4
+    },
+    {
+     "w": "in",
+     "t": 4.44,
+     "end": 4.48
+    },
+    {
+     "w": "the",
+     "t": 4.56,
+     "end": 4.64
+    },
+    {
+     "w": "key.",
+     "t": 4.72,
+     "end": 5.28
+    }
+   ]
+  },
+  "what": {
+   "text": "In C major, every chord is built from these seven notes. But rock loves this one: B flat major.",
+   "dur": 7.967347,
+   "speechEnd": 8,
+   "words": [
+    {
+     "w": "In",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "C",
+     "t": 0.24,
+     "end": 0.4
+    },
+    {
+     "w": "major,",
+     "t": 0.48,
+     "end": 1.2
+    },
+    {
+     "w": "every",
+     "t": 1.28,
+     "end": 1.52
+    },
+    {
+     "w": "chord",
+     "t": 1.6,
+     "end": 1.84
+    },
+    {
+     "w": "is",
+     "t": 1.92,
+     "end": 2
+    },
+    {
+     "w": "built",
+     "t": 2.08,
+     "end": 2.24
+    },
+    {
+     "w": "from",
+     "t": 2.32,
+     "end": 2.48
+    },
+    {
+     "w": "these",
+     "t": 2.56,
+     "end": 2.88
+    },
+    {
+     "w": "seven",
+     "t": 2.96,
+     "end": 3.2
+    },
+    {
+     "w": "notes.",
+     "t": 3.28,
+     "end": 4
+    },
+    {
+     "w": "But",
+     "t": 4.24,
+     "end": 4.4
+    },
+    {
+     "w": "rock",
+     "t": 4.48,
+     "end": 4.88
+    },
+    {
+     "w": "loves",
+     "t": 5.04,
+     "end": 5.36
+    },
+    {
+     "w": "this",
+     "t": 5.52,
+     "end": 5.68
+    },
+    {
+     "w": "one:",
+     "t": 5.84,
+     "end": 6.48
+    },
+    {
+     "w": "B",
+     "t": 6.64,
+     "end": 6.8
+    },
+    {
+     "w": "flat",
+     "t": 6.88,
+     "end": 7.2
+    },
+    {
+     "w": "major.",
+     "t": 7.28,
+     "end": 8
+    }
+   ]
+  },
+  "prog": {
+   "text": "C, B flat, F, C. Home, a step down, and back again.",
+   "dur": 6.19102,
+   "speechEnd": 6.24,
+   "words": [
+    {
+     "w": "C,",
+     "t": 0,
+     "end": 0.4
+    },
+    {
+     "w": "B",
+     "t": 0.8,
+     "end": 0.88
+    },
+    {
+     "w": "flat,",
+     "t": 1.04,
+     "end": 1.84
+    },
+    {
+     "w": "F,",
+     "t": 1.92,
+     "end": 2.4
+    },
+    {
+     "w": "C.",
+     "t": 2.48,
+     "end": 2.88
+    },
+    {
+     "w": "Home,",
+     "t": 3.44,
+     "end": 4.16
+    },
+    {
+     "w": "a",
+     "t": 4.2,
+     "end": 4.24
+    },
+    {
+     "w": "step",
+     "t": 4.32,
+     "end": 4.56
+    },
+    {
+     "w": "down,",
+     "t": 4.64,
+     "end": 5.2
+    },
+    {
+     "w": "and",
+     "t": 5.28,
+     "end": 5.36
+    },
+    {
+     "w": "back",
+     "t": 5.48,
+     "end": 5.6
+    },
+    {
+     "w": "again.",
+     "t": 5.76,
+     "end": 6.24
+    }
+   ]
+  },
+  "sweet": {
+   "text": "It's Sweet Child O' Mine...",
+   "dur": 1.880816,
+   "speechEnd": 1.84,
+   "words": [
+    {
+     "w": "It's",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "Sweet",
+     "t": 0.32,
+     "end": 0.56
+    },
+    {
+     "w": "Child",
+     "t": 0.64,
+     "end": 0.96
+    },
+    {
+     "w": "O'",
+     "t": 0.987,
+     "end": 1.04
+    },
+    {
+     "w": "Mine...",
+     "t": 1.28,
+     "end": 1.84
+    }
+   ]
+  },
+  "jude": {
+   "text": "the endless coda of Hey Jude...",
+   "dur": 2.586122,
+   "speechEnd": 2.64,
+   "words": [
+    {
+     "w": "the",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "endless",
+     "t": 0.24,
+     "end": 0.72
+    },
+    {
+     "w": "coda",
+     "t": 0.8,
+     "end": 1.28
+    },
+    {
+     "w": "of",
+     "t": 1.36,
+     "end": 1.52
+    },
+    {
+     "w": "Hey",
+     "t": 1.6,
+     "end": 1.84
+    },
+    {
+     "w": "Jude...",
+     "t": 1.92,
+     "end": 2.64
+    }
+   ]
+  },
+  "sympathy": {
+   "text": "and Sympathy for the Devil.",
+   "dur": 2.037551,
+   "speechEnd": 2.08,
+   "words": [
+    {
+     "w": "and",
+     "t": 0,
+     "end": 0.4
+    },
+    {
+     "w": "Sympathy",
+     "t": 0.64,
+     "end": 1.12
+    },
+    {
+     "w": "for",
+     "t": 1.2,
+     "end": 1.28
+    },
+    {
+     "w": "the",
+     "t": 1.32,
+     "end": 1.36
+    },
+    {
+     "w": "Devil.",
+     "t": 1.44,
+     "end": 2.08
+    }
+   ]
+  },
+  "why1": {
+   "text": "So why does it sound so open? In a normal major key, the seventh note, B, sits a half step below home.",
+   "dur": 7.88898,
+   "speechEnd": 7.84,
+   "words": [
+    {
+     "w": "So",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "why",
+     "t": 0.48,
+     "end": 0.64
+    },
+    {
+     "w": "does",
+     "t": 0.72,
+     "end": 0.8
+    },
+    {
+     "w": "it",
+     "t": 0.88,
+     "end": 0.96
+    },
+    {
+     "w": "sound",
+     "t": 1.04,
+     "end": 1.28
+    },
+    {
+     "w": "so",
+     "t": 1.4,
+     "end": 1.52
+    },
+    {
+     "w": "open?",
+     "t": 1.6,
+     "end": 2.28
+    },
+    {
+     "w": "In",
+     "t": 2.56,
+     "end": 2.64
+    },
+    {
+     "w": "a",
+     "t": 2.68,
+     "end": 2.72
+    },
+    {
+     "w": "normal",
+     "t": 2.8,
+     "end": 3.12
+    },
+    {
+     "w": "major",
+     "t": 3.2,
+     "end": 3.52
+    },
+    {
+     "w": "key,",
+     "t": 3.6,
+     "end": 4.16
+    },
+    {
+     "w": "the",
+     "t": 4.24,
+     "end": 4.32
+    },
+    {
+     "w": "seventh",
+     "t": 4.4,
+     "end": 4.72
+    },
+    {
+     "w": "note,",
+     "t": 4.8,
+     "end": 5.28
+    },
+    {
+     "w": "B,",
+     "t": 5.36,
+     "end": 5.92
+    },
+    {
+     "w": "sits",
+     "t": 6,
+     "end": 6.16
+    },
+    {
+     "w": "a",
+     "t": 6.24,
+     "end": 6.32
+    },
+    {
+     "w": "half",
+     "t": 6.4,
+     "end": 6.56
+    },
+    {
+     "w": "step",
+     "t": 6.64,
+     "end": 6.88
+    },
+    {
+     "w": "below",
+     "t": 6.96,
+     "end": 7.2
+    },
+    {
+     "w": "home.",
+     "t": 7.28,
+     "end": 7.84
+    }
+   ]
+  },
+  "why2": {
+   "text": "It pulls hard, like a question waiting for an answer.",
+   "dur": 4.127347,
+   "speechEnd": 4.16,
+   "words": [
+    {
+     "w": "It",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "pulls",
+     "t": 0.24,
+     "end": 0.64
+    },
+    {
+     "w": "hard,",
+     "t": 0.88,
+     "end": 1.52
+    },
+    {
+     "w": "like",
+     "t": 1.6,
+     "end": 1.68
+    },
+    {
+     "w": "a",
+     "t": 1.76,
+     "end": 1.84
+    },
+    {
+     "w": "question",
+     "t": 1.92,
+     "end": 2.48
+    },
+    {
+     "w": "waiting",
+     "t": 2.72,
+     "end": 3.04
+    },
+    {
+     "w": "for",
+     "t": 3.12,
+     "end": 3.2
+    },
+    {
+     "w": "an",
+     "t": 3.28,
+     "end": 3.36
+    },
+    {
+     "w": "answer.",
+     "t": 3.44,
+     "end": 4.16
+    }
+   ]
+  },
+  "why3": {
+   "text": "Lower it to B flat, and the pull disappears. Home is now a whole step away, and the music relaxes.",
+   "dur": 7.47102,
+   "speechEnd": 7.52,
+   "words": [
+    {
+     "w": "Lower",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "it",
+     "t": 0.4,
+     "end": 0.48
+    },
+    {
+     "w": "to",
+     "t": 0.52,
+     "end": 0.56
+    },
+    {
+     "w": "B",
+     "t": 0.64,
+     "end": 0.8
+    },
+    {
+     "w": "flat,",
+     "t": 0.96,
+     "end": 1.6
+    },
+    {
+     "w": "and",
+     "t": 1.68,
+     "end": 1.76
+    },
+    {
+     "w": "the",
+     "t": 1.8,
+     "end": 1.84
+    },
+    {
+     "w": "pull",
+     "t": 1.92,
+     "end": 2.16
+    },
+    {
+     "w": "disappears.",
+     "t": 2.24,
+     "end": 3.32
+    },
+    {
+     "w": "Home",
+     "t": 3.6,
+     "end": 3.84
+    },
+    {
+     "w": "is",
+     "t": 3.92,
+     "end": 4.08
+    },
+    {
+     "w": "now",
+     "t": 4.16,
+     "end": 4.32
+    },
+    {
+     "w": "a",
+     "t": 4.4,
+     "end": 4.48
+    },
+    {
+     "w": "whole",
+     "t": 4.6,
+     "end": 4.72
+    },
+    {
+     "w": "step",
+     "t": 4.8,
+     "end": 5.04
+    },
+    {
+     "w": "away,",
+     "t": 5.24,
+     "end": 5.76
+    },
+    {
+     "w": "and",
+     "t": 5.84,
+     "end": 5.92
+    },
+    {
+     "w": "the",
+     "t": 5.96,
+     "end": 6
+    },
+    {
+     "w": "music",
+     "t": 6.08,
+     "end": 6.4
+    },
+    {
+     "w": "relaxes.",
+     "t": 6.48,
+     "end": 7.52
+    }
+   ]
+  },
+  "why4": {
+   "text": "That scale even has a name: Mixolydian. A major scale with a flat seven.",
+   "dur": 5.642449,
+   "speechEnd": 5.68,
+   "words": [
+    {
+     "w": "That",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "scale",
+     "t": 0.44,
+     "end": 0.64
+    },
+    {
+     "w": "even",
+     "t": 0.72,
+     "end": 0.96
+    },
+    {
+     "w": "has",
+     "t": 1.04,
+     "end": 1.12
+    },
+    {
+     "w": "a",
+     "t": 1.2,
+     "end": 1.24
+    },
+    {
+     "w": "name:",
+     "t": 1.28,
+     "end": 2.08
+    },
+    {
+     "w": "Mixolydian.",
+     "t": 2.16,
+     "end": 2.96
+    },
+    {
+     "w": "A",
+     "t": 3.36,
+     "end": 3.44
+    },
+    {
+     "w": "major",
+     "t": 3.52,
+     "end": 3.76
+    },
+    {
+     "w": "scale",
+     "t": 3.92,
+     "end": 4.24
+    },
+    {
+     "w": "with",
+     "t": 4.32,
+     "end": 4.48
+    },
+    {
+     "w": "a",
+     "t": 4.52,
+     "end": 4.56
+    },
+    {
+     "w": "flat",
+     "t": 4.64,
+     "end": 4.88
+    },
+    {
+     "w": "seven.",
+     "t": 5.04,
+     "end": 5.68
+    }
+   ]
+  },
+  "amen": {
+   "text": "Now listen to the roots: B flat, F, C.",
+   "dur": 4.284082,
+   "speechEnd": 4.32,
+   "words": [
+    {
+     "w": "Now",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "listen",
+     "t": 0.32,
+     "end": 0.56
+    },
+    {
+     "w": "to",
+     "t": 0.6,
+     "end": 0.64
+    },
+    {
+     "w": "the",
+     "t": 0.68,
+     "end": 0.72
+    },
+    {
+     "w": "roots:",
+     "t": 0.8,
+     "end": 1.68
+    },
+    {
+     "w": "B",
+     "t": 1.84,
+     "end": 2
+    },
+    {
+     "w": "flat,",
+     "t": 2.08,
+     "end": 2.88
+    },
+    {
+     "w": "F,",
+     "t": 2.96,
+     "end": 3.52
+    },
+    {
+     "w": "C.",
+     "t": 3.76,
+     "end": 4.32
+    }
+   ]
+  },
+  "amen2": {
+   "text": "Each move is the same as the Amen at the end of a hymn. Two amens in a row.",
+   "dur": 5.642449,
+   "speechEnd": 5.68,
+   "words": [
+    {
+     "w": "Each",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "move",
+     "t": 0.4,
+     "end": 0.64
+    },
+    {
+     "w": "is",
+     "t": 0.72,
+     "end": 0.8
+    },
+    {
+     "w": "the",
+     "t": 0.88,
+     "end": 1.04
+    },
+    {
+     "w": "same",
+     "t": 1.16,
+     "end": 1.28
+    },
+    {
+     "w": "as",
+     "t": 1.36,
+     "end": 1.44
+    },
+    {
+     "w": "the",
+     "t": 1.48,
+     "end": 1.52
+    },
+    {
+     "w": "Amen",
+     "t": 1.68,
+     "end": 2.32
+    },
+    {
+     "w": "at",
+     "t": 2.4,
+     "end": 2.56
+    },
+    {
+     "w": "the",
+     "t": 2.6,
+     "end": 2.64
+    },
+    {
+     "w": "end",
+     "t": 2.72,
+     "end": 2.8
+    },
+    {
+     "w": "of",
+     "t": 2.88,
+     "end": 2.92
+    },
+    {
+     "w": "a",
+     "t": 2.96,
+     "end": 3
+    },
+    {
+     "w": "hymn.",
+     "t": 3.04,
+     "end": 3.68
+    },
+    {
+     "w": "Two",
+     "t": 3.92,
+     "end": 4.16
+    },
+    {
+     "w": "amens",
+     "t": 4.32,
+     "end": 4.8
+    },
+    {
+     "w": "in",
+     "t": 4.88,
+     "end": 4.96
+    },
+    {
+     "w": "a",
+     "t": 5,
+     "end": 5.04
+    },
+    {
+     "w": "row.",
+     "t": 5.12,
+     "end": 5.68
+    }
+   ]
+  },
+  "essence": {
+   "text": "No urgent pull, no question. Just a big, open landing. That's why stadiums sing along.",
+   "dur": 7.235918,
+   "speechEnd": 7.28,
+   "words": [
+    {
+     "w": "No",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "urgent",
+     "t": 0.32,
+     "end": 0.64
+    },
+    {
+     "w": "pull,",
+     "t": 0.72,
+     "end": 1.36
+    },
+    {
+     "w": "no",
+     "t": 1.44,
+     "end": 1.52
+    },
+    {
+     "w": "question.",
+     "t": 1.68,
+     "end": 2.24
+    },
+    {
+     "w": "Just",
+     "t": 2.64,
+     "end": 2.8
+    },
+    {
+     "w": "a",
+     "t": 2.84,
+     "end": 2.88
+    },
+    {
+     "w": "big,",
+     "t": 3.04,
+     "end": 3.6
+    },
+    {
+     "w": "open",
+     "t": 3.68,
+     "end": 4
+    },
+    {
+     "w": "landing.",
+     "t": 4.08,
+     "end": 4.84
+    },
+    {
+     "w": "That's",
+     "t": 5.12,
+     "end": 5.36
+    },
+    {
+     "w": "why",
+     "t": 5.44,
+     "end": 5.52
+    },
+    {
+     "w": "stadiums",
+     "t": 5.6,
+     "end": 6.24
+    },
+    {
+     "w": "sing",
+     "t": 6.32,
+     "end": 6.48
+    },
+    {
+     "w": "along.",
+     "t": 6.72,
+     "end": 7.28
+    }
+   ]
+  },
+  "cta": {
+   "text": "What should I break down next?",
+   "dur": 1.959184,
+   "speechEnd": 1.92,
+   "words": [
+    {
+     "w": "What",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "should",
+     "t": 0.32,
+     "end": 0.4
+    },
+    {
+     "w": "I",
+     "t": 0.48,
+     "end": 0.56
+    },
+    {
+     "w": "break",
+     "t": 0.64,
+     "end": 0.8
+    },
+    {
+     "w": "down",
+     "t": 0.88,
+     "end": 1.04
+    },
+    {
+     "w": "next?",
+     "t": 1.12,
+     "end": 1.92
+    }
+   ]
+  }
+ }
+}

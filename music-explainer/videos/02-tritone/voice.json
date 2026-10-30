@@ -1,0 +1,1024 @@
+{
+ "voice_id": "EwzF7Z2UMSib9JaKx0Kg",
+ "model_id": "eleven_v4",
+ "segments": {
+  "hook": {
+   "text": "One interval sounds so unsettling that people called it the devil in music.",
+   "dur": 5.407347,
+   "speechEnd": 5.44,
+   "words": [
+    {
+     "w": "One",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "interval",
+     "t": 0.32,
+     "end": 0.72
+    },
+    {
+     "w": "sounds",
+     "t": 0.8,
+     "end": 1.2
+    },
+    {
+     "w": "so",
+     "t": 1.28,
+     "end": 1.44
+    },
+    {
+     "w": "unsettling",
+     "t": 1.52,
+     "end": 2.32
+    },
+    {
+     "w": "that",
+     "t": 2.48,
+     "end": 2.64
+    },
+    {
+     "w": "people",
+     "t": 2.72,
+     "end": 2.96
+    },
+    {
+     "w": "called",
+     "t": 3.04,
+     "end": 3.28
+    },
+    {
+     "w": "it",
+     "t": 3.36,
+     "end": 3.44
+    },
+    {
+     "w": "the",
+     "t": 3.68,
+     "end": 3.76
+    },
+    {
+     "w": "devil",
+     "t": 3.92,
+     "end": 4.32
+    },
+    {
+     "w": "in",
+     "t": 4.4,
+     "end": 4.56
+    },
+    {
+     "w": "music.",
+     "t": 4.64,
+     "end": 5.44
+    }
+   ]
+  },
+  "what": {
+   "text": "Start on C and go up six half steps, to F sharp. That's a tritone: exactly half an octave.",
+   "dur": 7.706122,
+   "speechEnd": 7.76,
+   "words": [
+    {
+     "w": "Start",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "on",
+     "t": 0.4,
+     "end": 0.56
+    },
+    {
+     "w": "C",
+     "t": 0.72,
+     "end": 1.12
+    },
+    {
+     "w": "and",
+     "t": 1.28,
+     "end": 1.36
+    },
+    {
+     "w": "go",
+     "t": 1.44,
+     "end": 1.52
+    },
+    {
+     "w": "up",
+     "t": 1.6,
+     "end": 1.76
+    },
+    {
+     "w": "six",
+     "t": 1.92,
+     "end": 2.16
+    },
+    {
+     "w": "half",
+     "t": 2.24,
+     "end": 2.48
+    },
+    {
+     "w": "steps,",
+     "t": 2.72,
+     "end": 3.12
+    },
+    {
+     "w": "to",
+     "t": 3.2,
+     "end": 3.28
+    },
+    {
+     "w": "F",
+     "t": 3.36,
+     "end": 3.44
+    },
+    {
+     "w": "sharp.",
+     "t": 3.52,
+     "end": 4
+    },
+    {
+     "w": "That's",
+     "t": 4.48,
+     "end": 4.68
+    },
+    {
+     "w": "a",
+     "t": 4.72,
+     "end": 4.76
+    },
+    {
+     "w": "tritone:",
+     "t": 4.8,
+     "end": 5.84
+    },
+    {
+     "w": "exactly",
+     "t": 5.96,
+     "end": 6.48
+    },
+    {
+     "w": "half",
+     "t": 6.64,
+     "end": 6.88
+    },
+    {
+     "w": "an",
+     "t": 6.92,
+     "end": 6.96
+    },
+    {
+     "w": "octave.",
+     "t": 7.04,
+     "end": 7.76
+    }
+   ]
+  },
+  "maria": {
+   "text": "It's the yearning leap in Maria, from West Side Story...",
+   "dur": 3.709388,
+   "speechEnd": 3.76,
+   "words": [
+    {
+     "w": "It's",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "the",
+     "t": 0.28,
+     "end": 0.32
+    },
+    {
+     "w": "yearning",
+     "t": 0.48,
+     "end": 0.88
+    },
+    {
+     "w": "leap",
+     "t": 1.04,
+     "end": 1.36
+    },
+    {
+     "w": "in",
+     "t": 1.44,
+     "end": 1.52
+    },
+    {
+     "w": "Maria,",
+     "t": 1.76,
+     "end": 2.32
+    },
+    {
+     "w": "from",
+     "t": 2.4,
+     "end": 2.48
+    },
+    {
+     "w": "West",
+     "t": 2.56,
+     "end": 2.72
+    },
+    {
+     "w": "Side",
+     "t": 2.84,
+     "end": 2.96
+    },
+    {
+     "w": "Story...",
+     "t": 3.04,
+     "end": 3.76
+    }
+   ]
+  },
+  "purple": {
+   "text": "the opening clash of Purple Haze...",
+   "dur": 2.507755,
+   "speechEnd": 2.56,
+   "words": [
+    {
+     "w": "the",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "opening",
+     "t": 0.36,
+     "end": 0.56
+    },
+    {
+     "w": "clash",
+     "t": 0.64,
+     "end": 1.12
+    },
+    {
+     "w": "of",
+     "t": 1.16,
+     "end": 1.2
+    },
+    {
+     "w": "Purple",
+     "t": 1.36,
+     "end": 1.68
+    },
+    {
+     "w": "Haze...",
+     "t": 1.76,
+     "end": 2.56
+    }
+   ]
+  },
+  "sabbath": {
+   "text": "and the doom of Black Sabbath's very first song.",
+   "dur": 3.63102,
+   "speechEnd": 3.68,
+   "words": [
+    {
+     "w": "and",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "the",
+     "t": 0.24,
+     "end": 0.32
+    },
+    {
+     "w": "doom",
+     "t": 0.4,
+     "end": 0.8
+    },
+    {
+     "w": "of",
+     "t": 0.88,
+     "end": 0.96
+    },
+    {
+     "w": "Black",
+     "t": 1.04,
+     "end": 1.36
+    },
+    {
+     "w": "Sabbath's",
+     "t": 1.44,
+     "end": 2.08
+    },
+    {
+     "w": "very",
+     "t": 2.16,
+     "end": 2.4
+    },
+    {
+     "w": "first",
+     "t": 2.56,
+     "end": 2.88
+    },
+    {
+     "w": "song.",
+     "t": 2.96,
+     "end": 3.68
+    }
+   ]
+  },
+  "why1": {
+   "text": "Why does it sound so tense? Look at the circle. The tritone cuts it exactly in half.",
+   "dur": 6.426122,
+   "speechEnd": 6.48,
+   "words": [
+    {
+     "w": "Why",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "does",
+     "t": 0.32,
+     "end": 0.4
+    },
+    {
+     "w": "it",
+     "t": 0.48,
+     "end": 0.56
+    },
+    {
+     "w": "sound",
+     "t": 0.64,
+     "end": 0.88
+    },
+    {
+     "w": "so",
+     "t": 1,
+     "end": 1.12
+    },
+    {
+     "w": "tense?",
+     "t": 1.2,
+     "end": 2
+    },
+    {
+     "w": "Look",
+     "t": 2.24,
+     "end": 2.32
+    },
+    {
+     "w": "at",
+     "t": 2.4,
+     "end": 2.44
+    },
+    {
+     "w": "the",
+     "t": 2.48,
+     "end": 2.56
+    },
+    {
+     "w": "circle.",
+     "t": 2.64,
+     "end": 3.52
+    },
+    {
+     "w": "The",
+     "t": 3.6,
+     "end": 3.68
+    },
+    {
+     "w": "tritone",
+     "t": 3.76,
+     "end": 4.32
+    },
+    {
+     "w": "cuts",
+     "t": 4.4,
+     "end": 4.56
+    },
+    {
+     "w": "it",
+     "t": 4.64,
+     "end": 4.72
+    },
+    {
+     "w": "exactly",
+     "t": 4.8,
+     "end": 5.52
+    },
+    {
+     "w": "in",
+     "t": 5.6,
+     "end": 5.68
+    },
+    {
+     "w": "half.",
+     "t": 5.76,
+     "end": 6.48
+    }
+   ]
+  },
+  "why2": {
+   "text": "Turn it upside down, and you get... another tritone. No direction. No home.",
+   "dur": 6.60898,
+   "speechEnd": 6.64,
+   "words": [
+    {
+     "w": "Turn",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "it",
+     "t": 0.28,
+     "end": 0.32
+    },
+    {
+     "w": "upside",
+     "t": 0.44,
+     "end": 0.8
+    },
+    {
+     "w": "down,",
+     "t": 0.88,
+     "end": 1.44
+    },
+    {
+     "w": "and",
+     "t": 1.52,
+     "end": 1.6
+    },
+    {
+     "w": "you",
+     "t": 1.68,
+     "end": 1.76
+    },
+    {
+     "w": "get...",
+     "t": 1.92,
+     "end": 2.56
+    },
+    {
+     "w": "another",
+     "t": 2.76,
+     "end": 2.96
+    },
+    {
+     "w": "tritone.",
+     "t": 3.04,
+     "end": 3.68
+    },
+    {
+     "w": "No",
+     "t": 4.24,
+     "end": 4.4
+    },
+    {
+     "w": "direction.",
+     "t": 4.48,
+     "end": 5.4
+    },
+    {
+     "w": "No",
+     "t": 5.68,
+     "end": 5.84
+    },
+    {
+     "w": "home.",
+     "t": 5.92,
+     "end": 6.64
+    }
+   ]
+  },
+  "why3": {
+   "text": "But put it inside a chord, and it becomes the engine behind most of the music you know.",
+   "dur": 5.407347,
+   "speechEnd": 5.44,
+   "words": [
+    {
+     "w": "But",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "put",
+     "t": 0.32,
+     "end": 0.4
+    },
+    {
+     "w": "it",
+     "t": 0.48,
+     "end": 0.56
+    },
+    {
+     "w": "inside",
+     "t": 0.76,
+     "end": 0.96
+    },
+    {
+     "w": "a",
+     "t": 1.04,
+     "end": 1.12
+    },
+    {
+     "w": "chord,",
+     "t": 1.2,
+     "end": 1.92
+    },
+    {
+     "w": "and",
+     "t": 1.96,
+     "end": 2
+    },
+    {
+     "w": "it",
+     "t": 2.08,
+     "end": 2.16
+    },
+    {
+     "w": "becomes",
+     "t": 2.24,
+     "end": 2.56
+    },
+    {
+     "w": "the",
+     "t": 2.68,
+     "end": 2.8
+    },
+    {
+     "w": "engine",
+     "t": 2.88,
+     "end": 3.28
+    },
+    {
+     "w": "behind",
+     "t": 3.36,
+     "end": 3.76
+    },
+    {
+     "w": "most",
+     "t": 3.88,
+     "end": 4
+    },
+    {
+     "w": "of",
+     "t": 4.08,
+     "end": 4.16
+    },
+    {
+     "w": "the",
+     "t": 4.2,
+     "end": 4.24
+    },
+    {
+     "w": "music",
+     "t": 4.32,
+     "end": 4.64
+    },
+    {
+     "w": "you",
+     "t": 4.72,
+     "end": 4.88
+    },
+    {
+     "w": "know.",
+     "t": 5.04,
+     "end": 5.44
+    }
+   ]
+  },
+  "dom": {
+   "text": "Take G seven: G, B, D, F. Hidden inside, B and F form a tritone.",
+   "dur": 7.88898,
+   "speechEnd": 7.84,
+   "words": [
+    {
+     "w": "Take",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "G",
+     "t": 0.4,
+     "end": 0.64
+    },
+    {
+     "w": "seven:",
+     "t": 0.72,
+     "end": 1.68
+    },
+    {
+     "w": "G,",
+     "t": 1.76,
+     "end": 2.24
+    },
+    {
+     "w": "B,",
+     "t": 2.4,
+     "end": 2.72
+    },
+    {
+     "w": "D,",
+     "t": 2.96,
+     "end": 3.28
+    },
+    {
+     "w": "F.",
+     "t": 3.52,
+     "end": 4.16
+    },
+    {
+     "w": "Hidden",
+     "t": 4.48,
+     "end": 4.72
+    },
+    {
+     "w": "inside,",
+     "t": 5.04,
+     "end": 5.68
+    },
+    {
+     "w": "B",
+     "t": 5.76,
+     "end": 5.92
+    },
+    {
+     "w": "and",
+     "t": 6,
+     "end": 6.08
+    },
+    {
+     "w": "F",
+     "t": 6.24,
+     "end": 6.48
+    },
+    {
+     "w": "form",
+     "t": 6.64,
+     "end": 6.8
+    },
+    {
+     "w": "a",
+     "t": 6.88,
+     "end": 6.92
+    },
+    {
+     "w": "tritone.",
+     "t": 6.96,
+     "end": 7.84
+    }
+   ]
+  },
+  "resolve": {
+   "text": "That tension wants out. B slides up to C, F slides down to E... and the tritone melts into C major.",
+   "dur": 8.829388,
+   "speechEnd": 8.88,
+   "words": [
+    {
+     "w": "That",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "tension",
+     "t": 0.32,
+     "end": 0.8
+    },
+    {
+     "w": "wants",
+     "t": 0.88,
+     "end": 1.2
+    },
+    {
+     "w": "out.",
+     "t": 1.36,
+     "end": 2.04
+    },
+    {
+     "w": "B",
+     "t": 2.32,
+     "end": 2.56
+    },
+    {
+     "w": "slides",
+     "t": 2.64,
+     "end": 2.96
+    },
+    {
+     "w": "up",
+     "t": 3.04,
+     "end": 3.12
+    },
+    {
+     "w": "to",
+     "t": 3.16,
+     "end": 3.2
+    },
+    {
+     "w": "C,",
+     "t": 3.36,
+     "end": 4.08
+    },
+    {
+     "w": "F",
+     "t": 4.16,
+     "end": 4.4
+    },
+    {
+     "w": "slides",
+     "t": 4.48,
+     "end": 4.8
+    },
+    {
+     "w": "down",
+     "t": 4.88,
+     "end": 5.04
+    },
+    {
+     "w": "to",
+     "t": 5.12,
+     "end": 5.24
+    },
+    {
+     "w": "E...",
+     "t": 5.36,
+     "end": 6.08
+    },
+    {
+     "w": "and",
+     "t": 6.16,
+     "end": 6.24
+    },
+    {
+     "w": "the",
+     "t": 6.28,
+     "end": 6.32
+    },
+    {
+     "w": "tritone",
+     "t": 6.4,
+     "end": 6.96
+    },
+    {
+     "w": "melts",
+     "t": 7.12,
+     "end": 7.52
+    },
+    {
+     "w": "into",
+     "t": 7.6,
+     "end": 7.76
+    },
+    {
+     "w": "C",
+     "t": 7.92,
+     "end": 8.08
+    },
+    {
+     "w": "major.",
+     "t": 8.16,
+     "end": 8.88
+    }
+   ]
+  },
+  "twist": {
+   "text": "Now the wild part: D flat seven hides the exact same tritone.",
+   "dur": 5.32898,
+   "speechEnd": 5.28,
+   "words": [
+    {
+     "w": "Now",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "the",
+     "t": 0.32,
+     "end": 0.4
+    },
+    {
+     "w": "wild",
+     "t": 0.48,
+     "end": 0.8
+    },
+    {
+     "w": "part:",
+     "t": 0.88,
+     "end": 1.76
+    },
+    {
+     "w": "D",
+     "t": 1.84,
+     "end": 2
+    },
+    {
+     "w": "flat",
+     "t": 2.08,
+     "end": 2.32
+    },
+    {
+     "w": "seven",
+     "t": 2.48,
+     "end": 2.8
+    },
+    {
+     "w": "hides",
+     "t": 2.88,
+     "end": 3.2
+    },
+    {
+     "w": "the",
+     "t": 3.28,
+     "end": 3.36
+    },
+    {
+     "w": "exact",
+     "t": 3.44,
+     "end": 4
+    },
+    {
+     "w": "same",
+     "t": 4.16,
+     "end": 4.4
+    },
+    {
+     "w": "tritone.",
+     "t": 4.48,
+     "end": 5.28
+    }
+   ]
+  },
+  "twist2": {
+   "text": "Jazz players swap them, and call it a tritone substitution.",
+   "dur": 3.866122,
+   "speechEnd": 3.92,
+   "words": [
+    {
+     "w": "Jazz",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "players",
+     "t": 0.4,
+     "end": 0.72
+    },
+    {
+     "w": "swap",
+     "t": 0.8,
+     "end": 1.12
+    },
+    {
+     "w": "them,",
+     "t": 1.24,
+     "end": 1.52
+    },
+    {
+     "w": "and",
+     "t": 1.64,
+     "end": 1.76
+    },
+    {
+     "w": "call",
+     "t": 1.84,
+     "end": 2
+    },
+    {
+     "w": "it",
+     "t": 2.04,
+     "end": 2.08
+    },
+    {
+     "w": "a",
+     "t": 2.16,
+     "end": 2.24
+    },
+    {
+     "w": "tritone",
+     "t": 2.32,
+     "end": 2.8
+    },
+    {
+     "w": "substitution.",
+     "t": 2.88,
+     "end": 3.92
+    }
+   ]
+  },
+  "essence": {
+   "text": "So the devil's interval isn't evil. It's the tension that makes coming home feel so good.",
+   "dur": 6.269388,
+   "speechEnd": 6.32,
+   "words": [
+    {
+     "w": "So",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "the",
+     "t": 0.24,
+     "end": 0.28
+    },
+    {
+     "w": "devil's",
+     "t": 0.32,
+     "end": 0.72
+    },
+    {
+     "w": "interval",
+     "t": 0.8,
+     "end": 1.28
+    },
+    {
+     "w": "isn't",
+     "t": 1.36,
+     "end": 1.68
+    },
+    {
+     "w": "evil.",
+     "t": 1.84,
+     "end": 2.32
+    },
+    {
+     "w": "It's",
+     "t": 2.72,
+     "end": 2.96
+    },
+    {
+     "w": "the",
+     "t": 3.04,
+     "end": 3.12
+    },
+    {
+     "w": "tension",
+     "t": 3.16,
+     "end": 3.6
+    },
+    {
+     "w": "that",
+     "t": 3.68,
+     "end": 3.76
+    },
+    {
+     "w": "makes",
+     "t": 3.84,
+     "end": 4.08
+    },
+    {
+     "w": "coming",
+     "t": 4.16,
+     "end": 4.4
+    },
+    {
+     "w": "home",
+     "t": 4.48,
+     "end": 4.8
+    },
+    {
+     "w": "feel",
+     "t": 4.88,
+     "end": 5.12
+    },
+    {
+     "w": "so",
+     "t": 5.36,
+     "end": 5.6
+    },
+    {
+     "w": "good.",
+     "t": 5.68,
+     "end": 6.32
+    }
+   ]
+  },
+  "cta": {
+   "text": "What should I explain next?",
+   "dur": 1.959184,
+   "speechEnd": 2,
+   "words": [
+    {
+     "w": "What",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "should",
+     "t": 0.32,
+     "end": 0.48
+    },
+    {
+     "w": "I",
+     "t": 0.52,
+     "end": 0.56
+    },
+    {
+     "w": "explain",
+     "t": 0.64,
+     "end": 1.12
+    },
+    {
+     "w": "next?",
+     "t": 1.2,
+     "end": 2
+    }
+   ]
+  }
+ }
+}

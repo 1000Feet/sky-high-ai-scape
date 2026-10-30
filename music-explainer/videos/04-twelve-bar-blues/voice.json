@@ -1,0 +1,863 @@
+{
+ "voice_id": "EwzF7Z2UMSib9JaKx0Kg",
+ "model_id": "eleven_v4",
+ "segments": {
+  "hook": {
+   "text": "Three chords. Twelve bars. This little loop gave us the blues... and rock and roll.",
+   "dur": 6.922449,
+   "speechEnd": 6.96,
+   "words": [
+    {
+     "w": "Three",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "chords.",
+     "t": 0.32,
+     "end": 1.04
+    },
+    {
+     "w": "Twelve",
+     "t": 1.2,
+     "end": 1.52
+    },
+    {
+     "w": "bars.",
+     "t": 1.6,
+     "end": 2.36
+    },
+    {
+     "w": "This",
+     "t": 2.64,
+     "end": 2.88
+    },
+    {
+     "w": "little",
+     "t": 2.96,
+     "end": 3.12
+    },
+    {
+     "w": "loop",
+     "t": 3.2,
+     "end": 3.52
+    },
+    {
+     "w": "gave",
+     "t": 3.68,
+     "end": 3.84
+    },
+    {
+     "w": "us",
+     "t": 3.92,
+     "end": 4
+    },
+    {
+     "w": "the",
+     "t": 4.08,
+     "end": 4.16
+    },
+    {
+     "w": "blues...",
+     "t": 4.24,
+     "end": 5.28
+    },
+    {
+     "w": "and",
+     "t": 5.36,
+     "end": 5.68
+    },
+    {
+     "w": "rock",
+     "t": 5.92,
+     "end": 6.16
+    },
+    {
+     "w": "and",
+     "t": 6.24,
+     "end": 6.32
+    },
+    {
+     "w": "roll.",
+     "t": 6.48,
+     "end": 6.96
+    }
+   ]
+  },
+  "b1": {
+   "text": "Four bars on the home chord...",
+   "dur": 1.880816,
+   "speechEnd": 1.92,
+   "words": [
+    {
+     "w": "Four",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "bars",
+     "t": 0.4,
+     "end": 0.72
+    },
+    {
+     "w": "on",
+     "t": 0.76,
+     "end": 0.8
+    },
+    {
+     "w": "the",
+     "t": 0.88,
+     "end": 0.92
+    },
+    {
+     "w": "home",
+     "t": 0.96,
+     "end": 1.2
+    },
+    {
+     "w": "chord...",
+     "t": 1.28,
+     "end": 1.92
+    }
+   ]
+  },
+  "b5": {
+   "text": "two on the four chord...",
+   "dur": 1.724082,
+   "speechEnd": 1.76,
+   "words": [
+    {
+     "w": "two",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "on",
+     "t": 0.56,
+     "end": 0.64
+    },
+    {
+     "w": "the",
+     "t": 0.72,
+     "end": 0.8
+    },
+    {
+     "w": "four",
+     "t": 0.88,
+     "end": 1.04
+    },
+    {
+     "w": "chord...",
+     "t": 1.12,
+     "end": 1.76
+    }
+   ]
+  },
+  "b7": {
+   "text": "two back home...",
+   "dur": 1.48898,
+   "speechEnd": 1.52,
+   "words": [
+    {
+     "w": "two",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "back",
+     "t": 0.56,
+     "end": 0.8
+    },
+    {
+     "w": "home...",
+     "t": 0.88,
+     "end": 1.52
+    }
+   ]
+  },
+  "b9": {
+   "text": "then the five, the four, and home again.",
+   "dur": 3.239184,
+   "speechEnd": 3.28,
+   "words": [
+    {
+     "w": "then",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "the",
+     "t": 0.28,
+     "end": 0.32
+    },
+    {
+     "w": "five,",
+     "t": 0.4,
+     "end": 1.2
+    },
+    {
+     "w": "the",
+     "t": 1.24,
+     "end": 1.28
+    },
+    {
+     "w": "four,",
+     "t": 1.44,
+     "end": 2.08
+    },
+    {
+     "w": "and",
+     "t": 2.16,
+     "end": 2.32
+    },
+    {
+     "w": "home",
+     "t": 2.4,
+     "end": 2.56
+    },
+    {
+     "w": "again.",
+     "t": 2.64,
+     "end": 3.28
+    }
+   ]
+  },
+  "s1": {
+   "text": "That's Johnny B. Goode...",
+   "dur": 1.802449,
+   "speechEnd": 1.76,
+   "words": [
+    {
+     "w": "That's",
+     "t": 0,
+     "end": 0.4
+    },
+    {
+     "w": "Johnny",
+     "t": 0.48,
+     "end": 0.72
+    },
+    {
+     "w": "B.",
+     "t": 0.8,
+     "end": 1
+    },
+    {
+     "w": "Goode...",
+     "t": 1.04,
+     "end": 1.76
+    }
+   ]
+  },
+  "s2": {
+   "text": "Hound Dog...",
+   "dur": 1.227755,
+   "speechEnd": 1.04,
+   "words": [
+    {
+     "w": "Hound",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "Dog...",
+     "t": 0.4,
+     "end": 1.04
+    }
+   ]
+  },
+  "s3": {
+   "text": "Rock Around the Clock.",
+   "dur": 1.48898,
+   "speechEnd": 1.52,
+   "words": [
+    {
+     "w": "Rock",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "Around",
+     "t": 0.4,
+     "end": 0.64
+    },
+    {
+     "w": "the",
+     "t": 0.68,
+     "end": 0.72
+    },
+    {
+     "w": "Clock.",
+     "t": 0.8,
+     "end": 1.52
+    }
+   ]
+  },
+  "why1": {
+   "text": "Why is it so addictive? It's built like a conversation.",
+   "dur": 3.970612,
+   "speechEnd": 4,
+   "words": [
+    {
+     "w": "Why",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "is",
+     "t": 0.4,
+     "end": 0.48
+    },
+    {
+     "w": "it",
+     "t": 0.56,
+     "end": 0.64
+    },
+    {
+     "w": "so",
+     "t": 0.72,
+     "end": 0.8
+    },
+    {
+     "w": "addictive?",
+     "t": 0.92,
+     "end": 2
+    },
+    {
+     "w": "It's",
+     "t": 2.08,
+     "end": 2.32
+    },
+    {
+     "w": "built",
+     "t": 2.44,
+     "end": 2.56
+    },
+    {
+     "w": "like",
+     "t": 2.64,
+     "end": 2.72
+    },
+    {
+     "w": "a",
+     "t": 2.76,
+     "end": 2.8
+    },
+    {
+     "w": "conversation.",
+     "t": 2.88,
+     "end": 4
+    }
+   ]
+  },
+  "why2": {
+   "text": "A line. The same line again. Then... the answer.",
+   "dur": 5.146122,
+   "speechEnd": 5.2,
+   "words": [
+    {
+     "w": "A",
+     "t": 0,
+     "end": 0.08
+    },
+    {
+     "w": "line.",
+     "t": 0.16,
+     "end": 0.72
+    },
+    {
+     "w": "The",
+     "t": 0.8,
+     "end": 1.36
+    },
+    {
+     "w": "same",
+     "t": 1.52,
+     "end": 1.76
+    },
+    {
+     "w": "line",
+     "t": 1.84,
+     "end": 2.08
+    },
+    {
+     "w": "again.",
+     "t": 2.36,
+     "end": 2.72
+    },
+    {
+     "w": "Then...",
+     "t": 3.36,
+     "end": 4.16
+    },
+    {
+     "w": "the",
+     "t": 4.24,
+     "end": 4.32
+    },
+    {
+     "w": "answer.",
+     "t": 4.4,
+     "end": 5.2
+    }
+   ]
+  },
+  "why3": {
+   "text": "That call and response came straight from work songs and spirituals.",
+   "dur": 4.440816,
+   "speechEnd": 4.48,
+   "words": [
+    {
+     "w": "That",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "call",
+     "t": 0.32,
+     "end": 0.56
+    },
+    {
+     "w": "and",
+     "t": 0.6,
+     "end": 0.64
+    },
+    {
+     "w": "response",
+     "t": 0.72,
+     "end": 1.36
+    },
+    {
+     "w": "came",
+     "t": 1.52,
+     "end": 1.68
+    },
+    {
+     "w": "straight",
+     "t": 1.76,
+     "end": 2.08
+    },
+    {
+     "w": "from",
+     "t": 2.16,
+     "end": 2.32
+    },
+    {
+     "w": "work",
+     "t": 2.4,
+     "end": 2.64
+    },
+    {
+     "w": "songs",
+     "t": 2.72,
+     "end": 3.12
+    },
+    {
+     "w": "and",
+     "t": 3.16,
+     "end": 3.2
+    },
+    {
+     "w": "spirituals.",
+     "t": 3.36,
+     "end": 4.48
+    }
+   ]
+  },
+  "dom": {
+   "text": "And every chord is a seventh chord, with a tritone inside. So the blues never fully comes to rest.",
+   "dur": 7.079184,
+   "speechEnd": 7.12,
+   "words": [
+    {
+     "w": "And",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "every",
+     "t": 0.4,
+     "end": 0.64
+    },
+    {
+     "w": "chord",
+     "t": 0.72,
+     "end": 1.12
+    },
+    {
+     "w": "is",
+     "t": 1.2,
+     "end": 1.28
+    },
+    {
+     "w": "a",
+     "t": 1.36,
+     "end": 1.44
+    },
+    {
+     "w": "seventh",
+     "t": 1.52,
+     "end": 1.84
+    },
+    {
+     "w": "chord,",
+     "t": 1.92,
+     "end": 2.56
+    },
+    {
+     "w": "with",
+     "t": 2.6,
+     "end": 2.64
+    },
+    {
+     "w": "a",
+     "t": 2.72,
+     "end": 2.76
+    },
+    {
+     "w": "tritone",
+     "t": 2.8,
+     "end": 3.36
+    },
+    {
+     "w": "inside.",
+     "t": 3.64,
+     "end": 4.2
+    },
+    {
+     "w": "So",
+     "t": 4.48,
+     "end": 4.56
+    },
+    {
+     "w": "the",
+     "t": 4.6,
+     "end": 4.64
+    },
+    {
+     "w": "blues",
+     "t": 4.72,
+     "end": 5.04
+    },
+    {
+     "w": "never",
+     "t": 5.2,
+     "end": 5.44
+    },
+    {
+     "w": "fully",
+     "t": 5.6,
+     "end": 5.84
+    },
+    {
+     "w": "comes",
+     "t": 6,
+     "end": 6.24
+    },
+    {
+     "w": "to",
+     "t": 6.28,
+     "end": 6.32
+    },
+    {
+     "w": "rest.",
+     "t": 6.4,
+     "end": 7.12
+    }
+   ]
+  },
+  "blue": {
+   "text": "On top, singers bend between the minor and the major third. That's the blue note.",
+   "dur": 5.564082,
+   "speechEnd": 5.6,
+   "words": [
+    {
+     "w": "On",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "top,",
+     "t": 0.32,
+     "end": 0.96
+    },
+    {
+     "w": "singers",
+     "t": 1.04,
+     "end": 1.44
+    },
+    {
+     "w": "bend",
+     "t": 1.48,
+     "end": 1.68
+    },
+    {
+     "w": "between",
+     "t": 1.76,
+     "end": 2.08
+    },
+    {
+     "w": "the",
+     "t": 2.12,
+     "end": 2.16
+    },
+    {
+     "w": "minor",
+     "t": 2.24,
+     "end": 2.72
+    },
+    {
+     "w": "and",
+     "t": 2.8,
+     "end": 2.88
+    },
+    {
+     "w": "the",
+     "t": 2.92,
+     "end": 2.96
+    },
+    {
+     "w": "major",
+     "t": 3.04,
+     "end": 3.36
+    },
+    {
+     "w": "third.",
+     "t": 3.52,
+     "end": 4.24
+    },
+    {
+     "w": "That's",
+     "t": 4.32,
+     "end": 4.56
+    },
+    {
+     "w": "the",
+     "t": 4.64,
+     "end": 4.68
+    },
+    {
+     "w": "blue",
+     "t": 4.72,
+     "end": 4.96
+    },
+    {
+     "w": "note.",
+     "t": 5.04,
+     "end": 5.6
+    }
+   ]
+  },
+  "turn": {
+   "text": "And the last bars swing you back to the top... so the loop never ends.",
+   "dur": 4.832653,
+   "speechEnd": 4.88,
+   "words": [
+    {
+     "w": "And",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "the",
+     "t": 0.2,
+     "end": 0.24
+    },
+    {
+     "w": "last",
+     "t": 0.32,
+     "end": 0.56
+    },
+    {
+     "w": "bars",
+     "t": 0.64,
+     "end": 1.04
+    },
+    {
+     "w": "swing",
+     "t": 1.2,
+     "end": 1.36
+    },
+    {
+     "w": "you",
+     "t": 1.44,
+     "end": 1.52
+    },
+    {
+     "w": "back",
+     "t": 1.6,
+     "end": 1.76
+    },
+    {
+     "w": "to",
+     "t": 1.84,
+     "end": 1.92
+    },
+    {
+     "w": "the",
+     "t": 1.96,
+     "end": 2
+    },
+    {
+     "w": "top...",
+     "t": 2.08,
+     "end": 2.96
+    },
+    {
+     "w": "so",
+     "t": 3.04,
+     "end": 3.12
+    },
+    {
+     "w": "the",
+     "t": 3.16,
+     "end": 3.2
+    },
+    {
+     "w": "loop",
+     "t": 3.28,
+     "end": 3.6
+    },
+    {
+     "w": "never",
+     "t": 3.76,
+     "end": 4
+    },
+    {
+     "w": "ends.",
+     "t": 4.08,
+     "end": 4.88
+    }
+   ]
+  },
+  "essence": {
+   "text": "Three chords, twelve bars, a question and an answer. That's the loop that built rock and roll.",
+   "dur": 6.765714,
+   "speechEnd": 6.8,
+   "words": [
+    {
+     "w": "Three",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "chords,",
+     "t": 0.32,
+     "end": 1.12
+    },
+    {
+     "w": "twelve",
+     "t": 1.2,
+     "end": 1.36
+    },
+    {
+     "w": "bars,",
+     "t": 1.52,
+     "end": 2.24
+    },
+    {
+     "w": "a",
+     "t": 2.32,
+     "end": 2.4
+    },
+    {
+     "w": "question",
+     "t": 2.48,
+     "end": 2.96
+    },
+    {
+     "w": "and",
+     "t": 3.2,
+     "end": 3.28
+    },
+    {
+     "w": "an",
+     "t": 3.36,
+     "end": 3.44
+    },
+    {
+     "w": "answer.",
+     "t": 3.52,
+     "end": 4.2
+    },
+    {
+     "w": "That's",
+     "t": 4.48,
+     "end": 4.72
+    },
+    {
+     "w": "the",
+     "t": 4.8,
+     "end": 4.88
+    },
+    {
+     "w": "loop",
+     "t": 4.96,
+     "end": 5.2
+    },
+    {
+     "w": "that",
+     "t": 5.28,
+     "end": 5.44
+    },
+    {
+     "w": "built",
+     "t": 5.52,
+     "end": 5.76
+    },
+    {
+     "w": "rock",
+     "t": 5.84,
+     "end": 6.08
+    },
+    {
+     "w": "and",
+     "t": 6.12,
+     "end": 6.16
+    },
+    {
+     "w": "roll.",
+     "t": 6.24,
+     "end": 6.8
+    }
+   ]
+  },
+  "cta": {
+   "text": "What should I break down next?",
+   "dur": 1.959184,
+   "speechEnd": 1.92,
+   "words": [
+    {
+     "w": "What",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "should",
+     "t": 0.32,
+     "end": 0.4
+    },
+    {
+     "w": "I",
+     "t": 0.48,
+     "end": 0.56
+    },
+    {
+     "w": "break",
+     "t": 0.68,
+     "end": 0.8
+    },
+    {
+     "w": "down",
+     "t": 0.92,
+     "end": 1.04
+    },
+    {
+     "w": "next?",
+     "t": 1.12,
+     "end": 1.92
+    }
+   ]
+  }
+ }
+}
