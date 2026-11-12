@@ -77,16 +77,10 @@ const WebsiteWizard: React.FC = () => {
     updateData({ logoFile: file, logoPreviewUrl: '', logoUrl: '' });
     setUploadingLogo(true);
     try {
-      const ext = file.name.split('.').pop();
-      const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${ext}`;
-
-      const { error } = await supabase.storage.from('logos').upload(fileName, file, {
-        cacheControl: '3600',
-        contentType: file.type || undefined,
-      });
+      const form = new FormData();
+      form.append('file', file);
+      const { data: urlData, error } = await supabase.functions.invoke('upload-logo', { body: form });
       if (error) throw error;
-
-      const { data: urlData } = supabase.storage.from('logos').getPublicUrl(fileName);
       if (!urlData?.publicUrl) throw new Error('Could not create logo URL');
 
       updateData({ logoUrl: `${urlData.publicUrl}?t=${Date.now()}` });
@@ -136,27 +130,10 @@ const WebsiteWizard: React.FC = () => {
 
       // Update existing record with mockup data, or insert if missing
       if (requestId) {
-        const { error: dbError } = await (supabase.from('website_requests') as any)
-          .update({
-            logo_url: data.logoUrl || null,
-            color_palette: data.colorPalette,
-            mockup_url: result.mockupImage || null,
-          })
-          .eq('id', requestId);
+        const { error: dbError } = await (supabase.rpc as any)('update_website_request', { p_id: requestId, p_logo_url: data.logoUrl || null, p_color_palette: data.colorPalette, p_mockup_url: result.mockupImage || null });
         if (dbError) console.error('Error updating request with mockup:', dbError);
       } else {
-        const { data: insertedRow, error: dbError } = await (supabase.from('website_requests') as any).insert({
-          name: data.name,
-          email: data.email,
-          phone: data.phone || null,
-          business_name: data.businessName,
-          business_type: data.businessType || null,
-          logo_url: data.logoUrl || null,
-          color_palette: data.colorPalette,
-          mockup_url: result.mockupImage || null,
-          notes: data.notes || null,
-          status: 'pending',
-        }).select('id').single();
+        const { data: insertedRow, error: dbError } = await (supabase.rpc as any)('create_website_request', { p_name: data.name, p_email: data.email, p_phone: data.phone || null, p_business_name: data.businessName, p_business_type: data.businessType || null, p_logo_url: data.logoUrl || null, p_color_palette: data.colorPalette, p_mockup_url: result.mockupImage || null, p_notes: data.notes || null, p_status: 'pending' }).then((r: any) => ({ ...r, data: r.data ? { id: r.data } : null }));
         if (dbError) console.error('Error saving request:', dbError);
         else if (insertedRow) setRequestId(insertedRow.id);
       }
@@ -179,24 +156,11 @@ const WebsiteWizard: React.FC = () => {
 
       if (requestId) {
         // Update the existing record
-        const { error: dbError } = await (supabase.from('website_requests') as any)
-          .update({ notes: combinedNotes, status })
-          .eq('id', requestId);
+        const { error: dbError } = await (supabase.rpc as any)('update_website_request', { p_id: requestId, p_notes: combinedNotes, p_status: status });
         if (dbError) throw dbError;
       } else {
         // Fallback: insert if no requestId (shouldn't happen normally)
-        const { error: dbError } = await (supabase.from('website_requests') as any).insert({
-          name: data.name,
-          email: data.email,
-          phone: data.phone || null,
-          business_name: data.businessName,
-          business_type: data.businessType || null,
-          logo_url: data.logoUrl || null,
-          color_palette: data.colorPalette,
-          mockup_url: data.mockupImage || null,
-          notes: combinedNotes,
-          status,
-        });
+        const { error: dbError } = await (supabase.rpc as any)('create_website_request', { p_name: data.name, p_email: data.email, p_phone: data.phone || null, p_business_name: data.businessName, p_business_type: data.businessType || null, p_logo_url: data.logoUrl || null, p_color_palette: data.colorPalette, p_mockup_url: data.mockupImage || null, p_notes: combinedNotes, p_status: status }).then((r: any) => ({ ...r, data: r.data ? { id: r.data } : null }));
         if (dbError) throw dbError;
       }
 
@@ -248,18 +212,7 @@ const WebsiteWizard: React.FC = () => {
 
   const saveLeadToDatabase = async () => {
     try {
-      const { data: insertedRow, error: dbError } = await (supabase.from('website_requests') as any).insert({
-        name: data.name,
-        email: data.email,
-        phone: data.phone || null,
-        business_name: data.businessName,
-        business_type: data.businessType || null,
-        logo_url: null,
-        color_palette: 'pending',
-        mockup_url: null,
-        notes: data.notes || null,
-        status: 'pending',
-      }).select('id').single();
+      const { data: insertedRow, error: dbError } = await (supabase.rpc as any)('create_website_request', { p_name: data.name, p_email: data.email, p_phone: data.phone || null, p_business_name: data.businessName, p_business_type: data.businessType || null, p_logo_url: null, p_color_palette: 'pending', p_mockup_url: null, p_notes: data.notes || null, p_status: 'pending' }).then((r: any) => ({ ...r, data: r.data ? { id: r.data } : null }));
 
       if (dbError) {
         console.error('Error saving lead:', dbError);

@@ -645,6 +645,21 @@ export type Database = {
           isSetofReturn: false
         }
       }
+      create_website_request: {
+        Args: {
+          p_business_name: string
+          p_business_type: string
+          p_color_palette: string
+          p_email: string
+          p_logo_url: string
+          p_mockup_url: string
+          p_name: string
+          p_notes: string
+          p_phone: string
+          p_status: string
+        }
+        Returns: string
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -654,6 +669,17 @@ export type Database = {
       }
       increment_batch_counter: {
         Args: { p_batch_id: string; p_kind: string; p_table: string }
+        Returns: undefined
+      }
+      update_website_request: {
+        Args: {
+          p_color_palette?: string
+          p_id: string
+          p_logo_url?: string
+          p_mockup_url?: string
+          p_notes?: string
+          p_status?: string
+        }
         Returns: undefined
       }
     }
