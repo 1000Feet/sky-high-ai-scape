@@ -1,0 +1,1004 @@
+{
+ "voice_id": "EwzF7Z2UMSib9JaKx0Kg",
+ "model_id": "eleven_v4",
+ "segments": {
+  "hook": {
+   "text": "Why do so many hit songs sound... exactly the same?",
+   "dur": 4.205714,
+   "speechEnd": 4.24,
+   "words": [
+    {
+     "w": "Why",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "do",
+     "t": 0.36,
+     "end": 0.48
+    },
+    {
+     "w": "so",
+     "t": 0.56,
+     "end": 0.72
+    },
+    {
+     "w": "many",
+     "t": 0.8,
+     "end": 0.96
+    },
+    {
+     "w": "hit",
+     "t": 1.04,
+     "end": 1.28
+    },
+    {
+     "w": "songs",
+     "t": 1.36,
+     "end": 1.84
+    },
+    {
+     "w": "sound...",
+     "t": 2.08,
+     "end": 2.72
+    },
+    {
+     "w": "exactly",
+     "t": 2.88,
+     "end": 3.36
+    },
+    {
+     "w": "the",
+     "t": 3.44,
+     "end": 3.52
+    },
+    {
+     "w": "same?",
+     "t": 3.6,
+     "end": 4.24
+    }
+   ]
+  },
+  "scale": {
+   "text": "Take the seven notes of the C major scale.",
+   "dur": 3.082449,
+   "speechEnd": 3.04,
+   "words": [
+    {
+     "w": "Take",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "the",
+     "t": 0.32,
+     "end": 0.4
+    },
+    {
+     "w": "seven",
+     "t": 0.56,
+     "end": 0.8
+    },
+    {
+     "w": "notes",
+     "t": 0.88,
+     "end": 1.2
+    },
+    {
+     "w": "of",
+     "t": 1.28,
+     "end": 1.36
+    },
+    {
+     "w": "the",
+     "t": 1.44,
+     "end": 1.52
+    },
+    {
+     "w": "C",
+     "t": 1.6,
+     "end": 1.76
+    },
+    {
+     "w": "major",
+     "t": 1.84,
+     "end": 2.16
+    },
+    {
+     "w": "scale.",
+     "t": 2.24,
+     "end": 3.04
+    }
+   ]
+  },
+  "prog": {
+   "text": "Now build a chord on the first, the fifth, the sixth, and the fourth note.",
+   "dur": 4.91102,
+   "speechEnd": 4.96,
+   "words": [
+    {
+     "w": "Now",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "build",
+     "t": 0.32,
+     "end": 0.48
+    },
+    {
+     "w": "a",
+     "t": 0.56,
+     "end": 0.6
+    },
+    {
+     "w": "chord",
+     "t": 0.64,
+     "end": 0.96
+    },
+    {
+     "w": "on",
+     "t": 1.04,
+     "end": 1.12
+    },
+    {
+     "w": "the",
+     "t": 1.16,
+     "end": 1.2
+    },
+    {
+     "w": "first,",
+     "t": 1.36,
+     "end": 2
+    },
+    {
+     "w": "the",
+     "t": 2.08,
+     "end": 2.16
+    },
+    {
+     "w": "fifth,",
+     "t": 2.24,
+     "end": 2.88
+    },
+    {
+     "w": "the",
+     "t": 2.92,
+     "end": 2.96
+    },
+    {
+     "w": "sixth,",
+     "t": 3.12,
+     "end": 3.68
+    },
+    {
+     "w": "and",
+     "t": 3.76,
+     "end": 3.84
+    },
+    {
+     "w": "the",
+     "t": 3.88,
+     "end": 3.92
+    },
+    {
+     "w": "fourth",
+     "t": 4.08,
+     "end": 4.32
+    },
+    {
+     "w": "note.",
+     "t": 4.4,
+     "end": 4.96
+    }
+   ]
+  },
+  "song0": {
+   "text": "You've heard it in Let It Be, by the Beatles...",
+   "dur": 2.690612,
+   "speechEnd": 2.72,
+   "words": [
+    {
+     "w": "You've",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "heard",
+     "t": 0.24,
+     "end": 0.4
+    },
+    {
+     "w": "it",
+     "t": 0.44,
+     "end": 0.48
+    },
+    {
+     "w": "in",
+     "t": 0.56,
+     "end": 0.72
+    },
+    {
+     "w": "Let",
+     "t": 0.8,
+     "end": 0.88
+    },
+    {
+     "w": "It",
+     "t": 0.96,
+     "end": 1.04
+    },
+    {
+     "w": "Be,",
+     "t": 1.2,
+     "end": 1.6
+    },
+    {
+     "w": "by",
+     "t": 1.68,
+     "end": 1.76
+    },
+    {
+     "w": "the",
+     "t": 1.8,
+     "end": 1.84
+    },
+    {
+     "w": "Beatles...",
+     "t": 1.92,
+     "end": 2.72
+    }
+   ]
+  },
+  "song1": {
+   "text": "With or Without You, by U2...",
+   "dur": 2.847347,
+   "speechEnd": 2.88,
+   "words": [
+    {
+     "w": "With",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "or",
+     "t": 0.48,
+     "end": 0.56
+    },
+    {
+     "w": "Without",
+     "t": 0.64,
+     "end": 1.04
+    },
+    {
+     "w": "You,",
+     "t": 1.12,
+     "end": 1.36
+    },
+    {
+     "w": "by",
+     "t": 1.76,
+     "end": 1.92
+    },
+    {
+     "w": "U2...",
+     "t": 2,
+     "end": 2.88
+    }
+   ]
+  },
+  "song2": {
+   "text": "Someone Like You, by Adele...",
+   "dur": 2.429388,
+   "speechEnd": 2.48,
+   "words": [
+    {
+     "w": "Someone",
+     "t": 0,
+     "end": 0.48
+    },
+    {
+     "w": "Like",
+     "t": 0.56,
+     "end": 0.72
+    },
+    {
+     "w": "You,",
+     "t": 0.88,
+     "end": 1.32
+    },
+    {
+     "w": "by",
+     "t": 1.52,
+     "end": 1.68
+    },
+    {
+     "w": "Adele...",
+     "t": 1.76,
+     "end": 2.48
+    }
+   ]
+  },
+  "song3": {
+   "text": "And Don't Stop Believin', by Journey.",
+   "dur": 2.586122,
+   "speechEnd": 2.64,
+   "words": [
+    {
+     "w": "And",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "Don't",
+     "t": 0.32,
+     "end": 0.48
+    },
+    {
+     "w": "Stop",
+     "t": 0.56,
+     "end": 0.8
+    },
+    {
+     "w": "Believin',",
+     "t": 0.88,
+     "end": 1.68
+    },
+    {
+     "w": "by",
+     "t": 1.76,
+     "end": 1.84
+    },
+    {
+     "w": "Journey.",
+     "t": 2,
+     "end": 2.64
+    }
+   ]
+  },
+  "outro1": {
+   "text": "Change the key, and the whole shape just rotates...",
+   "dur": 3.317551,
+   "speechEnd": 3.36,
+   "words": [
+    {
+     "w": "Change",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "the",
+     "t": 0.4,
+     "end": 0.48
+    },
+    {
+     "w": "key,",
+     "t": 0.56,
+     "end": 1.12
+    },
+    {
+     "w": "and",
+     "t": 1.2,
+     "end": 1.28
+    },
+    {
+     "w": "the",
+     "t": 1.32,
+     "end": 1.36
+    },
+    {
+     "w": "whole",
+     "t": 1.44,
+     "end": 1.6
+    },
+    {
+     "w": "shape",
+     "t": 1.76,
+     "end": 2.08
+    },
+    {
+     "w": "just",
+     "t": 2.16,
+     "end": 2.32
+    },
+    {
+     "w": "rotates...",
+     "t": 2.4,
+     "end": 3.36
+    }
+   ]
+  },
+  "outro2": {
+   "text": "But it's the exact same shape.",
+   "dur": 2.194286,
+   "speechEnd": 2.24,
+   "words": [
+    {
+     "w": "But",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "it's",
+     "t": 0.24,
+     "end": 0.4
+    },
+    {
+     "w": "the",
+     "t": 0.44,
+     "end": 0.48
+    },
+    {
+     "w": "exact",
+     "t": 0.56,
+     "end": 1.12
+    },
+    {
+     "w": "same",
+     "t": 1.2,
+     "end": 1.44
+    },
+    {
+     "w": "shape.",
+     "t": 1.6,
+     "end": 2.24
+    }
+   ]
+  },
+  "home": {
+   "text": "So why does it work? Every key has a home... and C is home.",
+   "dur": 5.564082,
+   "speechEnd": 5.6,
+   "words": [
+    {
+     "w": "So",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "why",
+     "t": 0.48,
+     "end": 0.64
+    },
+    {
+     "w": "does",
+     "t": 0.72,
+     "end": 0.8
+    },
+    {
+     "w": "it",
+     "t": 0.88,
+     "end": 0.96
+    },
+    {
+     "w": "work?",
+     "t": 1.04,
+     "end": 1.44
+    },
+    {
+     "w": "Every",
+     "t": 2,
+     "end": 2.32
+    },
+    {
+     "w": "key",
+     "t": 2.4,
+     "end": 2.64
+    },
+    {
+     "w": "has",
+     "t": 2.72,
+     "end": 2.88
+    },
+    {
+     "w": "a",
+     "t": 2.92,
+     "end": 2.96
+    },
+    {
+     "w": "home...",
+     "t": 3.04,
+     "end": 3.92
+    },
+    {
+     "w": "and",
+     "t": 4,
+     "end": 4.08
+    },
+    {
+     "w": "C",
+     "t": 4.24,
+     "end": 4.56
+    },
+    {
+     "w": "is",
+     "t": 4.8,
+     "end": 4.88
+    },
+    {
+     "w": "home.",
+     "t": 4.96,
+     "end": 5.6
+    }
+   ]
+  },
+  "tension": {
+   "text": "G pulls away. Its B sits a half step below home, aching to resolve.",
+   "dur": 6.034286,
+   "speechEnd": 6.08,
+   "words": [
+    {
+     "w": "G",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "pulls",
+     "t": 0.4,
+     "end": 0.64
+    },
+    {
+     "w": "away.",
+     "t": 0.72,
+     "end": 1.4
+    },
+    {
+     "w": "Its",
+     "t": 1.68,
+     "end": 1.92
+    },
+    {
+     "w": "B",
+     "t": 2,
+     "end": 2.32
+    },
+    {
+     "w": "sits",
+     "t": 2.4,
+     "end": 2.56
+    },
+    {
+     "w": "a",
+     "t": 2.64,
+     "end": 2.72
+    },
+    {
+     "w": "half",
+     "t": 2.8,
+     "end": 2.96
+    },
+    {
+     "w": "step",
+     "t": 3.04,
+     "end": 3.28
+    },
+    {
+     "w": "below",
+     "t": 3.36,
+     "end": 3.6
+    },
+    {
+     "w": "home,",
+     "t": 3.76,
+     "end": 4.48
+    },
+    {
+     "w": "aching",
+     "t": 4.76,
+     "end": 5.04
+    },
+    {
+     "w": "to",
+     "t": 5.08,
+     "end": 5.12
+    },
+    {
+     "w": "resolve.",
+     "t": 5.2,
+     "end": 6.08
+    }
+   ]
+  },
+  "twist": {
+   "text": "So your ear expects home. Instead... A minor.",
+   "dur": 4.519184,
+   "speechEnd": 4.56,
+   "words": [
+    {
+     "w": "So",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "your",
+     "t": 0.4,
+     "end": 0.56
+    },
+    {
+     "w": "ear",
+     "t": 0.64,
+     "end": 0.88
+    },
+    {
+     "w": "expects",
+     "t": 0.96,
+     "end": 1.52
+    },
+    {
+     "w": "home.",
+     "t": 1.6,
+     "end": 2.08
+    },
+    {
+     "w": "Instead...",
+     "t": 2.48,
+     "end": 3.6
+    },
+    {
+     "w": "A",
+     "t": 3.68,
+     "end": 3.76
+    },
+    {
+     "w": "minor.",
+     "t": 3.84,
+     "end": 4.56
+    }
+   ]
+  },
+  "mirror": {
+   "text": "Flip C in a mirror, and you get A minor. Same family... but sad.",
+   "dur": 5.407347,
+   "speechEnd": 5.44,
+   "words": [
+    {
+     "w": "Flip",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "C",
+     "t": 0.4,
+     "end": 0.64
+    },
+    {
+     "w": "in",
+     "t": 0.68,
+     "end": 0.72
+    },
+    {
+     "w": "a",
+     "t": 0.76,
+     "end": 0.8
+    },
+    {
+     "w": "mirror,",
+     "t": 0.88,
+     "end": 1.44
+    },
+    {
+     "w": "and",
+     "t": 1.52,
+     "end": 1.6
+    },
+    {
+     "w": "you",
+     "t": 1.64,
+     "end": 1.68
+    },
+    {
+     "w": "get",
+     "t": 1.76,
+     "end": 1.92
+    },
+    {
+     "w": "A",
+     "t": 2,
+     "end": 2.16
+    },
+    {
+     "w": "minor.",
+     "t": 2.24,
+     "end": 2.88
+    },
+    {
+     "w": "Same",
+     "t": 3.12,
+     "end": 3.36
+    },
+    {
+     "w": "family...",
+     "t": 3.44,
+     "end": 4.4
+    },
+    {
+     "w": "but",
+     "t": 4.52,
+     "end": 4.64
+    },
+    {
+     "w": "sad.",
+     "t": 4.72,
+     "end": 5.44
+    }
+   ]
+  },
+  "lift": {
+   "text": "Then F lifts you up, and slides you back home.",
+   "dur": 3.552653,
+   "speechEnd": 3.6,
+   "words": [
+    {
+     "w": "Then",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "F",
+     "t": 0.56,
+     "end": 0.72
+    },
+    {
+     "w": "lifts",
+     "t": 0.8,
+     "end": 1.12
+    },
+    {
+     "w": "you",
+     "t": 1.2,
+     "end": 1.28
+    },
+    {
+     "w": "up,",
+     "t": 1.36,
+     "end": 1.72
+    },
+    {
+     "w": "and",
+     "t": 1.84,
+     "end": 2
+    },
+    {
+     "w": "slides",
+     "t": 2.16,
+     "end": 2.56
+    },
+    {
+     "w": "you",
+     "t": 2.6,
+     "end": 2.64
+    },
+    {
+     "w": "back",
+     "t": 2.72,
+     "end": 2.96
+    },
+    {
+     "w": "home.",
+     "t": 3.12,
+     "end": 3.6
+    }
+   ]
+  },
+  "rot0": {
+   "text": "Now start on the sad chord, and the whole mood flips.",
+   "dur": 3.970612,
+   "speechEnd": 4,
+   "words": [
+    {
+     "w": "Now",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "start",
+     "t": 0.32,
+     "end": 0.56
+    },
+    {
+     "w": "on",
+     "t": 0.6,
+     "end": 0.64
+    },
+    {
+     "w": "the",
+     "t": 0.72,
+     "end": 0.8
+    },
+    {
+     "w": "sad",
+     "t": 0.88,
+     "end": 1.12
+    },
+    {
+     "w": "chord,",
+     "t": 1.2,
+     "end": 1.92
+    },
+    {
+     "w": "and",
+     "t": 1.96,
+     "end": 2
+    },
+    {
+     "w": "the",
+     "t": 2.08,
+     "end": 2.16
+    },
+    {
+     "w": "whole",
+     "t": 2.32,
+     "end": 2.56
+    },
+    {
+     "w": "mood",
+     "t": 2.72,
+     "end": 3.04
+    },
+    {
+     "w": "flips.",
+     "t": 3.2,
+     "end": 4
+    }
+   ]
+  },
+  "rot1": {
+   "text": "Zombie, by the Cranberries...",
+   "dur": 2.272653,
+   "speechEnd": 2.32,
+   "words": [
+    {
+     "w": "Zombie,",
+     "t": 0,
+     "end": 0.88
+    },
+    {
+     "w": "by",
+     "t": 0.96,
+     "end": 1.04
+    },
+    {
+     "w": "the",
+     "t": 1.08,
+     "end": 1.12
+    },
+    {
+     "w": "Cranberries...",
+     "t": 1.2,
+     "end": 2.32
+    }
+   ]
+  },
+  "rot2": {
+   "text": "Despacito...",
+   "dur": 1.410612,
+   "speechEnd": 1.36,
+   "words": [
+    {
+     "w": "Despacito...",
+     "t": 0,
+     "end": 1.36
+    }
+   ]
+  },
+  "essence": {
+   "text": "That's the essence of music: leave home, build tension... and find your way back.",
+   "dur": 6.269388,
+   "speechEnd": 6.32,
+   "words": [
+    {
+     "w": "That's",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "the",
+     "t": 0.36,
+     "end": 0.4
+    },
+    {
+     "w": "essence",
+     "t": 0.64,
+     "end": 1.04
+    },
+    {
+     "w": "of",
+     "t": 1.08,
+     "end": 1.12
+    },
+    {
+     "w": "music:",
+     "t": 1.2,
+     "end": 2.24
+    },
+    {
+     "w": "leave",
+     "t": 2.32,
+     "end": 2.56
+    },
+    {
+     "w": "home,",
+     "t": 2.76,
+     "end": 3.36
+    },
+    {
+     "w": "build",
+     "t": 3.48,
+     "end": 3.6
+    },
+    {
+     "w": "tension...",
+     "t": 3.68,
+     "end": 4.8
+    },
+    {
+     "w": "and",
+     "t": 4.88,
+     "end": 4.96
+    },
+    {
+     "w": "find",
+     "t": 5.04,
+     "end": 5.28
+    },
+    {
+     "w": "your",
+     "t": 5.36,
+     "end": 5.44
+    },
+    {
+     "w": "way",
+     "t": 5.52,
+     "end": 5.6
+    },
+    {
+     "w": "back.",
+     "t": 5.68,
+     "end": 6.32
+    }
+   ]
+  },
+  "cta": {
+   "text": "Which song should I break down next?",
+   "dur": 2.194286,
+   "speechEnd": 2,
+   "words": [
+    {
+     "w": "Which",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "song",
+     "t": 0.32,
+     "end": 0.56
+    },
+    {
+     "w": "should",
+     "t": 0.64,
+     "end": 0.72
+    },
+    {
+     "w": "I",
+     "t": 0.76,
+     "end": 0.8
+    },
+    {
+     "w": "break",
+     "t": 0.88,
+     "end": 1.12
+    },
+    {
+     "w": "down",
+     "t": 1.24,
+     "end": 1.36
+    },
+    {
+     "w": "next?",
+     "t": 1.6,
+     "end": 2
+    }
+   ]
+  }
+ }
+}

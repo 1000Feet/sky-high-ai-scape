@@ -1,0 +1,921 @@
+{
+ "voice_id": "EwzF7Z2UMSib9JaKx0Kg",
+ "model_id": "eleven_v4",
+ "segments": {
+  "hook": {
+   "text": "Five notes. They're in Chinese folk songs, Scottish ballads, blues solos... and you already know them.",
+   "dur": 7.392653,
+   "speechEnd": 7.44,
+   "words": [
+    {
+     "w": "Five",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "notes.",
+     "t": 0.4,
+     "end": 1.12
+    },
+    {
+     "w": "They're",
+     "t": 1.36,
+     "end": 1.44
+    },
+    {
+     "w": "in",
+     "t": 1.52,
+     "end": 1.6
+    },
+    {
+     "w": "Chinese",
+     "t": 1.68,
+     "end": 2
+    },
+    {
+     "w": "folk",
+     "t": 2.08,
+     "end": 2.32
+    },
+    {
+     "w": "songs,",
+     "t": 2.4,
+     "end": 3.04
+    },
+    {
+     "w": "Scottish",
+     "t": 3.12,
+     "end": 3.52
+    },
+    {
+     "w": "ballads,",
+     "t": 3.6,
+     "end": 4.32
+    },
+    {
+     "w": "blues",
+     "t": 4.4,
+     "end": 4.72
+    },
+    {
+     "w": "solos...",
+     "t": 4.8,
+     "end": 5.84
+    },
+    {
+     "w": "and",
+     "t": 5.92,
+     "end": 6.08
+    },
+    {
+     "w": "you",
+     "t": 6.16,
+     "end": 6.32
+    },
+    {
+     "w": "already",
+     "t": 6.52,
+     "end": 6.72
+    },
+    {
+     "w": "know",
+     "t": 6.8,
+     "end": 6.88
+    },
+    {
+     "w": "them.",
+     "t": 6.96,
+     "end": 7.44
+    }
+   ]
+  },
+  "what": {
+   "text": "Play only the black keys of a piano. That's it: the pentatonic scale.",
+   "dur": 5.250612,
+   "speechEnd": 5.28,
+   "words": [
+    {
+     "w": "Play",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "only",
+     "t": 0.48,
+     "end": 0.72
+    },
+    {
+     "w": "the",
+     "t": 0.8,
+     "end": 0.88
+    },
+    {
+     "w": "black",
+     "t": 0.96,
+     "end": 1.28
+    },
+    {
+     "w": "keys",
+     "t": 1.36,
+     "end": 1.6
+    },
+    {
+     "w": "of",
+     "t": 1.68,
+     "end": 1.72
+    },
+    {
+     "w": "a",
+     "t": 1.76,
+     "end": 1.8
+    },
+    {
+     "w": "piano.",
+     "t": 1.84,
+     "end": 2.64
+    },
+    {
+     "w": "That's",
+     "t": 2.88,
+     "end": 3.08
+    },
+    {
+     "w": "it:",
+     "t": 3.12,
+     "end": 3.76
+    },
+    {
+     "w": "the",
+     "t": 3.8,
+     "end": 3.84
+    },
+    {
+     "w": "pentatonic",
+     "t": 3.92,
+     "end": 4.56
+    },
+    {
+     "w": "scale.",
+     "t": 4.76,
+     "end": 5.28
+    }
+   ]
+  },
+  "inc": {
+   "text": "In C, it’s C, D, E, G and A.",
+   "dur": 4.597551,
+   "speechEnd": 4.64,
+   "words": [
+    {
+     "w": "In",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "C,",
+     "t": 0.32,
+     "end": 0.96
+    },
+    {
+     "w": "it’s",
+     "t": 1.04,
+     "end": 1.36
+    },
+    {
+     "w": "C,",
+     "t": 1.6,
+     "end": 2.08
+    },
+    {
+     "w": "D,",
+     "t": 2.24,
+     "end": 2.56
+    },
+    {
+     "w": "E,",
+     "t": 2.8,
+     "end": 3.28
+    },
+    {
+     "w": "G",
+     "t": 3.44,
+     "end": 3.68
+    },
+    {
+     "w": "and",
+     "t": 3.84,
+     "end": 4
+    },
+    {
+     "w": "A.",
+     "t": 4.08,
+     "end": 4.64
+    }
+   ]
+  },
+  "grace": {
+   "text": "It's the melody of Amazing Grace...",
+   "dur": 2.507755,
+   "speechEnd": 2.56,
+   "words": [
+    {
+     "w": "It's",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "the",
+     "t": 0.28,
+     "end": 0.32
+    },
+    {
+     "w": "melody",
+     "t": 0.4,
+     "end": 0.88
+    },
+    {
+     "w": "of",
+     "t": 0.96,
+     "end": 1.04
+    },
+    {
+     "w": "Amazing",
+     "t": 1.32,
+     "end": 1.6
+    },
+    {
+     "w": "Grace...",
+     "t": 1.68,
+     "end": 2.56
+    }
+   ]
+  },
+  "auld": {
+   "text": "Auld Lang Syne...",
+   "dur": 1.724082,
+   "speechEnd": 1.68,
+   "words": [
+    {
+     "w": "Auld",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "Lang",
+     "t": 0.4,
+     "end": 0.72
+    },
+    {
+     "w": "Syne...",
+     "t": 0.8,
+     "end": 1.68
+    }
+   ]
+  },
+  "solo": {
+   "text": "and almost every rock guitar solo.",
+   "dur": 2.586122,
+   "speechEnd": 2.64,
+   "words": [
+    {
+     "w": "and",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "almost",
+     "t": 0.48,
+     "end": 0.72
+    },
+    {
+     "w": "every",
+     "t": 0.8,
+     "end": 1.12
+    },
+    {
+     "w": "rock",
+     "t": 1.28,
+     "end": 1.44
+    },
+    {
+     "w": "guitar",
+     "t": 1.52,
+     "end": 1.84
+    },
+    {
+     "w": "solo.",
+     "t": 1.92,
+     "end": 2.64
+    }
+   ]
+  },
+  "why1": {
+   "text": "Why does it sound good everywhere? Look at what's missing: F and B.",
+   "dur": 5.485714,
+   "speechEnd": 5.52,
+   "words": [
+    {
+     "w": "Why",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "does",
+     "t": 0.32,
+     "end": 0.4
+    },
+    {
+     "w": "it",
+     "t": 0.48,
+     "end": 0.56
+    },
+    {
+     "w": "sound",
+     "t": 0.64,
+     "end": 0.88
+    },
+    {
+     "w": "good",
+     "t": 0.96,
+     "end": 1.2
+    },
+    {
+     "w": "everywhere?",
+     "t": 1.28,
+     "end": 2
+    },
+    {
+     "w": "Look",
+     "t": 2.56,
+     "end": 2.64
+    },
+    {
+     "w": "at",
+     "t": 2.72,
+     "end": 2.8
+    },
+    {
+     "w": "what's",
+     "t": 2.88,
+     "end": 3.04
+    },
+    {
+     "w": "missing:",
+     "t": 3.24,
+     "end": 3.92
+    },
+    {
+     "w": "F",
+     "t": 4.08,
+     "end": 4.4
+    },
+    {
+     "w": "and",
+     "t": 4.64,
+     "end": 4.8
+    },
+    {
+     "w": "B.",
+     "t": 4.88,
+     "end": 5.52
+    }
+   ]
+  },
+  "why2": {
+   "text": "Those two notes make the only half steps in the scale... and the tritone.",
+   "dur": 4.832653,
+   "speechEnd": 4.88,
+   "words": [
+    {
+     "w": "Those",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "two",
+     "t": 0.4,
+     "end": 0.56
+    },
+    {
+     "w": "notes",
+     "t": 0.64,
+     "end": 0.96
+    },
+    {
+     "w": "make",
+     "t": 1.08,
+     "end": 1.2
+    },
+    {
+     "w": "the",
+     "t": 1.28,
+     "end": 1.36
+    },
+    {
+     "w": "only",
+     "t": 1.44,
+     "end": 1.68
+    },
+    {
+     "w": "half",
+     "t": 1.84,
+     "end": 2
+    },
+    {
+     "w": "steps",
+     "t": 2.08,
+     "end": 2.32
+    },
+    {
+     "w": "in",
+     "t": 2.4,
+     "end": 2.48
+    },
+    {
+     "w": "the",
+     "t": 2.52,
+     "end": 2.56
+    },
+    {
+     "w": "scale...",
+     "t": 2.64,
+     "end": 3.52
+    },
+    {
+     "w": "and",
+     "t": 3.6,
+     "end": 3.76
+    },
+    {
+     "w": "the",
+     "t": 3.84,
+     "end": 3.88
+    },
+    {
+     "w": "tritone.",
+     "t": 3.92,
+     "end": 4.88
+    }
+   ]
+  },
+  "why3": {
+   "text": "Take them out, and nothing clashes. Any note sounds fine with any other.",
+   "dur": 4.989388,
+   "speechEnd": 5.04,
+   "words": [
+    {
+     "w": "Take",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "them",
+     "t": 0.32,
+     "end": 0.4
+    },
+    {
+     "w": "out,",
+     "t": 0.48,
+     "end": 0.88
+    },
+    {
+     "w": "and",
+     "t": 1,
+     "end": 1.12
+    },
+    {
+     "w": "nothing",
+     "t": 1.2,
+     "end": 1.44
+    },
+    {
+     "w": "clashes.",
+     "t": 1.52,
+     "end": 2.16
+    },
+    {
+     "w": "Any",
+     "t": 2.56,
+     "end": 2.72
+    },
+    {
+     "w": "note",
+     "t": 2.8,
+     "end": 3.04
+    },
+    {
+     "w": "sounds",
+     "t": 3.12,
+     "end": 3.36
+    },
+    {
+     "w": "fine",
+     "t": 3.52,
+     "end": 3.84
+    },
+    {
+     "w": "with",
+     "t": 3.96,
+     "end": 4.08
+    },
+    {
+     "w": "any",
+     "t": 4.16,
+     "end": 4.32
+    },
+    {
+     "w": "other.",
+     "t": 4.4,
+     "end": 5.04
+    }
+   ]
+  },
+  "fifths": {
+   "text": "And there's a deeper secret. Stack perfect fifths: C, G, D, A, E.",
+   "dur": 7.314286,
+   "speechEnd": 7.36,
+   "words": [
+    {
+     "w": "And",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "there's",
+     "t": 0.32,
+     "end": 0.48
+    },
+    {
+     "w": "a",
+     "t": 0.52,
+     "end": 0.56
+    },
+    {
+     "w": "deeper",
+     "t": 0.72,
+     "end": 1.04
+    },
+    {
+     "w": "secret.",
+     "t": 1.12,
+     "end": 1.68
+    },
+    {
+     "w": "Stack",
+     "t": 2.32,
+     "end": 2.64
+    },
+    {
+     "w": "perfect",
+     "t": 2.8,
+     "end": 3.2
+    },
+    {
+     "w": "fifths:",
+     "t": 3.28,
+     "end": 4.24
+    },
+    {
+     "w": "C,",
+     "t": 4.32,
+     "end": 4.72
+    },
+    {
+     "w": "G,",
+     "t": 5.04,
+     "end": 5.52
+    },
+    {
+     "w": "D,",
+     "t": 5.68,
+     "end": 6
+    },
+    {
+     "w": "A,",
+     "t": 6.24,
+     "end": 6.68
+    },
+    {
+     "w": "E.",
+     "t": 6.8,
+     "end": 7.36
+    }
+   ]
+  },
+  "fifths2": {
+   "text": "Rearrange the circle by fifths, and the pentatonic is just five neighbors in a row.",
+   "dur": 5.32898,
+   "speechEnd": 5.28,
+   "words": [
+    {
+     "w": "Rearrange",
+     "t": 0,
+     "end": 0.56
+    },
+    {
+     "w": "the",
+     "t": 0.64,
+     "end": 0.72
+    },
+    {
+     "w": "circle",
+     "t": 0.8,
+     "end": 1.12
+    },
+    {
+     "w": "by",
+     "t": 1.24,
+     "end": 1.36
+    },
+    {
+     "w": "fifths,",
+     "t": 1.44,
+     "end": 2.16
+    },
+    {
+     "w": "and",
+     "t": 2.24,
+     "end": 2.32
+    },
+    {
+     "w": "the",
+     "t": 2.36,
+     "end": 2.4
+    },
+    {
+     "w": "pentatonic",
+     "t": 2.48,
+     "end": 3.2
+    },
+    {
+     "w": "is",
+     "t": 3.28,
+     "end": 3.44
+    },
+    {
+     "w": "just",
+     "t": 3.52,
+     "end": 3.76
+    },
+    {
+     "w": "five",
+     "t": 3.84,
+     "end": 4.08
+    },
+    {
+     "w": "neighbors",
+     "t": 4.16,
+     "end": 4.56
+    },
+    {
+     "w": "in",
+     "t": 4.6,
+     "end": 4.64
+    },
+    {
+     "w": "a",
+     "t": 4.72,
+     "end": 4.76
+    },
+    {
+     "w": "row.",
+     "t": 4.8,
+     "end": 5.28
+    }
+   ]
+  },
+  "mcferrin": {
+   "text": "That’s why Bobby McFerrin could hop around a stage...",
+   "dur": 3.160816,
+   "speechEnd": 3.2,
+   "words": [
+    {
+     "w": "That’s",
+     "t": 0,
+     "end": 0.28
+    },
+    {
+     "w": "why",
+     "t": 0.32,
+     "end": 0.48
+    },
+    {
+     "w": "Bobby",
+     "t": 0.56,
+     "end": 0.8
+    },
+    {
+     "w": "McFerrin",
+     "t": 0.88,
+     "end": 1.52
+    },
+    {
+     "w": "could",
+     "t": 1.6,
+     "end": 1.68
+    },
+    {
+     "w": "hop",
+     "t": 1.76,
+     "end": 1.92
+    },
+    {
+     "w": "around",
+     "t": 2,
+     "end": 2.24
+    },
+    {
+     "w": "a",
+     "t": 2.28,
+     "end": 2.32
+    },
+    {
+     "w": "stage...",
+     "t": 2.4,
+     "end": 3.2
+    }
+   ]
+  },
+  "mcferrin2": {
+   "text": "and a whole audience sang the right notes, without being told.",
+   "dur": 4.205714,
+   "speechEnd": 4.24,
+   "words": [
+    {
+     "w": "and",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "a",
+     "t": 0.2,
+     "end": 0.24
+    },
+    {
+     "w": "whole",
+     "t": 0.4,
+     "end": 0.64
+    },
+    {
+     "w": "audience",
+     "t": 0.8,
+     "end": 1.36
+    },
+    {
+     "w": "sang",
+     "t": 1.4,
+     "end": 1.6
+    },
+    {
+     "w": "the",
+     "t": 1.68,
+     "end": 1.76
+    },
+    {
+     "w": "right",
+     "t": 1.84,
+     "end": 2.08
+    },
+    {
+     "w": "notes,",
+     "t": 2.16,
+     "end": 2.88
+    },
+    {
+     "w": "without",
+     "t": 3.04,
+     "end": 3.2
+    },
+    {
+     "w": "being",
+     "t": 3.28,
+     "end": 3.44
+    },
+    {
+     "w": "told.",
+     "t": 3.52,
+     "end": 4.24
+    }
+   ]
+  },
+  "essence": {
+   "text": "The pentatonic isn't a rule someone invented. It's built from the simplest ratio in nature.",
+   "dur": 6.19102,
+   "speechEnd": 6.24,
+   "words": [
+    {
+     "w": "The",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "pentatonic",
+     "t": 0.28,
+     "end": 0.88
+    },
+    {
+     "w": "isn't",
+     "t": 0.96,
+     "end": 1.2
+    },
+    {
+     "w": "a",
+     "t": 1.28,
+     "end": 1.36
+    },
+    {
+     "w": "rule",
+     "t": 1.44,
+     "end": 1.76
+    },
+    {
+     "w": "someone",
+     "t": 1.84,
+     "end": 2.08
+    },
+    {
+     "w": "invented.",
+     "t": 2.16,
+     "end": 3.04
+    },
+    {
+     "w": "It's",
+     "t": 3.28,
+     "end": 3.44
+    },
+    {
+     "w": "built",
+     "t": 3.56,
+     "end": 3.68
+    },
+    {
+     "w": "from",
+     "t": 3.76,
+     "end": 3.92
+    },
+    {
+     "w": "the",
+     "t": 4,
+     "end": 4.08
+    },
+    {
+     "w": "simplest",
+     "t": 4.16,
+     "end": 4.64
+    },
+    {
+     "w": "ratio",
+     "t": 4.72,
+     "end": 5.2
+    },
+    {
+     "w": "in",
+     "t": 5.28,
+     "end": 5.36
+    },
+    {
+     "w": "nature.",
+     "t": 5.44,
+     "end": 6.24
+    }
+   ]
+  },
+  "cta": {
+   "text": "What should I break down next?",
+   "dur": 1.959184,
+   "speechEnd": 1.92,
+   "words": [
+    {
+     "w": "What",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "should",
+     "t": 0.32,
+     "end": 0.4
+    },
+    {
+     "w": "I",
+     "t": 0.48,
+     "end": 0.56
+    },
+    {
+     "w": "break",
+     "t": 0.68,
+     "end": 0.8
+    },
+    {
+     "w": "down",
+     "t": 0.92,
+     "end": 1.04
+    },
+    {
+     "w": "next?",
+     "t": 1.12,
+     "end": 1.92
+    }
+   ]
+  }
+ }
+}

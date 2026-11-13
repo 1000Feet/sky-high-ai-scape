@@ -1,0 +1,959 @@
+{
+ "voice_id": "EwzF7Z2UMSib9JaKx0Kg",
+ "model_id": "eleven_v4",
+ "segments": {
+  "hook": {
+   "text": "One note, sliding down half a step at a time. That's all it takes to make a chord melt.",
+   "dur": 6.60898,
+   "speechEnd": 6.64,
+   "words": [
+    {
+     "w": "One",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "note,",
+     "t": 0.32,
+     "end": 1.04
+    },
+    {
+     "w": "sliding",
+     "t": 1.2,
+     "end": 1.6
+    },
+    {
+     "w": "down",
+     "t": 1.76,
+     "end": 1.92
+    },
+    {
+     "w": "half",
+     "t": 2,
+     "end": 2.24
+    },
+    {
+     "w": "a",
+     "t": 2.32,
+     "end": 2.36
+    },
+    {
+     "w": "step",
+     "t": 2.4,
+     "end": 2.64
+    },
+    {
+     "w": "at",
+     "t": 2.72,
+     "end": 2.76
+    },
+    {
+     "w": "a",
+     "t": 2.8,
+     "end": 2.88
+    },
+    {
+     "w": "time.",
+     "t": 3.08,
+     "end": 3.84
+    },
+    {
+     "w": "That's",
+     "t": 3.96,
+     "end": 4.16
+    },
+    {
+     "w": "all",
+     "t": 4.24,
+     "end": 4.32
+    },
+    {
+     "w": "it",
+     "t": 4.4,
+     "end": 4.48
+    },
+    {
+     "w": "takes",
+     "t": 4.68,
+     "end": 4.88
+    },
+    {
+     "w": "to",
+     "t": 4.92,
+     "end": 4.96
+    },
+    {
+     "w": "make",
+     "t": 5.04,
+     "end": 5.2
+    },
+    {
+     "w": "a",
+     "t": 5.28,
+     "end": 5.36
+    },
+    {
+     "w": "chord",
+     "t": 5.44,
+     "end": 5.76
+    },
+    {
+     "w": "melt.",
+     "t": 5.92,
+     "end": 6.64
+    }
+   ]
+  },
+  "what": {
+   "text": "Hold a C chord. Now let just the top note slide down: C, B, B flat, A.",
+   "dur": 7.88898,
+   "speechEnd": 7.84,
+   "words": [
+    {
+     "w": "Hold",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "a",
+     "t": 0.32,
+     "end": 0.4
+    },
+    {
+     "w": "C",
+     "t": 0.56,
+     "end": 0.72
+    },
+    {
+     "w": "chord.",
+     "t": 0.8,
+     "end": 1.48
+    },
+    {
+     "w": "Now",
+     "t": 1.76,
+     "end": 2
+    },
+    {
+     "w": "let",
+     "t": 2.08,
+     "end": 2.32
+    },
+    {
+     "w": "just",
+     "t": 2.4,
+     "end": 2.64
+    },
+    {
+     "w": "the",
+     "t": 2.72,
+     "end": 2.8
+    },
+    {
+     "w": "top",
+     "t": 2.88,
+     "end": 3.12
+    },
+    {
+     "w": "note",
+     "t": 3.2,
+     "end": 3.44
+    },
+    {
+     "w": "slide",
+     "t": 3.52,
+     "end": 3.84
+    },
+    {
+     "w": "down:",
+     "t": 3.92,
+     "end": 4.8
+    },
+    {
+     "w": "C,",
+     "t": 4.96,
+     "end": 5.36
+    },
+    {
+     "w": "B,",
+     "t": 5.68,
+     "end": 6.2
+    },
+    {
+     "w": "B",
+     "t": 6.4,
+     "end": 6.56
+    },
+    {
+     "w": "flat,",
+     "t": 6.76,
+     "end": 7.28
+    },
+    {
+     "w": "A.",
+     "t": 7.36,
+     "end": 7.84
+    }
+   ]
+  },
+  "name": {
+   "text": "Jazz musicians call it a line cliché.",
+   "dur": 3.082449,
+   "speechEnd": 3.04,
+   "words": [
+    {
+     "w": "Jazz",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "musicians",
+     "t": 0.4,
+     "end": 0.96
+    },
+    {
+     "w": "call",
+     "t": 1.04,
+     "end": 1.2
+    },
+    {
+     "w": "it",
+     "t": 1.28,
+     "end": 1.44
+    },
+    {
+     "w": "a",
+     "t": 1.6,
+     "end": 1.68
+    },
+    {
+     "w": "line",
+     "t": 1.76,
+     "end": 2.08
+    },
+    {
+     "w": "cliché.",
+     "t": 2.16,
+     "end": 3.04
+    }
+   ]
+  },
+  "something": {
+   "text": "It's the opening of Something, by the Beatles...",
+   "dur": 3.082449,
+   "speechEnd": 3.12,
+   "words": [
+    {
+     "w": "It's",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "the",
+     "t": 0.28,
+     "end": 0.32
+    },
+    {
+     "w": "opening",
+     "t": 0.4,
+     "end": 0.8
+    },
+    {
+     "w": "of",
+     "t": 0.88,
+     "end": 0.96
+    },
+    {
+     "w": "Something,",
+     "t": 1.12,
+     "end": 1.92
+    },
+    {
+     "w": "by",
+     "t": 2,
+     "end": 2.08
+    },
+    {
+     "w": "the",
+     "t": 2.16,
+     "end": 2.2
+    },
+    {
+     "w": "Beatles...",
+     "t": 2.24,
+     "end": 3.12
+    }
+   ]
+  },
+  "stairway": {
+   "text": "the intro of Stairway to Heaven, with the line in the bass...",
+   "dur": 3.709388,
+   "speechEnd": 3.76,
+   "words": [
+    {
+     "w": "the",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "intro",
+     "t": 0.24,
+     "end": 0.64
+    },
+    {
+     "w": "of",
+     "t": 0.72,
+     "end": 0.8
+    },
+    {
+     "w": "Stairway",
+     "t": 0.88,
+     "end": 1.28
+    },
+    {
+     "w": "to",
+     "t": 1.32,
+     "end": 1.36
+    },
+    {
+     "w": "Heaven,",
+     "t": 1.44,
+     "end": 2.16
+    },
+    {
+     "w": "with",
+     "t": 2.24,
+     "end": 2.32
+    },
+    {
+     "w": "the",
+     "t": 2.36,
+     "end": 2.4
+    },
+    {
+     "w": "line",
+     "t": 2.48,
+     "end": 2.72
+    },
+    {
+     "w": "in",
+     "t": 2.76,
+     "end": 2.8
+    },
+    {
+     "w": "the",
+     "t": 2.84,
+     "end": 2.88
+    },
+    {
+     "w": "bass...",
+     "t": 2.96,
+     "end": 3.76
+    }
+   ]
+  },
+  "valentine": {
+   "text": "and My Funny Valentine, where it turns a minor chord into pure longing.",
+   "dur": 5.485714,
+   "speechEnd": 5.52,
+   "words": [
+    {
+     "w": "and",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "My",
+     "t": 0.4,
+     "end": 0.56
+    },
+    {
+     "w": "Funny",
+     "t": 0.64,
+     "end": 0.88
+    },
+    {
+     "w": "Valentine,",
+     "t": 0.96,
+     "end": 2
+    },
+    {
+     "w": "where",
+     "t": 2.08,
+     "end": 2.16
+    },
+    {
+     "w": "it",
+     "t": 2.24,
+     "end": 2.32
+    },
+    {
+     "w": "turns",
+     "t": 2.44,
+     "end": 2.64
+    },
+    {
+     "w": "a",
+     "t": 2.68,
+     "end": 2.72
+    },
+    {
+     "w": "minor",
+     "t": 2.88,
+     "end": 3.12
+    },
+    {
+     "w": "chord",
+     "t": 3.2,
+     "end": 3.6
+    },
+    {
+     "w": "into",
+     "t": 3.76,
+     "end": 4
+    },
+    {
+     "w": "pure",
+     "t": 4.16,
+     "end": 4.56
+    },
+    {
+     "w": "longing.",
+     "t": 4.72,
+     "end": 5.52
+    }
+   ]
+  },
+  "why1": {
+   "text": "So why does it move us? A half step is the smallest distance in Western music.",
+   "dur": 5.799184,
+   "speechEnd": 5.84,
+   "words": [
+    {
+     "w": "So",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "why",
+     "t": 0.48,
+     "end": 0.64
+    },
+    {
+     "w": "does",
+     "t": 0.72,
+     "end": 0.88
+    },
+    {
+     "w": "it",
+     "t": 0.92,
+     "end": 0.96
+    },
+    {
+     "w": "move",
+     "t": 1.12,
+     "end": 1.36
+    },
+    {
+     "w": "us?",
+     "t": 1.44,
+     "end": 2.04
+    },
+    {
+     "w": "A",
+     "t": 2.32,
+     "end": 2.4
+    },
+    {
+     "w": "half",
+     "t": 2.48,
+     "end": 2.64
+    },
+    {
+     "w": "step",
+     "t": 2.8,
+     "end": 3.12
+    },
+    {
+     "w": "is",
+     "t": 3.2,
+     "end": 3.28
+    },
+    {
+     "w": "the",
+     "t": 3.36,
+     "end": 3.52
+    },
+    {
+     "w": "smallest",
+     "t": 3.6,
+     "end": 4
+    },
+    {
+     "w": "distance",
+     "t": 4.08,
+     "end": 4.56
+    },
+    {
+     "w": "in",
+     "t": 4.6,
+     "end": 4.64
+    },
+    {
+     "w": "Western",
+     "t": 4.72,
+     "end": 5.12
+    },
+    {
+     "w": "music.",
+     "t": 5.36,
+     "end": 5.84
+    }
+   ]
+  },
+  "why2": {
+   "text": "Your ear locks onto that one moving line, like following a single thread.",
+   "dur": 5.146122,
+   "speechEnd": 5.2,
+   "words": [
+    {
+     "w": "Your",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "ear",
+     "t": 0.32,
+     "end": 0.56
+    },
+    {
+     "w": "locks",
+     "t": 0.64,
+     "end": 1.04
+    },
+    {
+     "w": "onto",
+     "t": 1.12,
+     "end": 1.36
+    },
+    {
+     "w": "that",
+     "t": 1.48,
+     "end": 1.6
+    },
+    {
+     "w": "one",
+     "t": 1.76,
+     "end": 2
+    },
+    {
+     "w": "moving",
+     "t": 2.08,
+     "end": 2.4
+    },
+    {
+     "w": "line,",
+     "t": 2.48,
+     "end": 3.2
+    },
+    {
+     "w": "like",
+     "t": 3.32,
+     "end": 3.44
+    },
+    {
+     "w": "following",
+     "t": 3.64,
+     "end": 3.84
+    },
+    {
+     "w": "a",
+     "t": 3.92,
+     "end": 4
+    },
+    {
+     "w": "single",
+     "t": 4.08,
+     "end": 4.4
+    },
+    {
+     "w": "thread.",
+     "t": 4.48,
+     "end": 5.2
+    }
+   ]
+  },
+  "why3a": {
+   "text": "Meanwhile, the rest of the chord stays put.",
+   "dur": 2.76898,
+   "speechEnd": 2.8,
+   "words": [
+    {
+     "w": "Meanwhile,",
+     "t": 0,
+     "end": 0.8
+    },
+    {
+     "w": "the",
+     "t": 0.88,
+     "end": 0.92
+    },
+    {
+     "w": "rest",
+     "t": 0.96,
+     "end": 1.2
+    },
+    {
+     "w": "of",
+     "t": 1.24,
+     "end": 1.28
+    },
+    {
+     "w": "the",
+     "t": 1.32,
+     "end": 1.36
+    },
+    {
+     "w": "chord",
+     "t": 1.44,
+     "end": 1.76
+    },
+    {
+     "w": "stays",
+     "t": 1.84,
+     "end": 2.08
+    },
+    {
+     "w": "put.",
+     "t": 2.16,
+     "end": 2.8
+    }
+   ]
+  },
+  "why3": {
+   "text": "Same chord... but its color keeps shifting: bright, dreamy, bluesy, bittersweet.",
+   "dur": 7.392653,
+   "speechEnd": 7.44,
+   "words": [
+    {
+     "w": "Same",
+     "t": 0,
+     "end": 0.32
+    },
+    {
+     "w": "chord...",
+     "t": 0.4,
+     "end": 1.28
+    },
+    {
+     "w": "but",
+     "t": 1.36,
+     "end": 1.44
+    },
+    {
+     "w": "its",
+     "t": 1.56,
+     "end": 1.68
+    },
+    {
+     "w": "color",
+     "t": 1.76,
+     "end": 2.08
+    },
+    {
+     "w": "keeps",
+     "t": 2.16,
+     "end": 2.4
+    },
+    {
+     "w": "shifting:",
+     "t": 2.48,
+     "end": 3.52
+    },
+    {
+     "w": "bright,",
+     "t": 3.6,
+     "end": 4.4
+    },
+    {
+     "w": "dreamy,",
+     "t": 4.6,
+     "end": 5.36
+    },
+    {
+     "w": "bluesy,",
+     "t": 5.44,
+     "end": 6.4
+    },
+    {
+     "w": "bittersweet.",
+     "t": 6.48,
+     "end": 7.44
+    }
+   ]
+  },
+  "lament": {
+   "text": "Back in 1689, Purcell built Dido's Lament on a falling line just like it.",
+   "dur": 5.799184,
+   "speechEnd": 5.84,
+   "words": [
+    {
+     "w": "Back",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "in",
+     "t": 0.32,
+     "end": 0.48
+    },
+    {
+     "w": "1689,",
+     "t": 0.56,
+     "end": 1.92
+    },
+    {
+     "w": "Purcell",
+     "t": 2,
+     "end": 2.4
+    },
+    {
+     "w": "built",
+     "t": 2.48,
+     "end": 2.64
+    },
+    {
+     "w": "Dido's",
+     "t": 2.8,
+     "end": 3.2
+    },
+    {
+     "w": "Lament",
+     "t": 3.24,
+     "end": 3.68
+    },
+    {
+     "w": "on",
+     "t": 3.76,
+     "end": 3.84
+    },
+    {
+     "w": "a",
+     "t": 3.92,
+     "end": 4
+    },
+    {
+     "w": "falling",
+     "t": 4.08,
+     "end": 4.4
+    },
+    {
+     "w": "line",
+     "t": 4.48,
+     "end": 4.8
+    },
+    {
+     "w": "just",
+     "t": 4.96,
+     "end": 5.12
+    },
+    {
+     "w": "like",
+     "t": 5.2,
+     "end": 5.36
+    },
+    {
+     "w": "it.",
+     "t": 5.44,
+     "end": 5.84
+    }
+   ]
+  },
+  "lament2": {
+   "text": "It sounds like a sigh... like time slipping away.",
+   "dur": 4.205714,
+   "speechEnd": 4.24,
+   "words": [
+    {
+     "w": "It",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "sounds",
+     "t": 0.24,
+     "end": 0.56
+    },
+    {
+     "w": "like",
+     "t": 0.64,
+     "end": 0.72
+    },
+    {
+     "w": "a",
+     "t": 0.76,
+     "end": 0.8
+    },
+    {
+     "w": "sigh...",
+     "t": 0.96,
+     "end": 2.08
+    },
+    {
+     "w": "like",
+     "t": 2.16,
+     "end": 2.4
+    },
+    {
+     "w": "time",
+     "t": 2.64,
+     "end": 3.04
+    },
+    {
+     "w": "slipping",
+     "t": 3.12,
+     "end": 3.44
+    },
+    {
+     "w": "away.",
+     "t": 3.52,
+     "end": 4.24
+    }
+   ]
+  },
+  "essence": {
+   "text": "The smallest possible move, one half step at a time... and a single chord tells a whole story.",
+   "dur": 7.627755,
+   "speechEnd": 7.68,
+   "words": [
+    {
+     "w": "The",
+     "t": 0,
+     "end": 0.16
+    },
+    {
+     "w": "smallest",
+     "t": 0.24,
+     "end": 0.8
+    },
+    {
+     "w": "possible",
+     "t": 0.88,
+     "end": 1.36
+    },
+    {
+     "w": "move,",
+     "t": 1.52,
+     "end": 2.32
+    },
+    {
+     "w": "one",
+     "t": 2.4,
+     "end": 2.64
+    },
+    {
+     "w": "half",
+     "t": 2.8,
+     "end": 3.04
+    },
+    {
+     "w": "step",
+     "t": 3.12,
+     "end": 3.36
+    },
+    {
+     "w": "at",
+     "t": 3.4,
+     "end": 3.44
+    },
+    {
+     "w": "a",
+     "t": 3.52,
+     "end": 3.56
+    },
+    {
+     "w": "time...",
+     "t": 3.6,
+     "end": 4.64
+    },
+    {
+     "w": "and",
+     "t": 4.72,
+     "end": 4.8
+    },
+    {
+     "w": "a",
+     "t": 4.88,
+     "end": 4.96
+    },
+    {
+     "w": "single",
+     "t": 5.04,
+     "end": 5.36
+    },
+    {
+     "w": "chord",
+     "t": 5.44,
+     "end": 5.84
+    },
+    {
+     "w": "tells",
+     "t": 6.08,
+     "end": 6.32
+    },
+    {
+     "w": "a",
+     "t": 6.4,
+     "end": 6.56
+    },
+    {
+     "w": "whole",
+     "t": 6.64,
+     "end": 6.88
+    },
+    {
+     "w": "story.",
+     "t": 6.96,
+     "end": 7.68
+    }
+   ]
+  },
+  "cta": {
+   "text": "What should I break down next?",
+   "dur": 1.880816,
+   "speechEnd": 1.92,
+   "words": [
+    {
+     "w": "What",
+     "t": 0,
+     "end": 0.24
+    },
+    {
+     "w": "should",
+     "t": 0.32,
+     "end": 0.4
+    },
+    {
+     "w": "I",
+     "t": 0.48,
+     "end": 0.56
+    },
+    {
+     "w": "break",
+     "t": 0.64,
+     "end": 0.8
+    },
+    {
+     "w": "down",
+     "t": 0.88,
+     "end": 1.04
+    },
+    {
+     "w": "next?",
+     "t": 1.12,
+     "end": 1.92
+    }
+   ]
+  }
+ }
+}
